@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>公式知识图谱 · 交互原型（25 公式完整种子库）</title>
+  <title>公式知识图谱 · 多学科交互原型（初中电学与数学 Batch 1）</title>
   <!-- 在线时自动加载 KaTeX 渲染出版级数学公式；离线时无缝回退到内置原生公式渲染器 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="window.__katexReady && window.__katexReady()"></script>
@@ -54,12 +54,7 @@
       line-height: 1.5;
     }
 
-    .app {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-    }
+    .app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
 
     .topbar {
       background: var(--surface);
@@ -72,38 +67,34 @@
       gap: 10px;
       z-index: 20;
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .brand { display: flex; align-items: center; gap: 10px; }
     .brand-badge {
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
-      background: var(--primary);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      font-family: var(--font-math);
-      font-size: 16px;
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--primary); color: #fff;
+      display: grid; place-items: center;
+      font-weight: 700; font-family: var(--font-math); font-size: 16px;
     }
     .brand-title { font-size: 15px; font-weight: 600; color: var(--ink); }
     .brand-sub { font-size: 11.5px; color: var(--ink-muted); }
 
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 7px;
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+    .pack-select {
+      border: 1.5px solid var(--primary-border);
+      background: var(--primary-soft);
+      color: #1e40af;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      padding: 4px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
     }
     .search-box {
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-pill);
       padding: 5px 12px;
       font-size: 12px;
-      width: 170px;
+      width: 160px;
       outline: none;
       background: var(--surface);
       color: var(--ink);
@@ -111,208 +102,72 @@
     .search-box:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.14); }
 
     .filter-group {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      background: var(--surface-subtle);
-      padding: 3px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border);
+      display: flex; align-items: center; gap: 3px;
+      background: var(--surface-subtle); padding: 3px;
+      border-radius: var(--radius-pill); border: 1px solid var(--border);
       flex-wrap: wrap;
     }
-    .filter-label {
-      font-size: 11px;
-      color: var(--ink-muted);
-      padding: 0 5px 0 7px;
-      user-select: none;
-    }
+    .filter-label { font-size: 11px; color: var(--ink-muted); padding: 0 5px 0 7px; user-select: none; }
     .pill-btn {
-      border: none;
-      background: transparent;
-      color: var(--ink-secondary);
-      padding: 3px 9px;
-      border-radius: var(--radius-pill);
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      border: none; background: transparent; color: var(--ink-secondary);
+      padding: 3px 9px; border-radius: var(--radius-pill); font-size: 12px; cursor: pointer;
     }
     .pill-btn:hover { color: var(--ink); background: rgba(255,255,255,0.7); }
-    .pill-btn.active {
-      background: var(--surface);
-      color: var(--primary);
-      font-weight: 600;
-      box-shadow: var(--shadow-sm);
-    }
+    .pill-btn.active { background: var(--surface); color: var(--primary); font-weight: 600; box-shadow: var(--shadow-sm); }
 
     .toggle-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      border: 1px solid var(--border-strong);
-      background: var(--surface);
-      color: var(--ink-secondary);
-      padding: 4px 11px;
-      border-radius: var(--radius-pill);
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      display: inline-flex; align-items: center; gap: 5px;
+      border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink-secondary);
+      padding: 4px 11px; border-radius: var(--radius-pill); font-size: 12px; cursor: pointer;
     }
     .toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
-    .toggle-btn.active {
-      background: var(--primary-soft);
-      border-color: var(--primary);
-      color: var(--primary);
-      font-weight: 600;
-    }
+    .toggle-btn.active { background: var(--primary-soft); border-color: var(--primary); color: var(--primary); font-weight: 600; }
 
-    .workspace {
-      display: grid;
-      grid-template-columns: 1fr 430px;
-      flex: 1;
-      min-height: 0;
-    }
+    .workspace { display: grid; grid-template-columns: 1fr 436px; flex: 1; min-height: 0; }
 
     .canvas-pane {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      min-height: 0;
-      background:
-        radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0) 0 0 / 24px 24px,
-        var(--bg);
+      position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 0;
+      background: radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0) 0 0 / 24px 24px, var(--bg);
     }
     .canvas-subbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      z-index: 10;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 10px; padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border); z-index: 10;
     }
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      color: var(--ink-secondary);
-    }
+    .legend { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-secondary); }
     .legend-item { display: inline-flex; align-items: center; gap: 5px; }
     .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
 
-    .right-controls {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-    }
-    .path-finder {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12px;
-    }
+    .right-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .path-finder { display: flex; align-items: center; gap: 5px; font-size: 12px; }
     .path-finder select {
-      border: 1px solid var(--border-strong);
-      border-radius: 7px;
-      padding: 4px 7px;
-      font-size: 12px;
-      background: var(--surface);
-      color: var(--ink);
-      max-width: 148px;
+      border: 1px solid var(--border-strong); border-radius: 7px; padding: 4px 7px;
+      font-size: 12px; background: var(--surface); color: var(--ink); max-width: 148px;
     }
     .zoom-controls {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--border-strong);
-      border-radius: 7px;
-      background: var(--surface);
-      overflow: hidden;
+      display: inline-flex; align-items: center;
+      border: 1px solid var(--border-strong); border-radius: 7px; background: var(--surface); overflow: hidden;
     }
-    .zoom-btn {
-      border: none;
-      background: transparent;
-      padding: 4px 8px;
-      font-size: 12px;
-      cursor: pointer;
-      color: var(--ink-secondary);
-    }
+    .zoom-btn { border: none; background: transparent; padding: 4px 8px; font-size: 12px; cursor: pointer; color: var(--ink-secondary); }
     .zoom-btn:hover { background: var(--surface-subtle); color: var(--ink); }
-    .zoom-val {
-      font-size: 11px;
-      color: var(--ink-muted);
-      padding: 0 5px;
-      border-left: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      min-width: 42px;
-      text-align: center;
-    }
-    .action-btn {
-      border: 1px solid var(--primary);
-      background: var(--primary);
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: 7px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-    .action-btn:hover { opacity: 0.92; }
-    .action-btn.ghost {
-      background: var(--surface);
-      color: var(--ink-secondary);
-      border-color: var(--border-strong);
-    }
+    .zoom-val { font-size: 11px; color: var(--ink-muted); padding: 0 5px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); min-width: 42px; text-align: center; }
+    .action-btn { border: 1px solid var(--primary); background: var(--primary); color: #fff; padding: 4px 10px; border-radius: 7px; font-size: 12px; cursor: pointer; }
+    .action-btn.ghost { background: var(--surface); color: var(--ink-secondary); border-color: var(--border-strong); }
 
-    .graph-scroll {
-      flex: 1;
-      overflow: auto;
-      padding: 18px;
-    }
-    .graph-zoom-wrap {
-      transform-origin: top left;
-      transition: transform 0.12s ease;
-    }
-    .graph-stage {
-      position: relative;
-      width: 1640px;
-      height: 850px;
-      flex-shrink: 0;
-    }
+    .graph-scroll { flex: 1; overflow: auto; padding: 18px; }
+    .graph-zoom-wrap { transform-origin: top left; transition: transform 0.12s ease; }
+    .graph-stage { position: relative; flex-shrink: 0; }
     .lane-header {
-      position: absolute;
-      top: 4px;
-      width: 224px;
-      text-align: center;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--ink-muted);
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pill);
-      padding: 3px 10px;
-      letter-spacing: 0.02em;
+      position: absolute; top: 4px; width: 224px; text-align: center;
+      font-size: 11.5px; font-weight: 600; color: var(--ink-muted);
+      background: rgba(255, 255, 255, 0.88); border: 1px solid var(--border);
+      border-radius: var(--radius-pill); padding: 3px 10px;
     }
 
-    .graph-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-      pointer-events: none;
-    }
-    .edge-path {
-      fill: none;
-      stroke: #94a3b8;
-      stroke-width: 1.6;
-      opacity: 0.35;
-      transition: stroke 0.18s ease, opacity 0.18s ease, stroke-width 0.18s ease;
-    }
+    .graph-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+    .edge-path { fill: none; stroke: #94a3b8; stroke-width: 1.7; opacity: 0.35; transition: stroke 0.18s ease, opacity 0.18s ease, stroke-width 0.18s ease; }
+    .edge-path.cross-app { stroke-dasharray: 5 4; }
     .edge-path.dimmed { opacity: 0.08; }
     .edge-path.hidden { opacity: 0; }
     .edge-path.highlight-primary { stroke: var(--primary); stroke-width: 2.6; opacity: 1; }
@@ -322,30 +177,14 @@
     .edge-path.highlight-path { stroke: #e11d48; stroke-width: 3.1; opacity: 1; stroke-dasharray: 7 4; }
 
     .formula-node {
-      position: absolute;
-      width: 224px;
-      background: var(--surface);
-      border: 1.5px solid var(--border-strong);
-      border-radius: var(--radius-lg);
-      padding: 9px 12px;
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
+      position: absolute; width: 224px; background: var(--surface);
+      border: 1.5px solid var(--border-strong); border-radius: var(--radius-lg);
+      padding: 9px 12px; box-shadow: var(--shadow-sm); cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, opacity 0.18s ease;
-      user-select: none;
-      z-index: 3;
+      user-select: none; z-index: 3;
     }
-    .formula-node:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--primary);
-      z-index: 8;
-    }
-    .formula-node.selected {
-      border-color: var(--primary);
-      background: var(--primary-soft);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
-      z-index: 7;
-    }
+    .formula-node:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--primary); z-index: 8; }
+    .formula-node.selected { border-color: var(--primary); background: var(--primary-soft); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18); z-index: 7; }
     .formula-node.rel-upstream { border-color: var(--upstream); background: var(--upstream-soft); z-index: 5; }
     .formula-node.rel-downstream { border-color: var(--downstream); background: var(--downstream-soft); z-index: 5; }
     .formula-node.rel-equiv { border-color: var(--equiv); background: var(--equiv-soft); z-index: 5; }
@@ -353,313 +192,81 @@
     .formula-node.dimmed { opacity: 0.2; }
     .formula-node.hidden { opacity: 0; pointer-events: none; }
 
-    .node-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 5px;
-      margin-bottom: 4px;
-    }
-    .node-title {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--ink);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .node-badge {
-      font-size: 10px;
-      padding: 1px 5px;
-      border-radius: var(--radius-pill);
-      background: var(--surface-subtle);
-      color: var(--ink-muted);
-      border: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-    .node-math {
-      min-height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3px 2px;
-      font-size: 13.5px;
-      color: var(--ink);
-      overflow-x: auto;
-    }
-    .node-foot {
-      margin-top: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 10.5px;
-      color: var(--ink-muted);
-    }
-    .node-tag {
-      background: rgba(15, 23, 42, 0.05);
-      padding: 1px 5px;
-      border-radius: 5px;
-    }
+    .node-head { display: flex; align-items: center; justify-content: space-between; gap: 5px; margin-bottom: 4px; }
+    .node-title { font-size: 12.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .node-badge { font-size: 10px; padding: 1px 5px; border-radius: var(--radius-pill); background: var(--surface-subtle); color: var(--ink-muted); border: 1px solid var(--border); flex-shrink: 0; }
+    .node-math { min-height: 32px; display: flex; align-items: center; justify-content: center; padding: 3px 2px; font-size: 13.5px; color: var(--ink); overflow-x: auto; }
+    .node-foot { margin-top: 4px; display: flex; align-items: center; justify-content: space-between; font-size: 10.5px; color: var(--ink-muted); }
+    .node-tag { background: rgba(15, 23, 42, 0.05); padding: 1px 6px; border-radius: 5px; }
+    .disc-math { background: #e0e7ff; color: #3730a3; }
+    .disc-phys { background: #dcfce7; color: #166534; }
 
     .edge-pill {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      background: var(--surface);
-      border: 1px solid var(--primary-border);
-      border-radius: var(--radius-pill);
-      padding: 2px 9px;
-      font-size: 11px;
-      color: var(--primary);
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      white-space: nowrap;
-      z-index: 9;
-      transition: all 0.15s ease;
+      position: absolute; transform: translate(-50%, -50%);
+      background: var(--surface); border: 1px solid var(--primary-border);
+      border-radius: var(--radius-pill); padding: 2px 9px; font-size: 11px; color: var(--primary);
+      cursor: pointer; box-shadow: var(--shadow-sm); white-space: nowrap; z-index: 9;
     }
-    .edge-pill:hover { background: var(--primary); color: #fff; transform: translate(-50%, -50%) scale(1.05); }
-    .edge-pill.selected { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 600; }
+    .edge-pill:hover, .edge-pill.selected { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 600; }
 
     .canvas-hint {
-      position: absolute;
-      left: 14px;
-      bottom: 12px;
-      background: rgba(255,255,255,0.92);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pill);
-      padding: 4px 12px;
-      font-size: 11.5px;
-      color: var(--ink-muted);
-      box-shadow: var(--shadow-sm);
-      z-index: 12;
+      position: absolute; left: 14px; bottom: 12px;
+      background: rgba(255,255,255,0.92); border: 1px solid var(--border);
+      border-radius: var(--radius-pill); padding: 4px 12px; font-size: 11.5px;
+      color: var(--ink-muted); box-shadow: var(--shadow-sm); z-index: 12;
     }
 
-    /* 右侧抽屉 */
-    .drawer {
-      background: var(--surface);
-      border-left: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      overflow: hidden;
-    }
-    .drawer-tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface-subtle);
-      padding: 6px 12px 0;
-      gap: 6px;
-    }
-    .drawer-tab {
-      border: none;
-      background: transparent;
-      padding: 9px 12px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--ink-muted);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-    }
-    .drawer-tab.active {
-      color: var(--primary);
-      font-weight: 600;
-      border-bottom-color: var(--primary);
-      background: var(--surface);
-      border-radius: 8px 8px 0 0;
-    }
-    .drawer-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-    }
-    .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--ink-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin: 15px 0 7px;
-    }
+    .drawer { background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+    .drawer-tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); background: var(--surface-subtle); padding: 6px 12px 0; gap: 6px; }
+    .drawer-tab { border: none; background: transparent; padding: 9px 12px; font-size: 13px; font-weight: 500; color: var(--ink-muted); cursor: pointer; border-bottom: 2px solid transparent; }
+    .drawer-tab.active { color: var(--primary); font-weight: 600; border-bottom-color: var(--primary); background: var(--surface); border-radius: 8px 8px 0 0; }
+    .drawer-body { flex: 1; overflow-y: auto; padding: 16px; }
+    .section-label { font-size: 11px; font-weight: 600; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.04em; margin: 15px 0 7px; }
     .section-label:first-child { margin-top: 0; }
 
-    .hero-card {
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 13px;
-    }
+    .hero-card { background: var(--surface-subtle); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 13px; }
     .hero-title { font-size: 15.5px; font-weight: 600; margin: 0 0 3px; }
     .hero-aliases { font-size: 12px; color: var(--ink-muted); margin-bottom: 9px; }
-    .hero-math {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 11px;
-      text-align: center;
-      font-size: 17px;
-      overflow-x: auto;
-      margin-bottom: 9px;
-    }
+    .hero-math { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 11px; text-align: center; font-size: 17px; overflow-x: auto; margin-bottom: 9px; }
     .meta-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--ink-secondary);
-    }
+    .chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--surface); border: 1px solid var(--border); color: var(--ink-secondary); }
     .chip.verified { background: #ecfdf5; border-color: #a7f3d0; color: #047857; }
     .chip.rule { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; font-family: var(--font-mono); }
 
-    .var-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .var-table th, .var-table td {
-      padding: 6px 7px;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-    }
+    .var-table { width: 100%; border-collapse: collapse; font-size: 11.5px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .var-table th, .var-table td { padding: 6px 7px; border-bottom: 1px solid var(--border); text-align: left; }
     .var-table th { background: var(--surface-subtle); color: var(--ink-muted); font-weight: 600; font-size: 11px; }
     .var-table tr:last-child td { border-bottom: none; }
 
-    .rel-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 9px 11px;
-      margin-bottom: 8px;
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
+    .rel-card { border: 1px solid var(--border); border-radius: var(--radius-md); padding: 9px 11px; margin-bottom: 8px; background: var(--surface); display: flex; flex-direction: column; gap: 5px; }
     .rel-card-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
     .rel-kind { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: var(--radius-pill); }
     .rel-kind.upstream { background: var(--upstream-soft); color: var(--upstream); border: 1px solid var(--upstream-border); }
     .rel-kind.downstream { background: var(--downstream-soft); color: var(--downstream); border: 1px solid var(--downstream-border); }
     .rel-kind.equiv { background: var(--equiv-soft); color: var(--equiv); border: 1px solid var(--equiv-border); }
     .rel-actions { display: flex; gap: 6px; }
-    .mini-btn {
-      border: 1px solid var(--border-strong);
-      background: var(--surface);
-      color: var(--ink-secondary);
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      cursor: pointer;
-    }
+    .mini-btn { border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink-secondary); padding: 3px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; }
     .mini-btn:hover { border-color: var(--primary); color: var(--primary); }
     .mini-btn.primary { background: var(--primary-soft); border-color: var(--primary-border); color: var(--primary); font-weight: 600; }
 
-    .level-switcher {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4px;
-      background: var(--surface-subtle);
-      padding: 4px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      margin: 12px 0 14px;
-    }
-    .level-btn {
-      border: none;
-      background: transparent;
-      padding: 7px 8px;
-      border-radius: 7px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ink-secondary);
-      cursor: pointer;
-    }
+    .level-switcher { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: var(--surface-subtle); padding: 4px; border-radius: 10px; border: 1px solid var(--border); margin: 12px 0 14px; }
+    .level-btn { border: none; background: transparent; padding: 7px 8px; border-radius: 7px; font-size: 12px; font-weight: 500; color: var(--ink-secondary); cursor: pointer; }
     .level-btn.active { background: var(--surface); color: var(--primary); font-weight: 600; box-shadow: var(--shadow-sm); }
 
-    .summary-box {
-      background: var(--primary-soft);
-      border: 1px solid var(--primary-border);
-      border-radius: var(--radius-md);
-      padding: 13px;
-      color: #1e3a8a;
-      font-size: 13.5px;
-      line-height: 1.65;
-    }
-    .step-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 11px;
-      margin-bottom: 9px;
-      background: var(--surface);
-    }
+    .summary-box { background: var(--primary-soft); border: 1px solid var(--primary-border); border-radius: var(--radius-md); padding: 13px; color: #1e3a8a; font-size: 13.5px; line-height: 1.65; }
+    .step-card { border: 1px solid var(--border); border-radius: var(--radius-md); padding: 11px; margin-bottom: 9px; background: var(--surface); }
     .step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
-    .step-num {
-      width: 21px;
-      height: 21px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
+    .step-num { width: 21px; height: 21px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 11px; font-weight: 700; display: grid; place-items: center; flex-shrink: 0; }
     .step-note { font-size: 12.5px; color: var(--ink); }
-    .step-math {
-      background: var(--surface-subtle);
-      border-radius: 7px;
-      padding: 8px 10px;
-      text-align: center;
-      font-size: 14.5px;
-      overflow-x: auto;
-    }
+    .step-math { background: var(--surface-subtle); border-radius: 7px; padding: 8px 10px; text-align: center; font-size: 14.5px; overflow-x: auto; }
     .step-cites { margin-top: 7px; display: flex; flex-wrap: wrap; align-items: center; gap: 5px; font-size: 11px; color: var(--ink-muted); }
-    .cite-link {
-      border: 1px solid var(--primary-border);
-      background: var(--primary-soft);
-      color: var(--primary);
-      border-radius: var(--radius-pill);
-      padding: 2px 8px;
-      font-size: 11px;
-      cursor: pointer;
-    }
+    .cite-link { border: 1px solid var(--primary-border); background: var(--primary-soft); color: var(--primary); border-radius: var(--radius-pill); padding: 2px 8px; font-size: 11px; cursor: pointer; }
     .cite-link:hover { background: var(--primary); color: #fff; }
-    .pitfall-box {
-      margin-top: 7px;
-      background: var(--pitfall-bg);
-      border: 1px solid var(--pitfall-border);
-      border-radius: 7px;
-      padding: 7px 10px;
-      font-size: 12px;
-      color: var(--pitfall-ink);
-    }
-    .path-banner {
-      background: #fff1f2;
-      border: 1px solid #fda4af;
-      color: #9f1239;
-      border-radius: var(--radius-md);
-      padding: 10px 12px;
-      margin-bottom: 12px;
-      font-size: 12.5px;
-    }
+    .pitfall-box { margin-top: 7px; background: var(--pitfall-bg); border: 1px solid var(--pitfall-border); border-radius: 7px; padding: 7px 10px; font-size: 12px; color: var(--pitfall-ink); }
+    .path-banner { background: #fff1f2; border: 1px solid #fda4af; color: #9f1239; border-radius: var(--radius-md); padding: 10px 12px; margin-bottom: 12px; font-size: 12.5px; }
 
     .math-fallback { font-family: var(--font-math); font-size: 1.03em; }
-    .math-frac {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      vertical-align: middle;
-      margin: 0 3px;
-      font-size: 0.88em;
-      line-height: 1.15;
-    }
+    .math-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 3px; font-size: 0.88em; line-height: 1.15; }
     .math-frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 4px 1px; }
     .math-frac > span:last-child { padding: 1px 4px 0; }
 
@@ -675,28 +282,23 @@
       <div class="brand">
         <div class="brand-badge">∑</div>
         <div>
-          <div class="brand-title">公式知识图谱 · 高中三角函数种子库</div>
-          <div class="brand-sub" id="statsSubtitle">25 个核心公式 · 24 条多级推导链 · 支持领域筛选与 L1/L2/L3 详略切换</div>
+          <div class="brand-title">公式知识图谱 · 多学科交互原型</div>
+          <div class="brand-sub" id="statsSubtitle">加载中...</div>
         </div>
       </div>
       <div class="toolbar">
+        <select class="pack-select" id="packSelect" aria-label="切换公式数据包">
+          <option value="junior_elec">初中 · 电学与数学跨学科（18公式）</option>
+          <option value="senior_trig">高中 · 三角函数种子库（25公式）</option>
+        </select>
         <input class="search-box" id="searchInput" type="search" placeholder="搜索公式名或别名..." />
-        <div class="filter-group" id="stageFilters">
-          <span class="filter-label">学段</span>
-          <button class="pill-btn active" data-stage="all">全部</button>
-          <button class="pill-btn" data-stage="senior_high">高中</button>
-          <button class="pill-btn" data-stage="undergraduate">本科前置</button>
+        <div class="filter-group" id="disciplineFilters">
+          <span class="filter-label">学科</span>
+          <button class="pill-btn active" data-disc="all">全部</button>
+          <button class="pill-btn" data-disc="mathematics">数学</button>
+          <button class="pill-btn" data-disc="physics">物理(科学)</button>
         </div>
-        <div class="filter-group" id="topicFilters">
-          <span class="filter-label">专题</span>
-          <button class="pill-btn active" data-topic="all">全部</button>
-          <button class="pill-btn" data-topic="trigonometric_identities">同角</button>
-          <button class="pill-btn" data-topic="induction_formulas">诱导</button>
-          <button class="pill-btn" data-topic="angle_sum_and_difference">和差角</button>
-          <button class="pill-btn" data-topic="double_angle">二倍角</button>
-          <button class="pill-btn" data-topic="power_reduction">降幂/辅助角</button>
-          <button class="pill-btn" data-topic="triangle_solving">解三角形</button>
-        </div>
+        <div class="filter-group" id="topicFilters"></div>
         <button class="toggle-btn" id="focusOnlyBtn">◎ 仅看直接关联</button>
         <button class="toggle-btn" id="resetBtn">重置</button>
       </div>
@@ -710,6 +312,7 @@
             <span class="legend-item"><span class="dot" style="background:var(--upstream)"></span>前置依赖</span>
             <span class="legend-item"><span class="dot" style="background:var(--downstream)"></span>直接衍生</span>
             <span class="legend-item"><span class="dot" style="background:var(--equiv)"></span>双向等价</span>
+            <span class="legend-item" style="color:var(--ink-muted)">虚线 = 跨学科应用级引用</span>
           </div>
           <div class="right-controls">
             <div class="path-finder">
@@ -721,7 +324,7 @@
             </div>
             <div class="zoom-controls">
               <button class="zoom-btn" id="zoomOutBtn" title="缩小">−</button>
-              <span class="zoom-val" id="zoomVal">78%</span>
+              <span class="zoom-val" id="zoomVal">86%</span>
               <button class="zoom-btn" id="zoomInBtn" title="放大">+</button>
               <button class="zoom-btn" id="zoomFitBtn" title="重置缩放">适应</button>
             </div>
@@ -731,13 +334,8 @@
         <div class="graph-scroll" id="graphScroll">
           <div class="graph-zoom-wrap" id="zoomWrap">
             <div class="graph-stage" id="graphStage">
-              <div class="lane-header" style="left:24px">1. 基础定义与同角</div>
-              <div class="lane-header" style="left:296px">2. 诱导公式</div>
-              <div class="lane-header" style="left:568px">3. 两角和差</div>
-              <div class="lane-header" style="left:840px">4. 二倍角</div>
-              <div class="lane-header" style="left:1112px">5. 降幂与辅助角</div>
-              <div class="lane-header" style="left:1384px">6. 解三角形</div>
-              <svg class="graph-svg" id="graphSvg" viewBox="0 0 1640 850">
+              <div id="laneLayer"></div>
+              <svg class="graph-svg" id="graphSvg">
                 <defs>
                   <marker id="arrow-default" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
                     <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#94a3b8" />
@@ -765,12 +363,12 @@
           </div>
         </div>
 
-        <div class="canvas-hint">点击任意公式高亮直接关联并浮现推导入口；开启「仅看直接关联」可屏蔽无关节点</div>
+        <div class="canvas-hint">提示：点击公式卡片筛选关联并查看 SI 量纲表；点击连线标签切换 L1 / L2 / L3 推导</div>
       </section>
 
       <aside class="drawer">
         <div class="drawer-tabs">
-          <button class="drawer-tab active" data-tab="formula">公式详情与关联</button>
+          <button class="drawer-tab active" data-tab="formula">公式详情与量纲</button>
           <button class="drawer-tab" data-tab="derivation">分级推导过程</button>
         </div>
         <div class="drawer-body" id="drawerBody"></div>
@@ -779,7 +377,1758 @@
   </div>
 
   <script>
-    const GRAPH_DATA = {
+    const PACKS = {
+      junior_elec: {
+        data: {
+  "schema_version": "1.0.0",
+  "metadata": {
+    "pack_id": "cn-junior-high-electricity-math-batch1",
+    "title": "初中电学核心链 + 数学比例函数跨学科子图（Batch 1）",
+    "curriculum_ref": "人教版初中数学八/九年级、人教版初中物理九年级第十七至十八章",
+    "updated_at": "2026-11-23"
+  },
+  "formulas": [
+    {
+      "id": "math.func.direct_proportion",
+      "name": "正比例函数",
+      "aliases": [
+        "线性正比关系"
+      ],
+      "latex": "y = kx\\ (k \\neq 0)",
+      "statement": "因变量 y 与自变量 x 的比值为非零常数 k，图像是过原点的直线。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "functions",
+          "proportionality"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "y",
+          "name": "因变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "k",
+          "name": "比例系数",
+          "math_type": "constant",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
+      ],
+      "conditions": [
+        "比例系数 k ≠ 0；物理应用中常在控制其余变量不变时成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版八年级下册 19.2.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.func.inverse_proportion",
+      "name": "反比例函数",
+      "aliases": [
+        "反比关系"
+      ],
+      "latex": "y = \\frac{k}{x}\\ (k \\neq 0)",
+      "statement": "因变量 y 与自变量 x 的乘积为非零常数 k，图像为双曲线。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "functions",
+          "proportionality"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "y",
+          "name": "因变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "k",
+          "name": "比例系数",
+          "math_type": "constant",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
+      ],
+      "conditions": [
+        "x ≠ 0 且 k ≠ 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版九年级下册 26.1.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.alg.reciprocal_sum",
+      "name": "异分母分式通分（倒数和）",
+      "aliases": [
+        "两数倒数和公式"
+      ],
+      "latex": "\\frac{1}{a} + \\frac{1}{b} = \\frac{a + b}{ab}",
+      "statement": "两个非零实数的倒数之和等于两数之和除以两数之积。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "algebra",
+          "rational_expressions"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "a, b",
+          "name": "非零实数",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
+      ],
+      "conditions": [
+        "a ≠ 0 且 b ≠ 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版八年级上册 15.2.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.current_def",
+      "name": "电流强度定义式",
+      "aliases": [
+        "电流定义式"
+      ],
+      "latex": "I = \\frac{Q}{t}",
+      "statement": "电流强度等于单位时间内通过导体横截面的电荷量。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_basics"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "I",
+          "name": "电流强度",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "Q",
+          "name": "电荷量",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_charge",
+          "dimension": "I T",
+          "si_unit": "C"
+        },
+        {
+          "symbol": "t",
+          "name": "通电时间",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
+      ],
+      "conditions": [
+        "恒定电流时各时刻电流相等；t > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 15.4（拓展定义）",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.ohms_law",
+      "name": "欧姆定律",
+      "aliases": [
+        "部分电路欧姆定律"
+      ],
+      "latex": "I = \\frac{U}{R}",
+      "statement": "导体中的电流与导体两端的电压成正比，与导体的电阻成反比。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "ohms_law"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
+      ],
+      "conditions": [
+        "适用于纯电阻线性导体（温度不变时 R 为定值），同一导体、同一时刻"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.ohms_voltage",
+      "name": "欧姆定律变形（求电压）",
+      "aliases": [
+        "电压计算式"
+      ],
+      "latex": "U = IR",
+      "statement": "纯电阻导体两端的电压等于通过它的电流与电阻的乘积。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "ohms_law"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
+      ],
+      "conditions": [
+        "适用于纯电阻导体"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.ohms_resistance",
+      "name": "伏安法测电阻公式",
+      "aliases": [
+        "电阻量度式"
+      ],
+      "latex": "R = \\frac{U}{I}",
+      "statement": "导体的电阻在数值上等于导体两端电压与通过电流的比值。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "ohms_law"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        }
+      ],
+      "conditions": [
+        "I > 0；注意 R 是导体自身属性，不随 U、I 改变"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.3",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.series_basic",
+      "name": "串联电路电流与电压规律",
+      "aliases": [
+        "串联基本规律"
+      ],
+      "latex": "I = I_1 = I_2,\\quad U = U_1 + U_2",
+      "statement": "串联电路中各处电流相等，总电压等于各用电器两端电压之和。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "series_circuit"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "I, I_1, I_2",
+          "name": "总电流与各处电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "U, U_1, U_2",
+          "name": "总电压与各部分电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        }
+      ],
+      "conditions": [
+        "适用于两元件或多元件纯串联支路"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 15.5 & 16.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.series_resistance",
+      "name": "串联总电阻公式",
+      "aliases": [
+        "串联等效电阻"
+      ],
+      "latex": "R_{\\text{总}} = R_1 + R_2",
+      "statement": "串联电路的等效总电阻等于各串联电阻之和。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "series_circuit"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "R_{\\text{总}}, R_1, R_2",
+          "name": "总电阻与各分电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
+      ],
+      "conditions": [
+        "各元件均为纯电阻且串联连接"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.4",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.series_voltage_divider",
+      "name": "串联分压公式",
+      "aliases": [
+        "串联电压分配规律"
+      ],
+      "latex": "\\frac{U_1}{U_2} = \\frac{R_1}{R_2}",
+      "statement": "串联电路中，各电阻两端的电压之比等于它们的电阻之比（正比分压）。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "series_circuit"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "U_1, U_2",
+          "name": "两电阻两端电压",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "R_1, R_2",
+          "name": "两串联电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
+      ],
+      "conditions": [
+        "串联且电流 I > 0，各元件为纯电阻"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.4",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.parallel_basic",
+      "name": "并联电路电流与电压规律",
+      "aliases": [
+        "并联基本规律"
+      ],
+      "latex": "U = U_1 = U_2,\\quad I = I_1 + I_2",
+      "statement": "并联电路中各支路两端电压相等，干路总电流等于各支路电流之和。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "parallel_circuit"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "U, U_1, U_2",
+          "name": "总电压与各支路电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I, I_1, I_2",
+          "name": "干路与支路电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        }
+      ],
+      "conditions": [
+        "适用于两支路或多支路并联电路"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 15.5 & 16.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.parallel_resistance",
+      "name": "并联总电阻倒数公式",
+      "aliases": [
+        "并联等效电阻公式"
+      ],
+      "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
+      "statement": "并联电路总电阻的倒数等于各并联支路电阻倒数之和。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "parallel_circuit"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "R_{\\text{总}}, R_1, R_2",
+          "name": "等效总电阻与支路电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
+      ],
+      "conditions": [
+        "各支路均为纯电阻，且 R1, R2 > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.4",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.parallel_two_resistors",
+      "name": "两电阻并联化简公式",
+      "aliases": [
+        "积除以和公式"
+      ],
+      "latex": "R_{\\text{总}} = \\frac{R_1 R_2}{R_1 + R_2}",
+      "statement": "两个电阻并联时的等效总电阻等于两电阻之积除以两电阻之和，且总电阻小于任一支路电阻。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "parallel_circuit"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "R_{\\text{总}}, R_1, R_2",
+          "name": "等效总电阻与支路电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
+      ],
+      "conditions": [
+        "仅适用于两个电阻并联（三个以上电阻需先用倒数和公式）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.4",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.electric_work",
+      "name": "电功基本公式",
+      "aliases": [
+        "电能公式"
+      ],
+      "latex": "W = UIt",
+      "statement": "电流在某段电路上所做的功等于这段电路两端的电压、电路中的电流和通电时间的乘积。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "W",
+          "name": "电功（消耗电能）",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "energy",
+          "dimension": "M L^2 T^-2",
+          "si_unit": "J"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "t",
+          "name": "通电时间",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
+      ],
+      "conditions": [
+        "适用于所有直流电路（包括电动机等非纯电阻用电器）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.electric_power_def",
+      "name": "电功率定义式",
+      "aliases": [
+        "电功率通用定义"
+      ],
+      "latex": "P = \\frac{W}{t}",
+      "statement": "电功率等于电流所做的功与完成这些功所用时间之比，表示消耗电能的快慢。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "P",
+          "name": "电功率",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "power",
+          "dimension": "M L^2 T^-3",
+          "si_unit": "W"
+        },
+        {
+          "symbol": "W",
+          "name": "电功",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "energy",
+          "dimension": "M L^2 T^-2",
+          "si_unit": "J"
+        },
+        {
+          "symbol": "t",
+          "name": "通电时间",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
+      ],
+      "conditions": [
+        "普遍适用；注意单位配套（J/s = W 或 kW·h/h = kW）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.electric_power_ui",
+      "name": "电功率计算式",
+      "aliases": [
+        "伏安电功率公式"
+      ],
+      "latex": "P = UI",
+      "statement": "用电器的电功率等于其两端电压与通过电流的乘积。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "P",
+          "name": "电功率",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "power",
+          "dimension": "M L^2 T^-3",
+          "si_unit": "W"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        }
+      ],
+      "conditions": [
+        "适用于所有直流电路（含非纯电阻电路的总电功率）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.electric_power_variants",
+      "name": "纯电阻电功率衍生式",
+      "aliases": [
+        "电功率电阻形式"
+      ],
+      "latex": "P = I^2 R = \\frac{U^2}{R}",
+      "statement": "在纯电阻电路中，电功率可用电流平方乘电阻或电压平方除以电阻表示。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "P",
+          "name": "电功率",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "power",
+          "dimension": "M L^2 T^-3",
+          "si_unit": "W"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
+      ],
+      "conditions": [
+        "仅适用于纯电阻电路（电能全部转化为内能）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "physics.elec.joules_law",
+      "name": "焦耳定律",
+      "aliases": [
+        "电热公式"
+      ],
+      "latex": "Q = I^2 R t",
+      "statement": "电流通过导体产生的热量跟电流的二次方成正比，跟导体的电阻成正比，跟通电时间成正比。",
+      "taxonomy": {
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "Q",
+          "name": "电热（热量）",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "heat_energy",
+          "dimension": "M L^2 T^-2",
+          "si_unit": "J"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        },
+        {
+          "symbol": "t",
+          "name": "通电时间",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
+      ],
+      "conditions": [
+        "普遍适用于计算任何电路产生的电热；仅在纯电阻电路中 Q = W"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.4",
+        "sympy_verified": true
+      }
+    }
+  ],
+  "derivations": [
+    {
+      "id": "deriv.cross.prop_to_ohm",
+      "from_formula_ids": [
+        "math.func.direct_proportion",
+        "math.func.inverse_proportion"
+      ],
+      "to_formula_id": "physics.elec.ohms_law",
+      "relation_type": "applies_in",
+      "dependency_site": "application_level",
+      "inference_rules": [
+        "control_variable_modeling",
+        "dimensional_proportionality"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "控制变量实验表明：电阻一定时 I 与 U 满足正比例函数，电压一定时 I 与 R 满足反比例函数，联立得到欧姆定律 I = U/R。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "R \\text{ 一定时：} I = \\frac{1}{R} U",
+            "note": "套用正比例函数模型 y = kx（斜率 k = 1/R）",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "U \\text{ 一定时：} I = \\frac{U}{R}",
+            "note": "套用反比例函数模型 y = k/x（常数 k = U）",
+            "cited_formula_ids": [
+              "math.func.inverse_proportion"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "I = \\frac{U}{R}",
+            "note": "综合两组定量规律并结合 SI 单位定义，比例系数为 1",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "I = k_1 U \\quad (R \\text{ 不变})",
+            "note": "保持定值电阻 R 不变，I-U 图像为过原点直线，符合正比例函数",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I = \\frac{k_2}{R} \\quad (U \\text{ 不变})",
+            "note": "保持导体两端电压 U 不变，I-R 图像为双曲线分支，符合反比例函数",
+            "cited_formula_ids": [
+              "math.func.inverse_proportion"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "I = \\frac{U}{R}",
+            "note": "在国际单位制中 1 Ω 定义为 1 V/A，合并为无附加系数的欧姆定律",
+            "cited_formula_ids": [],
+            "pitfall": "因果顺序不能颠倒：只能说“电流与电压成正比”，不能说“电压与电流成正比”。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.ohm_to_voltage",
+      "from_formula_ids": [
+        "physics.elec.ohms_law"
+      ],
+      "to_formula_id": "physics.elec.ohms_voltage",
+      "relation_type": "equivalent_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "multiply_both_sides"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "将欧姆定律 I = U/R 两边同乘电阻 R 即可解出电压 U = IR。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "I \\cdot R = \\frac{U}{R} \\cdot R \\implies U = IR",
+            "note": "因为 R > 0，两边同乘 R 化简",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "I = \\frac{U}{R}\\ (R > 0)",
+            "note": "写出欧姆定律",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "U = IR",
+            "note": "等式两边同乘 R，量纲核验：[A]·[Ω] = [V]",
+            "cited_formula_ids": [],
+            "pitfall": "代入数值时三者必须对应同一段导体、同一时刻，且统一用国际单位（V、A、Ω）。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.ohm_to_resistance",
+      "from_formula_ids": [
+        "physics.elec.ohms_law"
+      ],
+      "to_formula_id": "physics.elec.ohms_resistance",
+      "relation_type": "equivalent_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "algebraic_rearrangement"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "在 I = U/R 中将分母 R 与左侧 I 互换位置，得到伏安法电阻计算式 R = U/I。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "I = \\frac{U}{R} \\implies IR = U \\implies R = \\frac{U}{I}",
+            "note": "当 I > 0 时移项解出 R",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "U = IR",
+            "note": "先由欧姆定律去分母",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "R = \\frac{U}{I}\\ (I > 0)",
+            "note": "两边同除以 I 得到电阻量度式",
+            "cited_formula_ids": [],
+            "pitfall": "数学上虽写作 R = U/I，但物理上电阻由材料、长度、横截面积和温度决定，与 U、I 无关。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.series_to_total_r",
+      "from_formula_ids": [
+        "physics.elec.series_basic",
+        "physics.elec.ohms_voltage"
+      ],
+      "to_formula_id": "physics.elec.series_resistance",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "identity_substitution",
+        "divide_both_sides"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "把 U = IR 代入串联总电压公式 U = U1 + U2，再消去处处相等的电流 I。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "U = U_1 + U_2",
+            "note": "写出串联电路电压规律",
+            "cited_formula_ids": [
+              "physics.elec.series_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I R_{\\text{总}} = I_1 R_1 + I_2 R_2",
+            "note": "分别代入 U = IR",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "R_{\\text{总}} = R_1 + R_2",
+            "note": "因串联电流 I = I1 = I2 > 0，两边同除以 I",
+            "cited_formula_ids": [
+              "physics.elec.series_basic"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "U = U_1 + U_2,\\quad I = I_1 = I_2",
+            "note": "列出串联电路电流与电压规律",
+            "cited_formula_ids": [
+              "physics.elec.series_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I R_{\\text{总}} = I R_1 + I R_2 = I(R_1 + R_2)",
+            "note": "用 U = IR 替换各项并提取公因式 I",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "R_{\\text{总}} = R_1 + R_2",
+            "note": "约去非零电流 I，说明串联相当于增加导体长度，总电阻越串越大",
+            "cited_formula_ids": [],
+            "pitfall": "若电路中混入非纯电阻（如电动机），不能直接用 U = IR 推算等效电阻。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.series_to_divider",
+      "from_formula_ids": [
+        "physics.elec.series_basic",
+        "physics.elec.ohms_voltage",
+        "math.func.direct_proportion"
+      ],
+      "to_formula_id": "physics.elec.series_voltage_divider",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "ratio_cancellation",
+        "proportionality"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "串联电路各处电流 I 相等，由 U = IR 可知电压与电阻成正比，两式相除即得 U1/U2 = R1/R2。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "U_1 = I R_1,\\quad U_2 = I R_2",
+            "note": "串联电流相同，分别写出两电阻两端电压",
+            "cited_formula_ids": [
+              "physics.elec.series_basic",
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{U_1}{U_2} = \\frac{I R_1}{I R_2} = \\frac{R_1}{R_2}",
+            "note": "两式相除约去相同电流 I（正比例分配）",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "I_1 = I_2 = I > 0",
+            "note": "串联电路各处电流处处相等",
+            "cited_formula_ids": [
+              "physics.elec.series_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "U_1 = I R_1,\\ U_2 = I R_2",
+            "note": "将 I 视为正比例函数中的常数斜率，电压 U 与电阻 R 成正比",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage",
+              "math.func.direct_proportion"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\frac{U_1}{U_2} = \\frac{R_1}{R_2}",
+            "note": "作比消去电流 I，得到“串联正比分压”规律",
+            "cited_formula_ids": [],
+            "pitfall": "注意串联是正比分压（阻大压大），切勿与并联反比分流（I1/I2 = R2/R1）混淆。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.parallel_to_total_r",
+      "from_formula_ids": [
+        "physics.elec.parallel_basic",
+        "physics.elec.ohms_law"
+      ],
+      "to_formula_id": "physics.elec.parallel_resistance",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "identity_substitution",
+        "divide_both_sides"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "把 I = U/R 代入并联干路电流公式 I = I1 + I2，再约去各支路相等的电压 U。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "I = I_1 + I_2",
+            "note": "写出并联电路电流规律",
+            "cited_formula_ids": [
+              "physics.elec.parallel_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{U}{R_{\\text{总}}} = \\frac{U_1}{R_1} + \\frac{U_2}{R_2}",
+            "note": "用欧姆定律 I = U/R 替换各项",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
+            "note": "因并联电压 U = U1 = U2 > 0，两边同除以 U",
+            "cited_formula_ids": [
+              "physics.elec.parallel_basic"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "I = I_1 + I_2,\\quad U = U_1 = U_2",
+            "note": "列出并联电路电压与电流规律",
+            "cited_formula_ids": [
+              "physics.elec.parallel_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{U}{R_{\\text{总}}} = \\frac{U}{R_1} + \\frac{U}{R_2} = U\\left(\\frac{1}{R_1} + \\frac{1}{R_2}\\right)",
+            "note": "代入欧姆定律并提取公因式 U",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
+            "note": "两边约去非零电压 U，说明并联相当于增大横截面积，总电阻越并越小",
+            "cited_formula_ids": [],
+            "pitfall": "算出右边倒数和后切记再取一次倒数，才是最终的总电阻 R总。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.cross.reciprocal_to_two_parallel",
+      "from_formula_ids": [
+        "physics.elec.parallel_resistance",
+        "math.alg.reciprocal_sum"
+      ],
+      "to_formula_id": "physics.elec.parallel_two_resistors",
+      "relation_type": "derives_to",
+      "dependency_site": "application_level",
+      "inference_rules": [
+        "common_denominator",
+        "take_reciprocal"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "利用初中数学异分母通分将 1/R1 + 1/R2 合并为 (R1+R2)/(R1R2)，再两边取倒数。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2} = \\frac{R_1 + R_2}{R_1 R_2}",
+            "note": "套用异分母分式倒数和通分公式",
+            "cited_formula_ids": [
+              "physics.elec.parallel_resistance",
+              "math.alg.reciprocal_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "R_{\\text{总}} = \\frac{R_1 R_2}{R_1 + R_2}",
+            "note": "等式两边同时取倒数",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{R_2}{R_1 R_2} + \\frac{R_1}{R_1 R_2} = \\frac{R_1 + R_2}{R_1 R_2}",
+            "note": "以 R1R2 为公分母通分合并",
+            "cited_formula_ids": [
+              "physics.elec.parallel_resistance",
+              "math.alg.reciprocal_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "R_{\\text{总}} = \\frac{R_1 R_2}{R_1 + R_2}",
+            "note": "因分子分母均大于 0，取倒数即得“积除以和”快捷式",
+            "cited_formula_ids": [],
+            "pitfall": "若为三个电阻并联，切忌误写为 R1R2R3/(R1+R2+R3)，该快捷式仅限两电阻并联。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.cross.prop_to_current",
+      "from_formula_ids": [
+        "math.func.direct_proportion"
+      ],
+      "to_formula_id": "physics.elec.current_def",
+      "relation_type": "applies_in",
+      "dependency_site": "application_level",
+      "inference_rules": [
+        "constant_rate_model"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "恒定电流下通过横截面的电荷量 Q 与时间 t 成正比（Q = It），比值 I 即为电流强度。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "Q = I t \\implies I = \\frac{Q}{t}",
+            "note": "恒定电流对应正比例关系 y = kx，比例系数 k 即电流 I",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "Q = I t",
+            "note": "恒定电流电路中电荷量随时间均匀累积，满足正比例函数",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I = \\frac{Q}{t}\\ (t > 0)",
+            "note": "量纲核验：[C]/[s] = [A]",
+            "cited_formula_ids": [],
+            "pitfall": "计算电荷量时时间 t 必须换算为秒（s），不可直接代入分钟。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.current_to_work",
+      "from_formula_ids": [
+        "physics.elec.current_def"
+      ],
+      "to_formula_id": "physics.elec.electric_work",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": [
+        "definition_substitution"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "由电功与电荷量关系 W = UQ，代入电流定义变形 Q = It 即得 W = UIt。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "Q = I t",
+            "note": "由电流强度定义式变形",
+            "cited_formula_ids": [
+              "physics.elec.current_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "W = U Q = U I t",
+            "note": "代入电压做功关系 W = UQ",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "I = \\frac{Q}{t} \\implies Q = I t",
+            "note": "写出时间 t 内通过导体横截面的总电荷量",
+            "cited_formula_ids": [
+              "physics.elec.current_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "W = U Q = U I t",
+            "note": "电压 U 表示移动单位正电荷所做的功，乘以总电荷量 Q 即为总电功，量纲 [V]·[A]·[s] = [J]",
+            "cited_formula_ids": [],
+            "pitfall": "W = UIt 对电动机等非纯电阻同样适用，计算的是总消耗电能而非仅热能。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.work_def_to_power_ui",
+      "from_formula_ids": [
+        "physics.elec.electric_work",
+        "physics.elec.electric_power_def"
+      ],
+      "to_formula_id": "physics.elec.electric_power_ui",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "identity_substitution",
+        "cancel_common_factor"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "将电功公式 W = UIt 代入电功率定义式 P = W/t，约去时间 t 即得 P = UI。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "P = \\frac{W}{t} = \\frac{U I t}{t}",
+            "note": "把 W = UIt 代入电功率定义式",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_def",
+              "physics.elec.electric_work"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = U I",
+            "note": "约去通电时间 t（t > 0）",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "P = \\frac{W}{t},\\quad W = U I t",
+            "note": "联立电功率定义式与电功基本式",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_def",
+              "physics.elec.electric_work"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = \\frac{U I t}{t} = U I",
+            "note": "分子分母约去 t，量纲核验：[V]·[A] = [J/s] = [W]",
+            "cited_formula_ids": [],
+            "pitfall": "测量小灯泡额定功率的伏安法实验即直接基于 P = UI。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.power_ohm_to_variants",
+      "from_formula_ids": [
+        "physics.elec.electric_power_ui",
+        "physics.elec.ohms_law",
+        "physics.elec.ohms_voltage"
+      ],
+      "to_formula_id": "physics.elec.electric_power_variants",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "identity_substitution"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在纯电阻电路中，将 U = IR 和 I = U/R 分别代入 P = UI，即可消去 U 或 I 得到两个衍生式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "P = U I = (I R) \\cdot I = I^2 R",
+            "note": "代入 U = IR 消去电压 U（适合串联比较功率）",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_ui",
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = U I = U \\cdot \\frac{U}{R} = \\frac{U^2}{R}",
+            "note": "代入 I = U/R 消去电流 I（适合并联比较功率）",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_ui",
+              "physics.elec.ohms_law"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "P = U I = (I R) I = I^2 R",
+            "note": "因为纯电阻满足欧姆定律，可用 U = IR 替换 U",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_ui",
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = U I = U \\left(\\frac{U}{R}\\right) = \\frac{U^2}{R}",
+            "note": "同理用 I = U/R 替换 I，得到纯电压电阻形式",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_ui",
+              "physics.elec.ohms_law"
+            ],
+            "pitfall": "电动机转动时欧姆定律不成立，绝不能用 P = U²/R 计算电动机总功率。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.work_ohm_to_joule",
+      "from_formula_ids": [
+        "physics.elec.electric_work",
+        "physics.elec.ohms_voltage"
+      ],
+      "to_formula_id": "physics.elec.joules_law",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "energy_conservation",
+        "identity_substitution"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在纯电阻电路中电能全部转化为内能（Q = W = UIt），代入 U = IR 即得焦耳定律 Q = I²Rt。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "Q = W = U I t",
+            "note": "纯电阻电路中消耗的电能全部转化为电热",
+            "cited_formula_ids": [
+              "physics.elec.electric_work"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "Q = (I R) I t = I^2 R t",
+            "note": "代入纯电阻欧姆定律 U = IR",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "Q = W = U I t",
+            "note": "在纯电阻条件下，由能量守恒得电热等于电功",
+            "cited_formula_ids": [
+              "physics.elec.electric_work"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "Q = (I R) \\cdot I \\cdot t = I^2 R t",
+            "note": "代入 U = IR 整理，量纲核验：[A²]·[Ω]·[s] = [J]",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage"
+            ],
+            "pitfall": "注意 Q = I²Rt 本身是实验定律，对非纯电阻（如电动机线圈发热）也适用；但非纯电阻中 Q < W。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.elec.power_to_joule",
+      "from_formula_ids": [
+        "physics.elec.electric_power_variants",
+        "physics.elec.electric_power_def"
+      ],
+      "to_formula_id": "physics.elec.joules_law",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "identity_substitution"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "由发热功率 P热 = I²R 乘以通电时间 t，直接得到焦耳定律 Q = I²Rt。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "Q = P_{\\text{热}} t = I^2 R t",
+            "note": "将纯电阻发热功率 P = I²R 代入 W = Pt",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_variants",
+              "physics.elec.electric_power_def"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "W = P t,\\quad P_{\\text{热}} = I^2 R",
+            "note": "联立功率定义变形与电阻发热功率式",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_def",
+              "physics.elec.electric_power_variants"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "Q = I^2 R t",
+            "note": "代入即得焦耳定律，提供与 W = UIt 互补的另一条推导路径",
+            "cited_formula_ids": [],
+            "pitfall": "串联比较电热优先用 Q = I²Rt，并联纯电阻比较电热优先用 Q = (U²/R)t。"
+          }
+        ]
+      }
+    }
+  ]
+},
+        stageW: 1380,
+        stageH: 760,
+        defaultZoom: 0.86,
+        defaultFormula: "physics.elec.ohms_law",
+        defaultDeriv: "deriv.cross.prop_to_ohm",
+        defaultPathStart: "math.func.direct_proportion",
+        defaultPathEnd: "physics.elec.joules_law",
+        lanes: [
+          { x: 24,   label: "1. 初中数学桥梁" },
+          { x: 296,  label: "2. 电流与欧姆定律" },
+          { x: 568,  label: "3. 串联电路规律" },
+          { x: 840,  label: "4. 并联电路规律" },
+          { x: 1112, label: "5. 电功 · 功率 · 焦耳" }
+        ],
+        topicButtons: [
+          { id: "all", label: "全部" },
+          { id: "proportionality", label: "比例与分式" },
+          { id: "ohms_law", label: "欧姆定律" },
+          { id: "series_circuit", label: "串联" },
+          { id: "parallel_circuit", label: "并联" },
+          { id: "electric_power", label: "电功/电热" }
+        ],
+        positions: {
+          "math.func.direct_proportion":     { x: 24,   y: 90 },
+          "math.func.inverse_proportion":    { x: 24,   y: 265 },
+          "math.alg.reciprocal_sum":         { x: 24,   y: 440 },
+
+          "physics.elec.current_def":        { x: 296,  y: 52 },
+          "physics.elec.ohms_law":           { x: 296,  y: 204 },
+          "physics.elec.ohms_voltage":       { x: 296,  y: 356 },
+          "physics.elec.ohms_resistance":    { x: 296,  y: 508 },
+
+          "physics.elec.series_basic":       { x: 568,  y: 90 },
+          "physics.elec.series_resistance":  { x: 568,  y: 265 },
+          "physics.elec.series_voltage_divider": { x: 568, y: 440 },
+
+          "physics.elec.parallel_basic":     { x: 840,  y: 90 },
+          "physics.elec.parallel_resistance":{ x: 840,  y: 265 },
+          "physics.elec.parallel_two_resistors": { x: 840, y: 440 },
+
+          "physics.elec.electric_work":      { x: 1112, y: 48 },
+          "physics.elec.electric_power_def": { x: 1112, y: 184 },
+          "physics.elec.electric_power_ui":  { x: 1112, y: 320 },
+          "physics.elec.electric_power_variants": { x: 1112, y: 456 },
+          "physics.elec.joules_law":         { x: 1112, y: 592 }
+        }
+      },
+      senior_trig: {
+        data: {
   "schema_version": "1.0.0",
   "metadata": {
     "pack_id": "cn-senior-high-trig-seed-25",
@@ -3300,82 +4649,100 @@
       }
     }
   ]
-};
-
-    const NODE_POS = {
-      "math.trig.unit_circle_def":     { x: 24,   y: 52 },
-      "math.trig.pythagorean":         { x: 24,   y: 202 },
-      "math.trig.quotient":            { x: 24,   y: 352 },
-      "math.trig.sec_tan_pythagorean": { x: 24,   y: 502 },
-
-      "math.trig.ind_neg":             { x: 296,  y: 52 },
-      "math.trig.ind_pi_minus":        { x: 296,  y: 202 },
-      "math.trig.ind_half_pi_minus":   { x: 296,  y: 352 },
-      "math.trig.ind_half_pi_plus":    { x: 296,  y: 502 },
-
-      "math.trig.cos_diff":            { x: 568,  y: 44 },
-      "math.trig.cos_sum":             { x: 568,  y: 174 },
-      "math.trig.sin_sum":             { x: 568,  y: 304 },
-      "math.trig.sin_diff":            { x: 568,  y: 434 },
-      "math.trig.tan_sum":             { x: 568,  y: 564 },
-      "math.trig.tan_diff":            { x: 568,  y: 694 },
-
-      "math.trig.cos_double":          { x: 840,  y: 62 },
-      "math.trig.cos_double_cos":      { x: 840,  y: 204 },
-      "math.trig.cos_double_sin":      { x: 840,  y: 346 },
-      "math.trig.sin_double":          { x: 840,  y: 488 },
-      "math.trig.tan_double":          { x: 840,  y: 630 },
-
-      "math.trig.power_reduction_cos": { x: 1112, y: 140 },
-      "math.trig.power_reduction_sin": { x: 1112, y: 315 },
-      "math.trig.auxiliary_angle":     { x: 1112, y: 490 },
-
-      "math.trig.law_of_cosines":      { x: 1384, y: 140 },
-      "math.trig.triangle_area":       { x: 1384, y: 315 },
-      "math.trig.law_of_sines":        { x: 1384, y: 490 }
+},
+        stageW: 1640,
+        stageH: 850,
+        defaultZoom: 0.78,
+        defaultFormula: "math.trig.cos_double_cos",
+        defaultDeriv: "deriv.trig.cos_double_to_single_cos",
+        defaultPathStart: "math.trig.unit_circle_def",
+        defaultPathEnd: "math.trig.power_reduction_cos",
+        lanes: [
+          { x: 24,   label: "1. 基础定义与同角" },
+          { x: 296,  label: "2. 诱导公式" },
+          { x: 568,  label: "3. 两角和差" },
+          { x: 840,  label: "4. 二倍角" },
+          { x: 1112, label: "5. 降幂与辅助角" },
+          { x: 1384, label: "6. 解三角形" }
+        ],
+        topicButtons: [
+          { id: "all", label: "全部" },
+          { id: "trigonometric_identities", label: "同角" },
+          { id: "induction_formulas", label: "诱导" },
+          { id: "angle_sum_and_difference", label: "和差角" },
+          { id: "double_angle", label: "二倍角" },
+          { id: "power_reduction", label: "降幂/辅助角" },
+          { id: "triangle_solving", label: "解三角形" }
+        ],
+        positions: {
+          "math.trig.unit_circle_def":     { x: 24,   y: 52 },
+          "math.trig.pythagorean":         { x: 24,   y: 202 },
+          "math.trig.quotient":            { x: 24,   y: 352 },
+          "math.trig.sec_tan_pythagorean": { x: 24,   y: 502 },
+          "math.trig.ind_neg":             { x: 296,  y: 52 },
+          "math.trig.ind_pi_minus":        { x: 296,  y: 202 },
+          "math.trig.ind_half_pi_minus":   { x: 296,  y: 352 },
+          "math.trig.ind_half_pi_plus":    { x: 296,  y: 502 },
+          "math.trig.cos_diff":            { x: 568,  y: 44 },
+          "math.trig.cos_sum":             { x: 568,  y: 174 },
+          "math.trig.sin_sum":             { x: 568,  y: 304 },
+          "math.trig.sin_diff":            { x: 568,  y: 434 },
+          "math.trig.tan_sum":             { x: 568,  y: 564 },
+          "math.trig.tan_diff":            { x: 568,  y: 694 },
+          "math.trig.cos_double":          { x: 840,  y: 62 },
+          "math.trig.cos_double_cos":      { x: 840,  y: 204 },
+          "math.trig.cos_double_sin":      { x: 840,  y: 346 },
+          "math.trig.sin_double":          { x: 840,  y: 488 },
+          "math.trig.tan_double":          { x: 840,  y: 630 },
+          "math.trig.power_reduction_cos": { x: 1112, y: 140 },
+          "math.trig.power_reduction_sin": { x: 1112, y: 315 },
+          "math.trig.auxiliary_angle":     { x: 1112, y: 490 },
+          "math.trig.law_of_cosines":      { x: 1384, y: 140 },
+          "math.trig.triangle_area":       { x: 1384, y: 315 },
+          "math.trig.law_of_sines":        { x: 1384, y: 490 }
+        }
+      }
     };
+
     const NODE_W = 224;
     const NODE_H = 104;
 
     const TOPIC_LABELS = {
-      trigonometry: "三角函数",
-      trigonometric_identities: "同角关系",
-      induction_formulas: "诱导公式",
-      angle_sum_and_difference: "和差角",
-      double_angle: "二倍角",
-      power_reduction: "降幂/辅助角",
-      calculus_integration_prep: "微积分前置",
-      triangle_solving: "解三角形"
+      functions: "函数", proportionality: "比例关系", algebra: "代数", rational_expressions: "分式化简",
+      electricity: "电学", electric_basics: "电学基础", ohms_law: "欧姆定律", series_circuit: "串联电路",
+      parallel_circuit: "并联电路", electric_power: "电功/电热",
+      trigonometry: "三角函数", trigonometric_identities: "同角关系", induction_formulas: "诱导公式",
+      angle_sum_and_difference: "和差角", double_angle: "二倍角", power_reduction: "降幂/辅助角",
+      calculus_integration_prep: "微积分前置", triangle_solving: "解三角形"
     };
     const REL_LABELS = {
-      derives_to: "直接推导",
-      special_case_of: "特例化",
-      generalizes: "推广",
-      equivalent_to: "等价变形",
-      simplifies: "化简工具",
-      applies_in: "跨学科应用"
+      derives_to: "直接推导", special_case_of: "特例化", generalizes: "推广",
+      equivalent_to: "等价变形", simplifies: "化简工具", applies_in: "跨学科应用"
     };
     const SITE_LABELS = {
       definition_level: "定义级 (definition_level)",
       proof_level: "推导级 (proof_level)",
-      application_level: "应用级 (application_level)"
+      application_level: "跨学科应用级 (application_level)"
     };
 
-    const formulaById = Object.fromEntries(GRAPH_DATA.formulas.map(f => [f.id, f]));
-    const derivById = Object.fromEntries(GRAPH_DATA.derivations.map(d => [d.id, d]));
-
     const state = {
-      selectedFormulaId: "math.trig.cos_double_cos",
-      selectedDerivId: "deriv.trig.cos_double_to_single_cos",
+      packKey: "junior_elec",
+      selectedFormulaId: null,
+      selectedDerivId: null,
       activeTab: "formula",
       level: "L2",
-      stageFilter: "all",
+      discFilter: "all",
       topicFilter: "all",
       searchQuery: "",
       focusOnly: false,
-      zoom: 0.78,
+      zoom: 0.86,
       activePath: null
     };
+
+    let GRAPH_DATA = null;
+    let NODE_POS = null;
+    let formulaById = {};
+    let derivById = {};
 
     function renderMathHTML(latex) {
       if (window.katex && typeof window.katex.renderToString === "function") {
@@ -3395,30 +4762,24 @@
         .replace(/\\neq/g, "≠")
         .replace(/\\le/g, "≤")
         .replace(/\\infty/g, "∞")
-        .replace(/\\alpha/g, "α")
-        .replace(/\\beta/g, "β")
-        .replace(/\\varphi/g, "φ")
-        .replace(/\\pi/g, "π")
-        .replace(/\\sin/g, "sin")
-        .replace(/\\cos/g, "cos")
-        .replace(/\\tan/g, "tan")
+        .replace(/\\alpha/g, "α").replace(/\\beta/g, "β").replace(/\\varphi/g, "φ").replace(/\\pi/g, "π")
+        .replace(/\\sin/g, "sin").replace(/\\cos/g, "cos").replace(/\\tan/g, "tan")
         .replace(/\\sqrt\{([^}]+)\}/g, "√($1)")
         .replace(/\^2/g, "²")
+        .replace(/_\{([^}]+)\}/g, "<sub>$1</sub>")
+        .replace(/_([0-9])/g, "<sub>$1</sub>")
         .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '<span class="math-frac"><span>$1</span><span>$2</span></span>');
       return `<span class="math-fallback">${s}</span>`;
     }
 
     function getDirectRelations(formulaId) {
-      const upstream = [];
-      const downstream = [];
-      const equiv = [];
+      const upstream = [], downstream = [], equiv = [];
       GRAPH_DATA.derivations.forEach(d => {
         const isFrom = d.from_formula_ids.includes(formulaId);
         const isTo = d.to_formula_id === formulaId;
         if (!isFrom && !isTo) return;
         if (d.relation_type === "equivalent_to") {
-          const others = isTo ? d.from_formula_ids : [d.to_formula_id];
-          others.forEach(oid => equiv.push({ formula: formulaById[oid], deriv: d }));
+          (isTo ? d.from_formula_ids : [d.to_formula_id]).forEach(oid => equiv.push({ formula: formulaById[oid], deriv: d }));
         } else if (isTo) {
           d.from_formula_ids.forEach(oid => upstream.push({ formula: formulaById[oid], deriv: d }));
         } else if (isFrom) {
@@ -3442,9 +4803,7 @@
             if (visited.has(nxt)) continue;
             const newNodes = [...cur.pathNodes, nxt];
             const newDerivs = [...cur.pathDerivs, d.id];
-            if (nxt === endId) {
-              return { nodeIds: new Set(newNodes), derivIds: new Set(newDerivs), orderedFormulaIds: newNodes, orderedDerivIds: newDerivs };
-            }
+            if (nxt === endId) return { nodeIds: new Set(newNodes), derivIds: new Set(newDerivs), orderedFormulaIds: newNodes, orderedDerivIds: newDerivs };
             visited.add(nxt);
             queue.push({ id: nxt, pathNodes: newNodes, pathDerivs: newDerivs });
           }
@@ -3454,14 +4813,13 @@
     }
 
     function matchesFilters(formula) {
-      const stageOk = state.stageFilter === "all" || formula.taxonomy.education_stages.includes(state.stageFilter);
-      const topicOk = state.topicFilter === "all" || formula.taxonomy.topics.includes(state.topicFilter);
+      const discOk = state.discFilter === "all" || formula.taxonomy.disciplines.includes(state.discFilter);
+      const topicOk = state.topicFilter === "all" ||
+        formula.taxonomy.topics.includes(state.topicFilter) ||
+        (state.topicFilter === "proportionality" && formula.taxonomy.topics.includes("rational_expressions"));
       const q = state.searchQuery.trim().toLowerCase();
-      const searchOk = !q ||
-        formula.name.toLowerCase().includes(q) ||
-        formula.aliases.some(a => a.toLowerCase().includes(q)) ||
-        formula.latex.toLowerCase().includes(q);
-      return stageOk && topicOk && searchOk;
+      const searchOk = !q || formula.name.toLowerCase().includes(q) || formula.aliases.some(a => a.toLowerCase().includes(q)) || formula.latex.toLowerCase().includes(q);
+      return discOk && topicOk && searchOk;
     }
 
     function computeCurve(fromPos, toPos) {
@@ -3472,7 +4830,7 @@
         const y1 = goingDown ? fromPos.y + NODE_H : fromPos.y;
         const x2 = toPos.x + NODE_W / 2;
         const y2 = goingDown ? toPos.y : toPos.y + NODE_H;
-        const offset = Math.abs(y2 - y1) > 170 ? 52 : 0;
+        const offset = Math.abs(y2 - y1) > 165 ? 54 : 0;
         const cx = x1 + offset;
         const cy = (y1 + y2) / 2;
         return { d: `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`, mx: (x1 + cx) / 2, my: cy };
@@ -3482,19 +4840,83 @@
       const y1 = fromPos.y + NODE_H / 2;
       const x2 = goingRight ? toPos.x : toPos.x + NODE_W;
       const y2 = toPos.y + NODE_H / 2;
-      const dx = Math.abs(x2 - x1);
-      const c = Math.min(dx * 0.45, 160);
+      const c = Math.min(Math.abs(x2 - x1) * 0.45, 160);
       const cx1 = goingRight ? x1 + c : x1 - c;
       const cx2 = goingRight ? x2 - c : x2 + c;
       return { d: `M ${x1} ${y1} C ${cx1} ${y1}, ${cx2} ${y2}, ${x2} ${y2}`, mx: (x1 + x2) / 2, my: (y1 + y2) / 2 };
     }
 
     function applyZoom() {
+      const pack = PACKS[state.packKey];
       const wrap = document.getElementById("zoomWrap");
       wrap.style.transform = `scale(${state.zoom})`;
-      wrap.style.width = `${1640 * state.zoom}px`;
-      wrap.style.height = `${850 * state.zoom}px`;
+      wrap.style.width = `${pack.stageW * state.zoom}px`;
+      wrap.style.height = `${pack.stageH * state.zoom}px`;
       document.getElementById("zoomVal").textContent = `${Math.round(state.zoom * 100)}%`;
+    }
+
+    function loadPack(packKey) {
+      state.packKey = packKey;
+      const pack = PACKS[packKey];
+      GRAPH_DATA = pack.data;
+      NODE_POS = pack.positions;
+      formulaById = Object.fromEntries(GRAPH_DATA.formulas.map(f => [f.id, f]));
+      derivById = Object.fromEntries(GRAPH_DATA.derivations.map(d => [d.id, d]));
+
+      state.selectedFormulaId = pack.defaultFormula;
+      state.selectedDerivId = pack.defaultDeriv;
+      state.activeTab = "formula";
+      state.discFilter = "all";
+      state.topicFilter = "all";
+      state.searchQuery = "";
+      state.focusOnly = false;
+      state.activePath = null;
+      state.zoom = pack.defaultZoom;
+
+      document.getElementById("searchInput").value = "";
+      document.getElementById("focusOnlyBtn").classList.remove("active");
+      document.getElementById("clearPathBtn").style.display = "none";
+      document.querySelectorAll("#disciplineFilters .pill-btn").forEach(b => b.classList.toggle("active", b.dataset.disc === "all"));
+
+      const stage = document.getElementById("graphStage");
+      stage.style.width = `${pack.stageW}px`;
+      stage.style.height = `${pack.stageH}px`;
+      document.getElementById("graphSvg").setAttribute("viewBox", `0 0 ${pack.stageW} ${pack.stageH}`);
+
+      document.getElementById("laneLayer").innerHTML = pack.lanes.map(l =>
+        `<div class="lane-header" style="left:${l.x}px">${l.label}</div>`
+      ).join("");
+
+      const topicBox = document.getElementById("topicFilters");
+      topicBox.innerHTML = `<span class="filter-label">专题</span>` + pack.topicButtons.map(tb =>
+        `<button class="pill-btn ${tb.id === "all" ? "active" : ""}" data-topic="${tb.id}">${tb.label}</button>`
+      ).join("");
+      topicBox.querySelectorAll(".pill-btn").forEach(btn => {
+        btn.onclick = () => {
+          topicBox.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.topicFilter = btn.dataset.topic;
+          renderGraph();
+        };
+      });
+
+      const startSel = document.getElementById("pathStart");
+      const endSel = document.getElementById("pathEnd");
+      startSel.innerHTML = "";
+      endSel.innerHTML = "";
+      GRAPH_DATA.formulas.forEach(f => {
+        startSel.add(new Option(f.name, f.id));
+        endSel.add(new Option(f.name, f.id));
+      });
+      startSel.value = pack.defaultPathStart;
+      endSel.value = pack.defaultPathEnd;
+
+      document.getElementById("statsSubtitle").textContent =
+        `${GRAPH_DATA.metadata.title} · ${GRAPH_DATA.formulas.length} 公式 · ${GRAPH_DATA.derivations.length} 条推导链`;
+
+      applyZoom();
+      renderGraph();
+      renderDrawer();
     }
 
     function renderGraph() {
@@ -3524,41 +4946,24 @@
         }
       });
 
-      // 渲染边与高亮推导标签
       GRAPH_DATA.derivations.forEach(d => {
         const toVisible = visibleNodeIds.has(d.to_formula_id);
-        let edgeClass = "edge-path";
+        let edgeClass = d.dependency_site === "application_level" ? "edge-path cross-app" : "edge-path";
         let marker = "url(#arrow-default)";
         let showPill = false;
 
         if (state.activePath) {
-          if (state.activePath.derivIds.has(d.id)) {
-            edgeClass += " highlight-path";
-            marker = "url(#arrow-path)";
-            showPill = true;
-          } else {
-            edgeClass += " dimmed";
-          }
+          if (state.activePath.derivIds.has(d.id)) { edgeClass += " highlight-path"; marker = "url(#arrow-path)"; showPill = true; }
+          else edgeClass += " dimmed";
         } else if (state.activeTab === "derivation" && state.selectedDerivId === d.id) {
-          edgeClass += " highlight-primary";
-          marker = "url(#arrow-primary)";
-          showPill = true;
+          edgeClass += " highlight-primary"; marker = "url(#arrow-primary)"; showPill = true;
         } else if (selId) {
           if (directDerivIds.has(d.id)) {
             showPill = true;
-            if (d.relation_type === "equivalent_to") {
-              edgeClass += " highlight-equiv";
-              marker = "url(#arrow-equiv)";
-            } else if (d.to_formula_id === selId) {
-              edgeClass += " highlight-upstream";
-              marker = "url(#arrow-upstream)";
-            } else {
-              edgeClass += " highlight-downstream";
-              marker = "url(#arrow-downstream)";
-            }
-          } else {
-            edgeClass += " dimmed";
-          }
+            if (d.relation_type === "equivalent_to") { edgeClass += " highlight-equiv"; marker = "url(#arrow-equiv)"; }
+            else if (d.to_formula_id === selId) { edgeClass += " highlight-upstream"; marker = "url(#arrow-upstream)"; }
+            else { edgeClass += " highlight-downstream"; marker = "url(#arrow-downstream)"; }
+          } else edgeClass += " dimmed";
         }
 
         const toPos = NODE_POS[d.to_formula_id];
@@ -3588,20 +4993,15 @@
         }
       });
 
-      // 渲染节点卡片
       GRAPH_DATA.formulas.forEach(f => {
         const pos = NODE_POS[f.id];
         const card = document.createElement("div");
         const isVisible = visibleNodeIds.has(f.id);
         let cls = "formula-node";
-
-        if (!isVisible) {
-          cls += " hidden";
-        } else if (state.activePath) {
-          cls += state.activePath.nodeIds.has(f.id) ? " rel-path" : " dimmed";
-        } else if (selId === f.id) {
-          cls += " selected";
-        } else if (selId) {
+        if (!isVisible) cls += " hidden";
+        else if (state.activePath) cls += state.activePath.nodeIds.has(f.id) ? " rel-path" : " dimmed";
+        else if (selId === f.id) cls += " selected";
+        else if (selId) {
           if (equivIds.has(f.id)) cls += " rel-equiv";
           else if (upstreamIds.has(f.id)) cls += " rel-upstream";
           else if (downstreamIds.has(f.id)) cls += " rel-downstream";
@@ -3609,7 +5009,11 @@
         }
 
         const rel = getDirectRelations(f.id);
-        const primaryTopic = TOPIC_LABELS[f.taxonomy.topics[1] || f.taxonomy.topics[0]] || "三角函数";
+        const primaryTopic = TOPIC_LABELS[f.taxonomy.topics[1] || f.taxonomy.topics[0]] || "";
+        const isMathOnly = f.taxonomy.disciplines.includes("mathematics") && !f.taxonomy.disciplines.includes("physics");
+        const isBoth = f.taxonomy.disciplines.includes("mathematics") && f.taxonomy.disciplines.includes("physics");
+        const discLabel = isBoth ? "数学 ↔ 物理" : (isMathOnly ? "数学" : "物理(科学)");
+        const discCls = isMathOnly || isBoth ? "disc-math" : "disc-phys";
 
         card.className = cls;
         card.style.left = `${pos.x}px`;
@@ -3621,8 +5025,8 @@
           </div>
           <div class="node-math">${renderMathHTML(f.latex)}</div>
           <div class="node-foot">
-            <span class="node-tag">${primaryTopic}</span>
-            <span>${f.taxonomy.disciplines.includes("physics") ? "数学 · 物理" : (f.taxonomy.education_stages.includes("undergraduate") ? "高中 · 本科前置" : "高中必修")}</span>
+            <span class="node-tag ${discCls}">${discLabel}</span>
+            <span>${primaryTopic}</span>
           </div>
         `;
         card.onclick = () => selectFormula(f.id);
@@ -3632,9 +5036,7 @@
 
     function renderDrawer() {
       const body = document.getElementById("drawerBody");
-      document.querySelectorAll(".drawer-tab").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.tab === state.activeTab);
-      });
+      document.querySelectorAll(".drawer-tab").forEach(btn => btn.classList.toggle("active", btn.dataset.tab === state.activeTab));
 
       let pathBannerHTML = "";
       if (state.activePath) {
@@ -3667,9 +5069,9 @@
           <tr>
             <td>${renderMathHTML(v.symbol)}</td>
             <td>${v.name}</td>
-            <td>${renderMathHTML(v.domain)}</td>
             <td><code>${v.quantity_kind || "-"}</code></td>
-            <td><code>${v.dimension || "-"}</code> / ${v.si_unit || "-"}</td>
+            <td><code>${v.dimension || "-"}</code></td>
+            <td><strong>${v.si_unit || "-"}</strong></td>
           </tr>
         `).join("");
 
@@ -3687,10 +5089,10 @@
             </div>
           </div>
 
-          <div class="section-label">变量与量纲定义（MathModDB 跨学科结构）</div>
+          <div class="section-label">变量与物理量纲（MathModDB 跨学科标准）</div>
           <table class="var-table">
             <thead>
-              <tr><th>符号</th><th>名称</th><th>定义域</th><th>量类</th><th>量纲 / SI</th></tr>
+              <tr><th>符号</th><th>物理/数学量</th><th>量类</th><th>量纲</th><th>SI 单位</th></tr>
             </thead>
             <tbody>${varsRows}</tbody>
           </table>
@@ -3783,84 +5185,34 @@
     }
 
     function initControls() {
-      document.getElementById("statsSubtitle").textContent =
-        `${GRAPH_DATA.formulas.length} 个核心公式 · ${GRAPH_DATA.derivations.length} 条多级推导链 · 支持领域筛选与 L1/L2/L3 详略切换`;
+      document.getElementById("packSelect").onchange = (e) => loadPack(e.target.value);
+      document.getElementById("searchInput").oninput = (e) => { state.searchQuery = e.target.value; renderGraph(); };
 
-      const startSel = document.getElementById("pathStart");
-      const endSel = document.getElementById("pathEnd");
-      GRAPH_DATA.formulas.forEach(f => {
-        startSel.add(new Option(f.name, f.id));
-        endSel.add(new Option(f.name, f.id));
-      });
-      startSel.value = "math.trig.unit_circle_def";
-      endSel.value = "math.trig.power_reduction_cos";
-
-      document.getElementById("searchInput").oninput = (e) => {
-        state.searchQuery = e.target.value;
-        renderGraph();
-      };
-
-      document.querySelectorAll("#stageFilters .pill-btn").forEach(btn => {
+      document.querySelectorAll("#disciplineFilters .pill-btn").forEach(btn => {
         btn.onclick = () => {
-          document.querySelectorAll("#stageFilters .pill-btn").forEach(b => b.classList.remove("active"));
+          document.querySelectorAll("#disciplineFilters .pill-btn").forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
-          state.stageFilter = btn.dataset.stage;
-          renderGraph();
-        };
-      });
-
-      document.querySelectorAll("#topicFilters .pill-btn").forEach(btn => {
-        btn.onclick = () => {
-          document.querySelectorAll("#topicFilters .pill-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          state.topicFilter = btn.dataset.topic;
+          state.discFilter = btn.dataset.disc;
           renderGraph();
         };
       });
 
       const focusBtn = document.getElementById("focusOnlyBtn");
-      focusBtn.onclick = () => {
-        state.focusOnly = !state.focusOnly;
-        focusBtn.classList.toggle("active", state.focusOnly);
-        renderGraph();
-      };
-
-      document.getElementById("resetBtn").onclick = () => {
-        state.stageFilter = "all";
-        state.topicFilter = "all";
-        state.searchQuery = "";
-        state.focusOnly = false;
-        state.activePath = null;
-        document.getElementById("searchInput").value = "";
-        focusBtn.classList.remove("active");
-        document.getElementById("clearPathBtn").style.display = "none";
-        document.querySelectorAll("#stageFilters .pill-btn, #topicFilters .pill-btn").forEach(b => {
-          b.classList.toggle("active", b.dataset.stage === "all" || b.dataset.topic === "all");
-        });
-        renderGraph();
-        renderDrawer();
-      };
+      focusBtn.onclick = () => { state.focusOnly = !state.focusOnly; focusBtn.classList.toggle("active", state.focusOnly); renderGraph(); };
+      document.getElementById("resetBtn").onclick = () => loadPack(state.packKey);
 
       document.querySelectorAll(".drawer-tab").forEach(btn => {
-        btn.onclick = () => {
-          state.activeTab = btn.dataset.tab;
-          renderGraph();
-          renderDrawer();
-        };
+        btn.onclick = () => { state.activeTab = btn.dataset.tab; renderGraph(); renderDrawer(); };
       });
 
       document.getElementById("findPathBtn").onclick = () => {
-        const res = findShortestPath(startSel.value, endSel.value);
-        if (!res) {
-          alert("当前数据中未找到这两个公式之间的推导路径。");
-          return;
-        }
+        const res = findShortestPath(document.getElementById("pathStart").value, document.getElementById("pathEnd").value);
+        if (!res) { alert("当前数据包中未找到这两个公式之间的推导路径。"); return; }
         state.activePath = res;
         document.getElementById("clearPathBtn").style.display = "inline-block";
         renderGraph();
         renderDrawer();
       };
-
       document.getElementById("clearPathBtn").onclick = () => {
         state.activePath = null;
         document.getElementById("clearPathBtn").style.display = "none";
@@ -3868,29 +5220,14 @@
         renderDrawer();
       };
 
-      document.getElementById("zoomOutBtn").onclick = () => {
-        state.zoom = Math.max(0.45, +(state.zoom - 0.1).toFixed(2));
-        applyZoom();
-      };
-      document.getElementById("zoomInBtn").onclick = () => {
-        state.zoom = Math.min(1.25, +(state.zoom + 0.1).toFixed(2));
-        applyZoom();
-      };
-      document.getElementById("zoomFitBtn").onclick = () => {
-        state.zoom = 0.78;
-        applyZoom();
-      };
+      document.getElementById("zoomOutBtn").onclick = () => { state.zoom = Math.max(0.45, +(state.zoom - 0.1).toFixed(2)); applyZoom(); };
+      document.getElementById("zoomInBtn").onclick = () => { state.zoom = Math.min(1.25, +(state.zoom + 0.1).toFixed(2)); applyZoom(); };
+      document.getElementById("zoomFitBtn").onclick = () => { state.zoom = PACKS[state.packKey].defaultZoom; applyZoom(); };
     }
 
-    window.__katexReady = () => {
-      renderGraph();
-      renderDrawer();
-    };
-
+    window.__katexReady = () => { renderGraph(); renderDrawer(); };
     initControls();
-    applyZoom();
-    renderGraph();
-    renderDrawer();
+    loadPack("junior_elec");
   </script>
 </body>
 </html>
