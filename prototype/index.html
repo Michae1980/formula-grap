@@ -1,0 +1,3896 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>公式知识图谱 · 交互原型（25 公式完整种子库）</title>
+  <!-- 在线时自动加载 KaTeX 渲染出版级数学公式；离线时无缝回退到内置原生公式渲染器 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="window.__katexReady && window.__katexReady()"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --surface: #ffffff;
+      --surface-subtle: #f1f4f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --ink: #0f172a;
+      --ink-secondary: #475569;
+      --ink-muted: #64748b;
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --primary-border: #93c5fd;
+      --upstream: #d97706;
+      --upstream-soft: #fffbeb;
+      --upstream-border: #fcd34d;
+      --downstream: #059669;
+      --downstream-soft: #ecfdf5;
+      --downstream-border: #6ee7b7;
+      --equiv: #7c3aed;
+      --equiv-soft: #f5f3ff;
+      --equiv-border: #c4b5fd;
+      --pitfall-bg: #fff7ed;
+      --pitfall-border: #fdba74;
+      --pitfall-ink: #9a3412;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --radius-lg: 13px;
+      --radius-md: 10px;
+      --radius-pill: 999px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+      --font-math: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 20;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-family: var(--font-math);
+      font-size: 16px;
+    }
+    .brand-title { font-size: 15px; font-weight: 600; color: var(--ink); }
+    .brand-sub { font-size: 11.5px; color: var(--ink-muted); }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+    }
+    .search-box {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-pill);
+      padding: 5px 12px;
+      font-size: 12px;
+      width: 170px;
+      outline: none;
+      background: var(--surface);
+      color: var(--ink);
+    }
+    .search-box:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.14); }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      background: var(--surface-subtle);
+      padding: 3px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 11px;
+      color: var(--ink-muted);
+      padding: 0 5px 0 7px;
+      user-select: none;
+    }
+    .pill-btn {
+      border: none;
+      background: transparent;
+      color: var(--ink-secondary);
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .pill-btn:hover { color: var(--ink); background: rgba(255,255,255,0.7); }
+    .pill-btn.active {
+      background: var(--surface);
+      color: var(--primary);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--ink-secondary);
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .toggle-btn.active {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr 430px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .canvas-pane {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      background:
+        radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0) 0 0 / 24px 24px,
+        var(--bg);
+    }
+    .canvas-subbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--ink-secondary);
+    }
+    .legend-item { display: inline-flex; align-items: center; gap: 5px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+
+    .right-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .path-finder {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+    }
+    .path-finder select {
+      border: 1px solid var(--border-strong);
+      border-radius: 7px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: var(--surface);
+      color: var(--ink);
+      max-width: 148px;
+    }
+    .zoom-controls {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: 7px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .zoom-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      color: var(--ink-secondary);
+    }
+    .zoom-btn:hover { background: var(--surface-subtle); color: var(--ink); }
+    .zoom-val {
+      font-size: 11px;
+      color: var(--ink-muted);
+      padding: 0 5px;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      min-width: 42px;
+      text-align: center;
+    }
+    .action-btn {
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 7px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .action-btn:hover { opacity: 0.92; }
+    .action-btn.ghost {
+      background: var(--surface);
+      color: var(--ink-secondary);
+      border-color: var(--border-strong);
+    }
+
+    .graph-scroll {
+      flex: 1;
+      overflow: auto;
+      padding: 18px;
+    }
+    .graph-zoom-wrap {
+      transform-origin: top left;
+      transition: transform 0.12s ease;
+    }
+    .graph-stage {
+      position: relative;
+      width: 1640px;
+      height: 850px;
+      flex-shrink: 0;
+    }
+    .lane-header {
+      position: absolute;
+      top: 4px;
+      width: 224px;
+      text-align: center;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 3px 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .graph-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .edge-path {
+      fill: none;
+      stroke: #94a3b8;
+      stroke-width: 1.6;
+      opacity: 0.35;
+      transition: stroke 0.18s ease, opacity 0.18s ease, stroke-width 0.18s ease;
+    }
+    .edge-path.dimmed { opacity: 0.08; }
+    .edge-path.hidden { opacity: 0; }
+    .edge-path.highlight-primary { stroke: var(--primary); stroke-width: 2.6; opacity: 1; }
+    .edge-path.highlight-upstream { stroke: var(--upstream); stroke-width: 2.6; opacity: 1; }
+    .edge-path.highlight-downstream { stroke: var(--downstream); stroke-width: 2.6; opacity: 1; }
+    .edge-path.highlight-equiv { stroke: var(--equiv); stroke-width: 2.6; opacity: 1; }
+    .edge-path.highlight-path { stroke: #e11d48; stroke-width: 3.1; opacity: 1; stroke-dasharray: 7 4; }
+
+    .formula-node {
+      position: absolute;
+      width: 224px;
+      background: var(--surface);
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 9px 12px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, opacity 0.18s ease;
+      user-select: none;
+      z-index: 3;
+    }
+    .formula-node:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+      z-index: 8;
+    }
+    .formula-node.selected {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+      z-index: 7;
+    }
+    .formula-node.rel-upstream { border-color: var(--upstream); background: var(--upstream-soft); z-index: 5; }
+    .formula-node.rel-downstream { border-color: var(--downstream); background: var(--downstream-soft); z-index: 5; }
+    .formula-node.rel-equiv { border-color: var(--equiv); background: var(--equiv-soft); z-index: 5; }
+    .formula-node.rel-path { border-color: #e11d48; background: #fff1f2; box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.14); z-index: 6; }
+    .formula-node.dimmed { opacity: 0.2; }
+    .formula-node.hidden { opacity: 0; pointer-events: none; }
+
+    .node-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      margin-bottom: 4px;
+    }
+    .node-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .node-badge {
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: var(--radius-pill);
+      background: var(--surface-subtle);
+      color: var(--ink-muted);
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .node-math {
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 2px;
+      font-size: 13.5px;
+      color: var(--ink);
+      overflow-x: auto;
+    }
+    .node-foot {
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10.5px;
+      color: var(--ink-muted);
+    }
+    .node-tag {
+      background: rgba(15, 23, 42, 0.05);
+      padding: 1px 5px;
+      border-radius: 5px;
+    }
+
+    .edge-pill {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: var(--surface);
+      border: 1px solid var(--primary-border);
+      border-radius: var(--radius-pill);
+      padding: 2px 9px;
+      font-size: 11px;
+      color: var(--primary);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+      z-index: 9;
+      transition: all 0.15s ease;
+    }
+    .edge-pill:hover { background: var(--primary); color: #fff; transform: translate(-50%, -50%) scale(1.05); }
+    .edge-pill.selected { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 600; }
+
+    .canvas-hint {
+      position: absolute;
+      left: 14px;
+      bottom: 12px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px;
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      box-shadow: var(--shadow-sm);
+      z-index: 12;
+    }
+
+    /* 右侧抽屉 */
+    .drawer {
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .drawer-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-subtle);
+      padding: 6px 12px 0;
+      gap: 6px;
+    }
+    .drawer-tab {
+      border: none;
+      background: transparent;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    .drawer-tab.active {
+      color: var(--primary);
+      font-weight: 600;
+      border-bottom-color: var(--primary);
+      background: var(--surface);
+      border-radius: 8px 8px 0 0;
+    }
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 15px 0 7px;
+    }
+    .section-label:first-child { margin-top: 0; }
+
+    .hero-card {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px;
+    }
+    .hero-title { font-size: 15.5px; font-weight: 600; margin: 0 0 3px; }
+    .hero-aliases { font-size: 12px; color: var(--ink-muted); margin-bottom: 9px; }
+    .hero-math {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px;
+      text-align: center;
+      font-size: 17px;
+      overflow-x: auto;
+      margin-bottom: 9px;
+    }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--ink-secondary);
+    }
+    .chip.verified { background: #ecfdf5; border-color: #a7f3d0; color: #047857; }
+    .chip.rule { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; font-family: var(--font-mono); }
+
+    .var-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .var-table th, .var-table td {
+      padding: 6px 7px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .var-table th { background: var(--surface-subtle); color: var(--ink-muted); font-weight: 600; font-size: 11px; }
+    .var-table tr:last-child td { border-bottom: none; }
+
+    .rel-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 9px 11px;
+      margin-bottom: 8px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .rel-card-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .rel-kind { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: var(--radius-pill); }
+    .rel-kind.upstream { background: var(--upstream-soft); color: var(--upstream); border: 1px solid var(--upstream-border); }
+    .rel-kind.downstream { background: var(--downstream-soft); color: var(--downstream); border: 1px solid var(--downstream-border); }
+    .rel-kind.equiv { background: var(--equiv-soft); color: var(--equiv); border: 1px solid var(--equiv-border); }
+    .rel-actions { display: flex; gap: 6px; }
+    .mini-btn {
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--ink-secondary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .mini-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .mini-btn.primary { background: var(--primary-soft); border-color: var(--primary-border); color: var(--primary); font-weight: 600; }
+
+    .level-switcher {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      background: var(--surface-subtle);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 12px 0 14px;
+    }
+    .level-btn {
+      border: none;
+      background: transparent;
+      padding: 7px 8px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      cursor: pointer;
+    }
+    .level-btn.active { background: var(--surface); color: var(--primary); font-weight: 600; box-shadow: var(--shadow-sm); }
+
+    .summary-box {
+      background: var(--primary-soft);
+      border: 1px solid var(--primary-border);
+      border-radius: var(--radius-md);
+      padding: 13px;
+      color: #1e3a8a;
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+    .step-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 11px;
+      margin-bottom: 9px;
+      background: var(--surface);
+    }
+    .step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+    .step-num {
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .step-note { font-size: 12.5px; color: var(--ink); }
+    .step-math {
+      background: var(--surface-subtle);
+      border-radius: 7px;
+      padding: 8px 10px;
+      text-align: center;
+      font-size: 14.5px;
+      overflow-x: auto;
+    }
+    .step-cites { margin-top: 7px; display: flex; flex-wrap: wrap; align-items: center; gap: 5px; font-size: 11px; color: var(--ink-muted); }
+    .cite-link {
+      border: 1px solid var(--primary-border);
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-radius: var(--radius-pill);
+      padding: 2px 8px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .cite-link:hover { background: var(--primary); color: #fff; }
+    .pitfall-box {
+      margin-top: 7px;
+      background: var(--pitfall-bg);
+      border: 1px solid var(--pitfall-border);
+      border-radius: 7px;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: var(--pitfall-ink);
+    }
+    .path-banner {
+      background: #fff1f2;
+      border: 1px solid #fda4af;
+      color: #9f1239;
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 12.5px;
+    }
+
+    .math-fallback { font-family: var(--font-math); font-size: 1.03em; }
+    .math-frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 3px;
+      font-size: 0.88em;
+      line-height: 1.15;
+    }
+    .math-frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 4px 1px; }
+    .math-frac > span:last-child { padding: 1px 4px 0; }
+
+    @media (max-width: 1080px) {
+      .workspace { grid-template-columns: 1fr; grid-template-rows: 52vh 1fr; }
+      .drawer { border-left: none; border-top: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">∑</div>
+        <div>
+          <div class="brand-title">公式知识图谱 · 高中三角函数种子库</div>
+          <div class="brand-sub" id="statsSubtitle">25 个核心公式 · 24 条多级推导链 · 支持领域筛选与 L1/L2/L3 详略切换</div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <input class="search-box" id="searchInput" type="search" placeholder="搜索公式名或别名..." />
+        <div class="filter-group" id="stageFilters">
+          <span class="filter-label">学段</span>
+          <button class="pill-btn active" data-stage="all">全部</button>
+          <button class="pill-btn" data-stage="senior_high">高中</button>
+          <button class="pill-btn" data-stage="undergraduate">本科前置</button>
+        </div>
+        <div class="filter-group" id="topicFilters">
+          <span class="filter-label">专题</span>
+          <button class="pill-btn active" data-topic="all">全部</button>
+          <button class="pill-btn" data-topic="trigonometric_identities">同角</button>
+          <button class="pill-btn" data-topic="induction_formulas">诱导</button>
+          <button class="pill-btn" data-topic="angle_sum_and_difference">和差角</button>
+          <button class="pill-btn" data-topic="double_angle">二倍角</button>
+          <button class="pill-btn" data-topic="power_reduction">降幂/辅助角</button>
+          <button class="pill-btn" data-topic="triangle_solving">解三角形</button>
+        </div>
+        <button class="toggle-btn" id="focusOnlyBtn">◎ 仅看直接关联</button>
+        <button class="toggle-btn" id="resetBtn">重置</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="canvas-pane">
+        <div class="canvas-subbar">
+          <div class="legend">
+            <span class="legend-item"><span class="dot" style="background:var(--primary)"></span>当前选中</span>
+            <span class="legend-item"><span class="dot" style="background:var(--upstream)"></span>前置依赖</span>
+            <span class="legend-item"><span class="dot" style="background:var(--downstream)"></span>直接衍生</span>
+            <span class="legend-item"><span class="dot" style="background:var(--equiv)"></span>双向等价</span>
+          </div>
+          <div class="right-controls">
+            <div class="path-finder">
+              <select id="pathStart" aria-label="起点公式"></select>
+              <span>→</span>
+              <select id="pathEnd" aria-label="终点公式"></select>
+              <button class="action-btn" id="findPathBtn">查路径</button>
+              <button class="action-btn ghost" id="clearPathBtn" style="display:none">清除</button>
+            </div>
+            <div class="zoom-controls">
+              <button class="zoom-btn" id="zoomOutBtn" title="缩小">−</button>
+              <span class="zoom-val" id="zoomVal">78%</span>
+              <button class="zoom-btn" id="zoomInBtn" title="放大">+</button>
+              <button class="zoom-btn" id="zoomFitBtn" title="重置缩放">适应</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="graph-scroll" id="graphScroll">
+          <div class="graph-zoom-wrap" id="zoomWrap">
+            <div class="graph-stage" id="graphStage">
+              <div class="lane-header" style="left:24px">1. 基础定义与同角</div>
+              <div class="lane-header" style="left:296px">2. 诱导公式</div>
+              <div class="lane-header" style="left:568px">3. 两角和差</div>
+              <div class="lane-header" style="left:840px">4. 二倍角</div>
+              <div class="lane-header" style="left:1112px">5. 降幂与辅助角</div>
+              <div class="lane-header" style="left:1384px">6. 解三角形</div>
+              <svg class="graph-svg" id="graphSvg" viewBox="0 0 1640 850">
+                <defs>
+                  <marker id="arrow-default" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+                    <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#94a3b8" />
+                  </marker>
+                  <marker id="arrow-primary" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#2563eb" />
+                  </marker>
+                  <marker id="arrow-upstream" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#d97706" />
+                  </marker>
+                  <marker id="arrow-downstream" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#059669" />
+                  </marker>
+                  <marker id="arrow-equiv" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#7c3aed" />
+                  </marker>
+                  <marker id="arrow-path" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#e11d48" />
+                  </marker>
+                </defs>
+                <g id="edgeLayer"></g>
+              </svg>
+              <div id="nodeLayer"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="canvas-hint">点击任意公式高亮直接关联并浮现推导入口；开启「仅看直接关联」可屏蔽无关节点</div>
+      </section>
+
+      <aside class="drawer">
+        <div class="drawer-tabs">
+          <button class="drawer-tab active" data-tab="formula">公式详情与关联</button>
+          <button class="drawer-tab" data-tab="derivation">分级推导过程</button>
+        </div>
+        <div class="drawer-body" id="drawerBody"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const GRAPH_DATA = {
+  "schema_version": "1.0.0",
+  "metadata": {
+    "pack_id": "cn-senior-high-trig-seed-25",
+    "title": "高中三角函数与解三角形核心公式种子库（25 公式完整版）",
+    "curriculum_ref": "人教A版高中数学必修第一册第五章、必修第二册第六章",
+    "updated_at": "2026-11-23"
+  },
+  "formulas": [
+    {
+      "id": "math.trig.unit_circle_def",
+      "name": "单位圆三角函数定义",
+      "aliases": [
+        "任意角三角函数定义"
+      ],
+      "latex": "\\sin\\alpha = y,\\ \\cos\\alpha = x,\\ \\tan\\alpha = \\frac{y}{x}",
+      "statement": "设角 α 终边与单位圆交于点 P(x, y)，则其纵坐标为正弦、横坐标为余弦、纵横坐标之比为正切。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "trigonometric_identities"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "x, y",
+          "name": "单位圆交点坐标",
+          "math_type": "scalar",
+          "domain": "[-1, 1]",
+          "quantity_kind": "dimensionless_coordinate",
+          "dimension": "1",
+          "si_unit": "1"
+        }
+      ],
+      "conditions": [
+        "x^2 + y^2 = 1；定义 tan α 时要求 x ≠ 0（即 α ≠ kπ + π/2, k ∈ Z）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.2.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.pythagorean",
+      "name": "同角三角函数平方关系",
+      "aliases": [
+        "三角勾股恒等式",
+        "平方关系"
+      ],
+      "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1",
+      "statement": "同一个任意角的正弦平方与余弦平方之和恒等于 1。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "trigonometric_identities"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.2.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.quotient",
+      "name": "同角三角函数商数关系",
+      "aliases": [
+        "商数关系"
+      ],
+      "latex": "\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}",
+      "statement": "任意角的正切等于该角的正弦与余弦之比。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "trigonometric_identities"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R} \\setminus \\{k\\pi + \\frac{\\pi}{2}\\}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "cos α ≠ 0，即 α ≠ kπ + π/2 (k ∈ Z)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.2.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.sec_tan_pythagorean",
+      "name": "正切与余弦平方转化公式",
+      "aliases": [
+        "正割平方关系",
+        "1+tan²α公式"
+      ],
+      "latex": "1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}",
+      "statement": "1 加正切平方等于余弦平方的倒数，常用于“弦化切”与微积分三角代换。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "trigonometry",
+          "trigonometric_identities",
+          "calculus_integration_prep"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R} \\setminus \\{k\\pi + \\frac{\\pi}{2}\\}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "cos α ≠ 0，即 α ≠ kπ + π/2 (k ∈ Z)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.2.2 拓展",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.ind_neg",
+      "name": "诱导公式三（负角奇偶性）",
+      "aliases": [
+        "正余弦奇偶性",
+        "负角公式"
+      ],
+      "latex": "\\sin(-\\alpha) = -\\sin\\alpha,\\ \\cos(-\\alpha) = \\cos\\alpha",
+      "statement": "正弦函数是奇函数，余弦函数是偶函数。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "induction_formulas"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.3",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.ind_pi_minus",
+      "name": "诱导公式四（补角关系）",
+      "aliases": [
+        "补角公式"
+      ],
+      "latex": "\\sin(\\pi - \\alpha) = \\sin\\alpha,\\ \\cos(\\pi - \\alpha) = -\\cos\\alpha",
+      "statement": "互补两角的正弦相等，余弦互为相反数。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "induction_formulas"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.3",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.ind_half_pi_minus",
+      "name": "诱导公式五（余角互换）",
+      "aliases": [
+        "余角公式",
+        "正余弦互化"
+      ],
+      "latex": "\\sin\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\sin\\alpha",
+      "statement": "互余两角的正弦与余弦互相转换。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "induction_formulas"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.3",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.ind_half_pi_plus",
+      "name": "诱导公式六（π/2+α）",
+      "aliases": [
+        "九十度加角公式"
+      ],
+      "latex": "\\sin\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}+\\alpha\\right) = -\\sin\\alpha",
+      "statement": "角增加 π/2 后，正弦变为余弦，余弦变为负正弦。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "induction_formulas"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.3",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.cos_diff",
+      "name": "两角差的余弦公式",
+      "aliases": [
+        "余弦差角公式",
+        "C(α-β)"
+      ],
+      "latex": "\\cos(\\alpha - \\beta) = \\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta",
+      "statement": "两角之差的余弦等于两角余弦之积加上两角正弦之积，是和差角体系的起点。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "角 α",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\beta",
+          "name": "角 β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α, β 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.cos_sum",
+      "name": "两角和的余弦公式",
+      "aliases": [
+        "余弦和角公式",
+        "C(α+β)"
+      ],
+      "latex": "\\cos(\\alpha + \\beta) = \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta",
+      "statement": "两角之和的余弦等于两角余弦之积减去两角正弦之积。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "角 α",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\beta",
+          "name": "角 β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α, β 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.sin_sum",
+      "name": "两角和的正弦公式",
+      "aliases": [
+        "正弦和角公式",
+        "S(α+β)"
+      ],
+      "latex": "\\sin(\\alpha + \\beta) = \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta",
+      "statement": "两角之和的正弦等于正余乘积加上余正乘积。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "角 α",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\beta",
+          "name": "角 β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α, β 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.sin_diff",
+      "name": "两角差的正弦公式",
+      "aliases": [
+        "正弦差角公式",
+        "S(α-β)"
+      ],
+      "latex": "\\sin(\\alpha - \\beta) = \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta",
+      "statement": "两角之差的正弦等于正余乘积减去余正乘积。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "角 α",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\beta",
+          "name": "角 β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α, β 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.tan_sum",
+      "name": "两角和的正切公式",
+      "aliases": [
+        "正切和角公式",
+        "T(α+β)"
+      ],
+      "latex": "\\tan(\\alpha + \\beta) = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}",
+      "statement": "两角之和的正切等于两正切之和除以 1 减两正切之积。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha, \\beta",
+          "name": "角 α, β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "α, β, α+β 均不为 kπ + π/2 (k ∈ Z)，且 tan α tan β ≠ 1"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.tan_diff",
+      "name": "两角差的正切公式",
+      "aliases": [
+        "正切差角公式",
+        "T(α-β)"
+      ],
+      "latex": "\\tan(\\alpha - \\beta) = \\frac{\\tan\\alpha - \\tan\\beta}{1 + \\tan\\alpha\\tan\\beta}",
+      "statement": "两角之差的正切等于两正切之差除以 1 加两正切之积。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha, \\beta",
+          "name": "角 α, β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "α, β, α-β 均不为 kπ + π/2 (k ∈ Z)，且 tan α tan β ≠ -1"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.sin_double",
+      "name": "二倍角正弦公式",
+      "aliases": [
+        "正弦二倍角",
+        "S(2α)"
+      ],
+      "latex": "\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha",
+      "statement": "二倍角的正弦等于 2 倍原角正弦与余弦之积。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.cos_double",
+      "name": "二倍角余弦公式（基本形式）",
+      "aliases": [
+        "余弦二倍角公式",
+        "C(2α)"
+      ],
+      "latex": "\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha",
+      "statement": "二倍角的余弦等于原角余弦平方减去正弦平方。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.cos_double_cos",
+      "name": "二倍角余弦公式（纯余弦形式）",
+      "aliases": [
+        "二倍角余弦单函数形式"
+      ],
+      "latex": "\\cos 2\\alpha = 2\\cos^2\\alpha - 1",
+      "statement": "将二倍角余弦全部用余弦函数表示。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.cos_double_sin",
+      "name": "二倍角余弦公式（纯正弦形式）",
+      "aliases": [
+        "二倍角余弦正弦形式"
+      ],
+      "latex": "\\cos 2\\alpha = 1 - 2\\sin^2\\alpha",
+      "statement": "将二倍角余弦全部用正弦函数表示。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.tan_double",
+      "name": "二倍角正切公式",
+      "aliases": [
+        "正切二倍角",
+        "T(2α)"
+      ],
+      "latex": "\\tan 2\\alpha = \\frac{2\\tan\\alpha}{1 - \\tan^2\\alpha}",
+      "statement": "二倍角的正切等于 2 倍原角正切除以 1 减原角正切平方。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "α ≠ kπ + π/2 且 2α ≠ kπ + π/2 (k ∈ Z)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.power_reduction_cos",
+      "name": "余弦降幂公式",
+      "aliases": [
+        "扩角降幂公式（余弦）",
+        "半角余弦平方公式"
+      ],
+      "latex": "\\cos^2\\alpha = \\frac{1 + \\cos 2\\alpha}{2}",
+      "statement": "将余弦的二次幂转化为二倍角余弦的一次线性表达式，常用于三角化简与微积分求积分。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "trigonometry",
+          "power_reduction",
+          "calculus_integration_prep"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.power_reduction_sin",
+      "name": "正弦降幂公式",
+      "aliases": [
+        "扩角降幂公式（正弦）",
+        "半角正弦平方公式"
+      ],
+      "latex": "\\sin^2\\alpha = \\frac{1 - \\cos 2\\alpha}{2}",
+      "statement": "将正弦的二次幂转化为二倍角余弦的一次线性表达式，常用于三角化简与微积分求积分。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "trigonometry",
+          "power_reduction",
+          "calculus_integration_prep"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.auxiliary_angle",
+      "name": "辅助角公式",
+      "aliases": [
+        "合一变形公式"
+      ],
+      "latex": "a\\sin x + b\\cos x = \\sqrt{a^2 + b^2}\\sin(x + \\varphi)",
+      "statement": "将同角正弦与余弦的线性组合合成为单一正弦型函数，用于求最值、周期与物理简谐振动叠加。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "trigonometry",
+          "power_reduction"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "a, b",
+          "name": "实系数",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "amplitude_component",
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "x",
+          "name": "自变量角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\varphi",
+          "name": "辅助角",
+          "math_type": "angle",
+          "domain": "[0, 2\\pi)",
+          "quantity_kind": "phase_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "a^2 + b^2 ≠ 0，且 cos φ = a/√(a²+b²), sin φ = b/√(a²+b²)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.2",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.law_of_cosines",
+      "name": "余弦定理",
+      "aliases": [
+        "广义勾股定理"
+      ],
+      "latex": "c^2 = a^2 + b^2 - 2ab\\cos C",
+      "statement": "三角形任意一边的平方等于其余两边的平方和减去这两边与其夹角余弦乘积的两倍。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "triangle_solving"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "a, b, c",
+          "name": "三角形三边长",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        },
+        {
+          "symbol": "C",
+          "name": "边 c 所对内角",
+          "math_type": "angle",
+          "domain": "(0, \\pi)",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
+      ],
+      "conditions": [
+        "a, b, c 为同一三角形的三边长，满足三角形不等式"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.4.3",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.law_of_sines",
+      "name": "正弦定理",
+      "aliases": [
+        "三角形正弦比例定理"
+      ],
+      "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R",
+      "statement": "在一个三角形中，各边与其所对角的正弦之比相等，且等于该三角形外接圆的直径。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "triangle_solving"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "a, b, c",
+          "name": "三角形三边长",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        },
+        {
+          "symbol": "A, B, C",
+          "name": "对应三内角",
+          "math_type": "angle",
+          "domain": "(0, \\pi)",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "R",
+          "name": "外接圆半径",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        }
+      ],
+      "conditions": [
+        "A + B + C = π，且 a, b, c > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.4.3",
+        "sympy_verified": true
+      }
+    },
+    {
+      "id": "math.trig.triangle_area",
+      "name": "三角形正弦面积公式",
+      "aliases": [
+        "两边夹角面积公式"
+      ],
+      "latex": "S = \\frac{1}{2}ab\\sin C",
+      "statement": "三角形的面积等于任意两边之积与它们夹角正弦乘积的一半。",
+      "taxonomy": {
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "triangle_solving"
+        ]
+      },
+      "variables": [
+        {
+          "symbol": "a, b",
+          "name": "三角形两边长",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        },
+        {
+          "symbol": "C",
+          "name": "两边夹角",
+          "math_type": "angle",
+          "domain": "(0, \\pi)",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "S",
+          "name": "三角形面积",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "area",
+          "dimension": "L^2",
+          "si_unit": "m^2"
+        }
+      ],
+      "conditions": [
+        "a, b > 0 且 C ∈ (0, π)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.4.3",
+        "sympy_verified": true
+      }
+    }
+  ],
+  "derivations": [
+    {
+      "id": "deriv.trig.def_to_pythagorean",
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
+      "to_formula_id": "math.trig.pythagorean",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": [
+        "definition_substitution"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将单位圆定义 x = cos α、y = sin α 代入单位圆方程 x² + y² = 1 即得平方关系。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "x^2 + y^2 = 1",
+            "note": "角 α 终边与单位圆交点 P(x, y) 满足单位圆方程",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos^2\\alpha + \\sin^2\\alpha = 1",
+            "note": "代入 x = cos α、y = sin α 得证",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "P(x, y) \\text{ 在单位圆上} \\implies x^2 + y^2 = 1",
+            "note": "由平面两点距离公式，点 P 到原点距离为半径 1",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "x = \\cos\\alpha,\\ y = \\sin\\alpha",
+            "note": "根据任意角三角函数的单位圆定义",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1",
+            "note": "直接代换即得同角平方关系",
+            "cited_formula_ids": [],
+            "pitfall": "必须保证两个函数对应同一个角，sin²α + cos²β 一般不等于 1。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.def_to_quotient",
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
+      "to_formula_id": "math.trig.quotient",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": [
+        "definition_substitution"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在单位圆定义 tan α = y/x 中直接代入 y = sin α 和 x = cos α。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\tan\\alpha = \\frac{y}{x} = \\frac{\\sin\\alpha}{\\cos\\alpha}",
+            "note": "当 x = cos α ≠ 0 时直接由单位圆定义代入",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\sin\\alpha = y,\\ \\cos\\alpha = x,\\ \\tan\\alpha = \\frac{y}{x}\\ (x \\neq 0)",
+            "note": "列出单位圆定义",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}",
+            "note": "将分子 y 替换为 sin α，分母 x 替换为 cos α",
+            "cited_formula_ids": [],
+            "pitfall": "使用商数关系前需确认 cos α ≠ 0，否则等式无意义。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.pyth_quot_to_sec_tan",
+      "from_formula_ids": [
+        "math.trig.pythagorean",
+        "math.trig.quotient"
+      ],
+      "to_formula_id": "math.trig.sec_tan_pythagorean",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "divide_both_sides",
+        "identity_substitution"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "将同角平方关系两边同除以 cos²α，再代入商数关系 tan α = sin α / cos α。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\frac{\\sin^2\\alpha}{\\cos^2\\alpha} + \\frac{\\cos^2\\alpha}{\\cos^2\\alpha} = \\frac{1}{\\cos^2\\alpha}",
+            "note": "平方关系两边同除以 cos²α（cos α ≠ 0）",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\tan^2\\alpha + 1 = \\frac{1}{\\cos^2\\alpha}",
+            "note": "利用商数关系化简首项",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1",
+            "note": "从同角平方关系出发",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\left(\\frac{\\sin\\alpha}{\\cos\\alpha}\\right)^2 + 1 = \\frac{1}{\\cos^2\\alpha}",
+            "note": "在 cos α ≠ 0 条件下，两边同除以 cos²α",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}",
+            "note": "由商数关系将 sin α / cos α 替换为 tan α",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ],
+            "pitfall": "由 tan α 反求 cos α 时开方需结合角所在象限判断正负号。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.def_to_ind_neg",
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
+      "to_formula_id": "math.trig.ind_neg",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": [
+        "geometric_symmetry"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "角 α 与 -α 的终边关于 x 轴对称，交点横坐标不变、纵坐标取反。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } x \\text{ 轴对称}} P_2(x, -y)",
+            "note": "角 -α 终边与单位圆交点坐标为 (x, -y)",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin(-\\alpha) = -y = -\\sin\\alpha,\\ \\cos(-\\alpha) = x = \\cos\\alpha",
+            "note": "代入单位圆定义即得",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "P_1(\\cos\\alpha, \\sin\\alpha)",
+            "note": "设角 α 终边与单位圆交于 P1",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P_2(\\cos\\alpha, -\\sin\\alpha)",
+            "note": "角 -α 终边与 α 终边关于 x 轴对称，横坐标相同、纵坐标相反",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "\\sin(-\\alpha) = -\\sin\\alpha,\\ \\cos(-\\alpha) = \\cos\\alpha",
+            "note": "对照定义读出正弦与余弦值",
+            "cited_formula_ids": [],
+            "pitfall": "负角时只有余弦（及正割）保持正号不变，正弦和正切都会变号。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.def_to_ind_pi_minus",
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
+      "to_formula_id": "math.trig.ind_pi_minus",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": [
+        "geometric_symmetry"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "角 π - α 与 α 的终边关于 y 轴对称，交点纵坐标不变、横坐标取反。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } y \\text{ 轴对称}} P_2(-x, y)",
+            "note": "π - α 与 α 终边关于 y 轴对称",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin(\\pi - \\alpha) = y = \\sin\\alpha,\\ \\cos(\\pi - \\alpha) = -x = -\\cos\\alpha",
+            "note": "代入定义得补角关系",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "P_1(\\cos\\alpha, \\sin\\alpha)",
+            "note": "角 α 终边与单位圆交点",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P_2(-\\cos\\alpha, \\sin\\alpha)",
+            "note": "因为 (π - α) + α = π，两终边关于 y 轴对称",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "\\sin(\\pi - \\alpha) = \\sin\\alpha,\\ \\cos(\\pi - \\alpha) = -\\cos\\alpha",
+            "note": "写出对应三角函数值，解三角形中极为常用",
+            "cited_formula_ids": [],
+            "pitfall": "三角形中 A+B+C = π，因此 sin(A+B) = sin C，而 cos(A+B) = -cos C。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.def_to_ind_half_pi_minus",
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
+      "to_formula_id": "math.trig.ind_half_pi_minus",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": [
+        "geometric_symmetry"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "角 π/2 - α 与 α 的终边关于直线 y = x 对称，交点横纵坐标互换。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } y=x \\text{ 对称}} P_2(y, x)",
+            "note": "互余两角终边关于直线 y = x 对称",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin\\left(\\frac{\\pi}{2}-\\alpha\\right) = x = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right) = y = \\sin\\alpha",
+            "note": "坐标互换对应正余弦互换",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "P_1(\\cos\\alpha, \\sin\\alpha)",
+            "note": "写出角 α 终边交点坐标",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P_2(\\sin\\alpha, \\cos\\alpha)",
+            "note": "由于 (π/2 - α) + α = π/2，两点关于一三象限角平分线 y = x 对称",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "\\sin\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\sin\\alpha",
+            "note": "横纵坐标互换即实现正弦与余弦互化",
+            "cited_formula_ids": [],
+            "pitfall": "口诀“奇变偶不变，符号看象限”中，π/2 的奇数倍必须改变函数名。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.ind5_neg_to_ind6",
+      "from_formula_ids": [
+        "math.trig.ind_half_pi_minus",
+        "math.trig.ind_neg"
+      ],
+      "to_formula_id": "math.trig.ind_half_pi_plus",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "variable_substitution",
+        "parity_identity"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "在诱导公式五中将 α 替换为 -α，再结合诱导公式三的奇偶性化简。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\sin\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\sin\\left(\\frac{\\pi}{2}-(-\\alpha)\\right) = \\cos(-\\alpha) = \\cos\\alpha",
+            "note": "对正弦套用诱导公式五与三",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus",
+              "math.trig.ind_neg"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\cos\\left(\\frac{\\pi}{2}-(-\\alpha)\\right) = \\sin(-\\alpha) = -\\sin\\alpha",
+            "note": "对余弦套用诱导公式五与三",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus",
+              "math.trig.ind_neg"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\frac{\\pi}{2} + \\alpha = \\frac{\\pi}{2} - (-\\alpha)",
+            "note": "把加号改写为减去负角，对齐诱导公式五的结构",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "\\sin\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\cos(-\\alpha) = \\cos\\alpha",
+            "note": "先用诱导公式五换名，再用余弦偶函数性质去负号",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus",
+              "math.trig.ind_neg"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\cos\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\sin(-\\alpha) = -\\sin\\alpha",
+            "note": "先用诱导公式五换名，再用正弦奇函数性质提出负号",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus",
+              "math.trig.ind_neg"
+            ],
+            "pitfall": "把 α 看作锐角时 π/2 + α 在第二象限，原余弦值为负，故右侧带负号。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.def_to_cos_diff",
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
+      "to_formula_id": "math.trig.cos_diff",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "rotation_invariance",
+        "distance_formula"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在单位圆上取角 α、β 终边交点，利用旋转不变性令弦长平方相等即可推出两角差余弦公式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "A_1(\\cos\\alpha, \\sin\\alpha),\\ B_1(\\cos\\beta, \\sin\\beta),\\ P(\\cos(\\alpha-\\beta), \\sin(\\alpha-\\beta)),\\ A(1, 0)",
+            "note": "由单位圆旋转不变性，弦长 |A1B1| = |PA|",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(\\cos\\alpha - \\cos\\beta)^2 + (\\sin\\alpha - \\sin\\beta)^2 = (\\cos(\\alpha-\\beta) - 1)^2 + \\sin^2(\\alpha-\\beta)",
+            "note": "两边列出距离平方并展开",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "2 - 2(\\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta) = 2 - 2\\cos(\\alpha-\\beta)",
+            "note": "消去常数项与系数 -2 即得证",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "|A_1B_1|^2 = (\\cos\\alpha - \\cos\\beta)^2 + (\\sin\\alpha - \\sin\\beta)^2",
+            "note": "由单位圆定义写出两点坐标并计算弦长平方",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "|A_1B_1|^2 = 2 - 2(\\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta)",
+            "note": "展开并用 sin²+cos² = 1 合并平方项",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "|PA|^2 = (\\cos(\\alpha-\\beta) - 1)^2 + \\sin^2(\\alpha-\\beta) = 2 - 2\\cos(\\alpha-\\beta)",
+            "note": "将扇形顺时针旋转 β 使始边与 x 轴正半轴重合，弦长不变",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 4,
+            "latex": "\\cos(\\alpha - \\beta) = \\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta",
+            "note": "令两弦长平方相等并化简",
+            "cited_formula_ids": [],
+            "pitfall": "人教A版特意将两角差余弦作为整章和差倍半公式的总源头，避免了循环论证。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.cos_diff_to_sum",
+      "from_formula_ids": [
+        "math.trig.cos_diff",
+        "math.trig.ind_neg"
+      ],
+      "to_formula_id": "math.trig.cos_sum",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "variable_substitution",
+        "parity_identity"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "在两角差余弦公式中以 -β 替换 β，再利用负角奇偶性化简。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\cos(\\alpha + \\beta) = \\cos[\\alpha - (-\\beta)]",
+            "note": "将和角改写为差角形式",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "= \\cos\\alpha\\cos(-\\beta) + \\sin\\alpha\\sin(-\\beta)",
+            "note": "套用两角差余弦公式",
+            "cited_formula_ids": [
+              "math.trig.cos_diff"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta",
+            "note": "由诱导公式三化简负角",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\cos(\\alpha + \\beta) = \\cos(\\alpha - (-\\beta))",
+            "note": "令两角差余弦公式中的 β 替换为 -β",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "= \\cos\\alpha\\cos(-\\beta) + \\sin\\alpha\\sin(-\\beta)",
+            "note": "逐项代入两角差余弦展开式",
+            "cited_formula_ids": [
+              "math.trig.cos_diff"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta",
+            "note": "代入 cos(-β)=cos β 与 sin(-β)=-sin β 整理符号",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ],
+            "pitfall": "余弦展开式中间符号与括号内相反：和角用减号，差角用加号。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.cos_diff_to_sin_sum",
+      "from_formula_ids": [
+        "math.trig.cos_diff",
+        "math.trig.ind_half_pi_minus"
+      ],
+      "to_formula_id": "math.trig.sin_sum",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "cofunction_identity",
+        "associative_regrouping"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "利用余角互换把 sin(α+β) 改写为 cos[(π/2 - α) - β]，再套用两角差余弦公式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha + \\beta) = \\cos\\left[\\frac{\\pi}{2} - (\\alpha + \\beta)\\right] = \\cos\\left[\\left(\\frac{\\pi}{2} - \\alpha\\right) - \\beta\\right]",
+            "note": "用诱导公式五转化为余弦并重新分组",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right)\\cos\\beta + \\sin\\left(\\frac{\\pi}{2}-\\alpha\\right)\\sin\\beta",
+            "note": "套用两角差余弦公式展开",
+            "cited_formula_ids": [
+              "math.trig.cos_diff"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta",
+            "note": "再次用诱导公式五还原正余弦",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha + \\beta) = \\cos\\left(\\frac{\\pi}{2} - (\\alpha + \\beta)\\right)",
+            "note": "将 (α+β) 视作整体，使用余角公式把正弦转为余弦",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\cos\\left(\\left(\\frac{\\pi}{2}-\\alpha\\right) - \\beta\\right)",
+            "note": "去括号重新结合为两角之差",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "= \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right)\\cos\\beta + \\sin\\left(\\frac{\\pi}{2}-\\alpha\\right)\\sin\\beta",
+            "note": "展开两角差余弦",
+            "cited_formula_ids": [
+              "math.trig.cos_diff"
+            ]
+          },
+          {
+            "step": 4,
+            "latex": "= \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta",
+            "note": "将余角函数还原为 sin α 与 cos α",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus"
+            ],
+            "pitfall": "正弦和差展开式中间符号与括号内一致，且每项均为“一正一余”交叉相乘。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.sin_sum_to_diff",
+      "from_formula_ids": [
+        "math.trig.sin_sum",
+        "math.trig.ind_neg"
+      ],
+      "to_formula_id": "math.trig.sin_diff",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "variable_substitution",
+        "parity_identity"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "在两角和正弦公式中以 -β 替换 β，再用奇偶性化简。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha - \\beta) = \\sin[\\alpha + (-\\beta)] = \\sin\\alpha\\cos(-\\beta) + \\cos\\alpha\\sin(-\\beta)",
+            "note": "套用两角和正弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta",
+            "note": "代入奇偶性整理符号",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha - \\beta) = \\sin(\\alpha + (-\\beta))",
+            "note": "改写为和角结构",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "= \\sin\\alpha\\cos(-\\beta) + \\cos\\alpha\\sin(-\\beta)",
+            "note": "代入两角和正弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta",
+            "note": "由 cos(-β)=cos β、sin(-β)=-sin β 完成化简",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ],
+            "pitfall": "逆用 sin(α-β) 时务必核对减数与被减数的角顺序。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.sin_cos_to_tan_sum",
+      "from_formula_ids": [
+        "math.trig.sin_sum",
+        "math.trig.cos_sum",
+        "math.trig.quotient"
+      ],
+      "to_formula_id": "math.trig.tan_sum",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "quotient_expansion",
+        "divide_numerator_denominator"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "用商数关系将 tan(α+β) 写为 sin(α+β)/cos(α+β)，展开后分子分母同除以 cos α cos β。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\tan(\\alpha + \\beta) = \\frac{\\sin(\\alpha + \\beta)}{\\cos(\\alpha + \\beta)} = \\frac{\\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta}",
+            "note": "由商数关系与和角公式展开",
+            "cited_formula_ids": [
+              "math.trig.quotient",
+              "math.trig.sin_sum",
+              "math.trig.cos_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}",
+            "note": "分子分母同除以 cos α cos β 并化为正切",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\tan(\\alpha + \\beta) = \\frac{\\sin(\\alpha + \\beta)}{\\cos(\\alpha + \\beta)}",
+            "note": "应用商数关系",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\frac{\\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta}",
+            "note": "分别代入两角和正弦与两角和余弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum",
+              "math.trig.cos_sum"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\frac{\\frac{\\sin\\alpha}{\\cos\\alpha} + \\frac{\\sin\\beta}{\\cos\\beta}}{1 - \\frac{\\sin\\alpha}{\\cos\\alpha}\\cdot\\frac{\\sin\\beta}{\\cos\\beta}} = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}",
+            "note": "在 cos α cos β ≠ 0 时分子分母同除以 cos α cos β",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ],
+            "pitfall": "变形 tan α + tan β = tan(α+β)(1 - tan α tan β) 是高考常见技巧。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.tan_sum_to_diff",
+      "from_formula_ids": [
+        "math.trig.tan_sum",
+        "math.trig.ind_neg"
+      ],
+      "to_formula_id": "math.trig.tan_diff",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "variable_substitution",
+        "parity_identity"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "在两角和正切公式中用 -β 替换 β，并利用 tan(-β) = -tan β 化简。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\tan(\\alpha - \\beta) = \\frac{\\tan\\alpha + \\tan(-\\beta)}{1 - \\tan\\alpha\\tan(-\\beta)}",
+            "note": "代入两角和正切公式",
+            "cited_formula_ids": [
+              "math.trig.tan_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\frac{\\tan\\alpha - \\tan\\beta}{1 + \\tan\\alpha\\tan\\beta}",
+            "note": "利用正切函数为奇函数化简",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\tan(-\\beta) = \\frac{\\sin(-\\beta)}{\\cos(-\\beta)} = -\\tan\\beta",
+            "note": "由正余弦奇偶性得正切为奇函数",
+            "cited_formula_ids": [
+              "math.trig.ind_neg",
+              "math.trig.quotient"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\tan(\\alpha - \\beta) = \\frac{\\tan\\alpha - \\tan\\beta}{1 + \\tan\\alpha\\tan\\beta}",
+            "note": "将 β 替换为 -β 代入两角和正切公式",
+            "cited_formula_ids": [
+              "math.trig.tan_sum"
+            ],
+            "pitfall": "分子符号与左侧一致，分母符号与左侧相反。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.sin_sum_to_double",
+      "from_formula_ids": [
+        "math.trig.sin_sum"
+      ],
+      "to_formula_id": "math.trig.sin_double",
+      "relation_type": "special_case_of",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "specialization"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在两角和正弦公式中令 β = α，合并同类项即可得到二倍角正弦公式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\sin 2\\alpha = \\sin(\\alpha + \\alpha) = \\sin\\alpha\\cos\\alpha + \\cos\\alpha\\sin\\alpha = 2\\sin\\alpha\\cos\\alpha",
+            "note": "令 β = α 代入两角和正弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha + \\beta) = \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta",
+            "note": "写出两角和正弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\text{令 } \\beta = \\alpha \\implies \\sin 2\\alpha = \\sin\\alpha\\cos\\alpha + \\cos\\alpha\\sin\\alpha = 2\\sin\\alpha\\cos\\alpha",
+            "note": "乘法交换后合并两项",
+            "cited_formula_ids": [],
+            "pitfall": "逆用 sin α cos α = (1/2)sin 2α 是化简乘积项的高频操作。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.cos_sum_to_double",
+      "from_formula_ids": [
+        "math.trig.cos_sum"
+      ],
+      "to_formula_id": "math.trig.cos_double",
+      "relation_type": "special_case_of",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "specialization"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在两角和余弦公式中令 β = α，即可直接得到二倍角余弦的基本形式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\cos 2\\alpha = \\cos(\\alpha + \\alpha) = \\cos^2\\alpha - \\sin^2\\alpha",
+            "note": "令 β = α 代入两角和余弦公式",
+            "cited_formula_ids": [
+              "math.trig.cos_sum"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\cos(\\alpha + \\beta) = \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta",
+            "note": "写出两角和余弦公式",
+            "cited_formula_ids": [
+              "math.trig.cos_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\text{令 } \\beta = \\alpha \\implies \\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha",
+            "note": "取两角相等的特例",
+            "cited_formula_ids": [],
+            "pitfall": "二倍角对任意 2 倍角关系（如 α 与 α/2）同样适用。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.cos_double_to_single_cos",
+      "from_formula_ids": [
+        "math.trig.cos_double",
+        "math.trig.pythagorean"
+      ],
+      "to_formula_id": "math.trig.cos_double_cos",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "identity_substitution",
+        "combine_like_terms"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "将同角平方关系变形为 sin²α = 1 - cos²α 后代入二倍角余弦公式，消去 sin²α 项。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\sin^2\\alpha = 1 - \\cos^2\\alpha",
+            "note": "由同角平方关系移项",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos 2\\alpha = \\cos^2\\alpha - (1 - \\cos^2\\alpha) = 2\\cos^2\\alpha - 1",
+            "note": "代入并合并同类项",
+            "cited_formula_ids": [
+              "math.trig.cos_double"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1 \\implies \\sin^2\\alpha = 1 - \\cos^2\\alpha",
+            "note": "从同角平方关系解出 sin²α",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos 2\\alpha = \\cos^2\\alpha - (1 - \\cos^2\\alpha) = 2\\cos^2\\alpha - 1",
+            "note": "整体代入并去括号合并",
+            "cited_formula_ids": [
+              "math.trig.cos_double"
+            ],
+            "pitfall": "去括号时注意 -(1 - cos²α) = -1 + cos²α。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.cos_double_to_single_sin",
+      "from_formula_ids": [
+        "math.trig.cos_double",
+        "math.trig.pythagorean"
+      ],
+      "to_formula_id": "math.trig.cos_double_sin",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "identity_substitution",
+        "combine_like_terms"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "将同角平方关系变形为 cos²α = 1 - sin²α 后代入二倍角余弦公式，消去 cos²α 项。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\cos^2\\alpha = 1 - \\sin^2\\alpha",
+            "note": "由同角平方关系移项",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos 2\\alpha = (1 - \\sin^2\\alpha) - \\sin^2\\alpha = 1 - 2\\sin^2\\alpha",
+            "note": "代入二倍角余弦基本式并合并",
+            "cited_formula_ids": [
+              "math.trig.cos_double"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\cos^2\\alpha = 1 - \\sin^2\\alpha",
+            "note": "解出 cos²α",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos 2\\alpha = (1 - \\sin^2\\alpha) - \\sin^2\\alpha = 1 - 2\\sin^2\\alpha",
+            "note": "代入并合并两个 -sin²α 项",
+            "cited_formula_ids": [
+              "math.trig.cos_double"
+            ],
+            "pitfall": "注意与 2cos²α - 1 区分：纯正弦形式常数 1 在前、带负号在后。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.tan_sum_to_double",
+      "from_formula_ids": [
+        "math.trig.tan_sum"
+      ],
+      "to_formula_id": "math.trig.tan_double",
+      "relation_type": "special_case_of",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "specialization"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在两角和正切公式中令 β = α 即得二倍角正切公式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "\\tan 2\\alpha = \\tan(\\alpha + \\alpha) = \\frac{\\tan\\alpha + \\tan\\alpha}{1 - \\tan\\alpha\\tan\\alpha} = \\frac{2\\tan\\alpha}{1 - \\tan^2\\alpha}",
+            "note": "令 β = α 代入两角和正切公式",
+            "cited_formula_ids": [
+              "math.trig.tan_sum"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\tan(\\alpha + \\beta) = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}",
+            "note": "写出两角和正切公式",
+            "cited_formula_ids": [
+              "math.trig.tan_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\tan 2\\alpha = \\frac{2\\tan\\alpha}{1 - \\tan^2\\alpha}",
+            "note": "令 β = α 并合并分子分母",
+            "cited_formula_ids": [],
+            "pitfall": "若 tan α = ±1，分母为 0，此时 2α = kπ + π/2，tan 2α 不存在。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.single_cos_to_power_reduction",
+      "from_formula_ids": [
+        "math.trig.cos_double_cos"
+      ],
+      "to_formula_id": "math.trig.power_reduction_cos",
+      "relation_type": "equivalent_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "algebraic_rearrangement"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "将二倍角纯余弦公式移项并除以 2，反解出 cos²α 即得降幂公式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "2\\cos^2\\alpha = 1 + \\cos 2\\alpha",
+            "note": "将 -1 移至等式左侧",
+            "cited_formula_ids": [
+              "math.trig.cos_double_cos"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos^2\\alpha = \\frac{1 + \\cos 2\\alpha}{2}",
+            "note": "两边同除以 2",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\cos 2\\alpha = 2\\cos^2\\alpha - 1 \\implies 1 + \\cos 2\\alpha = 2\\cos^2\\alpha",
+            "note": "两边同时加 1 隔离平方项",
+            "cited_formula_ids": [
+              "math.trig.cos_double_cos"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos^2\\alpha = \\frac{1 + \\cos 2\\alpha}{2}",
+            "note": "两边同除以 2，完成降幂",
+            "cited_formula_ids": [],
+            "pitfall": "记忆口诀“余弦降幂用加号，正弦降幂用减号”。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.single_sin_to_power_reduction",
+      "from_formula_ids": [
+        "math.trig.cos_double_sin"
+      ],
+      "to_formula_id": "math.trig.power_reduction_sin",
+      "relation_type": "equivalent_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "algebraic_rearrangement"
+      ],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "将二倍角纯正弦公式移项并除以 2，反解出 sin²α 即得正弦降幂公式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "2\\sin^2\\alpha = 1 - \\cos 2\\alpha",
+            "note": "移项隔离 2sin²α",
+            "cited_formula_ids": [
+              "math.trig.cos_double_sin"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin^2\\alpha = \\frac{1 - \\cos 2\\alpha}{2}",
+            "note": "两边同除以 2",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\cos 2\\alpha = 1 - 2\\sin^2\\alpha \\implies 2\\sin^2\\alpha = 1 - \\cos 2\\alpha",
+            "note": "将 -2sin²α 移到左侧、cos 2α 移到右侧",
+            "cited_formula_ids": [
+              "math.trig.cos_double_sin"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin^2\\alpha = \\frac{1 - \\cos 2\\alpha}{2}",
+            "note": "两边同除以 2，实现二次幂降为一次余弦",
+            "cited_formula_ids": [],
+            "pitfall": "微积分求 ∫sin²x dx 时几乎必然调用此公式降幂。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.sin_sum_pyth_to_aux",
+      "from_formula_ids": [
+        "math.trig.sin_sum",
+        "math.trig.pythagorean"
+      ],
+      "to_formula_id": "math.trig.auxiliary_angle",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "normalization",
+        "reverse_angle_sum"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "提取系数模长 √(a²+b²)，把归一化后的系数视作某个辅助角 φ 的余弦与正弦，再逆用两角和正弦公式。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "a\\sin x + b\\cos x = \\sqrt{a^2+b^2}\\left(\\frac{a}{\\sqrt{a^2+b^2}}\\sin x + \\frac{b}{\\sqrt{a^2+b^2}}\\cos x\\right)",
+            "note": "提取公因子 √(a²+b²)",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "\\left(\\frac{a}{\\sqrt{a^2+b^2}}\\right)^2 + \\left(\\frac{b}{\\sqrt{a^2+b^2}}\\right)^2 = 1",
+            "note": "平方和为 1，故存在角 φ 满足 cos φ = a/√(a²+b²), sin φ = b/√(a²+b²)",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\sqrt{a^2+b^2}(\\sin x\\cos\\varphi + \\cos x\\sin\\varphi) = \\sqrt{a^2+b^2}\\sin(x + \\varphi)",
+            "note": "逆用两角和正弦公式合并",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "R = \\sqrt{a^2+b^2} > 0",
+            "note": "提取两系数构成的向量模长",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "\\cos\\varphi = \\frac{a}{R},\\ \\sin\\varphi = \\frac{b}{R}",
+            "note": "因 (a/R)²+(b/R)² = 1，由单位圆与平方关系保证辅助角 φ 唯一存在（模 2π）",
+            "cited_formula_ids": [
+              "math.trig.pythagorean",
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "a\\sin x + b\\cos x = R(\\sin x\\cos\\varphi + \\cos x\\sin\\varphi) = R\\sin(x + \\varphi)",
+            "note": "逆用两角和正弦公式完成合一变形",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ],
+            "pitfall": "确定 φ 象限时不能只看 tan φ = b/a，必须同时根据 (a, b) 所在象限判断。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.def_to_law_of_cosines",
+      "from_formula_ids": [
+        "math.trig.unit_circle_def",
+        "math.trig.pythagorean"
+      ],
+      "to_formula_id": "math.trig.law_of_cosines",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "coordinate_placement",
+        "distance_formula"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将角 C 置于原点建立坐标系，用三角函数写出两顶点坐标，再用两点距离公式展开并结合平方关系。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "C(0,0),\\ A(b,0),\\ B(a\\cos C, a\\sin C)",
+            "note": "以 C 为原点建系并用三角定义表示点 B 坐标",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "c^2 = (a\\cos C - b)^2 + (a\\sin C)^2 = a^2(\\cos^2 C + \\sin^2 C) + b^2 - 2ab\\cos C",
+            "note": "计算 |AB|² 并展开",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "c^2 = a^2 + b^2 - 2ab\\cos C",
+            "note": "代入 sin²C + cos²C = 1 得余弦定理",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "C(0,0),\\ A(b,0),\\ B(a\\cos C, a\\sin C)",
+            "note": "将 CA 沿 x 轴正半轴放置，无论 C 为锐角、直角或钝角，B 坐标均统一成立",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "c^2 = |AB|^2 = (a\\cos C - b)^2 + (a\\sin C - 0)^2",
+            "note": "应用平面两点间距离公式",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "= a^2(\\cos^2 C + \\sin^2 C) + b^2 - 2ab\\cos C = a^2 + b^2 - 2ab\\cos C",
+            "note": "套用同角平方关系化简",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ],
+            "pitfall": "当 C = 90° 时 cos C = 0，余弦定理退化为初中勾股定理 c² = a² + b²。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.def_to_triangle_area",
+      "from_formula_ids": [
+        "math.trig.unit_circle_def",
+        "math.trig.ind_pi_minus"
+      ],
+      "to_formula_id": "math.trig.triangle_area",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "altitude_projection"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "以边 a 为底，利用三角定义与补角公式证明无论夹角 C 为锐角还是钝角，底边上的高恒为 b sin C。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "h = b\\sin C",
+            "note": "锐角时直接得 h = b sin C；钝角时 h = b sin(π - C) = b sin C",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def",
+              "math.trig.ind_pi_minus"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "S = \\frac{1}{2} a h = \\frac{1}{2}ab\\sin C",
+            "note": "代入三角形底乘高除以 2 公式",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "h = b\\sin C \\quad (0 < C \\le \\frac{\\pi}{2})",
+            "note": "当夹角 C 为锐角或直角时，高等于斜边 b 乘 sin C",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "h = b\\sin(\\pi - C) = b\\sin C \\quad (\\frac{\\pi}{2} < C < \\pi)",
+            "note": "当 C 为钝角时高落在底边延长线上，用诱导公式四统一表达",
+            "cited_formula_ids": [
+              "math.trig.ind_pi_minus"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "S = \\frac{1}{2}ah = \\frac{1}{2}ab\\sin C",
+            "note": "代入面积公式得证",
+            "cited_formula_ids": [],
+            "pitfall": "公式中的角必须是两条已知边的夹角，而非其中一边的对角。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deriv.trig.area_to_law_of_sines",
+      "from_formula_ids": [
+        "math.trig.triangle_area"
+      ],
+      "to_formula_id": "math.trig.law_of_sines",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": [
+        "cyclic_symmetry",
+        "divide_both_sides"
+      ],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "把同一三角形的三种正弦面积表达式联立，再同除以 (1/2)abc 即得正弦定理核心比例。",
+        "L2_standard": [
+          {
+            "step": 1,
+            "latex": "S = \\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B",
+            "note": "用三组两边夹角分别表示同一三角形面积",
+            "cited_formula_ids": [
+              "math.trig.triangle_area"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{\\sin C}{c} = \\frac{\\sin A}{a} = \\frac{\\sin B}{b} \\implies \\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}",
+            "note": "三式同除以 (1/2)abc 后取倒数",
+            "cited_formula_ids": []
+          }
+        ],
+        "L3_detailed": [
+          {
+            "step": 1,
+            "latex": "\\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B",
+            "note": "同一三角形面积唯一，故三种正弦面积式相等",
+            "cited_formula_ids": [
+              "math.trig.triangle_area"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{\\sin C}{c} = \\frac{\\sin A}{a} = \\frac{\\sin B}{b}",
+            "note": "因为 a, b, c > 0，连等式各项同除以 (1/2)abc",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R",
+            "note": "取倒数得比例关系；再结合外接圆直径所对圆周角为直角可证比值等于 2R",
+            "cited_formula_ids": [],
+            "pitfall": "用正弦定理求角（已知两边及其中一边对角 SSA）时可能出现两解，须检验大边对大角。"
+          }
+        ]
+      }
+    }
+  ]
+};
+
+    const NODE_POS = {
+      "math.trig.unit_circle_def":     { x: 24,   y: 52 },
+      "math.trig.pythagorean":         { x: 24,   y: 202 },
+      "math.trig.quotient":            { x: 24,   y: 352 },
+      "math.trig.sec_tan_pythagorean": { x: 24,   y: 502 },
+
+      "math.trig.ind_neg":             { x: 296,  y: 52 },
+      "math.trig.ind_pi_minus":        { x: 296,  y: 202 },
+      "math.trig.ind_half_pi_minus":   { x: 296,  y: 352 },
+      "math.trig.ind_half_pi_plus":    { x: 296,  y: 502 },
+
+      "math.trig.cos_diff":            { x: 568,  y: 44 },
+      "math.trig.cos_sum":             { x: 568,  y: 174 },
+      "math.trig.sin_sum":             { x: 568,  y: 304 },
+      "math.trig.sin_diff":            { x: 568,  y: 434 },
+      "math.trig.tan_sum":             { x: 568,  y: 564 },
+      "math.trig.tan_diff":            { x: 568,  y: 694 },
+
+      "math.trig.cos_double":          { x: 840,  y: 62 },
+      "math.trig.cos_double_cos":      { x: 840,  y: 204 },
+      "math.trig.cos_double_sin":      { x: 840,  y: 346 },
+      "math.trig.sin_double":          { x: 840,  y: 488 },
+      "math.trig.tan_double":          { x: 840,  y: 630 },
+
+      "math.trig.power_reduction_cos": { x: 1112, y: 140 },
+      "math.trig.power_reduction_sin": { x: 1112, y: 315 },
+      "math.trig.auxiliary_angle":     { x: 1112, y: 490 },
+
+      "math.trig.law_of_cosines":      { x: 1384, y: 140 },
+      "math.trig.triangle_area":       { x: 1384, y: 315 },
+      "math.trig.law_of_sines":        { x: 1384, y: 490 }
+    };
+    const NODE_W = 224;
+    const NODE_H = 104;
+
+    const TOPIC_LABELS = {
+      trigonometry: "三角函数",
+      trigonometric_identities: "同角关系",
+      induction_formulas: "诱导公式",
+      angle_sum_and_difference: "和差角",
+      double_angle: "二倍角",
+      power_reduction: "降幂/辅助角",
+      calculus_integration_prep: "微积分前置",
+      triangle_solving: "解三角形"
+    };
+    const REL_LABELS = {
+      derives_to: "直接推导",
+      special_case_of: "特例化",
+      generalizes: "推广",
+      equivalent_to: "等价变形",
+      simplifies: "化简工具",
+      applies_in: "跨学科应用"
+    };
+    const SITE_LABELS = {
+      definition_level: "定义级 (definition_level)",
+      proof_level: "推导级 (proof_level)",
+      application_level: "应用级 (application_level)"
+    };
+
+    const formulaById = Object.fromEntries(GRAPH_DATA.formulas.map(f => [f.id, f]));
+    const derivById = Object.fromEntries(GRAPH_DATA.derivations.map(d => [d.id, d]));
+
+    const state = {
+      selectedFormulaId: "math.trig.cos_double_cos",
+      selectedDerivId: "deriv.trig.cos_double_to_single_cos",
+      activeTab: "formula",
+      level: "L2",
+      stageFilter: "all",
+      topicFilter: "all",
+      searchQuery: "",
+      focusOnly: false,
+      zoom: 0.78,
+      activePath: null
+    };
+
+    function renderMathHTML(latex) {
+      if (window.katex && typeof window.katex.renderToString === "function") {
+        try {
+          return window.katex.renderToString(latex, { throwOnError: false, displayMode: false });
+        } catch (e) {}
+      }
+      let s = latex
+        .replace(/\\text\{([^}]*)\}/g, "$1")
+        .replace(/\\mathbb\{R\}/g, "ℝ")
+        .replace(/\\setminus/g, "\\")
+        .replace(/\\left|\\right/g, "")
+        .replace(/\\implies/g, "⇒")
+        .replace(/\\xrightarrow\{([^}]*)\}/g, " → ")
+        .replace(/\\quad|\\ /g, "&nbsp;")
+        .replace(/\\cdot/g, "·")
+        .replace(/\\neq/g, "≠")
+        .replace(/\\le/g, "≤")
+        .replace(/\\infty/g, "∞")
+        .replace(/\\alpha/g, "α")
+        .replace(/\\beta/g, "β")
+        .replace(/\\varphi/g, "φ")
+        .replace(/\\pi/g, "π")
+        .replace(/\\sin/g, "sin")
+        .replace(/\\cos/g, "cos")
+        .replace(/\\tan/g, "tan")
+        .replace(/\\sqrt\{([^}]+)\}/g, "√($1)")
+        .replace(/\^2/g, "²")
+        .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '<span class="math-frac"><span>$1</span><span>$2</span></span>');
+      return `<span class="math-fallback">${s}</span>`;
+    }
+
+    function getDirectRelations(formulaId) {
+      const upstream = [];
+      const downstream = [];
+      const equiv = [];
+      GRAPH_DATA.derivations.forEach(d => {
+        const isFrom = d.from_formula_ids.includes(formulaId);
+        const isTo = d.to_formula_id === formulaId;
+        if (!isFrom && !isTo) return;
+        if (d.relation_type === "equivalent_to") {
+          const others = isTo ? d.from_formula_ids : [d.to_formula_id];
+          others.forEach(oid => equiv.push({ formula: formulaById[oid], deriv: d }));
+        } else if (isTo) {
+          d.from_formula_ids.forEach(oid => upstream.push({ formula: formulaById[oid], deriv: d }));
+        } else if (isFrom) {
+          downstream.push({ formula: formulaById[d.to_formula_id], deriv: d });
+        }
+      });
+      return { upstream, downstream, equiv };
+    }
+
+    function findShortestPath(startId, endId) {
+      if (startId === endId) return { nodeIds: new Set([startId]), derivIds: new Set(), orderedFormulaIds: [startId], orderedDerivIds: [] };
+      const queue = [{ id: startId, pathNodes: [startId], pathDerivs: [] }];
+      const visited = new Set([startId]);
+      while (queue.length > 0) {
+        const cur = queue.shift();
+        for (const d of GRAPH_DATA.derivations) {
+          const nextCandidates = [];
+          if (d.from_formula_ids.includes(cur.id)) nextCandidates.push(d.to_formula_id);
+          if (d.bidirectional && d.to_formula_id === cur.id) d.from_formula_ids.forEach(fid => nextCandidates.push(fid));
+          for (const nxt of nextCandidates) {
+            if (visited.has(nxt)) continue;
+            const newNodes = [...cur.pathNodes, nxt];
+            const newDerivs = [...cur.pathDerivs, d.id];
+            if (nxt === endId) {
+              return { nodeIds: new Set(newNodes), derivIds: new Set(newDerivs), orderedFormulaIds: newNodes, orderedDerivIds: newDerivs };
+            }
+            visited.add(nxt);
+            queue.push({ id: nxt, pathNodes: newNodes, pathDerivs: newDerivs });
+          }
+        }
+      }
+      return null;
+    }
+
+    function matchesFilters(formula) {
+      const stageOk = state.stageFilter === "all" || formula.taxonomy.education_stages.includes(state.stageFilter);
+      const topicOk = state.topicFilter === "all" || formula.taxonomy.topics.includes(state.topicFilter);
+      const q = state.searchQuery.trim().toLowerCase();
+      const searchOk = !q ||
+        formula.name.toLowerCase().includes(q) ||
+        formula.aliases.some(a => a.toLowerCase().includes(q)) ||
+        formula.latex.toLowerCase().includes(q);
+      return stageOk && topicOk && searchOk;
+    }
+
+    function computeCurve(fromPos, toPos) {
+      const sameCol = Math.abs(fromPos.x - toPos.x) < 10;
+      if (sameCol) {
+        const goingDown = toPos.y > fromPos.y;
+        const x1 = fromPos.x + NODE_W / 2;
+        const y1 = goingDown ? fromPos.y + NODE_H : fromPos.y;
+        const x2 = toPos.x + NODE_W / 2;
+        const y2 = goingDown ? toPos.y : toPos.y + NODE_H;
+        const offset = Math.abs(y2 - y1) > 170 ? 52 : 0;
+        const cx = x1 + offset;
+        const cy = (y1 + y2) / 2;
+        return { d: `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`, mx: (x1 + cx) / 2, my: cy };
+      }
+      const goingRight = toPos.x > fromPos.x;
+      const x1 = goingRight ? fromPos.x + NODE_W : fromPos.x;
+      const y1 = fromPos.y + NODE_H / 2;
+      const x2 = goingRight ? toPos.x : toPos.x + NODE_W;
+      const y2 = toPos.y + NODE_H / 2;
+      const dx = Math.abs(x2 - x1);
+      const c = Math.min(dx * 0.45, 160);
+      const cx1 = goingRight ? x1 + c : x1 - c;
+      const cx2 = goingRight ? x2 - c : x2 + c;
+      return { d: `M ${x1} ${y1} C ${cx1} ${y1}, ${cx2} ${y2}, ${x2} ${y2}`, mx: (x1 + x2) / 2, my: (y1 + y2) / 2 };
+    }
+
+    function applyZoom() {
+      const wrap = document.getElementById("zoomWrap");
+      wrap.style.transform = `scale(${state.zoom})`;
+      wrap.style.width = `${1640 * state.zoom}px`;
+      wrap.style.height = `${850 * state.zoom}px`;
+      document.getElementById("zoomVal").textContent = `${Math.round(state.zoom * 100)}%`;
+    }
+
+    function renderGraph() {
+      const edgeLayer = document.getElementById("edgeLayer");
+      const nodeLayer = document.getElementById("nodeLayer");
+      edgeLayer.innerHTML = "";
+      nodeLayer.innerHTML = "";
+
+      const selId = state.selectedFormulaId;
+      const directRels = selId ? getDirectRelations(selId) : { upstream: [], downstream: [], equiv: [] };
+      const upstreamIds = new Set(directRels.upstream.map(r => r.formula.id));
+      const downstreamIds = new Set(directRels.downstream.map(r => r.formula.id));
+      const equivIds = new Set(directRels.equiv.map(r => r.formula.id));
+      const directDerivIds = new Set([
+        ...directRels.upstream.map(r => r.deriv.id),
+        ...directRels.downstream.map(r => r.deriv.id),
+        ...directRels.equiv.map(r => r.deriv.id)
+      ]);
+
+      const visibleNodeIds = new Set();
+      GRAPH_DATA.formulas.forEach(f => {
+        if (!matchesFilters(f)) return;
+        if (state.focusOnly && selId) {
+          if (f.id === selId || upstreamIds.has(f.id) || downstreamIds.has(f.id) || equivIds.has(f.id)) visibleNodeIds.add(f.id);
+        } else {
+          visibleNodeIds.add(f.id);
+        }
+      });
+
+      // 渲染边与高亮推导标签
+      GRAPH_DATA.derivations.forEach(d => {
+        const toVisible = visibleNodeIds.has(d.to_formula_id);
+        let edgeClass = "edge-path";
+        let marker = "url(#arrow-default)";
+        let showPill = false;
+
+        if (state.activePath) {
+          if (state.activePath.derivIds.has(d.id)) {
+            edgeClass += " highlight-path";
+            marker = "url(#arrow-path)";
+            showPill = true;
+          } else {
+            edgeClass += " dimmed";
+          }
+        } else if (state.activeTab === "derivation" && state.selectedDerivId === d.id) {
+          edgeClass += " highlight-primary";
+          marker = "url(#arrow-primary)";
+          showPill = true;
+        } else if (selId) {
+          if (directDerivIds.has(d.id)) {
+            showPill = true;
+            if (d.relation_type === "equivalent_to") {
+              edgeClass += " highlight-equiv";
+              marker = "url(#arrow-equiv)";
+            } else if (d.to_formula_id === selId) {
+              edgeClass += " highlight-upstream";
+              marker = "url(#arrow-upstream)";
+            } else {
+              edgeClass += " highlight-downstream";
+              marker = "url(#arrow-downstream)";
+            }
+          } else {
+            edgeClass += " dimmed";
+          }
+        }
+
+        const toPos = NODE_POS[d.to_formula_id];
+        let pillAnchor = null;
+
+        d.from_formula_ids.forEach((fid, idx) => {
+          const visible = toVisible && visibleNodeIds.has(fid);
+          const curve = computeCurve(NODE_POS[fid], toPos);
+          const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          path.setAttribute("d", curve.d);
+          path.setAttribute("class", visible ? edgeClass : "edge-path hidden");
+          path.setAttribute("marker-end", marker);
+          if (d.bidirectional && d.from_formula_ids.length === 1) path.setAttribute("marker-start", marker);
+          edgeLayer.appendChild(path);
+          if (visible && idx === 0) pillAnchor = { x: curve.mx, y: curve.my };
+        });
+
+        if (showPill && pillAnchor) {
+          const pill = document.createElement("button");
+          pill.className = `edge-pill ${state.selectedDerivId === d.id && state.activeTab === "derivation" ? "selected" : ""}`;
+          pill.style.left = `${pillAnchor.x}px`;
+          pill.style.top = `${pillAnchor.y}px`;
+          const prefix = d.from_formula_ids.length > 1 ? `组合(${d.from_formula_ids.length})·` : "";
+          pill.textContent = `${prefix}${REL_LABELS[d.relation_type]}`;
+          pill.onclick = (e) => { e.stopPropagation(); selectDerivation(d.id); };
+          nodeLayer.appendChild(pill);
+        }
+      });
+
+      // 渲染节点卡片
+      GRAPH_DATA.formulas.forEach(f => {
+        const pos = NODE_POS[f.id];
+        const card = document.createElement("div");
+        const isVisible = visibleNodeIds.has(f.id);
+        let cls = "formula-node";
+
+        if (!isVisible) {
+          cls += " hidden";
+        } else if (state.activePath) {
+          cls += state.activePath.nodeIds.has(f.id) ? " rel-path" : " dimmed";
+        } else if (selId === f.id) {
+          cls += " selected";
+        } else if (selId) {
+          if (equivIds.has(f.id)) cls += " rel-equiv";
+          else if (upstreamIds.has(f.id)) cls += " rel-upstream";
+          else if (downstreamIds.has(f.id)) cls += " rel-downstream";
+          else cls += " dimmed";
+        }
+
+        const rel = getDirectRelations(f.id);
+        const primaryTopic = TOPIC_LABELS[f.taxonomy.topics[1] || f.taxonomy.topics[0]] || "三角函数";
+
+        card.className = cls;
+        card.style.left = `${pos.x}px`;
+        card.style.top = `${pos.y}px`;
+        card.innerHTML = `
+          <div class="node-head">
+            <span class="node-title" title="${f.name}">${f.name}</span>
+            <span class="node-badge">↑${rel.upstream.length} ↓${rel.downstream.length + rel.equiv.length}</span>
+          </div>
+          <div class="node-math">${renderMathHTML(f.latex)}</div>
+          <div class="node-foot">
+            <span class="node-tag">${primaryTopic}</span>
+            <span>${f.taxonomy.disciplines.includes("physics") ? "数学 · 物理" : (f.taxonomy.education_stages.includes("undergraduate") ? "高中 · 本科前置" : "高中必修")}</span>
+          </div>
+        `;
+        card.onclick = () => selectFormula(f.id);
+        nodeLayer.appendChild(card);
+      });
+    }
+
+    function renderDrawer() {
+      const body = document.getElementById("drawerBody");
+      document.querySelectorAll(".drawer-tab").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === state.activeTab);
+      });
+
+      let pathBannerHTML = "";
+      if (state.activePath) {
+        const chainText = state.activePath.orderedFormulaIds.map(id => formulaById[id].name).join(" → ");
+        const stepBtns = (state.activePath.orderedDerivIds || []).map((did, i) =>
+          `<button class="cite-link" onclick="selectDerivation('${did}')">第 ${i + 1} 步推导</button>`
+        ).join(" ");
+        pathBannerHTML = `<div class="path-banner"><strong>最短推导路径（${state.activePath.orderedFormulaIds.length - 1} 跳）：</strong><br/>${chainText}<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:5px;">${stepBtns}</div></div>`;
+      }
+
+      if (state.activeTab === "formula") {
+        const f = formulaById[state.selectedFormulaId] || GRAPH_DATA.formulas[0];
+        const rel = getDirectRelations(f.id);
+
+        const renderRelGroup = (items, kindCls, kindText) => items.map(item => `
+          <div class="rel-card">
+            <div class="rel-card-top">
+              <strong style="font-size:12.5px">${item.formula.name}</strong>
+              <span class="rel-kind ${kindCls}">${kindText} · ${REL_LABELS[item.deriv.relation_type]}</span>
+            </div>
+            <div style="font-size:12.5px; color:var(--ink-secondary);">${renderMathHTML(item.formula.latex)}</div>
+            <div class="rel-actions">
+              <button class="mini-btn primary" onclick="selectDerivation('${item.deriv.id}')">查看 L1/L2/L3 推导</button>
+              <button class="mini-btn" onclick="selectFormula('${item.formula.id}')">聚焦该公式</button>
+            </div>
+          </div>
+        `).join("");
+
+        const varsRows = f.variables.map(v => `
+          <tr>
+            <td>${renderMathHTML(v.symbol)}</td>
+            <td>${v.name}</td>
+            <td>${renderMathHTML(v.domain)}</td>
+            <td><code>${v.quantity_kind || "-"}</code></td>
+            <td><code>${v.dimension || "-"}</code> / ${v.si_unit || "-"}</td>
+          </tr>
+        `).join("");
+
+        body.innerHTML = `
+          ${pathBannerHTML}
+          <div class="hero-card">
+            <h2 class="hero-title">${f.name}</h2>
+            <div class="hero-aliases">别名：${f.aliases.join(" / ") || "无"}</div>
+            <div class="hero-math">${renderMathHTML(f.latex)}</div>
+            <div style="font-size:12.5px; color:var(--ink-secondary);">${f.statement}</div>
+            <div class="meta-row">
+              <span class="chip verified">✓ 人工已核验</span>
+              ${f.review.sympy_verified ? '<span class="chip verified">✓ SymPy 等价性验证</span>' : ""}
+              <span class="chip">出处：${f.review.source}</span>
+            </div>
+          </div>
+
+          <div class="section-label">变量与量纲定义（MathModDB 跨学科结构）</div>
+          <table class="var-table">
+            <thead>
+              <tr><th>符号</th><th>名称</th><th>定义域</th><th>量类</th><th>量纲 / SI</th></tr>
+            </thead>
+            <tbody>${varsRows}</tbody>
+          </table>
+
+          <div class="section-label">适用条件</div>
+          <div style="font-size:12.5px; color:var(--ink-secondary);">${f.conditions.join("；")}</div>
+
+          <div class="section-label">直接关联公式（共 ${rel.upstream.length + rel.downstream.length + rel.equiv.length} 条）</div>
+          ${renderRelGroup(rel.upstream, "upstream", "前置依赖")}
+          ${renderRelGroup(rel.downstream, "downstream", "直接衍生")}
+          ${renderRelGroup(rel.equiv, "equiv", "双向等价")}
+        `;
+      } else {
+        const d = derivById[state.selectedDerivId] || GRAPH_DATA.derivations[0];
+        const fromCards = d.from_formula_ids.map(id => {
+          const f = formulaById[id];
+          return `<button class="cite-link" onclick="selectFormula('${f.id}')">${f.name}</button>`;
+        }).join(" + ");
+        const toF = formulaById[d.to_formula_id];
+
+        let levelContent = "";
+        if (state.level === "L1") {
+          levelContent = `<div class="summary-box"><strong>核心变换思路：</strong><br/>${d.levels.L1_summary}</div>`;
+        } else {
+          const steps = state.level === "L2" ? d.levels.L2_standard : d.levels.L3_detailed;
+          levelContent = steps.map(st => `
+            <div class="step-card">
+              <div class="step-head">
+                <span class="step-num">${st.step}</span>
+                <span class="step-note">${st.note}</span>
+              </div>
+              <div class="step-math">${renderMathHTML(st.latex)}</div>
+              ${st.cited_formula_ids && st.cited_formula_ids.length ? `
+                <div class="step-cites">
+                  <span>引用公式：</span>
+                  ${st.cited_formula_ids.map(cid => `<button class="cite-link" onclick="selectFormula('${cid}')">${formulaById[cid]?.name || cid}</button>`).join("")}
+                </div>
+              ` : ""}
+              ${st.pitfall ? `<div class="pitfall-box"><strong>易错提醒：</strong>${st.pitfall}</div>` : ""}
+            </div>
+          `).join("");
+        }
+
+        body.innerHTML = `
+          ${pathBannerHTML}
+          <div class="hero-card">
+            <div style="font-size:12px; color:var(--ink-muted); margin-bottom:6px;">推导关系 · ${d.from_formula_ids.length > 1 ? `多对一组合推导（${d.from_formula_ids.length} 条前提）` : "二元推导"}</div>
+            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:10px;">
+              ${fromCards}
+              <span style="font-weight:700; color:var(--primary);">${d.bidirectional ? "⇄" : "→"}</span>
+              <button class="cite-link" onclick="selectFormula('${toF.id}')">${toF.name}</button>
+            </div>
+            <div class="meta-row">
+              <span class="chip">关系：${REL_LABELS[d.relation_type]}</span>
+              <span class="chip">层级：${SITE_LABELS[d.dependency_site]}</span>
+              ${d.inference_rules.map(r => `<span class="chip rule">${r}</span>`).join("")}
+            </div>
+          </div>
+
+          <div class="level-switcher">
+            <button class="level-btn ${state.level === "L1" ? "active" : ""}" onclick="setLevel('L1')">L1 摘要级</button>
+            <button class="level-btn ${state.level === "L2" ? "active" : ""}" onclick="setLevel('L2')">L2 标准级</button>
+            <button class="level-btn ${state.level === "L3" ? "active" : ""}" onclick="setLevel('L3')">L3 详细级</button>
+          </div>
+
+          ${levelContent}
+        `;
+      }
+    }
+
+    function selectFormula(id) {
+      state.selectedFormulaId = id;
+      state.activeTab = "formula";
+      state.activePath = null;
+      document.getElementById("clearPathBtn").style.display = "none";
+      renderGraph();
+      renderDrawer();
+    }
+
+    function selectDerivation(id) {
+      state.selectedDerivId = id;
+      state.activeTab = "derivation";
+      renderGraph();
+      renderDrawer();
+    }
+
+    function setLevel(lvl) {
+      state.level = lvl;
+      renderDrawer();
+    }
+
+    function initControls() {
+      document.getElementById("statsSubtitle").textContent =
+        `${GRAPH_DATA.formulas.length} 个核心公式 · ${GRAPH_DATA.derivations.length} 条多级推导链 · 支持领域筛选与 L1/L2/L3 详略切换`;
+
+      const startSel = document.getElementById("pathStart");
+      const endSel = document.getElementById("pathEnd");
+      GRAPH_DATA.formulas.forEach(f => {
+        startSel.add(new Option(f.name, f.id));
+        endSel.add(new Option(f.name, f.id));
+      });
+      startSel.value = "math.trig.unit_circle_def";
+      endSel.value = "math.trig.power_reduction_cos";
+
+      document.getElementById("searchInput").oninput = (e) => {
+        state.searchQuery = e.target.value;
+        renderGraph();
+      };
+
+      document.querySelectorAll("#stageFilters .pill-btn").forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll("#stageFilters .pill-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.stageFilter = btn.dataset.stage;
+          renderGraph();
+        };
+      });
+
+      document.querySelectorAll("#topicFilters .pill-btn").forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll("#topicFilters .pill-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.topicFilter = btn.dataset.topic;
+          renderGraph();
+        };
+      });
+
+      const focusBtn = document.getElementById("focusOnlyBtn");
+      focusBtn.onclick = () => {
+        state.focusOnly = !state.focusOnly;
+        focusBtn.classList.toggle("active", state.focusOnly);
+        renderGraph();
+      };
+
+      document.getElementById("resetBtn").onclick = () => {
+        state.stageFilter = "all";
+        state.topicFilter = "all";
+        state.searchQuery = "";
+        state.focusOnly = false;
+        state.activePath = null;
+        document.getElementById("searchInput").value = "";
+        focusBtn.classList.remove("active");
+        document.getElementById("clearPathBtn").style.display = "none";
+        document.querySelectorAll("#stageFilters .pill-btn, #topicFilters .pill-btn").forEach(b => {
+          b.classList.toggle("active", b.dataset.stage === "all" || b.dataset.topic === "all");
+        });
+        renderGraph();
+        renderDrawer();
+      };
+
+      document.querySelectorAll(".drawer-tab").forEach(btn => {
+        btn.onclick = () => {
+          state.activeTab = btn.dataset.tab;
+          renderGraph();
+          renderDrawer();
+        };
+      });
+
+      document.getElementById("findPathBtn").onclick = () => {
+        const res = findShortestPath(startSel.value, endSel.value);
+        if (!res) {
+          alert("当前数据中未找到这两个公式之间的推导路径。");
+          return;
+        }
+        state.activePath = res;
+        document.getElementById("clearPathBtn").style.display = "inline-block";
+        renderGraph();
+        renderDrawer();
+      };
+
+      document.getElementById("clearPathBtn").onclick = () => {
+        state.activePath = null;
+        document.getElementById("clearPathBtn").style.display = "none";
+        renderGraph();
+        renderDrawer();
+      };
+
+      document.getElementById("zoomOutBtn").onclick = () => {
+        state.zoom = Math.max(0.45, +(state.zoom - 0.1).toFixed(2));
+        applyZoom();
+      };
+      document.getElementById("zoomInBtn").onclick = () => {
+        state.zoom = Math.min(1.25, +(state.zoom + 0.1).toFixed(2));
+        applyZoom();
+      };
+      document.getElementById("zoomFitBtn").onclick = () => {
+        state.zoom = 0.78;
+        applyZoom();
+      };
+    }
+
+    window.__katexReady = () => {
+      renderGraph();
+      renderDrawer();
+    };
+
+    initControls();
+    applyZoom();
+    renderGraph();
+    renderDrawer();
+  </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:formula-graph:schema:v1",
+  "title": "Formula Knowledge Graph Schema",
+  "type": "object",
+  "required": ["schema_version", "metadata", "formulas", "derivations"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "metadata": {
+      "type": "object",
+      "required": ["pack_id", "title", "updated_at"],
+      "properties": {
+        "pack_id": { "type": "string" },
+        "title": { "type": "string" },
+        "curriculum_ref": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date" }
+      }
+    },
+    "formulas": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/FormulaNode" }
+    },
+    "derivations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/DerivationEdge" }
+    }
+  },
+  "$defs": {
+    "FormulaNode": {
+      "type": "object",
+      "required": ["id", "name", "latex", "taxonomy", "variables", "conditions", "review"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z]+\\.[a-z0-9_]+\\.[a-z0-9_]+$" },
+        "name": { "type": "string" },
+        "aliases": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "latex": { "type": "string" },
+        "statement": { "type": "string" },
+        "taxonomy": {
+          "type": "object",
+          "required": ["disciplines", "education_stages", "topics"],
+          "properties": {
+            "disciplines": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "enum": ["mathematics", "physics", "chemistry", "statistics", "computer_science"] }
+            },
+            "education_stages": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "enum": ["junior_high", "senior_high", "undergraduate", "graduate"] }
+            },
+            "topics": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+          }
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["symbol", "name", "math_type", "domain"],
+            "properties": {
+              "symbol": { "type": "string" },
+              "name": { "type": "string" },
+              "math_type": { "type": "string", "enum": ["scalar", "angle", "vector", "matrix", "function", "set", "constant"] },
+              "domain": { "type": "string" },
+              "quantity_kind": { "type": ["string", "null"] },
+              "dimension": { "type": ["string", "null"] },
+              "si_unit": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "conditions": { "type": "array", "items": { "type": "string" } },
+        "review": {
+          "type": "object",
+          "required": ["status", "source"],
+          "properties": {
+            "status": { "type": "string", "enum": ["draft", "ai_reviewed", "human_verified"] },
+            "source": { "type": "string" },
+            "sympy_verified": { "type": "boolean", "default": false }
+          }
+        }
+      }
+    },
+    "DerivationStep": {
+      "type": "object",
+      "required": ["step", "latex", "note"],
+      "properties": {
+        "step": { "type": "integer", "minimum": 1 },
+        "latex": { "type": "string" },
+        "note": { "type": "string" },
+        "cited_formula_ids": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "pitfall": { "type": "string" }
+      }
+    },
+    "DerivationEdge": {
+      "type": "object",
+      "required": ["id", "from_formula_ids", "to_formula_id", "relation_type", "dependency_site", "bidirectional", "levels"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^deriv\\.[a-z0-9_]+\\.[a-z0-9_]+$" },
+        "from_formula_ids": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "to_formula_id": { "type": "string" },
+        "relation_type": { "type": "string", "enum": ["derives_to", "special_case_of", "generalizes", "equivalent_to", "simplifies", "applies_in"] },
+        "dependency_site": { "type": "string", "enum": ["definition_level", "proof_level", "application_level"] },
+        "inference_rules": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "bidirectional": { "type": "boolean" },
+        "levels": {
+          "type": "object",
+          "required": ["L1_summary", "L2_standard", "L3_detailed"],
+          "properties": {
+            "L1_summary": { "type": "string" },
+            "L2_standard": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/DerivationStep" } },
+            "L3_detailed": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/DerivationStep" } }
+          }
+        }
+      }
+    }
+  }
+}
