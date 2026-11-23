@@ -200,6 +200,7 @@
     .node-tag { background: rgba(15, 23, 42, 0.05); padding: 1px 6px; border-radius: 5px; }
     .disc-math { background: #e0e7ff; color: #3730a3; }
     .disc-phys { background: #dcfce7; color: #166534; }
+    .disc-chem { background: #fef3c7; color: #92400e; }
 
     .edge-pill {
       position: absolute; transform: translate(-50%, -50%);
@@ -288,6 +289,7 @@
       </div>
       <div class="toolbar">
         <select class="pack-select" id="packSelect" aria-label="切换公式数据包">
+          <option value="junior_mech_chem">初中 · 力学与化学定量（20公式）</option>
           <option value="junior_alg">初中 · 代数核心主链（20公式）</option>
           <option value="junior_elec">初中 · 电学与数学跨学科（18公式）</option>
           <option value="senior_trig">高中 · 三角函数种子库（25公式）</option>
@@ -298,6 +300,7 @@
           <button class="pill-btn active" data-disc="all">全部</button>
           <button class="pill-btn" data-disc="mathematics">数学</button>
           <button class="pill-btn" data-disc="physics">物理(科学)</button>
+          <button class="pill-btn" data-disc="chemistry">化学</button>
         </div>
         <div class="filter-group" id="topicFilters"></div>
         <button class="toggle-btn" id="focusOnlyBtn">◎ 仅看直接关联</button>
@@ -379,6 +382,1810 @@
 
   <script>
     const PACKS = {
+      junior_mech_chem: {
+  "data": {
+    "schema_version": "1.0.0",
+    "metadata": {
+      "pack_id": "cn-junior-high-mechanics-chemistry-batch3",
+      "title": "初中力学核心链 + 化学溶液定量跨学科子图（Batch 3）",
+      "curriculum_ref": "人教版初中物理八年级上下册、人教版初中化学九年级下册第九单元",
+      "updated_at": "2026-11-23"
+    },
+    "formulas": [
+      {
+        "id": "physics.mech.velocity",
+        "name": "速度公式",
+        "aliases": [
+          "匀速直线运动速度"
+        ],
+        "latex": "v = \\frac{s}{t}",
+        "statement": "物体运动的速度等于通过的路程与所用时间之比。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "mechanics_basics"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "v",
+            "name": "速度",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "speed",
+            "dimension": "L T^-1",
+            "si_unit": "m/s"
+          },
+          {
+            "symbol": "s",
+            "name": "路程",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "length",
+            "dimension": "L",
+            "si_unit": "m"
+          },
+          {
+            "symbol": "t",
+            "name": "时间",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "time",
+            "dimension": "T",
+            "si_unit": "s"
+          }
+        ],
+        "conditions": [
+          "t > 0；变速运动中计算的是该段路程的平均速度"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级上册 1.3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.density",
+        "name": "密度公式",
+        "aliases": [
+          "物质密度定义式"
+        ],
+        "latex": "\\rho = \\frac{m}{V}",
+        "statement": "某种物质组成的物体的质量与它的体积之比叫做这种物质的密度。",
+        "taxonomy": {
+          "disciplines": [
+            "physics",
+            "chemistry"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "mechanics_basics",
+            "chemistry_solutions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "\\rho",
+            "name": "密度",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "mass_density",
+            "dimension": "M L^-3",
+            "si_unit": "kg/m^3"
+          },
+          {
+            "symbol": "m",
+            "name": "质量",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "mass",
+            "dimension": "M",
+            "si_unit": "kg"
+          },
+          {
+            "symbol": "V",
+            "name": "体积",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "volume",
+            "dimension": "L^3",
+            "si_unit": "m^3"
+          }
+        ],
+        "conditions": [
+          "V > 0；同种均匀物质在温度、状态不变时密度为定值，1 g/cm³ = 10³ kg/m³"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级上册 6.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.gravity",
+        "name": "重力公式",
+        "aliases": [
+          "物重与质量关系"
+        ],
+        "latex": "G = mg",
+        "statement": "物体所受的重力跟它的质量成正比，比例系数 g 为重力加速度常数。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "mechanics_basics"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "G",
+            "name": "重力",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "m",
+            "name": "质量",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "mass",
+            "dimension": "M",
+            "si_unit": "kg"
+          },
+          {
+            "symbol": "g",
+            "name": "重力常数",
+            "math_type": "constant",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "acceleration",
+            "dimension": "L T^-2",
+            "si_unit": "N/kg"
+          }
+        ],
+        "conditions": [
+          "地球表面附近通常取 g = 9.8 N/kg（粗略计算取 10 N/kg）"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 7.3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.volume_prism",
+        "name": "柱体体积公式",
+        "aliases": [
+          "直柱体体积"
+        ],
+        "latex": "V = Sh",
+        "statement": "直棱柱或圆柱的体积等于底面积与高的乘积，常用于推导液体压强与柱状固体压强。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics",
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "geometry",
+            "mechanics_basics"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "V",
+            "name": "体积",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "volume",
+            "dimension": "L^3",
+            "si_unit": "m^3"
+          },
+          {
+            "symbol": "S",
+            "name": "底面积",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "area",
+            "dimension": "L^2",
+            "si_unit": "m^2"
+          },
+          {
+            "symbol": "h",
+            "name": "高（深度）",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "length",
+            "dimension": "L",
+            "si_unit": "m"
+          }
+        ],
+        "conditions": [
+          "适用于横截面积处处相等的直柱体或液柱"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中数学几何基础",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.pressure_def",
+        "name": "压强定义式",
+        "aliases": [
+          "通用压强公式"
+        ],
+        "latex": "p = \\frac{F}{S}",
+        "statement": "物体所受压力的大小与受力面积之比叫做压强，表示压力的作用效果。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "pressure_buoyancy"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "p",
+            "name": "压强",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "pressure",
+            "dimension": "M L^-1 T^-2",
+            "si_unit": "Pa"
+          },
+          {
+            "symbol": "F",
+            "name": "垂直压力",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "S",
+            "name": "受力面积",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "area",
+            "dimension": "L^2",
+            "si_unit": "m^2"
+          }
+        ],
+        "conditions": [
+          "适用于固体、液体、气体压强计算；S 须为实际接触面积且单位化为 m²"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 9.1",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.liquid_pressure",
+        "name": "液体压强公式",
+        "aliases": [
+          "静水压强公式"
+        ],
+        "latex": "p = \\rho g h",
+        "statement": "静止液体内部某处的压强等于液体密度、重力常数与该处深度的乘积。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "pressure_buoyancy"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "p",
+            "name": "液体压强",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "pressure",
+            "dimension": "M L^-1 T^-2",
+            "si_unit": "Pa"
+          },
+          {
+            "symbol": "\\rho",
+            "name": "液体密度",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "mass_density",
+            "dimension": "M L^-3",
+            "si_unit": "kg/m^3"
+          },
+          {
+            "symbol": "h",
+            "name": "深度（距自由液面竖直距离）",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "length",
+            "dimension": "L",
+            "si_unit": "m"
+          }
+        ],
+        "conditions": [
+          "适用于静止均匀液体（也可用于水平面上均匀直柱状固体）"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 9.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.archimedes",
+        "name": "阿基米德原理（浮力公式）",
+        "aliases": [
+          "浮力计算式"
+        ],
+        "latex": "F_{\\text{浮}} = \\rho_{\\text{液}} g V_{\\text{排}}",
+        "statement": "浸在液体中的物体受到向上的浮力，浮力的大小等于它排开的液体所受的重力。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "pressure_buoyancy"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "F_{\\text{浮}}",
+            "name": "浮力",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "\\rho_{\\text{液}}",
+            "name": "液体密度",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "mass_density",
+            "dimension": "M L^-3",
+            "si_unit": "kg/m^3"
+          },
+          {
+            "symbol": "V_{\\text{排}}",
+            "name": "排开液体体积",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "volume",
+            "dimension": "L^3",
+            "si_unit": "m^3"
+          }
+        ],
+        "conditions": [
+          "同样适用于气体中的浮力；浸没时 V排 = V物，漂浮时 V排 < V物"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 10.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.floating_balance",
+        "name": "漂浮与悬浮平衡条件",
+        "aliases": [
+          "浮沉平衡式"
+        ],
+        "latex": "F_{\\text{浮}} = G_{\\text{物}}",
+        "statement": "物体在液体中处于漂浮或悬浮静止状态时，所受竖直向上的浮力等于自身重力。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "pressure_buoyancy"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "F_{\\text{浮}}",
+            "name": "浮力",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "G_{\\text{物}}",
+            "name": "物体重力",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          }
+        ],
+        "conditions": [
+          "仅适用于不受容器底部支持力或绳子拉力的自由漂浮/悬浮状态"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 10.3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.lever_balance",
+        "name": "杠杆平衡条件",
+        "aliases": [
+          "杠杆原理"
+        ],
+        "latex": "F_1 l_1 = F_2 l_2",
+        "statement": "杠杆处于静止或匀速转动状态时，动力乘动力臂等于阻力乘阻力臂。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "simple_machines"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "F_1, F_2",
+            "name": "动力与阻力",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "l_1, l_2",
+            "name": "动力臂与阻力臂",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "length",
+            "dimension": "L",
+            "si_unit": "m"
+          }
+        ],
+        "conditions": [
+          "力臂是支点到力的作用线的垂直距离，忽略杠杆自重或已将自重计入阻力"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 12.1",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.pulley_force",
+        "name": "滑轮组拉力公式",
+        "aliases": [
+          "竖直滑轮组省力式"
+        ],
+        "latex": "F = \\frac{G_{\\text{物}} + G_{\\text{动}}}{n}",
+        "statement": "不计绳重和摩擦时，竖直滑轮组自由端拉力等于物重与动滑轮重之和除以承担物重的绳子段数 n。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "simple_machines"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "F",
+            "name": "绳端拉力",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "G_{\\text{物}}, G_{\\text{动}}",
+            "name": "物体与动滑轮重力",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "n",
+            "name": "承担物重的绳子段数",
+            "math_type": "constant",
+            "domain": "\\mathbb{Z}^+",
+            "quantity_kind": "count",
+            "dimension": "1",
+            "si_unit": "1"
+          }
+        ],
+        "conditions": [
+          "竖直匀速提升，且不计绳重与滑轮轴间摩擦"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 12.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.pulley_distance",
+        "name": "滑轮组绳端移动距离",
+        "aliases": [
+          "滑轮组位移关系"
+        ],
+        "latex": "s = n h",
+        "statement": "滑轮组绳子自由端移动的距离等于物体升高高度的 n 倍（n 为承担物重的绳子段数）。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "simple_machines"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "s",
+            "name": "绳端移动距离",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "length",
+            "dimension": "L",
+            "si_unit": "m"
+          },
+          {
+            "symbol": "h",
+            "name": "物体上升高度",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "length",
+            "dimension": "L",
+            "si_unit": "m"
+          },
+          {
+            "symbol": "n",
+            "name": "绳子段数",
+            "math_type": "constant",
+            "domain": "\\mathbb{Z}^+",
+            "quantity_kind": "count",
+            "dimension": "1",
+            "si_unit": "1"
+          }
+        ],
+        "conditions": [
+          "绳子不可伸长；该几何关系不受摩擦与动滑轮重力影响，恒成立"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 12.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.work_def",
+        "name": "机械功公式",
+        "aliases": [
+          "功的计算式"
+        ],
+        "latex": "W = F s",
+        "statement": "力对物体所做的功等于力的大小与物体在力的方向上移动的距离的乘积。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "work_power_efficiency"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "W",
+            "name": "机械功",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "energy",
+            "dimension": "M L^2 T^-2",
+            "si_unit": "J"
+          },
+          {
+            "symbol": "F",
+            "name": "恒力大小",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "s",
+            "name": "沿力方向的位移",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "length",
+            "dimension": "L",
+            "si_unit": "m"
+          }
+        ],
+        "conditions": [
+          "恒力 F 与移动距离 s 同方向；有力无距或力距垂直均不做功"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 11.1",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.useful_work_lift",
+        "name": "竖直提重物有用功",
+        "aliases": [
+          "克服重力做功"
+        ],
+        "latex": "W_{\\text{有用}} = G h",
+        "statement": "使用机械竖直匀速提升重物时，克服物体重力所做的有用功等于物重与上升高度之积。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "work_power_efficiency"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "W_{\\text{有用}}",
+            "name": "有用功",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "energy",
+            "dimension": "M L^2 T^-2",
+            "si_unit": "J"
+          },
+          {
+            "symbol": "G",
+            "name": "物体重力",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "h",
+            "name": "提升高度",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "length",
+            "dimension": "L",
+            "si_unit": "m"
+          }
+        ],
+        "conditions": [
+          "仅适用于竖直提升重物场景（水平拉物体时有用功为克服摩擦力做功 f·s）"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 12.3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.power_def",
+        "name": "机械功率定义式",
+        "aliases": [
+          "功率通用式"
+        ],
+        "latex": "P = \\frac{W}{t}",
+        "statement": "功与做功所用时间之比叫做功率，表示物体做功的快慢。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "work_power_efficiency"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "P",
+            "name": "功率",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "power",
+            "dimension": "M L^2 T^-3",
+            "si_unit": "W"
+          },
+          {
+            "symbol": "W",
+            "name": "机械功",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "energy",
+            "dimension": "M L^2 T^-2",
+            "si_unit": "J"
+          },
+          {
+            "symbol": "t",
+            "name": "做功时间",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "time",
+            "dimension": "T",
+            "si_unit": "s"
+          }
+        ],
+        "conditions": [
+          "t > 0；1 W = 1 J/s"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 11.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.power_fv",
+        "name": "功率速度公式",
+        "aliases": [
+          "牵引力功率公式"
+        ],
+        "latex": "P = F v",
+        "statement": "物体在恒力作用下匀速运动时，力的功率等于力的大小与运动速度之积。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "work_power_efficiency"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "P",
+            "name": "功率",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "power",
+            "dimension": "M L^2 T^-3",
+            "si_unit": "W"
+          },
+          {
+            "symbol": "F",
+            "name": "牵引力（恒力）",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "force",
+            "dimension": "M L T^-2",
+            "si_unit": "N"
+          },
+          {
+            "symbol": "v",
+            "name": "运动速度",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "speed",
+            "dimension": "L T^-1",
+            "si_unit": "m/s"
+          }
+        ],
+        "conditions": [
+          "力 F 与速度 v 方向一致，且速度单位必须换算为 m/s"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 11.2 拓展",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "physics.mech.mech_efficiency",
+        "name": "机械效率公式",
+        "aliases": [
+          "机械效率定义式"
+        ],
+        "latex": "\\eta = \\frac{W_{\\text{有用}}}{W_{\\text{总}}} \\times 100\\%",
+        "statement": "有用功与总功的比值叫做机械效率，因额外功不可避免，实际机械效率恒小于 100%。",
+        "taxonomy": {
+          "disciplines": [
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "mechanics",
+            "work_power_efficiency"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "\\eta",
+            "name": "机械效率",
+            "math_type": "scalar",
+            "domain": "(0, 1)",
+            "quantity_kind": "efficiency",
+            "dimension": "1",
+            "si_unit": "%"
+          },
+          {
+            "symbol": "W_{\\text{有用}}, W_{\\text{总}}",
+            "name": "有用功与总功",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "energy",
+            "dimension": "M L^2 T^-2",
+            "si_unit": "J"
+          }
+        ],
+        "conditions": [
+          "W总 = W有用 + W额外 > 0；机械效率无量纲且与功率大小无关"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中物理八年级下册 12.3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "chemistry.sol.mass_fraction",
+        "name": "溶质质量分数公式",
+        "aliases": [
+          "溶液浓度（质量分数）"
+        ],
+        "latex": "\\omega = \\frac{m_{\\text{质}}}{m_{\\text{液}}} \\times 100\\%",
+        "statement": "溶质的质量分数等于溶质质量与溶液总质量之比，用于定量表示溶液的浓稀程度。",
+        "taxonomy": {
+          "disciplines": [
+            "chemistry"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "chemistry_solutions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "\\omega",
+            "name": "溶质质量分数",
+            "math_type": "scalar",
+            "domain": "[0, 1]",
+            "quantity_kind": "mass_fraction",
+            "dimension": "1",
+            "si_unit": "%"
+          },
+          {
+            "symbol": "m_{\\text{质}}",
+            "name": "溶质质量",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "mass",
+            "dimension": "M",
+            "si_unit": "g"
+          },
+          {
+            "symbol": "m_{\\text{液}}",
+            "name": "溶液总质量",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "mass",
+            "dimension": "M",
+            "si_unit": "g"
+          }
+        ],
+        "conditions": [
+          "溶质必须是已完全溶解的部分，未溶解沉淀不计入 m质 与 m液"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中化学九年级下册 课题3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "chemistry.sol.solution_mass",
+        "name": "溶液质量组成关系",
+        "aliases": [
+          "溶液质量守恒"
+        ],
+        "latex": "m_{\\text{液}} = m_{\\text{质}} + m_{\\text{剂}}",
+        "statement": "溶液的总质量等于已溶解的溶质质量与溶剂质量之和（体积一般不具有加和性）。",
+        "taxonomy": {
+          "disciplines": [
+            "chemistry"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "chemistry_solutions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "m_{\\text{液}}, m_{\\text{质}}, m_{\\text{剂}}",
+            "name": "溶液、溶质与溶剂质量",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": "mass",
+            "dimension": "M",
+            "si_unit": "g"
+          }
+        ],
+        "conditions": [
+          "溶质与溶剂混合时未发生气体逸出或沉淀生成"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中化学九年级下册 课题3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "chemistry.sol.dilution",
+        "name": "溶液稀释溶质守恒公式",
+        "aliases": [
+          "溶液稀释计算式"
+        ],
+        "latex": "m_1 \\omega_1 = m_2 \\omega_2",
+        "statement": "浓溶液加水稀释前后，溶质的总质量保持不变。",
+        "taxonomy": {
+          "disciplines": [
+            "chemistry",
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "chemistry_solutions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "m_1, m_2",
+            "name": "稀释前后溶液质量",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "mass",
+            "dimension": "M",
+            "si_unit": "g"
+          },
+          {
+            "symbol": "\\omega_1, \\omega_2",
+            "name": "稀释前后质量分数",
+            "math_type": "scalar",
+            "domain": "(0, 1]",
+            "quantity_kind": "mass_fraction",
+            "dimension": "1",
+            "si_unit": "%"
+          }
+        ],
+        "conditions": [
+          "仅加入纯溶剂稀释，且 m2 = m1 + m加水；量取体积时常结合 m = ρV 换算"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中化学九年级下册 课题3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "chemistry.sol.solubility_fraction",
+        "name": "饱和溶液溶解度与质量分数换算",
+        "aliases": [
+          "饱和溶液浓度公式"
+        ],
+        "latex": "\\omega_{\\text{饱和}} = \\frac{S}{100 + S} \\times 100\\%",
+        "statement": "一定温度下，某物质饱和溶液的溶质质量分数仅由该温度下的固体溶解度 S（单位 g/100g水）决定。",
+        "taxonomy": {
+          "disciplines": [
+            "chemistry"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "chemistry_solutions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "\\omega_{\\text{饱和}}",
+            "name": "饱和溶液质量分数",
+            "math_type": "scalar",
+            "domain": "(0, 1)",
+            "quantity_kind": "mass_fraction",
+            "dimension": "1",
+            "si_unit": "%"
+          },
+          {
+            "symbol": "S",
+            "name": "某温度下的溶解度",
+            "math_type": "scalar",
+            "domain": "(0, +\\infty)",
+            "quantity_kind": "solubility",
+            "dimension": "1",
+            "si_unit": "g/100g"
+          }
+        ],
+        "conditions": [
+          "仅适用于该温度下的饱和溶液；未饱和溶液的质量分数严格小于此值"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版初中化学九年级下册 课题2 & 3",
+          "sympy_verified": true
+        }
+      }
+    ],
+    "derivations": [
+      {
+        "id": "deriv.mech.four_to_liquid_p",
+        "from_formula_ids": [
+          "physics.mech.pressure_def",
+          "physics.mech.gravity",
+          "physics.mech.density",
+          "physics.mech.volume_prism"
+        ],
+        "to_formula_id": "physics.mech.liquid_pressure",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "liquid_column_model",
+          "identity_substitution",
+          "cancel_common_factor"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "在液体中截取底面积为 S、高为 h 的假想液柱，依次代入压力等于液柱重力、密度和柱体体积公式，约去底面积 S 即得 p = ρgh。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "p = \\frac{F}{S} = \\frac{G}{S} = \\frac{m g}{S}",
+              "note": "液柱对底面的压力等于自身重力 G = mg",
+              "cited_formula_ids": [
+                "physics.mech.pressure_def",
+                "physics.mech.gravity"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= \\frac{\\rho V g}{S} = \\frac{\\rho (S h) g}{S} = \\rho g h",
+              "note": "代入 m = ρV 与液柱体积 V = Sh，约去底面积 S",
+              "cited_formula_ids": [
+                "physics.mech.density",
+                "physics.mech.volume_prism"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "F = G = m g",
+              "note": "取深度 h 处面积为 S 的水平液片，其上方液柱竖直静止，故压力等于重力",
+              "cited_formula_ids": [
+                "physics.mech.gravity"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "m = \\rho V = \\rho S h",
+              "note": "由密度公式与直柱体体积公式表示液柱质量",
+              "cited_formula_ids": [
+                "physics.mech.density",
+                "physics.mech.volume_prism"
+              ]
+            },
+            {
+              "step": 3,
+              "latex": "p = \\frac{F}{S} = \\frac{\\rho S h g}{S} = \\rho g h",
+              "note": "代入压强定义式约去 S，表明液体压强与容器形状和底面积无关，量纲 [kg/m³]·[m/s²]·[m] = [Pa]",
+              "cited_formula_ids": [
+                "physics.mech.pressure_def"
+              ],
+              "pitfall": "h 是到自由液面的竖直深度，并非到容器底部的高度，也非斜边长度。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.mech.dens_grav_to_arch",
+        "from_formula_ids": [
+          "physics.mech.density",
+          "physics.mech.gravity"
+        ],
+        "to_formula_id": "physics.mech.archimedes",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "identity_substitution"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "由阿基米德实验规律 F浮 = G排，依次代入重力公式 G排 = m排g 与密度变形 m排 = ρ液V排。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "F_{\\text{浮}} = G_{\\text{排}} = m_{\\text{排}} g",
+              "note": "浮力大小等于排开液体所受的重力",
+              "cited_formula_ids": [
+                "physics.mech.gravity"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "F_{\\text{浮}} = \\rho_{\\text{液}} V_{\\text{排}} g = \\rho_{\\text{液}} g V_{\\text{排}}",
+              "note": "代入排开液体质量 m排 = ρ液V排",
+              "cited_formula_ids": [
+                "physics.mech.density"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "F_{\\text{浮}} = G_{\\text{排}} = m_{\\text{排}} g",
+              "note": "阿基米德实验测得浮力等于排开液重",
+              "cited_formula_ids": [
+                "physics.mech.gravity"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "m_{\\text{排}} = \\rho_{\\text{液}} V_{\\text{排}} \\implies F_{\\text{浮}} = \\rho_{\\text{液}} g V_{\\text{排}}",
+              "note": "代入液体密度与排开体积，量纲 [kg/m³]·[N/kg]·[m³] = [N]",
+              "cited_formula_ids": [
+                "physics.mech.density"
+              ],
+              "pitfall": "公式中必须是“液体密度 ρ液”和“排开体积 V排”，切勿误代物体自身密度 ρ物。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.mech.arch_grav_to_float",
+        "from_formula_ids": [
+          "physics.mech.archimedes",
+          "physics.mech.gravity"
+        ],
+        "to_formula_id": "physics.mech.floating_balance",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "force_equilibrium"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "漂浮或悬浮物体仅受重力和浮力且静止，由二力平衡得 F浮 = G物，进一步可得 ρ液V排 = ρ物V物。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "F_{\\text{浮}} = G_{\\text{物}}",
+              "note": "竖直方向二力平衡",
+              "cited_formula_ids": [
+                "physics.mech.archimedes",
+                "physics.mech.gravity"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "\\rho_{\\text{液}} g V_{\\text{排}} = \\rho_{\\text{物}} g V_{\\text{物}} \\implies \\frac{V_{\\text{排}}}{V_{\\text{物}}} = \\frac{\\rho_{\\text{物}}}{\\rho_{\\text{液}}}",
+              "note": "代入阿基米德原理与重力公式约去 g，可得漂浮浸入体积比",
+              "cited_formula_ids": [
+                "physics.mech.archimedes",
+                "physics.mech.density"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "F_{\\text{浮}} = G_{\\text{物}}",
+              "note": "物体在液面漂浮或液中悬浮时合力为零",
+              "cited_formula_ids": [
+                "physics.mech.archimedes",
+                "physics.mech.gravity"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "\\rho_{\\text{液}} V_{\\text{排}} = \\rho_{\\text{物}} V_{\\text{物}}",
+              "note": "据此可由浮沉状态反推密度大小关系：漂浮则 ρ物 < ρ液，悬浮则 ρ物 = ρ液",
+              "cited_formula_ids": [
+                "physics.mech.density"
+              ],
+              "pitfall": "若物体沉底，容器底部存在支持力 N，此时 F浮 + N = G物，即 F浮 < G物。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.mech.grav_to_pulley_f",
+        "from_formula_ids": [
+          "physics.mech.gravity"
+        ],
+        "to_formula_id": "physics.mech.pulley_force",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "force_equilibrium"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "将物体与动滑轮视为整体，由 n 段绳子均匀分担竖直向下的总重力，故 nF = G物 + G动。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "n F = G_{\\text{物}} + G_{\\text{动}}",
+              "note": "不计摩擦与绳重时，整体匀速上升受力平衡",
+              "cited_formula_ids": [
+                "physics.mech.gravity"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "F = \\frac{G_{\\text{物}} + G_{\\text{动}}}{n}",
+              "note": "两边同除以绳子段数 n",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "n F = G_{\\text{物}} + G_{\\text{动}} \\implies F = \\frac{G_{\\text{物}} + G_{\\text{动}}}{n}",
+              "note": "数 n 时只统计直接与动滑轮相连的承重绳段，定滑轮引出的最后一段若向下拉则不计入",
+              "cited_formula_ids": [
+                "physics.mech.gravity"
+              ],
+              "pitfall": "只要题目提到“不计摩擦和绳重”，就必须加上动滑轮重 G动；只有“理想滑轮组”才忽略 G动。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.mech.grav_work_to_useful",
+        "from_formula_ids": [
+          "physics.mech.gravity",
+          "physics.mech.work_def"
+        ],
+        "to_formula_id": "physics.mech.useful_work_lift",
+        "relation_type": "special_case_of",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "specialization"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "竖直匀速提升重物时，克服重力所需力 F = G、沿力方向位移 s = h，代入 W = Fs 即得 W有用 = Gh。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "W_{\\text{有用}} = F s = G h",
+              "note": "取 F = G、s = h 代入机械功公式",
+              "cited_formula_ids": [
+                "physics.mech.work_def",
+                "physics.mech.gravity"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "W_{\\text{有用}} = G h = m g h",
+              "note": "克服重力做功使物体重力势能增加 mgh，量纲 [N]·[m] = [J]",
+              "cited_formula_ids": [
+                "physics.mech.work_def",
+                "physics.mech.gravity"
+              ],
+              "pitfall": "若用滑轮组沿水平方向匀速拉物体，有用功是克服摩擦力做功 W有用 = f·s物，而非 Gh。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.mech.pulley_to_work",
+        "from_formula_ids": [
+          "physics.mech.pulley_force",
+          "physics.mech.pulley_distance"
+        ],
+        "to_formula_id": "physics.mech.work_def",
+        "relation_type": "applies_in",
+        "dependency_site": "application_level",
+        "inference_rules": [
+          "identity_substitution"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "将滑轮组绳端拉力 F 与绳端移动距离 s = nh 代入 W总 = Fs，即可验证任何机械都不省功。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "W_{\\text{总}} = F s = F \\cdot (n h) = (G_{\\text{物}} + G_{\\text{动}}) h",
+              "note": "代入拉力公式与位移关系，发现总功恰好等于有用功加动滑轮额外功",
+              "cited_formula_ids": [
+                "physics.mech.pulley_force",
+                "physics.mech.pulley_distance"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "W_{\\text{总}} = F s = \\frac{G_{\\text{物}} + G_{\\text{动}}}{n} \\cdot n h = G_{\\text{物}} h + G_{\\text{动}} h",
+              "note": "绳子段数 n 自动约去，体现功的原理：省力必然费距离",
+              "cited_formula_ids": [
+                "physics.mech.pulley_force",
+                "physics.mech.pulley_distance"
+              ],
+              "pitfall": "计算总功时 F 必须配绳端距离 s，切勿误配物体上升高度 h。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.mech.lever_to_work",
+        "from_formula_ids": [
+          "physics.mech.lever_balance"
+        ],
+        "to_formula_id": "physics.mech.work_def",
+        "relation_type": "applies_in",
+        "dependency_site": "application_level",
+        "inference_rules": [
+          "similar_triangles"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "杠杆转动微小角度时两端位移之比等于力臂之比 s1/s2 = l1/l2，代入杠杆平衡式即得理想杠杆动力功等于阻力功。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "\\frac{s_1}{s_2} = \\frac{l_1}{l_2},\\quad F_1 l_1 = F_2 l_2 \\implies F_1 s_1 = F_2 s_2",
+              "note": "结合相似三角形位移比与杠杆平衡条件得出 W1 = W2",
+              "cited_formula_ids": [
+                "physics.mech.lever_balance"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "F_1 l_1 = F_2 l_2 \\implies \\frac{F_1}{F_2} = \\frac{l_2}{l_1} = \\frac{s_2}{s_1} \\implies F_1 s_1 = F_2 s_2",
+              "note": "理想杠杆满足动力做功等于克服阻力做功，再次印证功的原理",
+              "cited_formula_ids": [
+                "physics.mech.lever_balance"
+              ],
+              "pitfall": "省力杠杆（l1 > l2）必然费距离（s1 > s2），不存在既省力又省距离的杠杆。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.mech.work_vel_to_pfv",
+        "from_formula_ids": [
+          "physics.mech.work_def",
+          "physics.mech.power_def",
+          "physics.mech.velocity"
+        ],
+        "to_formula_id": "physics.mech.power_fv",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "identity_substitution"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "把机械功 W = Fs 代入功率定义式 P = W/t，再将 s/t 替换为速度 v 即得 P = Fv。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "P = \\frac{W}{t} = \\frac{F s}{t} = F \\cdot \\frac{s}{t} = F v",
+              "note": "联立机械功、功率定义与速度公式完成推导",
+              "cited_formula_ids": [
+                "physics.mech.power_def",
+                "physics.mech.work_def",
+                "physics.mech.velocity"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "P = \\frac{W}{t} = \\frac{F s}{t}",
+              "note": "将 W = Fs 代入功率定义式",
+              "cited_formula_ids": [
+                "physics.mech.power_def",
+                "physics.mech.work_def"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= F \\left(\\frac{s}{t}\\right) = F v",
+              "note": "代入速度公式 v = s/t，量纲 [N]·[m/s] = [J/s] = [W]",
+              "cited_formula_ids": [
+                "physics.mech.velocity"
+              ],
+              "pitfall": "汽车上坡换低速挡的原理正是功率 P 一定时，减小速度 v 以增大牵引力 F。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.mech.works_to_eff",
+        "from_formula_ids": [
+          "physics.mech.useful_work_lift",
+          "physics.mech.work_def",
+          "physics.mech.pulley_distance"
+        ],
+        "to_formula_id": "physics.mech.mech_efficiency",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "ratio_cancellation"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "将竖直有用功 W有用 = Gh 与总功 W总 = Fs 代入机械效率定义，滑轮组中代入 s = nh 可消去高度 h 得 η = G/(nF)。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "\\eta = \\frac{W_{\\text{有用}}}{W_{\\text{总}}} = \\frac{G h}{F s}",
+              "note": "代入竖直提重物有用功与拉力总功",
+              "cited_formula_ids": [
+                "physics.mech.useful_work_lift",
+                "physics.mech.work_def"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= \\frac{G h}{F (n h)} = \\frac{G}{n F} \\times 100\\%",
+              "note": "滑轮组中代入 s = nh 约去高度 h",
+              "cited_formula_ids": [
+                "physics.mech.pulley_distance"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "\\eta = \\frac{G h}{F s} = \\frac{G}{n F} \\times 100\\%",
+              "note": "约去 h 后无需知道提升高度即可直接由物重与拉力测算滑轮组效率",
+              "cited_formula_ids": [
+                "physics.mech.useful_work_lift",
+                "physics.mech.work_def",
+                "physics.mech.pulley_distance"
+              ],
+              "pitfall": "若不计摩擦和绳重，还可进一步化为 η = G物/(G物+G动)，可见增加物重能提高同一滑轮组的机械效率。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.chem.frac_dens_to_dilution",
+        "from_formula_ids": [
+          "chemistry.sol.mass_fraction",
+          "physics.mech.density"
+        ],
+        "to_formula_id": "chemistry.sol.dilution",
+        "relation_type": "derives_to",
+        "dependency_site": "application_level",
+        "inference_rules": [
+          "mass_conservation",
+          "identity_substitution"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "由溶质质量分数变形得 m质 = m液·ω，稀释前后溶质质量守恒得 m1ω1 = m2ω2；量取液体体积时结合物理密度公式 m = ρV。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "m_{\\text{质}} = m_1 \\omega_1 = m_2 \\omega_2",
+              "note": "稀释只加水不增减溶质，故稀释前后溶质质量相等",
+              "cited_formula_ids": [
+                "chemistry.sol.mass_fraction"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "\\rho_1 V_1 \\omega_1 = \\rho_2 V_2 \\omega_2",
+              "note": "实验用量筒量取体积时，跨学科代入物理密度变形 m = ρV",
+              "cited_formula_ids": [
+                "physics.mech.density"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "m_{\\text{质}} = m_{\\text{液}} \\cdot \\omega",
+              "note": "由溶质质量分数公式变形写出溶质质量",
+              "cited_formula_ids": [
+                "chemistry.sol.mass_fraction"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "m_1 \\omega_1 = m_2 \\omega_2 \\quad (m_2 = m_1 + m_{\\text{加水}})",
+              "note": "利用稀释前后溶质质量守恒建立方程",
+              "cited_formula_ids": []
+            },
+            {
+              "step": 3,
+              "latex": "\\rho_1 V_1 \\omega_1 = m_2 \\omega_2",
+              "note": "当已知浓溶液体积与密度（如浓硫酸、浓盐酸）时，用物理密度式换算质量",
+              "cited_formula_ids": [
+                "physics.mech.density"
+              ],
+              "pitfall": "切忌把溶液体积直接当作质量代入，必须先乘以溶液密度（注意单位 g/cm³ 与 mL 配套）。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.chem.mass_frac_to_solubility",
+        "from_formula_ids": [
+          "chemistry.sol.mass_fraction",
+          "chemistry.sol.solution_mass"
+        ],
+        "to_formula_id": "chemistry.sol.solubility_fraction",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "definition_substitution"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "根据溶解度定义取 100 g 水中最多溶解 S g 溶质，溶液总质量为 (100 + S) g，代入溶质质量分数公式即得。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "m_{\\text{剂}} = 100\\ \\text{g},\\quad m_{\\text{质}} = S\\ \\text{g} \\implies m_{\\text{液}} = (100 + S)\\ \\text{g}",
+              "note": "由溶解度定义与溶液质量组成写出饱和溶液总质量",
+              "cited_formula_ids": [
+                "chemistry.sol.solution_mass"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "\\omega_{\\text{饱和}} = \\frac{m_{\\text{质}}}{m_{\\text{液}}} \\times 100\\% = \\frac{S}{100 + S} \\times 100\\%",
+              "note": "代入溶质质量分数定义式",
+              "cited_formula_ids": [
+                "chemistry.sol.mass_fraction"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "m_{\\text{液}} = m_{\\text{质}} + m_{\\text{剂}} = S + 100",
+              "note": "溶解度 S 定义为一定温度下 100 g 溶剂中达到饱和时溶解的溶质克数",
+              "cited_formula_ids": [
+                "chemistry.sol.solution_mass"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "\\omega_{\\text{饱和}} = \\frac{S}{100 + S} \\times 100\\%",
+              "note": "代入质量分数公式；反向移项也可由饱和质量分数反推溶解度 S = 100ω/(1-ω)",
+              "cited_formula_ids": [
+                "chemistry.sol.mass_fraction"
+              ],
+              "pitfall": "最常见错误是把分母写成 100 而漏加 S，误算为 S/100。"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "stageW": 1380,
+  "stageH": 760,
+  "defaultZoom": 0.86,
+  "defaultFormula": "physics.mech.liquid_pressure",
+  "defaultDeriv": "deriv.mech.four_to_liquid_p",
+  "defaultPathStart": "physics.mech.density",
+  "defaultPathEnd": "chemistry.sol.dilution",
+  "lanes": [
+    {
+      "x": 24,
+      "label": "1. 运动 · 密度 · 重力"
+    },
+    {
+      "x": 296,
+      "label": "2. 压强与浮力"
+    },
+    {
+      "x": 568,
+      "label": "3. 杠杆与滑轮组"
+    },
+    {
+      "x": 840,
+      "label": "4. 功 · 功率 · 效率"
+    },
+    {
+      "x": 1112,
+      "label": "5. 化学溶液定量"
+    }
+  ],
+  "topicButtons": [
+    {
+      "id": "all",
+      "label": "全部"
+    },
+    {
+      "id": "mechanics_basics",
+      "label": "密度/重力"
+    },
+    {
+      "id": "pressure_buoyancy",
+      "label": "压强/浮力"
+    },
+    {
+      "id": "simple_machines",
+      "label": "简单机械"
+    },
+    {
+      "id": "work_power_efficiency",
+      "label": "功/功率/效率"
+    },
+    {
+      "id": "chemistry_solutions",
+      "label": "化学溶液"
+    }
+  ],
+  "positions": {
+    "physics.mech.velocity": {
+      "x": 24,
+      "y": 52
+    },
+    "physics.mech.density": {
+      "x": 24,
+      "y": 204
+    },
+    "physics.mech.gravity": {
+      "x": 24,
+      "y": 356
+    },
+    "physics.mech.volume_prism": {
+      "x": 24,
+      "y": 508
+    },
+    "physics.mech.pressure_def": {
+      "x": 296,
+      "y": 52
+    },
+    "physics.mech.liquid_pressure": {
+      "x": 296,
+      "y": 204
+    },
+    "physics.mech.archimedes": {
+      "x": 296,
+      "y": 356
+    },
+    "physics.mech.floating_balance": {
+      "x": 296,
+      "y": 508
+    },
+    "physics.mech.lever_balance": {
+      "x": 568,
+      "y": 110
+    },
+    "physics.mech.pulley_force": {
+      "x": 568,
+      "y": 285
+    },
+    "physics.mech.pulley_distance": {
+      "x": 568,
+      "y": 460
+    },
+    "physics.mech.work_def": {
+      "x": 840,
+      "y": 48
+    },
+    "physics.mech.useful_work_lift": {
+      "x": 840,
+      "y": 184
+    },
+    "physics.mech.power_def": {
+      "x": 840,
+      "y": 320
+    },
+    "physics.mech.power_fv": {
+      "x": 840,
+      "y": 456
+    },
+    "physics.mech.mech_efficiency": {
+      "x": 840,
+      "y": 592
+    },
+    "chemistry.sol.mass_fraction": {
+      "x": 1112,
+      "y": 52
+    },
+    "chemistry.sol.solution_mass": {
+      "x": 1112,
+      "y": 204
+    },
+    "chemistry.sol.dilution": {
+      "x": 1112,
+      "y": 356
+    },
+    "chemistry.sol.solubility_fraction": {
+      "x": 1112,
+      "y": 508
+    }
+  }
+},
       junior_alg: {
   "data": {
     "schema_version": "1.0.0",
@@ -6637,7 +8444,10 @@
       angle_sum_and_difference: "和差角", double_angle: "二倍角", power_reduction: "降幂/辅助角",
       calculus_integration_prep: "微积分前置", triangle_solving: "解三角形",
       multiplication_formulas: "乘法公式", factorization: "因式分解/配方",
-      quadratic_equations: "一元二次方程", vieta_relations: "韦达定理", quadratic_functions: "二次函数"
+      quadratic_equations: "一元二次方程", vieta_relations: "韦达定理", quadratic_functions: "二次函数",
+      mechanics: "力学", mechanics_basics: "密度/重力", geometry: "几何",
+      pressure_buoyancy: "压强/浮力", simple_machines: "简单机械",
+      work_power_efficiency: "功/功率/效率", chemistry_solutions: "化学溶液"
     };
     const REL_LABELS = {
       derives_to: "直接推导", special_case_of: "特例化", generalizes: "推广",
@@ -6686,7 +8496,7 @@
         .replace(/\\neq/g, "≠").replace(/\\pm/g, "±").replace(/\\Delta/g, "Δ").replace(/\\ge/g, "≥").replace(/\\iff/g, "⇔")
         .replace(/\\le/g, "≤")
         .replace(/\\infty/g, "∞")
-        .replace(/\\alpha/g, "α").replace(/\\beta/g, "β").replace(/\\varphi/g, "φ").replace(/\\pi/g, "π")
+        .replace(/\\alpha/g, "α").replace(/\\beta/g, "β").replace(/\\varphi/g, "φ").replace(/\\pi/g, "π").replace(/\\rho/g, "ρ").replace(/\\eta/g, "η").replace(/\\omega/g, "ω").replace(/\\times/g, "×").replace(/\\%/g, "%").replace(/\\mathbb\{Z\}\^\+/g, "ℤ⁺")
         .replace(/\\sin/g, "sin").replace(/\\cos/g, "cos").replace(/\\tan/g, "tan")
         .replace(/\\sqrt\{([^}]+)\}/g, "√($1)")
         .replace(/\^2/g, "²")
@@ -6934,10 +8744,15 @@
 
         const rel = getDirectRelations(f.id);
         const primaryTopic = TOPIC_LABELS[f.taxonomy.topics[1] || f.taxonomy.topics[0]] || "";
-        const isMathOnly = f.taxonomy.disciplines.includes("mathematics") && !f.taxonomy.disciplines.includes("physics");
-        const isBoth = f.taxonomy.disciplines.includes("mathematics") && f.taxonomy.disciplines.includes("physics");
-        const discLabel = isBoth ? "数学 ↔ 物理" : (isMathOnly ? "数学" : "物理(科学)");
-        const discCls = isMathOnly || isBoth ? "disc-math" : "disc-phys";
+        const dList = f.taxonomy.disciplines;
+        const hasMath = dList.includes("mathematics");
+        const hasPhys = dList.includes("physics");
+        const hasChem = dList.includes("chemistry");
+        let discLabel = "数学", discCls = "disc-math";
+        if (hasPhys && hasChem) { discLabel = "物理 ↔ 化学"; discCls = "disc-chem"; }
+        else if (hasMath && hasPhys) { discLabel = "数学 ↔ 物理"; discCls = "disc-math"; }
+        else if (hasChem) { discLabel = "化学(科学)"; discCls = "disc-chem"; }
+        else if (hasPhys) { discLabel = "物理(科学)"; discCls = "disc-phys"; }
 
         card.className = cls;
         card.style.left = `${pos.x}px`;
@@ -7151,7 +8966,7 @@
 
     window.__katexReady = () => { renderGraph(); renderDrawer(); };
     initControls();
-    loadPack("junior_alg");
+    loadPack("junior_mech_chem");
   </script>
 </body>
 </html>
