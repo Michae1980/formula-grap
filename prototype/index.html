@@ -288,6 +288,7 @@
       </div>
       <div class="toolbar">
         <select class="pack-select" id="packSelect" aria-label="切换公式数据包">
+          <option value="junior_alg">初中 · 代数核心主链（20公式）</option>
           <option value="junior_elec">初中 · 电学与数学跨学科（18公式）</option>
           <option value="senior_trig">高中 · 三角函数种子库（25公式）</option>
         </select>
@@ -378,6 +379,1927 @@
 
   <script>
     const PACKS = {
+      junior_alg: {
+  "data": {
+    "schema_version": "1.0.0",
+    "metadata": {
+      "pack_id": "cn-junior-high-algebra-quadratic-batch2",
+      "title": "初中代数核心主链：乘法公式 → 方程求根 → 二次函数（Batch 2）",
+      "curriculum_ref": "人教版初中数学八年级上册第十四章、九年级上册第二十一至二十二章",
+      "updated_at": "2026-11-23"
+    },
+    "formulas": [
+      {
+        "id": "math.alg.distributive",
+        "name": "多项式乘法分配律",
+        "aliases": [
+          "二项式展开基本律"
+        ],
+        "latex": "(a + b)(c + d) = ac + ad + bc + bd",
+        "statement": "两个多项式相乘，用一个多项式的每一项乘另一个多项式的每一项，再把所得的积相加。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "multiplication_formulas"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b, c, d",
+            "name": "任意实数或代数式",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "对任意实数及整式均成立"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版八年级上册 14.1.4",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.alg.diff_of_squares",
+        "name": "平方差公式",
+        "aliases": [
+          "和差乘积公式"
+        ],
+        "latex": "(a + b)(a - b) = a^2 - b^2",
+        "statement": "两个数的和与这两个数的差的积，等于这两个数的平方差。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "multiplication_formulas"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b",
+            "name": "任意实数或代数式",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "对任意实数及整式均成立"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版八年级上册 14.2.1",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.alg.perfect_square_sum",
+        "name": "完全平方和公式",
+        "aliases": [
+          "两数和的平方"
+        ],
+        "latex": "(a + b)^2 = a^2 + 2ab + b^2",
+        "statement": "两数和的平方等于它们的平方和加上它们乘积的 2 倍。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "multiplication_formulas"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b",
+            "name": "任意实数或代数式",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "对任意实数及整式均成立"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版八年级上册 14.2.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.alg.perfect_square_diff",
+        "name": "完全平方差公式",
+        "aliases": [
+          "两数差的平方"
+        ],
+        "latex": "(a - b)^2 = a^2 - 2ab + b^2",
+        "statement": "两数差的平方等于它们的平方和减去它们乘积的 2 倍。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "multiplication_formulas"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b",
+            "name": "任意实数或代数式",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "对任意实数及整式均成立"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版八年级上册 14.2.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.alg.factor_diff_squares",
+        "name": "因式分解（平方差法）",
+        "aliases": [
+          "平方差分解"
+        ],
+        "latex": "a^2 - b^2 = (a + b)(a - b)",
+        "statement": "两个平方项之差可以分解为两底数之和与两底数之差的乘积。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "factorization"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b",
+            "name": "任意实数或代数式",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "适用于两项异号且均可化为完全平方的代数式"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版八年级上册 14.3.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.alg.factor_perfect_square",
+        "name": "因式分解（完全平方法）",
+        "aliases": [
+          "完全平方式逆用"
+        ],
+        "latex": "a^2 \\pm 2ab + b^2 = (a \\pm b)^2",
+        "statement": "两数的平方和加上或减去这两数积的 2 倍，可逆向分解为两数和或差的平方。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "factorization"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b",
+            "name": "任意实数或代数式",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "三项式需满足首尾同号平方且中间项为两底数积的 ±2 倍"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版八年级上册 14.3.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.alg.cross_factor",
+        "name": "十字相乘法（首项为 1）",
+        "aliases": [
+          "二次三项式因式分解"
+        ],
+        "latex": "x^2 + (p + q)x + pq = (x + p)(x + q)",
+        "statement": "若二次三项式的常数项可拆为两数之积且一次项系数恰为这两数之和，即可分解为两个一次因式之积。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "factorization"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x",
+            "name": "未知数",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "p, q",
+            "name": "常数因子",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "对任意实数 p, q 均成立"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版八年级上册 14.3 拓展阅读",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.alg.completing_square",
+        "name": "二次三项式配方法",
+        "aliases": [
+          "一般二次式配方"
+        ],
+        "latex": "ax^2 + bx + c = a\\left(x + \\frac{b}{2a}\\right)^2 + \\frac{4ac - b^2}{4a}",
+        "statement": "任意二次三项式都可以通过提取二次项系数并补齐一次项系数一半的平方，化为“完全平方 + 常数”形式。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "factorization"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b, c",
+            "name": "二次、一次与常数项系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "x",
+            "name": "自变量",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "二次项系数 a ≠ 0"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.2.1 & 22.1.4",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.eq.quadratic_standard",
+        "name": "一元二次方程一般式",
+        "aliases": [
+          "标准一元二次方程"
+        ],
+        "latex": "ax^2 + bx + c = 0\\ (a \\neq 0)",
+        "statement": "只含有一个未知数且未知数最高次数为 2 的整式方程的标准形式。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "quadratic_equations"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b, c",
+            "name": "方程系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "x",
+            "name": "未知数",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "二次项系数 a ≠ 0"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.1",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.eq.quadratic_completed",
+        "name": "一元二次方程配方形式",
+        "aliases": [
+          "方程配方标准式"
+        ],
+        "latex": "\\left(x + \\frac{b}{2a}\\right)^2 = \\frac{b^2 - 4ac}{4a^2}",
+        "statement": "将一元二次方程一般式通过配方法化为左侧为完全平方、右侧为常数的等价方程。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "quadratic_equations"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "a, b, c",
+            "name": "方程系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "x",
+            "name": "未知数",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0；当右侧非负时可直接开平方求解"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.2.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.eq.discriminant",
+        "name": "一元二次方程根的判别式",
+        "aliases": [
+          "判别式 Δ"
+        ],
+        "latex": "\\Delta = b^2 - 4ac",
+        "statement": "由系数构成的判别量 Δ，直接决定实数根的个数：Δ > 0 两不等实根，Δ = 0 两等实根，Δ < 0 无实根。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "quadratic_equations"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "\\Delta",
+            "name": "根的判别式",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "a, b, c",
+            "name": "方程系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "仅适用于实系数一元二次方程（a ≠ 0）"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.2.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.eq.quadratic_formula",
+        "name": "一元二次方程求根公式",
+        "aliases": [
+          "二次方程通解公式"
+        ],
+        "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+        "statement": "当判别式 b² - 4ac ≥ 0 时，一元二次方程 ax² + bx + c = 0 的全部实数解表达式。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "quadratic_equations"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x",
+            "name": "方程的实根",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "a, b, c",
+            "name": "方程系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0 且 Δ = b² - 4ac ≥ 0"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.2.2",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.eq.vieta_sum",
+        "name": "韦达定理（两根之和）",
+        "aliases": [
+          "根与系数关系（和）"
+        ],
+        "latex": "x_1 + x_2 = -\\frac{b}{a}",
+        "statement": "一元二次方程两实根之和等于一次项系数与二次项系数之比的相反数。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "vieta_relations"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x_1, x_2",
+            "name": "方程的两根",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "a, b",
+            "name": "二次与一次项系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0 且 Δ ≥ 0（实数范围内）"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.2.4",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.eq.vieta_product",
+        "name": "韦达定理（两根之积）",
+        "aliases": [
+          "根与系数关系（积）"
+        ],
+        "latex": "x_1 x_2 = \\frac{c}{a}",
+        "statement": "一元二次方程两实根之积等于常数项与二次项系数之比。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "vieta_relations"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x_1, x_2",
+            "name": "方程的两根",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "a, c",
+            "name": "二次项系数与常数项",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0 且 Δ ≥ 0（实数范围内）"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.2.4",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.eq.root_diff",
+        "name": "两根之差绝对值公式",
+        "aliases": [
+          "抛物线截距弦长公式"
+        ],
+        "latex": "|x_1 - x_2| = \\frac{\\sqrt{\\Delta}}{|a|}",
+        "statement": "两实根之差的绝对值等于判别式算术平方根除以二次项系数绝对值，几何上即抛物线截 x 轴的线段长。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "vieta_relations"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x_1, x_2",
+            "name": "方程两实根",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "\\Delta",
+            "name": "判别式",
+            "math_type": "scalar",
+            "domain": "[0, +\\infty)",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0 且 Δ ≥ 0"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.2.4 拓展",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.eq.root_sq_sum",
+        "name": "两根平方和韦达变形",
+        "aliases": [
+          "对称多项式平方和公式"
+        ],
+        "latex": "x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2",
+        "statement": "将两根平方和转化为两根之和与两根之积的组合，从而无需解根即可直接用系数求值。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "algebra",
+            "vieta_relations"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x_1, x_2",
+            "name": "方程两根",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "对任意实数 x1, x2 恒成立"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 21.2.4 习题",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.func.quad_general",
+        "name": "二次函数一般式",
+        "aliases": [
+          "抛物线一般方程"
+        ],
+        "latex": "y = ax^2 + bx + c\\ (a \\neq 0)",
+        "statement": "自变量最高次数为 2 的多项式函数，其图像是一条开口由 a 符号决定的抛物线。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics",
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "functions",
+            "quadratic_functions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x, y",
+            "name": "自变量与函数值",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "a, b, c",
+            "name": "函数系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0；a > 0 开口向上，a < 0 开口向下"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 22.1.1",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.func.quad_vertex",
+        "name": "二次函数顶点式",
+        "aliases": [
+          "抛物线顶点方程"
+        ],
+        "latex": "y = a(x - h)^2 + k\\ (a \\neq 0)",
+        "statement": "直接显式给出抛物线顶点坐标 (h, k) 与对称轴 x = h 的标准形式。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "functions",
+            "quadratic_functions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "h, k",
+            "name": "顶点横纵坐标",
+            "math_type": "constant",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "a",
+            "name": "开口形状系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R} \\setminus \\{0\\}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 22.1.3",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.func.quad_extremum",
+        "name": "二次函数对称轴与顶点最值公式",
+        "aliases": [
+          "抛物线顶点公式"
+        ],
+        "latex": "x = -\\frac{b}{2a},\\quad y_{\\text{极}} = \\frac{4ac - b^2}{4a}",
+        "statement": "抛物线对称轴为 x = -b/(2a)，在对称轴处取得全局最小值（a > 0）或最大值（a < 0）。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics",
+            "physics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "functions",
+            "quadratic_functions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x",
+            "name": "对称轴横坐标",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "y_{\\text{极}}",
+            "name": "函数极值",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0，且自变量 x 取遍全体实数"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 22.1.4",
+          "sympy_verified": true
+        }
+      },
+      {
+        "id": "math.func.quad_intercept",
+        "name": "二次函数交点式（两根式）",
+        "aliases": [
+          "抛物线两根式"
+        ],
+        "latex": "y = a(x - x_1)(x - x_2)",
+        "statement": "当抛物线与 x 轴交于 (x1, 0) 和 (x2, 0) 时，二次函数可写为两根因式的乘积形式。",
+        "taxonomy": {
+          "disciplines": [
+            "mathematics"
+          ],
+          "education_stages": [
+            "junior_high"
+          ],
+          "topics": [
+            "functions",
+            "quadratic_functions"
+          ]
+        },
+        "variables": [
+          {
+            "symbol": "x_1, x_2",
+            "name": "与 x 轴交点横坐标",
+            "math_type": "scalar",
+            "domain": "\\mathbb{R}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          },
+          {
+            "symbol": "a",
+            "name": "二次项系数",
+            "math_type": "constant",
+            "domain": "\\mathbb{R} \\setminus \\{0\\}",
+            "quantity_kind": null,
+            "dimension": null,
+            "si_unit": null
+          }
+        ],
+        "conditions": [
+          "a ≠ 0 且 Δ = b² - 4ac ≥ 0"
+        ],
+        "review": {
+          "status": "human_verified",
+          "source": "人教版九年级上册 22.2",
+          "sympy_verified": true
+        }
+      }
+    ],
+    "derivations": [
+      {
+        "id": "deriv.alg.dist_to_diff_sq",
+        "from_formula_ids": [
+          "math.alg.distributive"
+        ],
+        "to_formula_id": "math.alg.diff_of_squares",
+        "relation_type": "special_case_of",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "specialization",
+          "cancel_opposite_terms"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "在分配律中令 c = a、d = -b，展开后交叉项 +ab 与 -ab 抵消即得平方差公式。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "(a + b)(a - b) = a^2 - ab + ba - b^2",
+              "note": "套用多项式乘法分配律展开",
+              "cited_formula_ids": [
+                "math.alg.distributive"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= a^2 - b^2",
+              "note": "交叉项 -ab 与 +ab 互为相反数抵消",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "(a + b)(a - b) = a\\cdot a + a(-b) + b\\cdot a + b(-b)",
+              "note": "令 (a+b)(c+d) 中的 c = a, d = -b 逐项相乘",
+              "cited_formula_ids": [
+                "math.alg.distributive"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= a^2 - ab + ab - b^2 = a^2 - b^2",
+              "note": "合并同类项，交叉项抵消",
+              "cited_formula_ids": [],
+              "pitfall": "套用时需认清“相同项”作 a、“互为相反项”作 b，结果为（相同项）² -（相反项）²。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.alg.dist_to_perf_sum",
+        "from_formula_ids": [
+          "math.alg.distributive"
+        ],
+        "to_formula_id": "math.alg.perfect_square_sum",
+        "relation_type": "special_case_of",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "specialization",
+          "combine_like_terms"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "将 (a+b)² 写为 (a+b)(a+b)，用分配律展开并合并两个 ab 项。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "(a + b)^2 = (a + b)(a + b) = a^2 + ab + ba + b^2",
+              "note": "套用乘法分配律展开",
+              "cited_formula_ids": [
+                "math.alg.distributive"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= a^2 + 2ab + b^2",
+              "note": "合并两个交叉项 ab",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "(a + b)^2 = (a + b)(a + b) = a^2 + ab + ab + b^2",
+              "note": "令分配律中 c = a, d = b 展开",
+              "cited_formula_ids": [
+                "math.alg.distributive"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= a^2 + 2ab + b^2",
+              "note": "合并同类项得到首平方、尾平方、二倍乘积放中央",
+              "cited_formula_ids": [],
+              "pitfall": "最常见错误是漏掉中间项 2ab，误写成 (a+b)² = a² + b²。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.alg.perf_sum_to_diff",
+        "from_formula_ids": [
+          "math.alg.perfect_square_sum"
+        ],
+        "to_formula_id": "math.alg.perfect_square_diff",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "variable_substitution"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "在完全平方和公式中将 b 替换为 -b 即可得到完全平方差公式。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "(a - b)^2 = [a + (-b)]^2 = a^2 + 2a(-b) + (-b)^2",
+              "note": "用 -b 替换完全平方和公式中的 b",
+              "cited_formula_ids": [
+                "math.alg.perfect_square_sum"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= a^2 - 2ab + b^2",
+              "note": "化简符号得证",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "(a - b)^2 = (a + (-b))^2",
+              "note": "改写为和的平方形式",
+              "cited_formula_ids": []
+            },
+            {
+              "step": 2,
+              "latex": "= a^2 + 2a(-b) + (-b)^2 = a^2 - 2ab + b^2",
+              "note": "套用完全平方和公式，注意 (-b)² = +b²",
+              "cited_formula_ids": [
+                "math.alg.perfect_square_sum"
+              ],
+              "pitfall": "尾项 (-b)² 恒为正号 +b²，只有中间项变为 -2ab。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.alg.diff_sq_to_factor",
+        "from_formula_ids": [
+          "math.alg.diff_of_squares"
+        ],
+        "to_formula_id": "math.alg.factor_diff_squares",
+        "relation_type": "equivalent_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "equality_symmetry"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "将平方差乘法公式左右两侧互换，即由整式乘法转为因式分解。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "(a + b)(a - b) = a^2 - b^2 \\iff a^2 - b^2 = (a + b)(a - b)",
+              "note": "交换等式两侧实现和差化积",
+              "cited_formula_ids": [
+                "math.alg.diff_of_squares"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "a^2 - b^2 = (a + b)(a - b)",
+              "note": "乘法展开与因式分解互为逆运算",
+              "cited_formula_ids": [
+                "math.alg.diff_of_squares"
+              ],
+              "pitfall": "因式分解必须分解到每个因式在有理数范围内不能再分解为止（如 x⁴ - 1 需分解两步）。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.alg.perf_to_factor",
+        "from_formula_ids": [
+          "math.alg.perfect_square_sum",
+          "math.alg.perfect_square_diff"
+        ],
+        "to_formula_id": "math.alg.factor_perfect_square",
+        "relation_type": "equivalent_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "equality_symmetry"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "将完全平方和与完全平方差公式合并并反向书写，即得完全平方因式分解法。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "a^2 \\pm 2ab + b^2 = (a \\pm b)^2",
+              "note": "合并两式并左右互换",
+              "cited_formula_ids": [
+                "math.alg.perfect_square_sum",
+                "math.alg.perfect_square_diff"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "a^2 + 2ab + b^2 = (a + b)^2,\\quad a^2 - 2ab + b^2 = (a - b)^2",
+              "note": "逆用两个完全平方公式",
+              "cited_formula_ids": [
+                "math.alg.perfect_square_sum",
+                "math.alg.perfect_square_diff"
+              ],
+              "pitfall": "若首项带负号（如 -x² + 2x - 1），先提取负号再套用公式。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.alg.dist_to_cross",
+        "from_formula_ids": [
+          "math.alg.distributive"
+        ],
+        "to_formula_id": "math.alg.cross_factor",
+        "relation_type": "equivalent_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "specialization",
+          "equality_symmetry"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "展开 (x+p)(x+q) = x² + (p+q)x + pq 后反向书写，即得十字相乘法。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "(x + p)(x + q) = x^2 + qx + px + pq = x^2 + (p + q)x + pq",
+              "note": "由分配律展开并合并一次项",
+              "cited_formula_ids": [
+                "math.alg.distributive"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "x^2 + (p + q)x + pq = (x + p)(x + q)",
+              "note": "反向书写用于快速因式分解",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "(x + p)(x + q) = x^2 + (p + q)x + pq",
+              "note": "分配律展开后观察一次项系数为 p+q、常数项为 pq",
+              "cited_formula_ids": [
+                "math.alg.distributive"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "x^2 + (p + q)x + pq = (x + p)(x + q)",
+              "note": "逆用时只需寻找乘积为常数项、和为一次项系数的两数 p, q",
+              "cited_formula_ids": [],
+              "pitfall": "常数项为负时，p 与 q 必一正一负，且绝对值较大者的符号与一次项系数相同。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.alg.perf_to_completing",
+        "from_formula_ids": [
+          "math.alg.factor_perfect_square"
+        ],
+        "to_formula_id": "math.alg.completing_square",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "factor_out_leading",
+          "add_subtract_half_square"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "提取二次项系数 a，在括号内加减一次项系数一半的平方 (b/2a)²，再套用完全平方式配方。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "ax^2 + bx + c = a\\left(x^2 + \\frac{b}{a}x\\right) + c",
+              "note": "前两项提取二次项系数 a（a ≠ 0）",
+              "cited_formula_ids": []
+            },
+            {
+              "step": 2,
+              "latex": "= a\\left[x^2 + \\frac{b}{a}x + \\left(\\frac{b}{2a}\\right)^2 - \\left(\\frac{b}{2a}\\right)^2\\right] + c",
+              "note": "括号内加上并减去一次项系数一半的平方",
+              "cited_formula_ids": []
+            },
+            {
+              "step": 3,
+              "latex": "= a\\left(x + \\frac{b}{2a}\\right)^2 + \\frac{4ac - b^2}{4a}",
+              "note": "前三项合并为完全平方，常数项通分整理",
+              "cited_formula_ids": [
+                "math.alg.factor_perfect_square"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "ax^2 + bx + c = a\\left(x^2 + \\frac{b}{a}x\\right) + c",
+              "note": "先将二次项系数化为 1",
+              "cited_formula_ids": []
+            },
+            {
+              "step": 2,
+              "latex": "= a\\left[\\left(x + \\frac{b}{2a}\\right)^2 - \\frac{b^2}{4a^2}\\right] + c",
+              "note": "凑配完全平方式并减去多加的常数项",
+              "cited_formula_ids": [
+                "math.alg.factor_perfect_square"
+              ]
+            },
+            {
+              "step": 3,
+              "latex": "= a\\left(x + \\frac{b}{2a}\\right)^2 - \\frac{b^2}{4a} + c = a\\left(x + \\frac{b}{2a}\\right)^2 + \\frac{4ac - b^2}{4a}",
+              "note": "乘开外层系数 a 并通分合并常数",
+              "cited_formula_ids": [],
+              "pitfall": "把括号内减去的新常数移出括号时，千万不要忘记乘以括号外的系数 a。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.eq.std_comp_to_completed",
+        "from_formula_ids": [
+          "math.eq.quadratic_standard",
+          "math.alg.completing_square"
+        ],
+        "to_formula_id": "math.eq.quadratic_completed",
+        "relation_type": "equivalent_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "identity_substitution",
+          "algebraic_rearrangement"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "将二次三项式配方法代入 ax² + bx + c = 0，移项并同除以 a 即可得到方程配方标准式。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "a\\left(x + \\frac{b}{2a}\\right)^2 + \\frac{4ac - b^2}{4a} = 0",
+              "note": "对一般式左侧直接套用配方法",
+              "cited_formula_ids": [
+                "math.eq.quadratic_standard",
+                "math.alg.completing_square"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "\\left(x + \\frac{b}{2a}\\right)^2 = \\frac{b^2 - 4ac}{4a^2}",
+              "note": "移项后两边同除以 a（a ≠ 0）",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "a\\left(x + \\frac{b}{2a}\\right)^2 = \\frac{b^2 - 4ac}{4a}",
+              "note": "将常数项移至等式右侧并变号",
+              "cited_formula_ids": [
+                "math.eq.quadratic_standard",
+                "math.alg.completing_square"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "\\left(x + \\frac{b}{2a}\\right)^2 = \\frac{b^2 - 4ac}{4a^2}",
+              "note": "两边同除以 a，分母变为 4a² > 0",
+              "cited_formula_ids": [],
+              "pitfall": "因为 4a² 恒大于 0，右侧正负完全由分子 b² - 4ac 决定，这正是判别式的由来。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.eq.completed_to_disc",
+        "from_formula_ids": [
+          "math.eq.quadratic_completed"
+        ],
+        "to_formula_id": "math.eq.discriminant",
+        "relation_type": "derives_to",
+        "dependency_site": "definition_level",
+        "inference_rules": [
+          "nonnegativity_analysis"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "在配方方程中左侧平方非负、右侧分母 4a² > 0，因此实根存在性完全由分子 Δ = b² - 4ac 决定。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "\\left(x + \\frac{b}{2a}\\right)^2 = \\frac{b^2 - 4ac}{4a^2} \\ge 0",
+              "note": "实数平方非负且 4a² > 0，故方程有实根当且仅当 b² - 4ac ≥ 0",
+              "cited_formula_ids": [
+                "math.eq.quadratic_completed"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "\\Delta = b^2 - 4ac",
+              "note": "将该分子定义为根的判别式 Δ",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "\\Delta = b^2 - 4ac",
+              "note": "按 Δ > 0、Δ = 0、Δ < 0 三种情况分别对应右侧为正、为零、为负，直接给出两不等实根、两等实根、无实根三种结论",
+              "cited_formula_ids": [
+                "math.eq.quadratic_completed"
+              ],
+              "pitfall": "计算 Δ 前必须先把方程整理成 ax² + bx + c = 0 的一般式，注意 b、c 的符号。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.eq.completed_disc_to_formula",
+        "from_formula_ids": [
+          "math.eq.quadratic_completed",
+          "math.eq.discriminant"
+        ],
+        "to_formula_id": "math.eq.quadratic_formula",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "take_square_root",
+          "algebraic_rearrangement"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "当 Δ ≥ 0 时对配方方程两边直接开平方，再移项通分即得一元二次方程求根公式。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "x + \\frac{b}{2a} = \\pm \\frac{\\sqrt{b^2 - 4ac}}{2a}",
+              "note": "当 Δ ≥ 0 时两边开平方（正负号已吸收 |2a| 与 2a 的符号差异）",
+              "cited_formula_ids": [
+                "math.eq.quadratic_completed",
+                "math.eq.discriminant"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+              "note": "移项并合并同分母 2a",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "x + \\frac{b}{2a} = \\pm \\sqrt{\\frac{\\Delta}{4a^2}} = \\pm \\frac{\\sqrt{\\Delta}}{2|a|} = \\pm \\frac{\\sqrt{\\Delta}}{2a}",
+              "note": "因为前面已有 ± 号，无论 a 正负，±1/(2|a|) 与 ±1/(2a) 取值集合完全一致",
+              "cited_formula_ids": [
+                "math.eq.quadratic_completed",
+                "math.eq.discriminant"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "x = -\\frac{b}{2a} \\pm \\frac{\\sqrt{b^2 - 4ac}}{2a} = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+              "note": "移项合并分式完成推导",
+              "cited_formula_ids": [],
+              "pitfall": "公式分子首项是 -b，分母是 2a，切勿漏掉负号或写成 a。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.eq.formula_to_vieta_sum",
+        "from_formula_ids": [
+          "math.eq.quadratic_formula"
+        ],
+        "to_formula_id": "math.eq.vieta_sum",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "add_roots",
+          "cancel_opposite_terms"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "将求根公式给出的两根直接相加，根号项一正一负抵消即得 x1 + x2 = -b/a。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "x_1 + x_2 = \\frac{-b + \\sqrt{\\Delta}}{2a} + \\frac{-b - \\sqrt{\\Delta}}{2a}",
+              "note": "写出两根并相加",
+              "cited_formula_ids": [
+                "math.eq.quadratic_formula"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= \\frac{-2b}{2a} = -\\frac{b}{a}",
+              "note": "抵消 ±√Δ 并约分 2",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "x_1 = \\frac{-b + \\sqrt{\\Delta}}{2a},\\quad x_2 = \\frac{-b - \\sqrt{\\Delta}}{2a}",
+              "note": "由求根公式写出两根",
+              "cited_formula_ids": [
+                "math.eq.quadratic_formula"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "x_1 + x_2 = \\frac{-b + \\sqrt{\\Delta} - b - \\sqrt{\\Delta}}{2a} = -\\frac{b}{a}",
+              "note": "同分母相加并约去公因子 2",
+              "cited_formula_ids": [],
+              "pitfall": "使用韦达定理求参数范围时，切记附加隐含前提 Δ ≥ 0！"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.eq.formula_diffsq_to_vieta_prod",
+        "from_formula_ids": [
+          "math.eq.quadratic_formula",
+          "math.alg.diff_of_squares"
+        ],
+        "to_formula_id": "math.eq.vieta_product",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "multiply_roots",
+          "difference_of_squares"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "将求根公式给出的两根相乘，分子用平方差公式展开消去 b² 项并约去 4a。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "x_1 x_2 = \\frac{(-b + \\sqrt{b^2 - 4ac})(-b - \\sqrt{b^2 - 4ac})}{4a^2}",
+              "note": "两根分子分母分别相乘",
+              "cited_formula_ids": [
+                "math.eq.quadratic_formula"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= \\frac{(-b)^2 - (b^2 - 4ac)}{4a^2} = \\frac{4ac}{4a^2} = \\frac{c}{a}",
+              "note": "分子套用平方差公式并约分",
+              "cited_formula_ids": [
+                "math.alg.diff_of_squares"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "x_1 x_2 = \\frac{(-b)^2 - (\\sqrt{b^2 - 4ac})^2}{(2a)^2}",
+              "note": "将 -b 视为相同项、±√Δ 视为相反项套用平方差公式",
+              "cited_formula_ids": [
+                "math.eq.quadratic_formula",
+                "math.alg.diff_of_squares"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= \\frac{b^2 - b^2 + 4ac}{4a^2} = \\frac{c}{a}",
+              "note": "抵消 b² 并约去 4a（a ≠ 0）",
+              "cited_formula_ids": [],
+              "pitfall": "两根之积是 +c/a（无负号），两根之和是 -b/a（带负号）。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.eq.formula_to_root_diff",
+        "from_formula_ids": [
+          "math.eq.quadratic_formula",
+          "math.eq.discriminant"
+        ],
+        "to_formula_id": "math.eq.root_diff",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "subtract_roots"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "将求根公式两根相减并取绝对值，-b 项抵消，合并两个 √Δ 项后约去 2。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "|x_1 - x_2| = \\left|\\frac{-b + \\sqrt{\\Delta}}{2a} - \\frac{-b - \\sqrt{\\Delta}}{2a}\\right| = \\left|\\frac{2\\sqrt{\\Delta}}{2a}\\right|",
+              "note": "两根相减消去 -b",
+              "cited_formula_ids": [
+                "math.eq.quadratic_formula",
+                "math.eq.discriminant"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= \\frac{\\sqrt{\\Delta}}{|a|}",
+              "note": "约去 2 并对分母保留绝对值",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "|x_1 - x_2| = \\frac{2\\sqrt{\\Delta}}{2|a|} = \\frac{\\sqrt{\\Delta}}{|a|}",
+              "note": "直接由求根公式相减；也可用 √[(x1+x2)² - 4x1x2] 由韦达定理推得",
+              "cited_formula_ids": [
+                "math.eq.quadratic_formula",
+                "math.eq.discriminant"
+              ],
+              "pitfall": "分母必须加绝对值 |a|，当二次函数开口向下（a < 0）时尤为关键。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.eq.perf_vieta_to_sq_sum",
+        "from_formula_ids": [
+          "math.alg.perfect_square_sum",
+          "math.eq.vieta_sum",
+          "math.eq.vieta_product"
+        ],
+        "to_formula_id": "math.eq.root_sq_sum",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "algebraic_rearrangement",
+          "vieta_substitution"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "将完全平方和公式 (x1+x2)² = x1² + 2x1x2 + x2² 移项即可分离出 x1² + x2²，再代入韦达定理求值。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "(x_1 + x_2)^2 = x_1^2 + 2x_1 x_2 + x_2^2",
+              "note": "写出两根和的完全平方",
+              "cited_formula_ids": [
+                "math.alg.perfect_square_sum"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2 = \\frac{b^2 - 2ac}{a^2}",
+              "note": "移项后代入韦达定理",
+              "cited_formula_ids": [
+                "math.eq.vieta_sum",
+                "math.eq.vieta_product"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2",
+              "note": "把对称式改写为基本对称式 (x1+x2) 与 x1x2 的组合",
+              "cited_formula_ids": [
+                "math.alg.perfect_square_sum"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= \\left(-\\frac{b}{a}\\right)^2 - 2\\left(\\frac{c}{a}\\right) = \\frac{b^2 - 2ac}{a^2}",
+              "note": "直接代入韦达定理，免去解无理根的繁琐计算",
+              "cited_formula_ids": [
+                "math.eq.vieta_sum",
+                "math.eq.vieta_product"
+              ],
+              "pitfall": "若题目求 x1² + x2² 的值，先确认原方程 Δ ≥ 0 再套用。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.func.gen_comp_to_vertex",
+        "from_formula_ids": [
+          "math.func.quad_general",
+          "math.alg.completing_square"
+        ],
+        "to_formula_id": "math.func.quad_vertex",
+        "relation_type": "equivalent_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "completing_the_square"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "对二次函数一般式右侧应用配方法，令 h = -b/(2a)、k = (4ac - b²)/(4a) 即得顶点式。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "y = ax^2 + bx + c = a\\left(x + \\frac{b}{2a}\\right)^2 + \\frac{4ac - b^2}{4a}",
+              "note": "应用二次三项式配方法",
+              "cited_formula_ids": [
+                "math.func.quad_general",
+                "math.alg.completing_square"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "y = a(x - h)^2 + k,\\quad h = -\\frac{b}{2a},\\ k = \\frac{4ac - b^2}{4a}",
+              "note": "令 h, k 表示顶点坐标",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "y = a\\left(x - \\left(-\\frac{b}{2a}\\right)\\right)^2 + \\frac{4ac - b^2}{4a}",
+              "note": "将 x + b/(2a) 写成 x - (-b/2a) 以对齐顶点式符号",
+              "cited_formula_ids": [
+                "math.func.quad_general",
+                "math.alg.completing_square"
+              ],
+              "pitfall": "顶点式括号内为减号 (x - h)²，故 y = 2(x + 3)² - 1 的顶点横坐标是 -3。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.func.vertex_to_extremum",
+        "from_formula_ids": [
+          "math.func.quad_vertex"
+        ],
+        "to_formula_id": "math.func.quad_extremum",
+        "relation_type": "derives_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "nonnegativity_analysis"
+        ],
+        "bidirectional": false,
+        "levels": {
+          "L1_summary": "由于实数平方 (x - h)² ≥ 0，当且仅当 x = h = -b/(2a) 时平方项归零，函数取得顶点极值 k。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "(x - h)^2 \\ge 0,\\quad \\text{当且仅当 } x = h = -\\frac{b}{2a} \\text{ 时取等}",
+              "note": "利用平方非负性判断极值点",
+              "cited_formula_ids": [
+                "math.func.quad_vertex"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "y_{\\text{极}} = k = \\frac{4ac - b^2}{4a}",
+              "note": "a > 0 时取最小值，a < 0 时取最大值",
+              "cited_formula_ids": []
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "y = a(x - h)^2 + k",
+              "note": "当 x = h 时，a(x - h)² = 0，y = k",
+              "cited_formula_ids": [
+                "math.func.quad_vertex"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "x = -\\frac{b}{2a},\\quad y_{\\text{极}} = \\frac{4ac - b^2}{4a}",
+              "note": "若自变量受限于闭区间 [m, n]，则需比较对称轴是否在区间内以确定端点最值",
+              "cited_formula_ids": [],
+              "pitfall": "实际应用题中务必检查对称轴 x = -b/(2a) 是否落在自变量允许范围内。"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deriv.func.gen_vieta_to_intercept",
+        "from_formula_ids": [
+          "math.func.quad_general",
+          "math.eq.vieta_sum",
+          "math.eq.vieta_product"
+        ],
+        "to_formula_id": "math.func.quad_intercept",
+        "relation_type": "equivalent_to",
+        "dependency_site": "proof_level",
+        "inference_rules": [
+          "factor_out_leading",
+          "vieta_substitution"
+        ],
+        "bidirectional": true,
+        "levels": {
+          "L1_summary": "提取二次项系数 a 后，将 b/a = -(x1+x2) 与 c/a = x1x2 代入并用十字相乘法分解，即得交点式。",
+          "L2_standard": [
+            {
+              "step": 1,
+              "latex": "y = a\\left(x^2 + \\frac{b}{a}x + \\frac{c}{a}\\right) = a\\left[x^2 - (x_1 + x_2)x + x_1 x_2\\right]",
+              "note": "提取系数 a 并代入韦达定理",
+              "cited_formula_ids": [
+                "math.func.quad_general",
+                "math.eq.vieta_sum",
+                "math.eq.vieta_product"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "y = a(x - x_1)(x - x_2)",
+              "note": "套用十字相乘法分解为两根因式之积",
+              "cited_formula_ids": [
+                "math.alg.cross_factor"
+              ]
+            }
+          ],
+          "L3_detailed": [
+            {
+              "step": 1,
+              "latex": "ax^2 + bx + c = a\\left(x^2 - (x_1 + x_2)x + x_1 x_2\\right)",
+              "note": "当抛物线与 x 轴有交点（Δ ≥ 0）时，令 y = 0 得两根 x1, x2 并由韦达定理替换系数",
+              "cited_formula_ids": [
+                "math.func.quad_general",
+                "math.eq.vieta_sum",
+                "math.eq.vieta_product"
+              ]
+            },
+            {
+              "step": 2,
+              "latex": "= a(x - x_1)(x - x_2)",
+              "note": "由十字相乘法完成因式分解，已知两交点及第三点坐标时可直接待定系数求 a",
+              "cited_formula_ids": [
+                "math.alg.cross_factor"
+              ],
+              "pitfall": "只有抛物线与 x 轴有交点（Δ ≥ 0）时才存在实数交点式；且切记保留首项系数 a。"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "stageW": 1380,
+  "stageH": 680,
+  "defaultZoom": 0.86,
+  "defaultFormula": "math.eq.quadratic_formula",
+  "defaultDeriv": "deriv.eq.completed_disc_to_formula",
+  "defaultPathStart": "math.alg.distributive",
+  "defaultPathEnd": "math.func.quad_extremum",
+  "lanes": [
+    {
+      "x": 24,
+      "label": "1. 乘法公式"
+    },
+    {
+      "x": 296,
+      "label": "2. 因式分解与配方"
+    },
+    {
+      "x": 568,
+      "label": "3. 一元二次方程"
+    },
+    {
+      "x": 840,
+      "label": "4. 韦达定理与根系"
+    },
+    {
+      "x": 1112,
+      "label": "5. 二次函数三式"
+    }
+  ],
+  "topicButtons": [
+    {
+      "id": "all",
+      "label": "全部"
+    },
+    {
+      "id": "multiplication_formulas",
+      "label": "乘法公式"
+    },
+    {
+      "id": "factorization",
+      "label": "因式分解/配方"
+    },
+    {
+      "id": "quadratic_equations",
+      "label": "一元二次方程"
+    },
+    {
+      "id": "vieta_relations",
+      "label": "韦达定理"
+    },
+    {
+      "id": "quadratic_functions",
+      "label": "二次函数"
+    }
+  ],
+  "positions": {
+    "math.alg.distributive": {
+      "x": 24,
+      "y": 52
+    },
+    "math.alg.diff_of_squares": {
+      "x": 24,
+      "y": 204
+    },
+    "math.alg.perfect_square_sum": {
+      "x": 24,
+      "y": 356
+    },
+    "math.alg.perfect_square_diff": {
+      "x": 24,
+      "y": 508
+    },
+    "math.alg.factor_diff_squares": {
+      "x": 296,
+      "y": 52
+    },
+    "math.alg.factor_perfect_square": {
+      "x": 296,
+      "y": 204
+    },
+    "math.alg.cross_factor": {
+      "x": 296,
+      "y": 356
+    },
+    "math.alg.completing_square": {
+      "x": 296,
+      "y": 508
+    },
+    "math.eq.quadratic_standard": {
+      "x": 568,
+      "y": 52
+    },
+    "math.eq.quadratic_completed": {
+      "x": 568,
+      "y": 204
+    },
+    "math.eq.discriminant": {
+      "x": 568,
+      "y": 356
+    },
+    "math.eq.quadratic_formula": {
+      "x": 568,
+      "y": 508
+    },
+    "math.eq.vieta_sum": {
+      "x": 840,
+      "y": 52
+    },
+    "math.eq.vieta_product": {
+      "x": 840,
+      "y": 204
+    },
+    "math.eq.root_diff": {
+      "x": 840,
+      "y": 356
+    },
+    "math.eq.root_sq_sum": {
+      "x": 840,
+      "y": 508
+    },
+    "math.func.quad_general": {
+      "x": 1112,
+      "y": 52
+    },
+    "math.func.quad_vertex": {
+      "x": 1112,
+      "y": 204
+    },
+    "math.func.quad_extremum": {
+      "x": 1112,
+      "y": 356
+    },
+    "math.func.quad_intercept": {
+      "x": 1112,
+      "y": 508
+    }
+  }
+},
       junior_elec: {
         data: {
   "schema_version": "1.0.0",
@@ -4713,7 +6635,9 @@
       parallel_circuit: "并联电路", electric_power: "电功/电热",
       trigonometry: "三角函数", trigonometric_identities: "同角关系", induction_formulas: "诱导公式",
       angle_sum_and_difference: "和差角", double_angle: "二倍角", power_reduction: "降幂/辅助角",
-      calculus_integration_prep: "微积分前置", triangle_solving: "解三角形"
+      calculus_integration_prep: "微积分前置", triangle_solving: "解三角形",
+      multiplication_formulas: "乘法公式", factorization: "因式分解/配方",
+      quadratic_equations: "一元二次方程", vieta_relations: "韦达定理", quadratic_functions: "二次函数"
     };
     const REL_LABELS = {
       derives_to: "直接推导", special_case_of: "特例化", generalizes: "推广",
@@ -4759,7 +6683,7 @@
         .replace(/\\xrightarrow\{([^}]*)\}/g, " → ")
         .replace(/\\quad|\\ /g, "&nbsp;")
         .replace(/\\cdot/g, "·")
-        .replace(/\\neq/g, "≠")
+        .replace(/\\neq/g, "≠").replace(/\\pm/g, "±").replace(/\\Delta/g, "Δ").replace(/\\ge/g, "≥").replace(/\\iff/g, "⇔")
         .replace(/\\le/g, "≤")
         .replace(/\\infty/g, "∞")
         .replace(/\\alpha/g, "α").replace(/\\beta/g, "β").replace(/\\varphi/g, "φ").replace(/\\pi/g, "π")
@@ -5227,7 +7151,7 @@
 
     window.__katexReady = () => { renderGraph(); renderDrawer(); };
     initControls();
-    loadPack("junior_elec");
+    loadPack("junior_alg");
   </script>
 </body>
 </html>
