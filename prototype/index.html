@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="公式图谱" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
   <title>公式知识图谱 · 动态视图生成系统</title>
   <!-- 在线时自动加载 KaTeX 渲染出版级数学公式；离线时无缝回退到内置原生公式渲染器 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
@@ -340,6 +345,7 @@
         </div>
         <input class="search-box" id="searchInput" type="search" placeholder="搜索公式名或别名..." />
         <button class="toggle-btn" id="resetBtn">重置筛选</button>
+        <button class="toggle-btn active" id="installPwaBtn" style="display:none" title="安装到桌面作为独立应用离线使用">⬇ 安装桌面版</button>
       </div>
     </header>
 
@@ -369,6 +375,7 @@
             </div>
             <button class="toggle-btn" id="bridgeBtn" title="筛选局部时，虚框带出 1 跳跨学段/跨学科直接前置与衍生公式">⇄ 带出跨界桥梁</button>
             <button class="toggle-btn" id="focusOnlyBtn">◎ 仅看直接关联</button>
+            <button class="toggle-btn" id="shareViewBtn" title="复制当前动态视图的直达分享链接">🔗 分享视图</button>
           </div>
 
           <div class="right-controls">
@@ -12960,8 +12967,116 @@
       document.getElementById("zoomFitBtn").onclick = () => fitViewToCanvas();
     }
 
+    // URL 状态双向同步（支持将任意动态视图以链接形式分享）
+    function buildShareURL() {
+      const params = new URLSearchParams();
+      if (state.stageFilter !== "all") params.set("stage", state.stageFilter);
+      if (state.discFilter !== "all") params.set("disc", state.discFilter);
+      if (state.branchFilter !== "all") params.set("branch", state.branchFilter);
+      if (state.topicFilter !== "all") params.set("topic", state.topicFilter);
+      if (state.searchQuery.trim()) params.set("q", state.searchQuery.trim());
+      if (state.layoutMode !== "auto") params.set("layout", state.layoutMode);
+      if (state.density !== "standard") params.set("density", state.density);
+      if (state.includeBridges) params.set("bridges", "1");
+      if (state.focusOnly) params.set("focus", "1");
+      if (state.selectedFormulaId) params.set("formula", state.selectedFormulaId);
+      if (state.activeTab === "derivation" && state.selectedDerivId) {
+        params.set("tab", "derivation");
+        params.set("deriv", state.selectedDerivId);
+      }
+      if (state.level !== "L2") params.set("level", state.level);
+      const qs = params.toString();
+      const base = window.location.origin === "null"
+        ? window.location.href.split("?")[0]
+        : window.location.origin + window.location.pathname;
+      return qs ? `${base}?${qs}` : base;
+    }
+
+    function syncStateToURL() {
+      if (window.location.protocol !== "http:" && window.location.protocol !== "https:") return;
+      try { window.history.replaceState(null, "", buildShareURL()); } catch (e) {}
+    }
+
+    function restoreStateFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.toString()) return;
+      if (params.get("stage")) state.stageFilter = params.get("stage");
+      if (params.get("disc")) state.discFilter = params.get("disc");
+      if (params.get("branch")) state.branchFilter = params.get("branch");
+      if (params.get("topic")) state.topicFilter = params.get("topic");
+      if (params.get("q")) {
+        state.searchQuery = params.get("q");
+        document.getElementById("searchInput").value = state.searchQuery;
+      }
+      if (["auto", "topo", "topic", "branch", "stage"].includes(params.get("layout"))) {
+        state.layoutMode = params.get("layout");
+        document.getElementById("layoutModeSelect").value = state.layoutMode;
+      }
+      if (["compact", "standard", "spacious"].includes(params.get("density"))) {
+        state.density = params.get("density");
+        document.getElementById("densitySelect").value = state.density;
+      }
+      if (params.get("bridges") === "1") {
+        state.includeBridges = true;
+        document.getElementById("bridgeBtn").classList.add("active");
+      }
+      if (params.get("focus") === "1") {
+        state.focusOnly = true;
+        document.getElementById("focusOnlyBtn").classList.add("active");
+      }
+      if (params.get("formula") && formulaById[params.get("formula")]) {
+        state.selectedFormulaId = params.get("formula");
+      }
+      if (params.get("tab") === "derivation" && params.get("deriv") && derivById[params.get("deriv")]) {
+        state.activeTab = "derivation";
+        state.selectedDerivId = params.get("deriv");
+      }
+      if (["L1", "L2", "L3"].includes(params.get("level"))) {
+        state.level = params.get("level");
+      }
+    }
+
+    // 分享当前动态视图按钮
+    document.getElementById("shareViewBtn").onclick = async () => {
+      const url = buildShareURL();
+      const btn = document.getElementById("shareViewBtn");
+      try {
+        await navigator.clipboard.writeText(url);
+        btn.textContent = "✓ 已复制链接";
+        btn.classList.add("active");
+        setTimeout(() => { btn.textContent = "🔗 分享视图"; btn.classList.remove("active"); }, 1800);
+      } catch (e) {
+        window.prompt("复制下方链接即可直达当前动态视图：", url);
+      }
+    };
+
+    // PWA 安装提示与 Service Worker 注册（仅在 http/https 环境下启用）
+    let deferredInstallPrompt = null;
+    const installBtn = document.getElementById("installPwaBtn");
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      installBtn.style.display = "inline-flex";
+    });
+    installBtn.onclick = async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      installBtn.style.display = "none";
+    };
+    if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+
+    const _baseRenderDrawer = renderDrawer;
+    renderDrawer = () => { _baseRenderDrawer(); syncStateToURL(); };
+
     window.__katexReady = () => { renderGraph(); renderDrawer(); };
     initControls();
+    restoreStateFromURL();
     syncCascadingDropdowns();
     generateDynamicView(true);
   </script>

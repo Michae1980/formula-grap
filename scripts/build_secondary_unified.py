@@ -331,7 +331,18 @@ def main() -> int:
     rendered = tpl.replace("/*__TAXONOMY_PAYLOAD__*/", json.dumps(taxonomy_obj, ensure_ascii=False, indent=2), 1)
     rendered = rendered.replace("/*__MASTER_GRAPH_PAYLOAD__*/", json.dumps(master_graph, ensure_ascii=False, indent=2), 1)
     html_path.write_text(rendered, encoding="utf-8")
-    print(f"OK: {len(master_formulas)} 公式全部完成多级分类映射，已生成动态视图原型 prototype/index.html。")
+
+    # 同步生成可直接部署至 GitHub Pages / Cloudflare Pages 的独立静态网站 + PWA 目录（site/）
+    import shutil
+    site_dir = repo_root / "site"
+    site_dir.mkdir(exist_ok=True)
+    (site_dir / "index.html").write_text(rendered, encoding="utf-8")
+    (site_dir / ".nojekyll").write_text("", encoding="utf-8")
+    pwa_dir = repo_root / "prototype" / "pwa"
+    for asset_name in ("manifest.webmanifest", "sw.js", "icon.svg", "icon-192.png", "icon-512.png"):
+        shutil.copy2(pwa_dir / asset_name, site_dir / asset_name)
+
+    print(f"OK: {len(master_formulas)} 公式全部完成多级分类映射，已生成 prototype/index.html 与可部署 PWA 站点 site/。")
     return 0
 
 
