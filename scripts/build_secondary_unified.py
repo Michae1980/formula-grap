@@ -308,12 +308,26 @@ def main() -> int:
         },
     }
 
+    taxonomy_path = repo_root / "schema" / "taxonomy.v1.json"
+    taxonomy_obj = json.loads(taxonomy_path.read_text(encoding="utf-8"))
+
+    raw_map = set()
+    for disc in taxonomy_obj["disciplines"]:
+        for br in disc["branches"]:
+            for tp in br["topics"]:
+                for rt in tp.get("raw_topics", [tp["id"]]):
+                    raw_map.add(rt)
+    unmapped = [f["id"] for f in all_formulas if not any(t in raw_map for t in f["taxonomy"]["topics"])]
+    assert not unmapped, f"存在未归入三级分类树的公式: {unmapped}"
+
+    tpl_path = repo_root / "prototype" / "template.html"
     html_path = repo_root / "prototype" / "index.html"
-    tpl = html_path.read_text(encoding="utf-8")
-    assert "/*__PACKS_PAYLOAD__*/" in tpl, "请先确保 prototype/index.html 包含 /*__PACKS_PAYLOAD__*/ 占位符"
-    rendered = tpl.replace("/*__PACKS_PAYLOAD__*/", json.dumps(packs_payload, ensure_ascii=False, indent=2), 1)
+    tpl = tpl_path.read_text(encoding="utf-8")
+    assert "/*__TAXONOMY_PAYLOAD__*/" in tpl and "/*__PACKS_PAYLOAD__*/" in tpl
+    rendered = tpl.replace("/*__TAXONOMY_PAYLOAD__*/", json.dumps(taxonomy_obj, ensure_ascii=False, indent=2), 1)
+    rendered = rendered.replace("/*__PACKS_PAYLOAD__*/", json.dumps(packs_payload, ensure_ascii=False, indent=2), 1)
     html_path.write_text(rendered, encoding="utf-8")
-    print("OK: 已将中学 103 公式总图与全部下拉筛选器写入 prototype/index.html。")
+    print("OK: 103 公式全部完成三级分类映射，已基于 template.html 生成三级联动原型 prototype/index.html。")
     return 0
 
 

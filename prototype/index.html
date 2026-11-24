@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>公式知识图谱 · 中学全量跨学科总图（103 公式）</title>
+  <title>公式知识图谱 · 中学全量跨学科总图（三级联动筛选）</title>
   <!-- 在线时自动加载 KaTeX 渲染出版级数学公式；离线时无缝回退到内置原生公式渲染器 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="window.__katexReady && window.__katexReady()"></script>
@@ -50,7 +50,7 @@
     }
     .app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
 
-    /* 顶部栏：全下拉框紧凑排布 */
+    /* 顶部栏：学段 → 学科 → 分支 → 专题 多级联动下拉框 */
     .topbar {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -76,12 +76,12 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
     .select-field {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       background: var(--surface-subtle);
       border: 1px solid var(--border-strong);
       border-radius: 8px;
@@ -102,12 +102,12 @@
       border: none;
       background: transparent;
       color: var(--ink);
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 500;
       outline: none;
       cursor: pointer;
-      padding: 2px 2px;
-      max-width: 210px;
+      padding: 2px 1px;
+      max-width: 195px;
     }
     .select-field.primary-field select { color: #1e40af; font-weight: 600; }
 
@@ -115,8 +115,8 @@
       border: 1px solid var(--border-strong);
       border-radius: 8px;
       padding: 5px 10px;
-      font-size: 12.5px;
-      width: 165px;
+      font-size: 12px;
+      width: 150px;
       outline: none;
       background: var(--surface);
       color: var(--ink);
@@ -126,7 +126,7 @@
     .toggle-btn {
       display: inline-flex; align-items: center; gap: 5px;
       border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink-secondary);
-      padding: 5px 11px; border-radius: 8px; font-size: 12px; cursor: pointer;
+      padding: 5px 10px; border-radius: 8px; font-size: 12px; cursor: pointer;
     }
     .toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
     .toggle-btn.active { background: var(--primary-soft); border-color: var(--primary); color: var(--primary); font-weight: 600; }
@@ -291,7 +291,7 @@
       <div class="brand">
         <div class="brand-badge">∑</div>
         <div>
-          <div class="brand-title">公式知识图谱 · 中学统一总图</div>
+          <div class="brand-title">公式知识图谱 · 三级联动筛选原型</div>
           <div class="brand-sub" id="statsSubtitle">加载中...</div>
         </div>
       </div>
@@ -302,22 +302,15 @@
         </div>
         <div class="select-field">
           <label for="stageSelect">学段</label>
-          <select id="stageSelect">
-            <option value="all">全部学段</option>
-            <option value="junior_high">初中</option>
-            <option value="senior_high">高中</option>
-            <option value="undergraduate">大学/高等前置</option>
-          </select>
+          <select id="stageSelect"></select>
         </div>
         <div class="select-field">
           <label for="discSelect">学科</label>
-          <select id="discSelect">
-            <option value="all">全部学科</option>
-            <option value="mathematics">数学</option>
-            <option value="physics">物理(科学)</option>
-            <option value="chemistry">化学(科学)</option>
-            <option value="statistics">统计学（待扩展）</option>
-          </select>
+          <select id="discSelect"></select>
+        </div>
+        <div class="select-field">
+          <label for="branchSelect">分支</label>
+          <select id="branchSelect"></select>
         </div>
         <div class="select-field">
           <label for="topicSelect">专题</label>
@@ -388,7 +381,7 @@
           </div>
         </div>
 
-        <div class="canvas-hint" id="canvasHint">提示：使用顶部下拉框按学段/学科/专题筛选；点击公式卡片聚焦直接关联与三级推导</div>
+        <div class="canvas-hint" id="canvasHint">提示：选定学段、学科或分支后，下游分支与专题下拉框将自动收敛为直接相关项</div>
       </section>
 
       <aside class="drawer">
@@ -402,6 +395,266 @@
   </div>
 
   <script>
+    const TAXONOMY = {
+  "taxonomy_version": "1.0.0",
+  "description": "公式知识图谱三级分类体系（学科 Discipline → 分支领域 Branch → 规范专题 Topic）",
+  "disciplines": [
+    {
+      "id": "mathematics",
+      "label": "数学",
+      "branches": [
+        {
+          "id": "math.algebra",
+          "label": "代数与方程",
+          "topics": [
+            {
+              "id": "multiplication_formulas",
+              "label": "乘法公式与分式",
+              "raw_topics": [
+                "multiplication_formulas",
+                "rational_expressions"
+              ]
+            },
+            {
+              "id": "factorization",
+              "label": "因式分解与配方法",
+              "raw_topics": [
+                "factorization"
+              ]
+            },
+            {
+              "id": "quadratic_equations",
+              "label": "一元二次方程与韦达定理",
+              "raw_topics": [
+                "quadratic_equations",
+                "vieta_relations"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "math.functions",
+          "label": "函数与不等式",
+          "topics": [
+            {
+              "id": "proportionality",
+              "label": "正反比例函数",
+              "raw_topics": [
+                "proportionality"
+              ]
+            },
+            {
+              "id": "quadratic_functions",
+              "label": "二次函数三式与最值",
+              "raw_topics": [
+                "quadratic_functions"
+              ]
+            },
+            {
+              "id": "exp_log",
+              "label": "指数与对数运算",
+              "raw_topics": [
+                "exp_log"
+              ]
+            },
+            {
+              "id": "inequalities_props",
+              "label": "基本不等式与函数性质",
+              "raw_topics": [
+                "inequalities_props",
+                "inequalities"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "math.trigonometry",
+          "label": "三角学",
+          "topics": [
+            {
+              "id": "trigonometric_identities",
+              "label": "定义与同角关系",
+              "raw_topics": [
+                "trigonometric_identities"
+              ]
+            },
+            {
+              "id": "induction_formulas",
+              "label": "诱导公式",
+              "raw_topics": [
+                "induction_formulas"
+              ]
+            },
+            {
+              "id": "angle_sum_and_difference",
+              "label": "和差角与倍角降幂",
+              "raw_topics": [
+                "angle_sum_and_difference",
+                "double_angle",
+                "power_reduction"
+              ]
+            },
+            {
+              "id": "triangle_solving",
+              "label": "解三角形",
+              "raw_topics": [
+                "triangle_solving"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "math.calculus",
+          "label": "微积分与导数",
+          "topics": [
+            {
+              "id": "derivative_basics",
+              "label": "导数定义与基本公式",
+              "raw_topics": [
+                "derivative_basics"
+              ]
+            },
+            {
+              "id": "derivative_rules",
+              "label": "导数四则与链式法则",
+              "raw_topics": [
+                "derivative_rules"
+              ]
+            },
+            {
+              "id": "derivative_applications",
+              "label": "切线、单调性与极值",
+              "raw_topics": [
+                "derivative_applications"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "math.geometry",
+          "label": "几何与解析",
+          "topics": [
+            {
+              "id": "geometry",
+              "label": "平面与立体几何基础",
+              "raw_topics": [
+                "geometry"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "math.statistics",
+          "label": "概率与统计学（预留扩展）",
+          "topics": []
+        },
+        {
+          "id": "math.linear_algebra",
+          "label": "线性代数（预留扩展）",
+          "topics": []
+        }
+      ]
+    },
+    {
+      "id": "physics",
+      "label": "物理（科学）",
+      "branches": [
+        {
+          "id": "physics.mechanics",
+          "label": "力学与运动",
+          "topics": [
+            {
+              "id": "mechanics_basics",
+              "label": "运动、密度与重力",
+              "raw_topics": [
+                "mechanics_basics"
+              ]
+            },
+            {
+              "id": "pressure_buoyancy",
+              "label": "压强与浮力",
+              "raw_topics": [
+                "pressure_buoyancy"
+              ]
+            },
+            {
+              "id": "simple_machines",
+              "label": "杠杆与滑轮组",
+              "raw_topics": [
+                "simple_machines"
+              ]
+            },
+            {
+              "id": "work_power_efficiency",
+              "label": "功、功率与机械效率",
+              "raw_topics": [
+                "work_power_efficiency"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "physics.electricity",
+          "label": "电学与磁学",
+          "topics": [
+            {
+              "id": "ohms_law",
+              "label": "电流基础与欧姆定律",
+              "raw_topics": [
+                "electric_basics",
+                "ohms_law"
+              ]
+            },
+            {
+              "id": "circuits",
+              "label": "串联与并联电路",
+              "raw_topics": [
+                "series_circuit",
+                "parallel_circuit"
+              ]
+            },
+            {
+              "id": "electric_power",
+              "label": "电功、电功率与焦耳定律",
+              "raw_topics": [
+                "electric_power"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "physics.thermodynamics",
+          "label": "热学与光学（预留扩展）",
+          "topics": []
+        }
+      ]
+    },
+    {
+      "id": "chemistry",
+      "label": "化学（科学）",
+      "branches": [
+        {
+          "id": "chemistry.quantitative",
+          "label": "溶液与化学定量",
+          "topics": [
+            {
+              "id": "chemistry_solutions",
+              "label": "溶质质量分数、稀释与溶解度",
+              "raw_topics": [
+                "chemistry_solutions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chemistry.equilibrium",
+          "label": "化学平衡与热力学（预留扩展）",
+          "topics": []
+        }
+      ]
+    }
+  ]
+};
     const PACKS = {
   "secondary_unified": {
     "label": "中学总图 · 初高中全量（103公式）",
@@ -20850,22 +21103,23 @@
     const NODE_W = 224;
     const NODE_H = 104;
 
-    const TOPIC_LABELS = {
-      algebra: "代数总类", multiplication_formulas: "乘法公式", factorization: "因式分解/配方",
-      quadratic_equations: "一元二次方程", vieta_relations: "韦达定理",
-      functions: "函数总类", proportionality: "比例与分式", quadratic_functions: "二次函数",
-      exp_log: "指数与对数", inequalities: "不等式", inequalities_props: "不等式与函数性质",
-      trigonometry: "三角函数总类", trigonometric_identities: "同角三角关系", induction_formulas: "诱导公式",
-      angle_sum_and_difference: "和差角公式", double_angle: "二倍角公式",
-      power_reduction: "降幂与辅助角", triangle_solving: "解三角形",
-      calculus: "导数与微积分", derivative_basics: "基本求导", derivative_rules: "求导法则",
-      derivative_applications: "导数应用", calculus_integration_prep: "微积分前置",
-      electricity: "初中电学总类", electric_basics: "电流基础", ohms_law: "欧姆定律",
-      series_circuit: "串联电路", parallel_circuit: "并联电路", electric_power: "电功/功率/焦耳",
-      mechanics: "初中力学总类", mechanics_basics: "速度/密度/重力", geometry: "几何体积",
-      pressure_buoyancy: "压强与浮力", simple_machines: "杠杆与滑轮", work_power_efficiency: "功/功率/效率",
-      chemistry_solutions: "化学溶液定量", rational_expressions: "分式化简"
-    };
+    // 从 TAXONOMY 构建规范化映射：raw_topic -> { disciplineId, branchId, branchLabel, topicId, topicLabel }
+    const RAW_TO_CANONICAL = {};
+    const BRANCH_BY_ID = {};
+    const TOPIC_BY_ID = {};
+    TAXONOMY.disciplines.forEach(disc => {
+      disc.branches.forEach(br => {
+        BRANCH_BY_ID[br.id] = { ...br, disciplineId: disc.id, disciplineLabel: disc.label };
+        br.topics.forEach(tp => {
+          TOPIC_BY_ID[tp.id] = { ...tp, branchId: br.id, branchLabel: br.label, disciplineId: disc.id };
+          (tp.raw_topics || [tp.id]).forEach(rt => {
+            if (!RAW_TO_CANONICAL[rt]) RAW_TO_CANONICAL[rt] = [];
+            RAW_TO_CANONICAL[rt].push({ disciplineId: disc.id, branchId: br.id, topicId: tp.id });
+          });
+        });
+      });
+    });
+
     const REL_LABELS = {
       derives_to: "直接推导", special_case_of: "特例化", generalizes: "推广",
       equivalent_to: "等价变形", simplifies: "化简工具", applies_in: "跨学科/跨段应用"
@@ -20889,6 +21143,7 @@
       level: "L2",
       stageFilter: "all",
       discFilter: "all",
+      branchFilter: "all",
       topicFilter: "all",
       searchQuery: "",
       focusOnly: false,
@@ -20900,6 +21155,21 @@
     let NODE_POS = null;
     let formulaById = {};
     let derivById = {};
+
+    // 为每条公式预先解析规范化的 branches 与 canonicalTopics 集合
+    function enrichFormulaTaxonomy(formula) {
+      const branches = new Set();
+      const canonicalTopics = new Set();
+      formula.taxonomy.topics.forEach(rt => {
+        const matches = RAW_TO_CANONICAL[rt] || [];
+        matches.forEach(m => {
+          branches.add(m.branchId);
+          canonicalTopics.add(m.topicId);
+        });
+      });
+      formula._branches = branches;
+      formula._canonicalTopics = canonicalTopics;
+    }
 
     function renderMathHTML(latex) {
       if (window.katex && typeof window.katex.renderToString === "function") {
@@ -20967,13 +21237,108 @@
       return null;
     }
 
+    function filterByStage(list) {
+      return state.stageFilter === "all" ? list : list.filter(f => f.taxonomy.education_stages.includes(state.stageFilter));
+    }
+    function filterByDisc(list) {
+      return state.discFilter === "all" ? list : list.filter(f => f.taxonomy.disciplines.includes(state.discFilter));
+    }
+    function filterByBranch(list) {
+      return state.branchFilter === "all" ? list : list.filter(f => f._branches.has(state.branchFilter));
+    }
+    function filterByTopic(list) {
+      return state.topicFilter === "all" ? list : list.filter(f => f._canonicalTopics.has(state.topicFilter));
+    }
+
+    // 多级联动刷新：学段 -> 学科 -> 分支 -> 专题（仅显示直接相关且有数据的选项）
+    function syncCascadingDropdowns() {
+      const all = GRAPH_DATA.formulas;
+
+      // 1. 学段下拉框
+      const stageSel = document.getElementById("stageSelect");
+      const stageOrder = ["junior_high", "senior_high", "undergraduate"];
+      stageSel.innerHTML = `<option value="all">全部学段（${all.length}）</option>`;
+      stageOrder.forEach(st => {
+        const cnt = all.filter(f => f.taxonomy.education_stages.includes(st)).length;
+        if (cnt > 0) stageSel.add(new Option(`${STAGE_LABELS[st]}（${cnt}）`, st));
+      });
+      if (![...stageSel.options].some(o => o.value === state.stageFilter)) state.stageFilter = "all";
+      stageSel.value = state.stageFilter;
+
+      // 2. 学科下拉框（受学段约束）
+      const afterStage = filterByStage(all);
+      const discSel = document.getElementById("discSelect");
+      discSel.innerHTML = `<option value="all">全部学科（${afterStage.length}）</option>`;
+      TAXONOMY.disciplines.forEach(d => {
+        const cnt = afterStage.filter(f => f.taxonomy.disciplines.includes(d.id)).length;
+        if (cnt > 0) discSel.add(new Option(`${d.label}（${cnt}）`, d.id));
+      });
+      if (![...discSel.options].some(o => o.value === state.discFilter)) state.discFilter = "all";
+      discSel.value = state.discFilter;
+
+      // 3. 分支领域下拉框（受学段 + 学科约束，选学科后仅显示该学科下的直接分支）
+      const afterDisc = filterByDisc(afterStage);
+      const branchSel = document.getElementById("branchSelect");
+      branchSel.innerHTML = `<option value="all">全部分支（${afterDisc.length}）</option>`;
+      const activeDiscs = state.discFilter === "all"
+        ? TAXONOMY.disciplines
+        : TAXONOMY.disciplines.filter(d => d.id === state.discFilter);
+
+      activeDiscs.forEach(d => {
+        const validBranches = d.branches
+          .map(br => ({ br, cnt: afterDisc.filter(f => f._branches.has(br.id)).length }))
+          .filter(x => x.cnt > 0);
+        if (!validBranches.length) return;
+        if (activeDiscs.length > 1) {
+          const grp = document.createElement("optgroup");
+          grp.label = d.label;
+          validBranches.forEach(({ br, cnt }) => grp.appendChild(new Option(`${br.label}（${cnt}）`, br.id)));
+          branchSel.appendChild(grp);
+        } else {
+          validBranches.forEach(({ br, cnt }) => branchSel.add(new Option(`${br.label}（${cnt}）`, br.id)));
+        }
+      });
+      if (![...branchSel.options].some(o => o.value === state.branchFilter)) state.branchFilter = "all";
+      branchSel.value = state.branchFilter;
+
+      // 4. 规范专题下拉框（受学段 + 学科 + 分支严格约束，且按分支分组呈现）
+      const afterBranch = filterByBranch(afterDisc);
+      const topicSel = document.getElementById("topicSelect");
+      topicSel.innerHTML = `<option value="all">全部专题（${afterBranch.length}）</option>`;
+
+      const candidateBranches = [];
+      activeDiscs.forEach(d => {
+        d.branches.forEach(br => {
+          if (state.branchFilter === "all" || br.id === state.branchFilter) candidateBranches.push(br);
+        });
+      });
+
+      candidateBranches.forEach(br => {
+        const validTopics = br.topics
+          .map(tp => ({ tp, cnt: afterBranch.filter(f => f._canonicalTopics.has(tp.id)).length }))
+          .filter(x => x.cnt > 0);
+        if (!validTopics.length) return;
+        if (state.branchFilter === "all") {
+          const grp = document.createElement("optgroup");
+          grp.label = br.label;
+          validTopics.forEach(({ tp, cnt }) => grp.appendChild(new Option(`${tp.label}（${cnt}）`, tp.id)));
+          topicSel.appendChild(grp);
+        } else {
+          validTopics.forEach(({ tp, cnt }) => topicSel.add(new Option(`${tp.label}（${cnt}）`, tp.id)));
+        }
+      });
+      if (![...topicSel.options].some(o => o.value === state.topicFilter)) state.topicFilter = "all";
+      topicSel.value = state.topicFilter;
+    }
+
     function matchesFilters(formula) {
       const stageOk = state.stageFilter === "all" || formula.taxonomy.education_stages.includes(state.stageFilter);
       const discOk = state.discFilter === "all" || formula.taxonomy.disciplines.includes(state.discFilter);
-      const topicOk = state.topicFilter === "all" || formula.taxonomy.topics.includes(state.topicFilter);
+      const branchOk = state.branchFilter === "all" || formula._branches.has(state.branchFilter);
+      const topicOk = state.topicFilter === "all" || formula._canonicalTopics.has(state.topicFilter);
       const q = state.searchQuery.trim().toLowerCase();
       const searchOk = !q || formula.name.toLowerCase().includes(q) || formula.aliases.some(a => a.toLowerCase().includes(q)) || formula.latex.toLowerCase().includes(q);
-      return stageOk && discOk && topicOk && searchOk;
+      return stageOk && discOk && branchOk && topicOk && searchOk;
     }
 
     function computeCurve(fromPos, toPos) {
@@ -21009,25 +21374,12 @@
       document.getElementById("zoomVal").textContent = `${Math.round(state.zoom * 100)}%`;
     }
 
-    function populateTopicDropdown() {
-      const topicSel = document.getElementById("topicSelect");
-      const counts = {};
-      GRAPH_DATA.formulas.forEach(f => {
-        f.taxonomy.topics.forEach(t => { counts[t] = (counts[t] || 0) + 1; });
-      });
-      topicSel.innerHTML = `<option value="all">全部专题（${GRAPH_DATA.formulas.length}）</option>`;
-      Object.keys(counts).sort((a, b) => counts[b] - counts[a]).forEach(t => {
-        const label = TOPIC_LABELS[t] || t;
-        topicSel.add(new Option(`${label}（${counts[t]}）`, t));
-      });
-      topicSel.value = "all";
-    }
-
     function loadPack(packKey) {
       state.packKey = packKey;
       const pack = PACKS[packKey];
       GRAPH_DATA = pack.data;
       NODE_POS = pack.positions;
+      GRAPH_DATA.formulas.forEach(enrichFormulaTaxonomy);
       formulaById = Object.fromEntries(GRAPH_DATA.formulas.map(f => [f.id, f]));
       derivById = Object.fromEntries(GRAPH_DATA.derivations.map(d => [d.id, d]));
 
@@ -21036,18 +21388,17 @@
       state.activeTab = "formula";
       state.stageFilter = "all";
       state.discFilter = "all";
+      state.branchFilter = "all";
       state.topicFilter = "all";
       state.searchQuery = "";
       state.focusOnly = false;
       state.activePath = null;
       state.zoom = pack.defaultZoom;
 
-      document.getElementById("stageSelect").value = "all";
-      document.getElementById("discSelect").value = "all";
       document.getElementById("searchInput").value = "";
       document.getElementById("focusOnlyBtn").classList.remove("active");
       document.getElementById("clearPathBtn").style.display = "none";
-      populateTopicDropdown();
+      syncCascadingDropdowns();
 
       const stage = document.getElementById("graphStage");
       stage.style.width = `${pack.stageW}px`;
@@ -21104,7 +21455,7 @@
       });
 
       document.getElementById("canvasHint").textContent =
-        `当前筛选命中 ${visibleNodeIds.size} / ${GRAPH_DATA.formulas.length} 个公式 · 点击公式卡片聚焦直接关联与三级推导`;
+        `当前筛选命中 ${visibleNodeIds.size} / ${GRAPH_DATA.formulas.length} 个公式 · 下拉框已按 学段 → 学科 → 分支 → 专题 自动联动`;
 
       GRAPH_DATA.derivations.forEach(d => {
         const toVisible = visibleNodeIds.has(d.to_formula_id);
@@ -21214,6 +21565,9 @@
         const f = formulaById[state.selectedFormulaId] || GRAPH_DATA.formulas[0];
         const rel = getDirectRelations(f.id);
 
+        const branchTags = [...f._branches].map(bid => BRANCH_BY_ID[bid]?.label || bid);
+        const topicTags = [...f._canonicalTopics].map(tid => TOPIC_BY_ID[tid]?.label || tid);
+
         const renderRelGroup = (items, kindCls, kindText) => items.map(item => `
           <div class="rel-card">
             <div class="rel-card-top">
@@ -21246,8 +21600,9 @@
             <div class="hero-math">${renderMathHTML(f.latex)}</div>
             <div style="font-size:12.5px; color:var(--ink-secondary);">${f.statement}</div>
             <div class="meta-row">
-              <span class="chip verified">✓ 人工已核验</span>
-              ${f.review.sympy_verified ? '<span class="chip verified">✓ SymPy 等价性验证</span>' : ""}
+              ${branchTags.map(b => `<span class="chip">分支：${b}</span>`).join("")}
+              ${topicTags.map(t => `<span class="chip">专题：${t}</span>`).join("")}
+              <span class="chip verified">✓ 已核验</span>
               <span class="chip">出处：${f.review.source}</span>
             </div>
           </div>
@@ -21352,9 +21707,25 @@
       Object.entries(PACKS).forEach(([k, v]) => packSel.add(new Option(v.label, k)));
       packSel.onchange = (e) => loadPack(e.target.value);
 
-      document.getElementById("stageSelect").onchange = (e) => { state.stageFilter = e.target.value; renderGraph(); };
-      document.getElementById("discSelect").onchange = (e) => { state.discFilter = e.target.value; renderGraph(); };
-      document.getElementById("topicSelect").onchange = (e) => { state.topicFilter = e.target.value; renderGraph(); };
+      document.getElementById("stageSelect").onchange = (e) => {
+        state.stageFilter = e.target.value;
+        syncCascadingDropdowns();
+        renderGraph();
+      };
+      document.getElementById("discSelect").onchange = (e) => {
+        state.discFilter = e.target.value;
+        syncCascadingDropdowns();
+        renderGraph();
+      };
+      document.getElementById("branchSelect").onchange = (e) => {
+        state.branchFilter = e.target.value;
+        syncCascadingDropdowns();
+        renderGraph();
+      };
+      document.getElementById("topicSelect").onchange = (e) => {
+        state.topicFilter = e.target.value;
+        renderGraph();
+      };
       document.getElementById("searchInput").oninput = (e) => { state.searchQuery = e.target.value; renderGraph(); };
 
       const focusBtn = document.getElementById("focusOnlyBtn");

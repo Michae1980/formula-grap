@@ -1,0 +1,115 @@
+{
+  "taxonomy_version": "1.0.0",
+  "description": "公式知识图谱三级分类体系（学科 Discipline → 分支领域 Branch → 规范专题 Topic）",
+  "disciplines": [
+    {
+      "id": "mathematics",
+      "label": "数学",
+      "branches": [
+        {
+          "id": "math.algebra",
+          "label": "代数与方程",
+          "topics": [
+            { "id": "multiplication_formulas", "label": "乘法公式与分式", "raw_topics": ["multiplication_formulas", "rational_expressions"] },
+            { "id": "factorization", "label": "因式分解与配方法", "raw_topics": ["factorization"] },
+            { "id": "quadratic_equations", "label": "一元二次方程与韦达定理", "raw_topics": ["quadratic_equations", "vieta_relations"] }
+          ]
+        },
+        {
+          "id": "math.functions",
+          "label": "函数与不等式",
+          "topics": [
+            { "id": "proportionality", "label": "正反比例函数", "raw_topics": ["proportionality"] },
+            { "id": "quadratic_functions", "label": "二次函数三式与最值", "raw_topics": ["quadratic_functions"] },
+            { "id": "exp_log", "label": "指数与对数运算", "raw_topics": ["exp_log"] },
+            { "id": "inequalities_props", "label": "基本不等式与函数性质", "raw_topics": ["inequalities_props", "inequalities"] }
+          ]
+        },
+        {
+          "id": "math.trigonometry",
+          "label": "三角学",
+          "topics": [
+            { "id": "trigonometric_identities", "label": "定义与同角关系", "raw_topics": ["trigonometric_identities"] },
+            { "id": "induction_formulas", "label": "诱导公式", "raw_topics": ["induction_formulas"] },
+            { "id": "angle_sum_and_difference", "label": "和差角与倍角降幂", "raw_topics": ["angle_sum_and_difference", "double_angle", "power_reduction"] },
+            { "id": "triangle_solving", "label": "解三角形", "raw_topics": ["triangle_solving"] }
+          ]
+        },
+        {
+          "id": "math.calculus",
+          "label": "微积分与导数",
+          "topics": [
+            { "id": "derivative_basics", "label": "导数定义与基本公式", "raw_topics": ["derivative_basics"] },
+            { "id": "derivative_rules", "label": "导数四则与链式法则", "raw_topics": ["derivative_rules"] },
+            { "id": "derivative_applications", "label": "切线、单调性与极值", "raw_topics": ["derivative_applications"] }
+          ]
+        },
+        {
+          "id": "math.geometry",
+          "label": "几何与解析",
+          "topics": [
+            { "id": "geometry", "label": "平面与立体几何基础", "raw_topics": ["geometry"] }
+          ]
+        },
+        {
+          "id": "math.statistics",
+          "label": "概率与统计学（预留扩展）",
+          "topics": []
+        },
+        {
+          "id": "math.linear_algebra",
+          "label": "线性代数（预留扩展）",
+          "topics": []
+        }
+      ]
+    },
+    {
+      "id": "physics",
+      "label": "物理（科学）",
+      "branches": [
+        {
+          "id": "physics.mechanics",
+          "label": "力学与运动",
+          "topics": [
+            { "id": "mechanics_basics", "label": "运动、密度与重力", "raw_topics": ["mechanics_basics"] },
+            { "id": "pressure_buoyancy", "label": "压强与浮力", "raw_topics": ["pressure_buoyancy"] },
+            { "id": "simple_machines", "label": "杠杆与滑轮组", "raw_topics": ["simple_machines"] },
+            { "id": "work_power_efficiency", "label": "功、功率与机械效率", "raw_topics": ["work_power_efficiency"] }
+          ]
+        },
+        {
+          "id": "physics.electricity",
+          "label": "电学与磁学",
+          "topics": [
+            { "id": "ohms_law", "label": "电流基础与欧姆定律", "raw_topics": ["electric_basics", "ohms_law"] },
+            { "id": "circuits", "label": "串联与并联电路", "raw_topics": ["series_circuit", "parallel_circuit"] },
+            { "id": "electric_power", "label": "电功、电功率与焦耳定律", "raw_topics": ["electric_power"] }
+          ]
+        },
+        {
+          "id": "physics.thermodynamics",
+          "label": "热学与光学（预留扩展）",
+          "topics": []
+        }
+      ]
+    },
+    {
+      "id": "chemistry",
+      "label": "化学（科学）",
+      "branches": [
+        {
+          "id": "chemistry.quantitative",
+          "label": "溶液与化学定量",
+          "topics": [
+            { "id": "chemistry_solutions", "label": "溶质质量分数、稀释与溶解度", "raw_topics": ["chemistry_solutions"] }
+          ]
+        },
+        {
+          "id": "chemistry.equilibrium",
+          "label": "化学平衡与热力学（预留扩展）",
+          "topics": []
+        }
+      ]
+    }
+  ]
+}
