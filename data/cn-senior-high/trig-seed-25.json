@@ -9,938 +9,2537 @@
   "formulas": [
     {
       "id": "math.trig.unit_circle_def",
+      "node_kind": "definition",
       "name": "单位圆三角函数定义",
-      "aliases": ["任意角三角函数定义"],
+      "aliases": [
+        "任意角三角函数定义"
+      ],
       "latex": "\\sin\\alpha = y,\\ \\cos\\alpha = x,\\ \\tan\\alpha = \\frac{y}{x}",
       "statement": "设角 α 终边与单位圆交于点 P(x, y)，则其纵坐标为正弦、横坐标为余弦、纵横坐标之比为正切。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "trigonometric_identities"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "trigonometric_identities"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" },
-        { "symbol": "x, y", "name": "单位圆交点坐标", "math_type": "scalar", "domain": "[-1, 1]", "quantity_kind": "dimensionless_coordinate", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "x, y",
+          "name": "单位圆交点坐标",
+          "math_type": "scalar",
+          "domain": "[-1, 1]",
+          "quantity_kind": "dimensionless_coordinate",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["x^2 + y^2 = 1；定义 tan α 时要求 x ≠ 0（即 α ≠ kπ + π/2, k ∈ Z）"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.2.1", "sympy_verified": true }
+      "conditions": [
+        "x^2 + y^2 = 1；定义 tan α 时要求 x ≠ 0（即 α ≠ kπ + π/2, k ∈ Z）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.2.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.pythagorean",
+      "node_kind": "formula",
       "name": "同角三角函数平方关系",
-      "aliases": ["三角勾股恒等式", "平方关系"],
+      "aliases": [
+        "三角勾股恒等式",
+        "平方关系"
+      ],
       "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1",
       "statement": "同一个任意角的正弦平方与余弦平方之和恒等于 1。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "trigonometric_identities"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "trigonometric_identities"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.2.2", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.quotient",
+      "node_kind": "formula",
       "name": "同角三角函数商数关系",
-      "aliases": ["商数关系"],
+      "aliases": [
+        "商数关系"
+      ],
       "latex": "\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}",
       "statement": "任意角的正切等于该角的正弦与余弦之比。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "trigonometric_identities"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "trigonometric_identities"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R} \\setminus \\{k\\pi + \\frac{\\pi}{2}\\}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R} \\setminus \\{k\\pi + \\frac{\\pi}{2}\\}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["cos α ≠ 0，即 α ≠ kπ + π/2 (k ∈ Z)"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.2.2", "sympy_verified": true }
+      "conditions": [
+        "cos α ≠ 0，即 α ≠ kπ + π/2 (k ∈ Z)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.sec_tan_pythagorean",
+      "node_kind": "formula",
       "name": "正切与余弦平方转化公式",
-      "aliases": ["正割平方关系", "1+tan²α公式"],
+      "aliases": [
+        "正割平方关系",
+        "1+tan²α公式"
+      ],
       "latex": "1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}",
       "statement": "1 加正切平方等于余弦平方的倒数，常用于“弦化切”与微积分三角代换。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["trigonometry", "trigonometric_identities", "calculus_integration_prep"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "trigonometry",
+          "trigonometric_identities",
+          "calculus_integration_prep"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R} \\setminus \\{k\\pi + \\frac{\\pi}{2}\\}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R} \\setminus \\{k\\pi + \\frac{\\pi}{2}\\}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["cos α ≠ 0，即 α ≠ kπ + π/2 (k ∈ Z)"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.2.2 拓展", "sympy_verified": true }
+      "conditions": [
+        "cos α ≠ 0，即 α ≠ kπ + π/2 (k ∈ Z)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.2.2 拓展",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.ind_neg",
+      "node_kind": "formula",
       "name": "诱导公式三（负角奇偶性）",
-      "aliases": ["正余弦奇偶性", "负角公式"],
+      "aliases": [
+        "正余弦奇偶性",
+        "负角公式"
+      ],
       "latex": "\\sin(-\\alpha) = -\\sin\\alpha,\\ \\cos(-\\alpha) = \\cos\\alpha",
       "statement": "正弦函数是奇函数，余弦函数是偶函数。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "induction_formulas"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "induction_formulas"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.3", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.ind_pi_minus",
+      "node_kind": "formula",
       "name": "诱导公式四（补角关系）",
-      "aliases": ["补角公式"],
+      "aliases": [
+        "补角公式"
+      ],
       "latex": "\\sin(\\pi - \\alpha) = \\sin\\alpha,\\ \\cos(\\pi - \\alpha) = -\\cos\\alpha",
       "statement": "互补两角的正弦相等，余弦互为相反数。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "induction_formulas"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "induction_formulas"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.3", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.ind_half_pi_minus",
+      "node_kind": "formula",
       "name": "诱导公式五（余角互换）",
-      "aliases": ["余角公式", "正余弦互化"],
+      "aliases": [
+        "余角公式",
+        "正余弦互化"
+      ],
       "latex": "\\sin\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\sin\\alpha",
       "statement": "互余两角的正弦与余弦互相转换。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "induction_formulas"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "induction_formulas"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.3", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.ind_half_pi_plus",
+      "node_kind": "formula",
       "name": "诱导公式六（π/2+α）",
-      "aliases": ["九十度加角公式"],
+      "aliases": [
+        "九十度加角公式"
+      ],
       "latex": "\\sin\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}+\\alpha\\right) = -\\sin\\alpha",
       "statement": "角增加 π/2 后，正弦变为余弦，余弦变为负正弦。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "induction_formulas"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "induction_formulas"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.3", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.cos_diff",
+      "node_kind": "formula",
       "name": "两角差的余弦公式",
-      "aliases": ["余弦差角公式", "C(α-β)"],
+      "aliases": [
+        "余弦差角公式",
+        "C(α-β)"
+      ],
       "latex": "\\cos(\\alpha - \\beta) = \\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta",
       "statement": "两角之差的余弦等于两角余弦之积加上两角正弦之积，是和差角体系的起点。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "angle_sum_and_difference"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "角 α", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" },
-        { "symbol": "\\beta", "name": "角 β", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "角 α",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\beta",
+          "name": "角 β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α, β 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α, β 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.cos_sum",
+      "node_kind": "formula",
       "name": "两角和的余弦公式",
-      "aliases": ["余弦和角公式", "C(α+β)"],
+      "aliases": [
+        "余弦和角公式",
+        "C(α+β)"
+      ],
       "latex": "\\cos(\\alpha + \\beta) = \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta",
       "statement": "两角之和的余弦等于两角余弦之积减去两角正弦之积。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "angle_sum_and_difference"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "角 α", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" },
-        { "symbol": "\\beta", "name": "角 β", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "角 α",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\beta",
+          "name": "角 β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α, β 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α, β 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.sin_sum",
+      "node_kind": "formula",
       "name": "两角和的正弦公式",
-      "aliases": ["正弦和角公式", "S(α+β)"],
+      "aliases": [
+        "正弦和角公式",
+        "S(α+β)"
+      ],
       "latex": "\\sin(\\alpha + \\beta) = \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta",
       "statement": "两角之和的正弦等于正余乘积加上余正乘积。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "angle_sum_and_difference"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "角 α", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" },
-        { "symbol": "\\beta", "name": "角 β", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "角 α",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\beta",
+          "name": "角 β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α, β 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α, β 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.sin_diff",
+      "node_kind": "formula",
       "name": "两角差的正弦公式",
-      "aliases": ["正弦差角公式", "S(α-β)"],
+      "aliases": [
+        "正弦差角公式",
+        "S(α-β)"
+      ],
       "latex": "\\sin(\\alpha - \\beta) = \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta",
       "statement": "两角之差的正弦等于正余乘积减去余正乘积。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "angle_sum_and_difference"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "角 α", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" },
-        { "symbol": "\\beta", "name": "角 β", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "角 α",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\beta",
+          "name": "角 β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α, β 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α, β 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.tan_sum",
+      "node_kind": "formula",
       "name": "两角和的正切公式",
-      "aliases": ["正切和角公式", "T(α+β)"],
+      "aliases": [
+        "正切和角公式",
+        "T(α+β)"
+      ],
       "latex": "\\tan(\\alpha + \\beta) = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}",
       "statement": "两角之和的正切等于两正切之和除以 1 减两正切之积。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "angle_sum_and_difference"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha, \\beta", "name": "角 α, β", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha, \\beta",
+          "name": "角 α, β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["α, β, α+β 均不为 kπ + π/2 (k ∈ Z)，且 tan α tan β ≠ 1"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "α, β, α+β 均不为 kπ + π/2 (k ∈ Z)，且 tan α tan β ≠ 1"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.tan_diff",
+      "node_kind": "formula",
       "name": "两角差的正切公式",
-      "aliases": ["正切差角公式", "T(α-β)"],
+      "aliases": [
+        "正切差角公式",
+        "T(α-β)"
+      ],
       "latex": "\\tan(\\alpha - \\beta) = \\frac{\\tan\\alpha - \\tan\\beta}{1 + \\tan\\alpha\\tan\\beta}",
       "statement": "两角之差的正切等于两正切之差除以 1 加两正切之积。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "angle_sum_and_difference"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "angle_sum_and_difference"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha, \\beta", "name": "角 α, β", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha, \\beta",
+          "name": "角 α, β",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["α, β, α-β 均不为 kπ + π/2 (k ∈ Z)，且 tan α tan β ≠ -1"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "α, β, α-β 均不为 kπ + π/2 (k ∈ Z)，且 tan α tan β ≠ -1"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.sin_double",
+      "node_kind": "formula",
       "name": "二倍角正弦公式",
-      "aliases": ["正弦二倍角", "S(2α)"],
+      "aliases": [
+        "正弦二倍角",
+        "S(2α)"
+      ],
       "latex": "\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha",
       "statement": "二倍角的正弦等于 2 倍原角正弦与余弦之积。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "double_angle"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.cos_double",
+      "node_kind": "formula",
       "name": "二倍角余弦公式（基本形式）",
-      "aliases": ["余弦二倍角公式", "C(2α)"],
+      "aliases": [
+        "余弦二倍角公式",
+        "C(2α)"
+      ],
       "latex": "\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha",
       "statement": "二倍角的余弦等于原角余弦平方减去正弦平方。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "double_angle"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.cos_double_cos",
+      "node_kind": "formula",
       "name": "二倍角余弦公式（纯余弦形式）",
-      "aliases": ["二倍角余弦单函数形式"],
+      "aliases": [
+        "二倍角余弦单函数形式"
+      ],
       "latex": "\\cos 2\\alpha = 2\\cos^2\\alpha - 1",
       "statement": "将二倍角余弦全部用余弦函数表示。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "double_angle"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.cos_double_sin",
+      "node_kind": "formula",
       "name": "二倍角余弦公式（纯正弦形式）",
-      "aliases": ["二倍角余弦正弦形式"],
+      "aliases": [
+        "二倍角余弦正弦形式"
+      ],
       "latex": "\\cos 2\\alpha = 1 - 2\\sin^2\\alpha",
       "statement": "将二倍角余弦全部用正弦函数表示。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "double_angle"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.tan_double",
+      "node_kind": "formula",
       "name": "二倍角正切公式",
-      "aliases": ["正切二倍角", "T(2α)"],
+      "aliases": [
+        "正切二倍角",
+        "T(2α)"
+      ],
       "latex": "\\tan 2\\alpha = \\frac{2\\tan\\alpha}{1 - \\tan^2\\alpha}",
       "statement": "二倍角的正切等于 2 倍原角正切除以 1 减原角正切平方。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "double_angle"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "double_angle"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["α ≠ kπ + π/2 且 2α ≠ kπ + π/2 (k ∈ Z)"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "α ≠ kπ + π/2 且 2α ≠ kπ + π/2 (k ∈ Z)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.power_reduction_cos",
+      "node_kind": "formula",
       "name": "余弦降幂公式",
-      "aliases": ["扩角降幂公式（余弦）", "半角余弦平方公式"],
+      "aliases": [
+        "扩角降幂公式（余弦）",
+        "半角余弦平方公式"
+      ],
       "latex": "\\cos^2\\alpha = \\frac{1 + \\cos 2\\alpha}{2}",
       "statement": "将余弦的二次幂转化为二倍角余弦的一次线性表达式，常用于三角化简与微积分求积分。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["trigonometry", "power_reduction", "calculus_integration_prep"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "trigonometry",
+          "power_reduction",
+          "calculus_integration_prep"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.power_reduction_sin",
+      "node_kind": "formula",
       "name": "正弦降幂公式",
-      "aliases": ["扩角降幂公式（正弦）", "半角正弦平方公式"],
+      "aliases": [
+        "扩角降幂公式（正弦）",
+        "半角正弦平方公式"
+      ],
       "latex": "\\sin^2\\alpha = \\frac{1 - \\cos 2\\alpha}{2}",
       "statement": "将正弦的二次幂转化为二倍角余弦的一次线性表达式，常用于三角化简与微积分求积分。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["trigonometry", "power_reduction", "calculus_integration_prep"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "trigonometry",
+          "power_reduction",
+          "calculus_integration_prep"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "任意角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\alpha",
+          "name": "任意角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["对任意实数角 α 均成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数角 α 均成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.auxiliary_angle",
+      "node_kind": "formula",
       "name": "辅助角公式",
-      "aliases": ["合一变形公式"],
+      "aliases": [
+        "合一变形公式"
+      ],
       "latex": "a\\sin x + b\\cos x = \\sqrt{a^2 + b^2}\\sin(x + \\varphi)",
       "statement": "将同角正弦与余弦的线性组合合成为单一正弦型函数，用于求最值、周期与物理简谐振动叠加。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["trigonometry", "power_reduction"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "trigonometry",
+          "power_reduction"
+        ]
       },
       "variables": [
-        { "symbol": "a, b", "name": "实系数", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "amplitude_component", "dimension": null, "si_unit": null },
-        { "symbol": "x", "name": "自变量角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" },
-        { "symbol": "\\varphi", "name": "辅助角", "math_type": "angle", "domain": "[0, 2\\pi)", "quantity_kind": "phase_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "a, b",
+          "name": "实系数",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "amplitude_component",
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "x",
+          "name": "自变量角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "\\varphi",
+          "name": "辅助角",
+          "math_type": "angle",
+          "domain": "[0, 2\\pi)",
+          "quantity_kind": "phase_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["a^2 + b^2 ≠ 0，且 cos φ = a/√(a²+b²), sin φ = b/√(a²+b²)"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.5.2", "sympy_verified": true }
+      "conditions": [
+        "a^2 + b^2 ≠ 0，且 cos φ = a/√(a²+b²), sin φ = b/√(a²+b²)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.5.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.law_of_cosines",
+      "node_kind": "theorem",
       "name": "余弦定理",
-      "aliases": ["广义勾股定理"],
+      "aliases": [
+        "广义勾股定理"
+      ],
       "latex": "c^2 = a^2 + b^2 - 2ab\\cos C",
       "statement": "三角形任意一边的平方等于其余两边的平方和减去这两边与其夹角余弦乘积的两倍。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "triangle_solving"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "triangle_solving"
+        ]
       },
       "variables": [
-        { "symbol": "a, b, c", "name": "三角形三边长", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" },
-        { "symbol": "C", "name": "边 c 所对内角", "math_type": "angle", "domain": "(0, \\pi)", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "a, b, c",
+          "name": "三角形三边长",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        },
+        {
+          "symbol": "C",
+          "name": "边 c 所对内角",
+          "math_type": "angle",
+          "domain": "(0, \\pi)",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["a, b, c 为同一三角形的三边长，满足三角形不等式"],
-      "review": { "status": "human_verified", "source": "人教A版必修第二册 6.4.3", "sympy_verified": true }
+      "conditions": [
+        "a, b, c 为同一三角形的三边长，满足三角形不等式"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.4.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.law_of_sines",
+      "node_kind": "theorem",
       "name": "正弦定理",
-      "aliases": ["三角形正弦比例定理"],
+      "aliases": [
+        "三角形正弦比例定理"
+      ],
       "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R",
       "statement": "在一个三角形中，各边与其所对角的正弦之比相等，且等于该三角形外接圆的直径。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "triangle_solving"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "triangle_solving"
+        ]
       },
       "variables": [
-        { "symbol": "a, b, c", "name": "三角形三边长", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" },
-        { "symbol": "A, B, C", "name": "对应三内角", "math_type": "angle", "domain": "(0, \\pi)", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" },
-        { "symbol": "R", "name": "外接圆半径", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" }
+        {
+          "symbol": "a, b, c",
+          "name": "三角形三边长",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        },
+        {
+          "symbol": "A, B, C",
+          "name": "对应三内角",
+          "math_type": "angle",
+          "domain": "(0, \\pi)",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "R",
+          "name": "外接圆半径",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        }
       ],
-      "conditions": ["A + B + C = π，且 a, b, c > 0"],
-      "review": { "status": "human_verified", "source": "人教A版必修第二册 6.4.3", "sympy_verified": true }
+      "conditions": [
+        "A + B + C = π，且 a, b, c > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.4.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.trig.triangle_area",
+      "node_kind": "formula",
       "name": "三角形正弦面积公式",
-      "aliases": ["两边夹角面积公式"],
+      "aliases": [
+        "两边夹角面积公式"
+      ],
       "latex": "S = \\frac{1}{2}ab\\sin C",
       "statement": "三角形的面积等于任意两边之积与它们夹角正弦乘积的一半。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["trigonometry", "triangle_solving"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "trigonometry",
+          "triangle_solving"
+        ]
       },
       "variables": [
-        { "symbol": "a, b", "name": "三角形两边长", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" },
-        { "symbol": "C", "name": "两边夹角", "math_type": "angle", "domain": "(0, \\pi)", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" },
-        { "symbol": "S", "name": "三角形面积", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "area", "dimension": "L^2", "si_unit": "m^2" }
+        {
+          "symbol": "a, b",
+          "name": "三角形两边长",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        },
+        {
+          "symbol": "C",
+          "name": "两边夹角",
+          "math_type": "angle",
+          "domain": "(0, \\pi)",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        },
+        {
+          "symbol": "S",
+          "name": "三角形面积",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "area",
+          "dimension": "L^2",
+          "si_unit": "m^2"
+        }
       ],
-      "conditions": ["a, b > 0 且 C ∈ (0, π)"],
-      "review": { "status": "human_verified", "source": "人教A版必修第二册 6.4.3", "sympy_verified": true }
+      "conditions": [
+        "a, b > 0 且 C ∈ (0, π)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.4.3",
+        "sympy_verified": true
+      }
     }
   ],
   "derivations": [
     {
       "id": "deriv.trig.def_to_pythagorean",
-      "from_formula_ids": ["math.trig.unit_circle_def"],
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
       "to_formula_id": "math.trig.pythagorean",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["definition_substitution"],
+      "inference_rules": [
+        "definition_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将单位圆定义 x = cos α、y = sin α 代入单位圆方程 x² + y² = 1 即得平方关系。",
         "L2_standard": [
-          { "step": 1, "latex": "x^2 + y^2 = 1", "note": "角 α 终边与单位圆交点 P(x, y) 满足单位圆方程", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "\\cos^2\\alpha + \\sin^2\\alpha = 1", "note": "代入 x = cos α、y = sin α 得证", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "x^2 + y^2 = 1",
+            "note": "角 α 终边与单位圆交点 P(x, y) 满足单位圆方程",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos^2\\alpha + \\sin^2\\alpha = 1",
+            "note": "代入 x = cos α、y = sin α 得证",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "P(x, y) \\text{ 在单位圆上} \\implies x^2 + y^2 = 1", "note": "由平面两点距离公式，点 P 到原点距离为半径 1", "cited_formula_ids": [] },
-          { "step": 2, "latex": "x = \\cos\\alpha,\\ y = \\sin\\alpha", "note": "根据任意角三角函数的单位圆定义", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 3, "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1", "note": "直接代换即得同角平方关系", "cited_formula_ids": [], "pitfall": "必须保证两个函数对应同一个角，sin²α + cos²β 一般不等于 1。" }
+          {
+            "step": 1,
+            "latex": "P(x, y) \\text{ 在单位圆上} \\implies x^2 + y^2 = 1",
+            "note": "由平面两点距离公式，点 P 到原点距离为半径 1",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "x = \\cos\\alpha,\\ y = \\sin\\alpha",
+            "note": "根据任意角三角函数的单位圆定义",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1",
+            "note": "直接代换即得同角平方关系",
+            "cited_formula_ids": [],
+            "pitfall": "必须保证两个函数对应同一个角，sin²α + cos²β 一般不等于 1。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.def_to_quotient",
-      "from_formula_ids": ["math.trig.unit_circle_def"],
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
       "to_formula_id": "math.trig.quotient",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["definition_substitution"],
+      "inference_rules": [
+        "definition_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在单位圆定义 tan α = y/x 中直接代入 y = sin α 和 x = cos α。",
         "L2_standard": [
-          { "step": 1, "latex": "\\tan\\alpha = \\frac{y}{x} = \\frac{\\sin\\alpha}{\\cos\\alpha}", "note": "当 x = cos α ≠ 0 时直接由单位圆定义代入", "cited_formula_ids": ["math.trig.unit_circle_def"] }
+          {
+            "step": 1,
+            "latex": "\\tan\\alpha = \\frac{y}{x} = \\frac{\\sin\\alpha}{\\cos\\alpha}",
+            "note": "当 x = cos α ≠ 0 时直接由单位圆定义代入",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\sin\\alpha = y,\\ \\cos\\alpha = x,\\ \\tan\\alpha = \\frac{y}{x}\\ (x \\neq 0)", "note": "列出单位圆定义", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}", "note": "将分子 y 替换为 sin α，分母 x 替换为 cos α", "cited_formula_ids": [], "pitfall": "使用商数关系前需确认 cos α ≠ 0，否则等式无意义。" }
+          {
+            "step": 1,
+            "latex": "\\sin\\alpha = y,\\ \\cos\\alpha = x,\\ \\tan\\alpha = \\frac{y}{x}\\ (x \\neq 0)",
+            "note": "列出单位圆定义",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}",
+            "note": "将分子 y 替换为 sin α，分母 x 替换为 cos α",
+            "cited_formula_ids": [],
+            "pitfall": "使用商数关系前需确认 cos α ≠ 0，否则等式无意义。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.pyth_quot_to_sec_tan",
-      "from_formula_ids": ["math.trig.pythagorean", "math.trig.quotient"],
+      "from_formula_ids": [
+        "math.trig.pythagorean",
+        "math.trig.quotient"
+      ],
       "to_formula_id": "math.trig.sec_tan_pythagorean",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["divide_both_sides", "identity_substitution"],
+      "inference_rules": [
+        "divide_both_sides",
+        "identity_substitution"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "将同角平方关系两边同除以 cos²α，再代入商数关系 tan α = sin α / cos α。",
         "L2_standard": [
-          { "step": 1, "latex": "\\frac{\\sin^2\\alpha}{\\cos^2\\alpha} + \\frac{\\cos^2\\alpha}{\\cos^2\\alpha} = \\frac{1}{\\cos^2\\alpha}", "note": "平方关系两边同除以 cos²α（cos α ≠ 0）", "cited_formula_ids": ["math.trig.pythagorean"] },
-          { "step": 2, "latex": "\\tan^2\\alpha + 1 = \\frac{1}{\\cos^2\\alpha}", "note": "利用商数关系化简首项", "cited_formula_ids": ["math.trig.quotient"] }
+          {
+            "step": 1,
+            "latex": "\\frac{\\sin^2\\alpha}{\\cos^2\\alpha} + \\frac{\\cos^2\\alpha}{\\cos^2\\alpha} = \\frac{1}{\\cos^2\\alpha}",
+            "note": "平方关系两边同除以 cos²α（cos α ≠ 0）",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\tan^2\\alpha + 1 = \\frac{1}{\\cos^2\\alpha}",
+            "note": "利用商数关系化简首项",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1", "note": "从同角平方关系出发", "cited_formula_ids": ["math.trig.pythagorean"] },
-          { "step": 2, "latex": "\\left(\\frac{\\sin\\alpha}{\\cos\\alpha}\\right)^2 + 1 = \\frac{1}{\\cos^2\\alpha}", "note": "在 cos α ≠ 0 条件下，两边同除以 cos²α", "cited_formula_ids": [] },
-          { "step": 3, "latex": "1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}", "note": "由商数关系将 sin α / cos α 替换为 tan α", "cited_formula_ids": ["math.trig.quotient"], "pitfall": "由 tan α 反求 cos α 时开方需结合角所在象限判断正负号。" }
+          {
+            "step": 1,
+            "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1",
+            "note": "从同角平方关系出发",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\left(\\frac{\\sin\\alpha}{\\cos\\alpha}\\right)^2 + 1 = \\frac{1}{\\cos^2\\alpha}",
+            "note": "在 cos α ≠ 0 条件下，两边同除以 cos²α",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}",
+            "note": "由商数关系将 sin α / cos α 替换为 tan α",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ],
+            "pitfall": "由 tan α 反求 cos α 时开方需结合角所在象限判断正负号。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.def_to_ind_neg",
-      "from_formula_ids": ["math.trig.unit_circle_def"],
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
       "to_formula_id": "math.trig.ind_neg",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["geometric_symmetry"],
+      "inference_rules": [
+        "geometric_symmetry"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "角 α 与 -α 的终边关于 x 轴对称，交点横坐标不变、纵坐标取反。",
         "L2_standard": [
-          { "step": 1, "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } x \\text{ 轴对称}} P_2(x, -y)", "note": "角 -α 终边与单位圆交点坐标为 (x, -y)", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "\\sin(-\\alpha) = -y = -\\sin\\alpha,\\ \\cos(-\\alpha) = x = \\cos\\alpha", "note": "代入单位圆定义即得", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } x \\text{ 轴对称}} P_2(x, -y)",
+            "note": "角 -α 终边与单位圆交点坐标为 (x, -y)",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin(-\\alpha) = -y = -\\sin\\alpha,\\ \\cos(-\\alpha) = x = \\cos\\alpha",
+            "note": "代入单位圆定义即得",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "P_1(\\cos\\alpha, \\sin\\alpha)", "note": "设角 α 终边与单位圆交于 P1", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "P_2(\\cos\\alpha, -\\sin\\alpha)", "note": "角 -α 终边与 α 终边关于 x 轴对称，横坐标相同、纵坐标相反", "cited_formula_ids": [] },
-          { "step": 3, "latex": "\\sin(-\\alpha) = -\\sin\\alpha,\\ \\cos(-\\alpha) = \\cos\\alpha", "note": "对照定义读出正弦与余弦值", "cited_formula_ids": [], "pitfall": "负角时只有余弦（及正割）保持正号不变，正弦和正切都会变号。" }
+          {
+            "step": 1,
+            "latex": "P_1(\\cos\\alpha, \\sin\\alpha)",
+            "note": "设角 α 终边与单位圆交于 P1",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P_2(\\cos\\alpha, -\\sin\\alpha)",
+            "note": "角 -α 终边与 α 终边关于 x 轴对称，横坐标相同、纵坐标相反",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "\\sin(-\\alpha) = -\\sin\\alpha,\\ \\cos(-\\alpha) = \\cos\\alpha",
+            "note": "对照定义读出正弦与余弦值",
+            "cited_formula_ids": [],
+            "pitfall": "负角时只有余弦（及正割）保持正号不变，正弦和正切都会变号。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.def_to_ind_pi_minus",
-      "from_formula_ids": ["math.trig.unit_circle_def"],
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
       "to_formula_id": "math.trig.ind_pi_minus",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["geometric_symmetry"],
+      "inference_rules": [
+        "geometric_symmetry"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "角 π - α 与 α 的终边关于 y 轴对称，交点纵坐标不变、横坐标取反。",
         "L2_standard": [
-          { "step": 1, "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } y \\text{ 轴对称}} P_2(-x, y)", "note": "π - α 与 α 终边关于 y 轴对称", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "\\sin(\\pi - \\alpha) = y = \\sin\\alpha,\\ \\cos(\\pi - \\alpha) = -x = -\\cos\\alpha", "note": "代入定义得补角关系", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } y \\text{ 轴对称}} P_2(-x, y)",
+            "note": "π - α 与 α 终边关于 y 轴对称",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin(\\pi - \\alpha) = y = \\sin\\alpha,\\ \\cos(\\pi - \\alpha) = -x = -\\cos\\alpha",
+            "note": "代入定义得补角关系",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "P_1(\\cos\\alpha, \\sin\\alpha)", "note": "角 α 终边与单位圆交点", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "P_2(-\\cos\\alpha, \\sin\\alpha)", "note": "因为 (π - α) + α = π，两终边关于 y 轴对称", "cited_formula_ids": [] },
-          { "step": 3, "latex": "\\sin(\\pi - \\alpha) = \\sin\\alpha,\\ \\cos(\\pi - \\alpha) = -\\cos\\alpha", "note": "写出对应三角函数值，解三角形中极为常用", "cited_formula_ids": [], "pitfall": "三角形中 A+B+C = π，因此 sin(A+B) = sin C，而 cos(A+B) = -cos C。" }
+          {
+            "step": 1,
+            "latex": "P_1(\\cos\\alpha, \\sin\\alpha)",
+            "note": "角 α 终边与单位圆交点",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P_2(-\\cos\\alpha, \\sin\\alpha)",
+            "note": "因为 (π - α) + α = π，两终边关于 y 轴对称",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "\\sin(\\pi - \\alpha) = \\sin\\alpha,\\ \\cos(\\pi - \\alpha) = -\\cos\\alpha",
+            "note": "写出对应三角函数值，解三角形中极为常用",
+            "cited_formula_ids": [],
+            "pitfall": "三角形中 A+B+C = π，因此 sin(A+B) = sin C，而 cos(A+B) = -cos C。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.def_to_ind_half_pi_minus",
-      "from_formula_ids": ["math.trig.unit_circle_def"],
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
       "to_formula_id": "math.trig.ind_half_pi_minus",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["geometric_symmetry"],
+      "inference_rules": [
+        "geometric_symmetry"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "角 π/2 - α 与 α 的终边关于直线 y = x 对称，交点横纵坐标互换。",
         "L2_standard": [
-          { "step": 1, "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } y=x \\text{ 对称}} P_2(y, x)", "note": "互余两角终边关于直线 y = x 对称", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "\\sin\\left(\\frac{\\pi}{2}-\\alpha\\right) = x = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right) = y = \\sin\\alpha", "note": "坐标互换对应正余弦互换", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "P_1(x, y) \\xrightarrow{\\text{关于 } y=x \\text{ 对称}} P_2(y, x)",
+            "note": "互余两角终边关于直线 y = x 对称",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin\\left(\\frac{\\pi}{2}-\\alpha\\right) = x = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right) = y = \\sin\\alpha",
+            "note": "坐标互换对应正余弦互换",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "P_1(\\cos\\alpha, \\sin\\alpha)", "note": "写出角 α 终边交点坐标", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "P_2(\\sin\\alpha, \\cos\\alpha)", "note": "由于 (π/2 - α) + α = π/2，两点关于一三象限角平分线 y = x 对称", "cited_formula_ids": [] },
-          { "step": 3, "latex": "\\sin\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\sin\\alpha", "note": "横纵坐标互换即实现正弦与余弦互化", "cited_formula_ids": [], "pitfall": "口诀“奇变偶不变，符号看象限”中，π/2 的奇数倍必须改变函数名。" }
+          {
+            "step": 1,
+            "latex": "P_1(\\cos\\alpha, \\sin\\alpha)",
+            "note": "写出角 α 终边交点坐标",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P_2(\\sin\\alpha, \\cos\\alpha)",
+            "note": "由于 (π/2 - α) + α = π/2，两点关于一三象限角平分线 y = x 对称",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "\\sin\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\cos\\alpha,\\ \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right) = \\sin\\alpha",
+            "note": "横纵坐标互换即实现正弦与余弦互化",
+            "cited_formula_ids": [],
+            "pitfall": "口诀“奇变偶不变，符号看象限”中，π/2 的奇数倍必须改变函数名。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.ind5_neg_to_ind6",
-      "from_formula_ids": ["math.trig.ind_half_pi_minus", "math.trig.ind_neg"],
+      "from_formula_ids": [
+        "math.trig.ind_half_pi_minus",
+        "math.trig.ind_neg"
+      ],
       "to_formula_id": "math.trig.ind_half_pi_plus",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["variable_substitution", "parity_identity"],
+      "inference_rules": [
+        "variable_substitution",
+        "parity_identity"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "在诱导公式五中将 α 替换为 -α，再结合诱导公式三的奇偶性化简。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sin\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\sin\\left(\\frac{\\pi}{2}-(-\\alpha)\\right) = \\cos(-\\alpha) = \\cos\\alpha", "note": "对正弦套用诱导公式五与三", "cited_formula_ids": ["math.trig.ind_half_pi_minus", "math.trig.ind_neg"] },
-          { "step": 2, "latex": "\\cos\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\cos\\left(\\frac{\\pi}{2}-(-\\alpha)\\right) = \\sin(-\\alpha) = -\\sin\\alpha", "note": "对余弦套用诱导公式五与三", "cited_formula_ids": ["math.trig.ind_half_pi_minus", "math.trig.ind_neg"] }
+          {
+            "step": 1,
+            "latex": "\\sin\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\sin\\left(\\frac{\\pi}{2}-(-\\alpha)\\right) = \\cos(-\\alpha) = \\cos\\alpha",
+            "note": "对正弦套用诱导公式五与三",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus",
+              "math.trig.ind_neg"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\cos\\left(\\frac{\\pi}{2}-(-\\alpha)\\right) = \\sin(-\\alpha) = -\\sin\\alpha",
+            "note": "对余弦套用诱导公式五与三",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus",
+              "math.trig.ind_neg"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{\\pi}{2} + \\alpha = \\frac{\\pi}{2} - (-\\alpha)", "note": "把加号改写为减去负角，对齐诱导公式五的结构", "cited_formula_ids": [] },
-          { "step": 2, "latex": "\\sin\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\cos(-\\alpha) = \\cos\\alpha", "note": "先用诱导公式五换名，再用余弦偶函数性质去负号", "cited_formula_ids": ["math.trig.ind_half_pi_minus", "math.trig.ind_neg"] },
-          { "step": 3, "latex": "\\cos\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\sin(-\\alpha) = -\\sin\\alpha", "note": "先用诱导公式五换名，再用正弦奇函数性质提出负号", "cited_formula_ids": ["math.trig.ind_half_pi_minus", "math.trig.ind_neg"], "pitfall": "把 α 看作锐角时 π/2 + α 在第二象限，原余弦值为负，故右侧带负号。" }
+          {
+            "step": 1,
+            "latex": "\\frac{\\pi}{2} + \\alpha = \\frac{\\pi}{2} - (-\\alpha)",
+            "note": "把加号改写为减去负角，对齐诱导公式五的结构",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "\\sin\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\cos(-\\alpha) = \\cos\\alpha",
+            "note": "先用诱导公式五换名，再用余弦偶函数性质去负号",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus",
+              "math.trig.ind_neg"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\cos\\left(\\frac{\\pi}{2}+\\alpha\\right) = \\sin(-\\alpha) = -\\sin\\alpha",
+            "note": "先用诱导公式五换名，再用正弦奇函数性质提出负号",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus",
+              "math.trig.ind_neg"
+            ],
+            "pitfall": "把 α 看作锐角时 π/2 + α 在第二象限，原余弦值为负，故右侧带负号。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.def_to_cos_diff",
-      "from_formula_ids": ["math.trig.unit_circle_def"],
+      "from_formula_ids": [
+        "math.trig.unit_circle_def"
+      ],
       "to_formula_id": "math.trig.cos_diff",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["rotation_invariance", "distance_formula"],
+      "inference_rules": [
+        "rotation_invariance",
+        "distance_formula"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在单位圆上取角 α、β 终边交点，利用旋转不变性令弦长平方相等即可推出两角差余弦公式。",
         "L2_standard": [
-          { "step": 1, "latex": "A_1(\\cos\\alpha, \\sin\\alpha),\\ B_1(\\cos\\beta, \\sin\\beta),\\ P(\\cos(\\alpha-\\beta), \\sin(\\alpha-\\beta)),\\ A(1, 0)", "note": "由单位圆旋转不变性，弦长 |A1B1| = |PA|", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "(\\cos\\alpha - \\cos\\beta)^2 + (\\sin\\alpha - \\sin\\beta)^2 = (\\cos(\\alpha-\\beta) - 1)^2 + \\sin^2(\\alpha-\\beta)", "note": "两边列出距离平方并展开", "cited_formula_ids": [] },
-          { "step": 3, "latex": "2 - 2(\\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta) = 2 - 2\\cos(\\alpha-\\beta)", "note": "消去常数项与系数 -2 即得证", "cited_formula_ids": ["math.trig.pythagorean"] }
+          {
+            "step": 1,
+            "latex": "A_1(\\cos\\alpha, \\sin\\alpha),\\ B_1(\\cos\\beta, \\sin\\beta),\\ P(\\cos(\\alpha-\\beta), \\sin(\\alpha-\\beta)),\\ A(1, 0)",
+            "note": "由单位圆旋转不变性，弦长 |A1B1| = |PA|",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(\\cos\\alpha - \\cos\\beta)^2 + (\\sin\\alpha - \\sin\\beta)^2 = (\\cos(\\alpha-\\beta) - 1)^2 + \\sin^2(\\alpha-\\beta)",
+            "note": "两边列出距离平方并展开",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "2 - 2(\\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta) = 2 - 2\\cos(\\alpha-\\beta)",
+            "note": "消去常数项与系数 -2 即得证",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "|A_1B_1|^2 = (\\cos\\alpha - \\cos\\beta)^2 + (\\sin\\alpha - \\sin\\beta)^2", "note": "由单位圆定义写出两点坐标并计算弦长平方", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "|A_1B_1|^2 = 2 - 2(\\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta)", "note": "展开并用 sin²+cos² = 1 合并平方项", "cited_formula_ids": ["math.trig.pythagorean"] },
-          { "step": 3, "latex": "|PA|^2 = (\\cos(\\alpha-\\beta) - 1)^2 + \\sin^2(\\alpha-\\beta) = 2 - 2\\cos(\\alpha-\\beta)", "note": "将扇形顺时针旋转 β 使始边与 x 轴正半轴重合，弦长不变", "cited_formula_ids": [] },
-          { "step": 4, "latex": "\\cos(\\alpha - \\beta) = \\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta", "note": "令两弦长平方相等并化简", "cited_formula_ids": [], "pitfall": "人教A版特意将两角差余弦作为整章和差倍半公式的总源头，避免了循环论证。" }
+          {
+            "step": 1,
+            "latex": "|A_1B_1|^2 = (\\cos\\alpha - \\cos\\beta)^2 + (\\sin\\alpha - \\sin\\beta)^2",
+            "note": "由单位圆定义写出两点坐标并计算弦长平方",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "|A_1B_1|^2 = 2 - 2(\\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta)",
+            "note": "展开并用 sin²+cos² = 1 合并平方项",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "|PA|^2 = (\\cos(\\alpha-\\beta) - 1)^2 + \\sin^2(\\alpha-\\beta) = 2 - 2\\cos(\\alpha-\\beta)",
+            "note": "将扇形顺时针旋转 β 使始边与 x 轴正半轴重合，弦长不变",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 4,
+            "latex": "\\cos(\\alpha - \\beta) = \\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta",
+            "note": "令两弦长平方相等并化简",
+            "cited_formula_ids": [],
+            "pitfall": "人教A版特意将两角差余弦作为整章和差倍半公式的总源头，避免了循环论证。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.cos_diff_to_sum",
-      "from_formula_ids": ["math.trig.cos_diff", "math.trig.ind_neg"],
+      "from_formula_ids": [
+        "math.trig.cos_diff",
+        "math.trig.ind_neg"
+      ],
       "to_formula_id": "math.trig.cos_sum",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["variable_substitution", "parity_identity"],
+      "inference_rules": [
+        "variable_substitution",
+        "parity_identity"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "在两角差余弦公式中以 -β 替换 β，再利用负角奇偶性化简。",
         "L2_standard": [
-          { "step": 1, "latex": "\\cos(\\alpha + \\beta) = \\cos[\\alpha - (-\\beta)]", "note": "将和角改写为差角形式", "cited_formula_ids": [] },
-          { "step": 2, "latex": "= \\cos\\alpha\\cos(-\\beta) + \\sin\\alpha\\sin(-\\beta)", "note": "套用两角差余弦公式", "cited_formula_ids": ["math.trig.cos_diff"] },
-          { "step": 3, "latex": "= \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta", "note": "由诱导公式三化简负角", "cited_formula_ids": ["math.trig.ind_neg"] }
+          {
+            "step": 1,
+            "latex": "\\cos(\\alpha + \\beta) = \\cos[\\alpha - (-\\beta)]",
+            "note": "将和角改写为差角形式",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "= \\cos\\alpha\\cos(-\\beta) + \\sin\\alpha\\sin(-\\beta)",
+            "note": "套用两角差余弦公式",
+            "cited_formula_ids": [
+              "math.trig.cos_diff"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta",
+            "note": "由诱导公式三化简负角",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\cos(\\alpha + \\beta) = \\cos(\\alpha - (-\\beta))", "note": "令两角差余弦公式中的 β 替换为 -β", "cited_formula_ids": [] },
-          { "step": 2, "latex": "= \\cos\\alpha\\cos(-\\beta) + \\sin\\alpha\\sin(-\\beta)", "note": "逐项代入两角差余弦展开式", "cited_formula_ids": ["math.trig.cos_diff"] },
-          { "step": 3, "latex": "= \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta", "note": "代入 cos(-β)=cos β 与 sin(-β)=-sin β 整理符号", "cited_formula_ids": ["math.trig.ind_neg"], "pitfall": "余弦展开式中间符号与括号内相反：和角用减号，差角用加号。" }
+          {
+            "step": 1,
+            "latex": "\\cos(\\alpha + \\beta) = \\cos(\\alpha - (-\\beta))",
+            "note": "令两角差余弦公式中的 β 替换为 -β",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "= \\cos\\alpha\\cos(-\\beta) + \\sin\\alpha\\sin(-\\beta)",
+            "note": "逐项代入两角差余弦展开式",
+            "cited_formula_ids": [
+              "math.trig.cos_diff"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta",
+            "note": "代入 cos(-β)=cos β 与 sin(-β)=-sin β 整理符号",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ],
+            "pitfall": "余弦展开式中间符号与括号内相反：和角用减号，差角用加号。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.cos_diff_to_sin_sum",
-      "from_formula_ids": ["math.trig.cos_diff", "math.trig.ind_half_pi_minus"],
+      "from_formula_ids": [
+        "math.trig.cos_diff",
+        "math.trig.ind_half_pi_minus"
+      ],
       "to_formula_id": "math.trig.sin_sum",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["cofunction_identity", "associative_regrouping"],
+      "inference_rules": [
+        "cofunction_identity",
+        "associative_regrouping"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "利用余角互换把 sin(α+β) 改写为 cos[(π/2 - α) - β]，再套用两角差余弦公式。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sin(\\alpha + \\beta) = \\cos\\left[\\frac{\\pi}{2} - (\\alpha + \\beta)\\right] = \\cos\\left[\\left(\\frac{\\pi}{2} - \\alpha\\right) - \\beta\\right]", "note": "用诱导公式五转化为余弦并重新分组", "cited_formula_ids": ["math.trig.ind_half_pi_minus"] },
-          { "step": 2, "latex": "= \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right)\\cos\\beta + \\sin\\left(\\frac{\\pi}{2}-\\alpha\\right)\\sin\\beta", "note": "套用两角差余弦公式展开", "cited_formula_ids": ["math.trig.cos_diff"] },
-          { "step": 3, "latex": "= \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta", "note": "再次用诱导公式五还原正余弦", "cited_formula_ids": ["math.trig.ind_half_pi_minus"] }
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha + \\beta) = \\cos\\left[\\frac{\\pi}{2} - (\\alpha + \\beta)\\right] = \\cos\\left[\\left(\\frac{\\pi}{2} - \\alpha\\right) - \\beta\\right]",
+            "note": "用诱导公式五转化为余弦并重新分组",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right)\\cos\\beta + \\sin\\left(\\frac{\\pi}{2}-\\alpha\\right)\\sin\\beta",
+            "note": "套用两角差余弦公式展开",
+            "cited_formula_ids": [
+              "math.trig.cos_diff"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta",
+            "note": "再次用诱导公式五还原正余弦",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\sin(\\alpha + \\beta) = \\cos\\left(\\frac{\\pi}{2} - (\\alpha + \\beta)\\right)", "note": "将 (α+β) 视作整体，使用余角公式把正弦转为余弦", "cited_formula_ids": ["math.trig.ind_half_pi_minus"] },
-          { "step": 2, "latex": "= \\cos\\left(\\left(\\frac{\\pi}{2}-\\alpha\\right) - \\beta\\right)", "note": "去括号重新结合为两角之差", "cited_formula_ids": [] },
-          { "step": 3, "latex": "= \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right)\\cos\\beta + \\sin\\left(\\frac{\\pi}{2}-\\alpha\\right)\\sin\\beta", "note": "展开两角差余弦", "cited_formula_ids": ["math.trig.cos_diff"] },
-          { "step": 4, "latex": "= \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta", "note": "将余角函数还原为 sin α 与 cos α", "cited_formula_ids": ["math.trig.ind_half_pi_minus"], "pitfall": "正弦和差展开式中间符号与括号内一致，且每项均为“一正一余”交叉相乘。" }
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha + \\beta) = \\cos\\left(\\frac{\\pi}{2} - (\\alpha + \\beta)\\right)",
+            "note": "将 (α+β) 视作整体，使用余角公式把正弦转为余弦",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\cos\\left(\\left(\\frac{\\pi}{2}-\\alpha\\right) - \\beta\\right)",
+            "note": "去括号重新结合为两角之差",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "= \\cos\\left(\\frac{\\pi}{2}-\\alpha\\right)\\cos\\beta + \\sin\\left(\\frac{\\pi}{2}-\\alpha\\right)\\sin\\beta",
+            "note": "展开两角差余弦",
+            "cited_formula_ids": [
+              "math.trig.cos_diff"
+            ]
+          },
+          {
+            "step": 4,
+            "latex": "= \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta",
+            "note": "将余角函数还原为 sin α 与 cos α",
+            "cited_formula_ids": [
+              "math.trig.ind_half_pi_minus"
+            ],
+            "pitfall": "正弦和差展开式中间符号与括号内一致，且每项均为“一正一余”交叉相乘。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.sin_sum_to_diff",
-      "from_formula_ids": ["math.trig.sin_sum", "math.trig.ind_neg"],
+      "from_formula_ids": [
+        "math.trig.sin_sum",
+        "math.trig.ind_neg"
+      ],
       "to_formula_id": "math.trig.sin_diff",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["variable_substitution", "parity_identity"],
+      "inference_rules": [
+        "variable_substitution",
+        "parity_identity"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "在两角和正弦公式中以 -β 替换 β，再用奇偶性化简。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sin(\\alpha - \\beta) = \\sin[\\alpha + (-\\beta)] = \\sin\\alpha\\cos(-\\beta) + \\cos\\alpha\\sin(-\\beta)", "note": "套用两角和正弦公式", "cited_formula_ids": ["math.trig.sin_sum"] },
-          { "step": 2, "latex": "= \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta", "note": "代入奇偶性整理符号", "cited_formula_ids": ["math.trig.ind_neg"] }
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha - \\beta) = \\sin[\\alpha + (-\\beta)] = \\sin\\alpha\\cos(-\\beta) + \\cos\\alpha\\sin(-\\beta)",
+            "note": "套用两角和正弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta",
+            "note": "代入奇偶性整理符号",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\sin(\\alpha - \\beta) = \\sin(\\alpha + (-\\beta))", "note": "改写为和角结构", "cited_formula_ids": [] },
-          { "step": 2, "latex": "= \\sin\\alpha\\cos(-\\beta) + \\cos\\alpha\\sin(-\\beta)", "note": "代入两角和正弦公式", "cited_formula_ids": ["math.trig.sin_sum"] },
-          { "step": 3, "latex": "= \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta", "note": "由 cos(-β)=cos β、sin(-β)=-sin β 完成化简", "cited_formula_ids": ["math.trig.ind_neg"], "pitfall": "逆用 sin(α-β) 时务必核对减数与被减数的角顺序。" }
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha - \\beta) = \\sin(\\alpha + (-\\beta))",
+            "note": "改写为和角结构",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "= \\sin\\alpha\\cos(-\\beta) + \\cos\\alpha\\sin(-\\beta)",
+            "note": "代入两角和正弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta",
+            "note": "由 cos(-β)=cos β、sin(-β)=-sin β 完成化简",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ],
+            "pitfall": "逆用 sin(α-β) 时务必核对减数与被减数的角顺序。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.sin_cos_to_tan_sum",
-      "from_formula_ids": ["math.trig.sin_sum", "math.trig.cos_sum", "math.trig.quotient"],
+      "from_formula_ids": [
+        "math.trig.sin_sum",
+        "math.trig.cos_sum",
+        "math.trig.quotient"
+      ],
       "to_formula_id": "math.trig.tan_sum",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["quotient_expansion", "divide_numerator_denominator"],
+      "inference_rules": [
+        "quotient_expansion",
+        "divide_numerator_denominator"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "用商数关系将 tan(α+β) 写为 sin(α+β)/cos(α+β)，展开后分子分母同除以 cos α cos β。",
         "L2_standard": [
-          { "step": 1, "latex": "\\tan(\\alpha + \\beta) = \\frac{\\sin(\\alpha + \\beta)}{\\cos(\\alpha + \\beta)} = \\frac{\\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta}", "note": "由商数关系与和角公式展开", "cited_formula_ids": ["math.trig.quotient", "math.trig.sin_sum", "math.trig.cos_sum"] },
-          { "step": 2, "latex": "= \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}", "note": "分子分母同除以 cos α cos β 并化为正切", "cited_formula_ids": ["math.trig.quotient"] }
+          {
+            "step": 1,
+            "latex": "\\tan(\\alpha + \\beta) = \\frac{\\sin(\\alpha + \\beta)}{\\cos(\\alpha + \\beta)} = \\frac{\\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta}",
+            "note": "由商数关系与和角公式展开",
+            "cited_formula_ids": [
+              "math.trig.quotient",
+              "math.trig.sin_sum",
+              "math.trig.cos_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}",
+            "note": "分子分母同除以 cos α cos β 并化为正切",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\tan(\\alpha + \\beta) = \\frac{\\sin(\\alpha + \\beta)}{\\cos(\\alpha + \\beta)}", "note": "应用商数关系", "cited_formula_ids": ["math.trig.quotient"] },
-          { "step": 2, "latex": "= \\frac{\\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta}", "note": "分别代入两角和正弦与两角和余弦公式", "cited_formula_ids": ["math.trig.sin_sum", "math.trig.cos_sum"] },
-          { "step": 3, "latex": "= \\frac{\\frac{\\sin\\alpha}{\\cos\\alpha} + \\frac{\\sin\\beta}{\\cos\\beta}}{1 - \\frac{\\sin\\alpha}{\\cos\\alpha}\\cdot\\frac{\\sin\\beta}{\\cos\\beta}} = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}", "note": "在 cos α cos β ≠ 0 时分子分母同除以 cos α cos β", "cited_formula_ids": ["math.trig.quotient"], "pitfall": "变形 tan α + tan β = tan(α+β)(1 - tan α tan β) 是高考常见技巧。" }
+          {
+            "step": 1,
+            "latex": "\\tan(\\alpha + \\beta) = \\frac{\\sin(\\alpha + \\beta)}{\\cos(\\alpha + \\beta)}",
+            "note": "应用商数关系",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\frac{\\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta}",
+            "note": "分别代入两角和正弦与两角和余弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum",
+              "math.trig.cos_sum"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\frac{\\frac{\\sin\\alpha}{\\cos\\alpha} + \\frac{\\sin\\beta}{\\cos\\beta}}{1 - \\frac{\\sin\\alpha}{\\cos\\alpha}\\cdot\\frac{\\sin\\beta}{\\cos\\beta}} = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}",
+            "note": "在 cos α cos β ≠ 0 时分子分母同除以 cos α cos β",
+            "cited_formula_ids": [
+              "math.trig.quotient"
+            ],
+            "pitfall": "变形 tan α + tan β = tan(α+β)(1 - tan α tan β) 是高考常见技巧。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.tan_sum_to_diff",
-      "from_formula_ids": ["math.trig.tan_sum", "math.trig.ind_neg"],
+      "from_formula_ids": [
+        "math.trig.tan_sum",
+        "math.trig.ind_neg"
+      ],
       "to_formula_id": "math.trig.tan_diff",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["variable_substitution", "parity_identity"],
+      "inference_rules": [
+        "variable_substitution",
+        "parity_identity"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "在两角和正切公式中用 -β 替换 β，并利用 tan(-β) = -tan β 化简。",
         "L2_standard": [
-          { "step": 1, "latex": "\\tan(\\alpha - \\beta) = \\frac{\\tan\\alpha + \\tan(-\\beta)}{1 - \\tan\\alpha\\tan(-\\beta)}", "note": "代入两角和正切公式", "cited_formula_ids": ["math.trig.tan_sum"] },
-          { "step": 2, "latex": "= \\frac{\\tan\\alpha - \\tan\\beta}{1 + \\tan\\alpha\\tan\\beta}", "note": "利用正切函数为奇函数化简", "cited_formula_ids": ["math.trig.ind_neg"] }
+          {
+            "step": 1,
+            "latex": "\\tan(\\alpha - \\beta) = \\frac{\\tan\\alpha + \\tan(-\\beta)}{1 - \\tan\\alpha\\tan(-\\beta)}",
+            "note": "代入两角和正切公式",
+            "cited_formula_ids": [
+              "math.trig.tan_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\frac{\\tan\\alpha - \\tan\\beta}{1 + \\tan\\alpha\\tan\\beta}",
+            "note": "利用正切函数为奇函数化简",
+            "cited_formula_ids": [
+              "math.trig.ind_neg"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\tan(-\\beta) = \\frac{\\sin(-\\beta)}{\\cos(-\\beta)} = -\\tan\\beta", "note": "由正余弦奇偶性得正切为奇函数", "cited_formula_ids": ["math.trig.ind_neg", "math.trig.quotient"] },
-          { "step": 2, "latex": "\\tan(\\alpha - \\beta) = \\frac{\\tan\\alpha - \\tan\\beta}{1 + \\tan\\alpha\\tan\\beta}", "note": "将 β 替换为 -β 代入两角和正切公式", "cited_formula_ids": ["math.trig.tan_sum"], "pitfall": "分子符号与左侧一致，分母符号与左侧相反。" }
+          {
+            "step": 1,
+            "latex": "\\tan(-\\beta) = \\frac{\\sin(-\\beta)}{\\cos(-\\beta)} = -\\tan\\beta",
+            "note": "由正余弦奇偶性得正切为奇函数",
+            "cited_formula_ids": [
+              "math.trig.ind_neg",
+              "math.trig.quotient"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\tan(\\alpha - \\beta) = \\frac{\\tan\\alpha - \\tan\\beta}{1 + \\tan\\alpha\\tan\\beta}",
+            "note": "将 β 替换为 -β 代入两角和正切公式",
+            "cited_formula_ids": [
+              "math.trig.tan_sum"
+            ],
+            "pitfall": "分子符号与左侧一致，分母符号与左侧相反。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.sin_sum_to_double",
-      "from_formula_ids": ["math.trig.sin_sum"],
+      "from_formula_ids": [
+        "math.trig.sin_sum"
+      ],
       "to_formula_id": "math.trig.sin_double",
       "relation_type": "special_case_of",
       "dependency_site": "proof_level",
-      "inference_rules": ["specialization"],
+      "inference_rules": [
+        "specialization"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在两角和正弦公式中令 β = α，合并同类项即可得到二倍角正弦公式。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sin 2\\alpha = \\sin(\\alpha + \\alpha) = \\sin\\alpha\\cos\\alpha + \\cos\\alpha\\sin\\alpha = 2\\sin\\alpha\\cos\\alpha", "note": "令 β = α 代入两角和正弦公式", "cited_formula_ids": ["math.trig.sin_sum"] }
+          {
+            "step": 1,
+            "latex": "\\sin 2\\alpha = \\sin(\\alpha + \\alpha) = \\sin\\alpha\\cos\\alpha + \\cos\\alpha\\sin\\alpha = 2\\sin\\alpha\\cos\\alpha",
+            "note": "令 β = α 代入两角和正弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\sin(\\alpha + \\beta) = \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta", "note": "写出两角和正弦公式", "cited_formula_ids": ["math.trig.sin_sum"] },
-          { "step": 2, "latex": "\\text{令 } \\beta = \\alpha \\implies \\sin 2\\alpha = \\sin\\alpha\\cos\\alpha + \\cos\\alpha\\sin\\alpha = 2\\sin\\alpha\\cos\\alpha", "note": "乘法交换后合并两项", "cited_formula_ids": [], "pitfall": "逆用 sin α cos α = (1/2)sin 2α 是化简乘积项的高频操作。" }
+          {
+            "step": 1,
+            "latex": "\\sin(\\alpha + \\beta) = \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta",
+            "note": "写出两角和正弦公式",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\text{令 } \\beta = \\alpha \\implies \\sin 2\\alpha = \\sin\\alpha\\cos\\alpha + \\cos\\alpha\\sin\\alpha = 2\\sin\\alpha\\cos\\alpha",
+            "note": "乘法交换后合并两项",
+            "cited_formula_ids": [],
+            "pitfall": "逆用 sin α cos α = (1/2)sin 2α 是化简乘积项的高频操作。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.cos_sum_to_double",
-      "from_formula_ids": ["math.trig.cos_sum"],
+      "from_formula_ids": [
+        "math.trig.cos_sum"
+      ],
       "to_formula_id": "math.trig.cos_double",
       "relation_type": "special_case_of",
       "dependency_site": "proof_level",
-      "inference_rules": ["specialization"],
+      "inference_rules": [
+        "specialization"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在两角和余弦公式中令 β = α，即可直接得到二倍角余弦的基本形式。",
         "L2_standard": [
-          { "step": 1, "latex": "\\cos 2\\alpha = \\cos(\\alpha + \\alpha) = \\cos^2\\alpha - \\sin^2\\alpha", "note": "令 β = α 代入两角和余弦公式", "cited_formula_ids": ["math.trig.cos_sum"] }
+          {
+            "step": 1,
+            "latex": "\\cos 2\\alpha = \\cos(\\alpha + \\alpha) = \\cos^2\\alpha - \\sin^2\\alpha",
+            "note": "令 β = α 代入两角和余弦公式",
+            "cited_formula_ids": [
+              "math.trig.cos_sum"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\cos(\\alpha + \\beta) = \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta", "note": "写出两角和余弦公式", "cited_formula_ids": ["math.trig.cos_sum"] },
-          { "step": 2, "latex": "\\text{令 } \\beta = \\alpha \\implies \\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha", "note": "取两角相等的特例", "cited_formula_ids": [], "pitfall": "二倍角对任意 2 倍角关系（如 α 与 α/2）同样适用。" }
+          {
+            "step": 1,
+            "latex": "\\cos(\\alpha + \\beta) = \\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta",
+            "note": "写出两角和余弦公式",
+            "cited_formula_ids": [
+              "math.trig.cos_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\text{令 } \\beta = \\alpha \\implies \\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha",
+            "note": "取两角相等的特例",
+            "cited_formula_ids": [],
+            "pitfall": "二倍角对任意 2 倍角关系（如 α 与 α/2）同样适用。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.cos_double_to_single_cos",
-      "from_formula_ids": ["math.trig.cos_double", "math.trig.pythagorean"],
+      "from_formula_ids": [
+        "math.trig.cos_double",
+        "math.trig.pythagorean"
+      ],
       "to_formula_id": "math.trig.cos_double_cos",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution", "combine_like_terms"],
+      "inference_rules": [
+        "identity_substitution",
+        "combine_like_terms"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "将同角平方关系变形为 sin²α = 1 - cos²α 后代入二倍角余弦公式，消去 sin²α 项。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sin^2\\alpha = 1 - \\cos^2\\alpha", "note": "由同角平方关系移项", "cited_formula_ids": ["math.trig.pythagorean"] },
-          { "step": 2, "latex": "\\cos 2\\alpha = \\cos^2\\alpha - (1 - \\cos^2\\alpha) = 2\\cos^2\\alpha - 1", "note": "代入并合并同类项", "cited_formula_ids": ["math.trig.cos_double"] }
+          {
+            "step": 1,
+            "latex": "\\sin^2\\alpha = 1 - \\cos^2\\alpha",
+            "note": "由同角平方关系移项",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos 2\\alpha = \\cos^2\\alpha - (1 - \\cos^2\\alpha) = 2\\cos^2\\alpha - 1",
+            "note": "代入并合并同类项",
+            "cited_formula_ids": [
+              "math.trig.cos_double"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1 \\implies \\sin^2\\alpha = 1 - \\cos^2\\alpha", "note": "从同角平方关系解出 sin²α", "cited_formula_ids": ["math.trig.pythagorean"] },
-          { "step": 2, "latex": "\\cos 2\\alpha = \\cos^2\\alpha - (1 - \\cos^2\\alpha) = 2\\cos^2\\alpha - 1", "note": "整体代入并去括号合并", "cited_formula_ids": ["math.trig.cos_double"], "pitfall": "去括号时注意 -(1 - cos²α) = -1 + cos²α。" }
+          {
+            "step": 1,
+            "latex": "\\sin^2\\alpha + \\cos^2\\alpha = 1 \\implies \\sin^2\\alpha = 1 - \\cos^2\\alpha",
+            "note": "从同角平方关系解出 sin²α",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos 2\\alpha = \\cos^2\\alpha - (1 - \\cos^2\\alpha) = 2\\cos^2\\alpha - 1",
+            "note": "整体代入并去括号合并",
+            "cited_formula_ids": [
+              "math.trig.cos_double"
+            ],
+            "pitfall": "去括号时注意 -(1 - cos²α) = -1 + cos²α。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.cos_double_to_single_sin",
-      "from_formula_ids": ["math.trig.cos_double", "math.trig.pythagorean"],
+      "from_formula_ids": [
+        "math.trig.cos_double",
+        "math.trig.pythagorean"
+      ],
       "to_formula_id": "math.trig.cos_double_sin",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution", "combine_like_terms"],
+      "inference_rules": [
+        "identity_substitution",
+        "combine_like_terms"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "将同角平方关系变形为 cos²α = 1 - sin²α 后代入二倍角余弦公式，消去 cos²α 项。",
         "L2_standard": [
-          { "step": 1, "latex": "\\cos^2\\alpha = 1 - \\sin^2\\alpha", "note": "由同角平方关系移项", "cited_formula_ids": ["math.trig.pythagorean"] },
-          { "step": 2, "latex": "\\cos 2\\alpha = (1 - \\sin^2\\alpha) - \\sin^2\\alpha = 1 - 2\\sin^2\\alpha", "note": "代入二倍角余弦基本式并合并", "cited_formula_ids": ["math.trig.cos_double"] }
+          {
+            "step": 1,
+            "latex": "\\cos^2\\alpha = 1 - \\sin^2\\alpha",
+            "note": "由同角平方关系移项",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos 2\\alpha = (1 - \\sin^2\\alpha) - \\sin^2\\alpha = 1 - 2\\sin^2\\alpha",
+            "note": "代入二倍角余弦基本式并合并",
+            "cited_formula_ids": [
+              "math.trig.cos_double"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\cos^2\\alpha = 1 - \\sin^2\\alpha", "note": "解出 cos²α", "cited_formula_ids": ["math.trig.pythagorean"] },
-          { "step": 2, "latex": "\\cos 2\\alpha = (1 - \\sin^2\\alpha) - \\sin^2\\alpha = 1 - 2\\sin^2\\alpha", "note": "代入并合并两个 -sin²α 项", "cited_formula_ids": ["math.trig.cos_double"], "pitfall": "注意与 2cos²α - 1 区分：纯正弦形式常数 1 在前、带负号在后。" }
+          {
+            "step": 1,
+            "latex": "\\cos^2\\alpha = 1 - \\sin^2\\alpha",
+            "note": "解出 cos²α",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos 2\\alpha = (1 - \\sin^2\\alpha) - \\sin^2\\alpha = 1 - 2\\sin^2\\alpha",
+            "note": "代入并合并两个 -sin²α 项",
+            "cited_formula_ids": [
+              "math.trig.cos_double"
+            ],
+            "pitfall": "注意与 2cos²α - 1 区分：纯正弦形式常数 1 在前、带负号在后。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.tan_sum_to_double",
-      "from_formula_ids": ["math.trig.tan_sum"],
+      "from_formula_ids": [
+        "math.trig.tan_sum"
+      ],
       "to_formula_id": "math.trig.tan_double",
       "relation_type": "special_case_of",
       "dependency_site": "proof_level",
-      "inference_rules": ["specialization"],
+      "inference_rules": [
+        "specialization"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在两角和正切公式中令 β = α 即得二倍角正切公式。",
         "L2_standard": [
-          { "step": 1, "latex": "\\tan 2\\alpha = \\tan(\\alpha + \\alpha) = \\frac{\\tan\\alpha + \\tan\\alpha}{1 - \\tan\\alpha\\tan\\alpha} = \\frac{2\\tan\\alpha}{1 - \\tan^2\\alpha}", "note": "令 β = α 代入两角和正切公式", "cited_formula_ids": ["math.trig.tan_sum"] }
+          {
+            "step": 1,
+            "latex": "\\tan 2\\alpha = \\tan(\\alpha + \\alpha) = \\frac{\\tan\\alpha + \\tan\\alpha}{1 - \\tan\\alpha\\tan\\alpha} = \\frac{2\\tan\\alpha}{1 - \\tan^2\\alpha}",
+            "note": "令 β = α 代入两角和正切公式",
+            "cited_formula_ids": [
+              "math.trig.tan_sum"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\tan(\\alpha + \\beta) = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}", "note": "写出两角和正切公式", "cited_formula_ids": ["math.trig.tan_sum"] },
-          { "step": 2, "latex": "\\tan 2\\alpha = \\frac{2\\tan\\alpha}{1 - \\tan^2\\alpha}", "note": "令 β = α 并合并分子分母", "cited_formula_ids": [], "pitfall": "若 tan α = ±1，分母为 0，此时 2α = kπ + π/2，tan 2α 不存在。" }
+          {
+            "step": 1,
+            "latex": "\\tan(\\alpha + \\beta) = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta}",
+            "note": "写出两角和正切公式",
+            "cited_formula_ids": [
+              "math.trig.tan_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\tan 2\\alpha = \\frac{2\\tan\\alpha}{1 - \\tan^2\\alpha}",
+            "note": "令 β = α 并合并分子分母",
+            "cited_formula_ids": [],
+            "pitfall": "若 tan α = ±1，分母为 0，此时 2α = kπ + π/2，tan 2α 不存在。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.single_cos_to_power_reduction",
-      "from_formula_ids": ["math.trig.cos_double_cos"],
+      "from_formula_ids": [
+        "math.trig.cos_double_cos"
+      ],
       "to_formula_id": "math.trig.power_reduction_cos",
       "relation_type": "equivalent_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["algebraic_rearrangement"],
+      "inference_rules": [
+        "algebraic_rearrangement"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "将二倍角纯余弦公式移项并除以 2，反解出 cos²α 即得降幂公式。",
         "L2_standard": [
-          { "step": 1, "latex": "2\\cos^2\\alpha = 1 + \\cos 2\\alpha", "note": "将 -1 移至等式左侧", "cited_formula_ids": ["math.trig.cos_double_cos"] },
-          { "step": 2, "latex": "\\cos^2\\alpha = \\frac{1 + \\cos 2\\alpha}{2}", "note": "两边同除以 2", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "2\\cos^2\\alpha = 1 + \\cos 2\\alpha",
+            "note": "将 -1 移至等式左侧",
+            "cited_formula_ids": [
+              "math.trig.cos_double_cos"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos^2\\alpha = \\frac{1 + \\cos 2\\alpha}{2}",
+            "note": "两边同除以 2",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\cos 2\\alpha = 2\\cos^2\\alpha - 1 \\implies 1 + \\cos 2\\alpha = 2\\cos^2\\alpha", "note": "两边同时加 1 隔离平方项", "cited_formula_ids": ["math.trig.cos_double_cos"] },
-          { "step": 2, "latex": "\\cos^2\\alpha = \\frac{1 + \\cos 2\\alpha}{2}", "note": "两边同除以 2，完成降幂", "cited_formula_ids": [], "pitfall": "记忆口诀“余弦降幂用加号，正弦降幂用减号”。" }
+          {
+            "step": 1,
+            "latex": "\\cos 2\\alpha = 2\\cos^2\\alpha - 1 \\implies 1 + \\cos 2\\alpha = 2\\cos^2\\alpha",
+            "note": "两边同时加 1 隔离平方项",
+            "cited_formula_ids": [
+              "math.trig.cos_double_cos"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\cos^2\\alpha = \\frac{1 + \\cos 2\\alpha}{2}",
+            "note": "两边同除以 2，完成降幂",
+            "cited_formula_ids": [],
+            "pitfall": "记忆口诀“余弦降幂用加号，正弦降幂用减号”。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.single_sin_to_power_reduction",
-      "from_formula_ids": ["math.trig.cos_double_sin"],
+      "from_formula_ids": [
+        "math.trig.cos_double_sin"
+      ],
       "to_formula_id": "math.trig.power_reduction_sin",
       "relation_type": "equivalent_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["algebraic_rearrangement"],
+      "inference_rules": [
+        "algebraic_rearrangement"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "将二倍角纯正弦公式移项并除以 2，反解出 sin²α 即得正弦降幂公式。",
         "L2_standard": [
-          { "step": 1, "latex": "2\\sin^2\\alpha = 1 - \\cos 2\\alpha", "note": "移项隔离 2sin²α", "cited_formula_ids": ["math.trig.cos_double_sin"] },
-          { "step": 2, "latex": "\\sin^2\\alpha = \\frac{1 - \\cos 2\\alpha}{2}", "note": "两边同除以 2", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "2\\sin^2\\alpha = 1 - \\cos 2\\alpha",
+            "note": "移项隔离 2sin²α",
+            "cited_formula_ids": [
+              "math.trig.cos_double_sin"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin^2\\alpha = \\frac{1 - \\cos 2\\alpha}{2}",
+            "note": "两边同除以 2",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\cos 2\\alpha = 1 - 2\\sin^2\\alpha \\implies 2\\sin^2\\alpha = 1 - \\cos 2\\alpha", "note": "将 -2sin²α 移到左侧、cos 2α 移到右侧", "cited_formula_ids": ["math.trig.cos_double_sin"] },
-          { "step": 2, "latex": "\\sin^2\\alpha = \\frac{1 - \\cos 2\\alpha}{2}", "note": "两边同除以 2，实现二次幂降为一次余弦", "cited_formula_ids": [], "pitfall": "微积分求 ∫sin²x dx 时几乎必然调用此公式降幂。" }
+          {
+            "step": 1,
+            "latex": "\\cos 2\\alpha = 1 - 2\\sin^2\\alpha \\implies 2\\sin^2\\alpha = 1 - \\cos 2\\alpha",
+            "note": "将 -2sin²α 移到左侧、cos 2α 移到右侧",
+            "cited_formula_ids": [
+              "math.trig.cos_double_sin"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\sin^2\\alpha = \\frac{1 - \\cos 2\\alpha}{2}",
+            "note": "两边同除以 2，实现二次幂降为一次余弦",
+            "cited_formula_ids": [],
+            "pitfall": "微积分求 ∫sin²x dx 时几乎必然调用此公式降幂。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.sin_sum_pyth_to_aux",
-      "from_formula_ids": ["math.trig.sin_sum", "math.trig.pythagorean"],
+      "from_formula_ids": [
+        "math.trig.sin_sum",
+        "math.trig.pythagorean"
+      ],
       "to_formula_id": "math.trig.auxiliary_angle",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["normalization", "reverse_angle_sum"],
+      "inference_rules": [
+        "normalization",
+        "reverse_angle_sum"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "提取系数模长 √(a²+b²)，把归一化后的系数视作某个辅助角 φ 的余弦与正弦，再逆用两角和正弦公式。",
         "L2_standard": [
-          { "step": 1, "latex": "a\\sin x + b\\cos x = \\sqrt{a^2+b^2}\\left(\\frac{a}{\\sqrt{a^2+b^2}}\\sin x + \\frac{b}{\\sqrt{a^2+b^2}}\\cos x\\right)", "note": "提取公因子 √(a²+b²)", "cited_formula_ids": [] },
-          { "step": 2, "latex": "\\left(\\frac{a}{\\sqrt{a^2+b^2}}\\right)^2 + \\left(\\frac{b}{\\sqrt{a^2+b^2}}\\right)^2 = 1", "note": "平方和为 1，故存在角 φ 满足 cos φ = a/√(a²+b²), sin φ = b/√(a²+b²)", "cited_formula_ids": ["math.trig.pythagorean"] },
-          { "step": 3, "latex": "= \\sqrt{a^2+b^2}(\\sin x\\cos\\varphi + \\cos x\\sin\\varphi) = \\sqrt{a^2+b^2}\\sin(x + \\varphi)", "note": "逆用两角和正弦公式合并", "cited_formula_ids": ["math.trig.sin_sum"] }
+          {
+            "step": 1,
+            "latex": "a\\sin x + b\\cos x = \\sqrt{a^2+b^2}\\left(\\frac{a}{\\sqrt{a^2+b^2}}\\sin x + \\frac{b}{\\sqrt{a^2+b^2}}\\cos x\\right)",
+            "note": "提取公因子 √(a²+b²)",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "\\left(\\frac{a}{\\sqrt{a^2+b^2}}\\right)^2 + \\left(\\frac{b}{\\sqrt{a^2+b^2}}\\right)^2 = 1",
+            "note": "平方和为 1，故存在角 φ 满足 cos φ = a/√(a²+b²), sin φ = b/√(a²+b²)",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "= \\sqrt{a^2+b^2}(\\sin x\\cos\\varphi + \\cos x\\sin\\varphi) = \\sqrt{a^2+b^2}\\sin(x + \\varphi)",
+            "note": "逆用两角和正弦公式合并",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "R = \\sqrt{a^2+b^2} > 0", "note": "提取两系数构成的向量模长", "cited_formula_ids": [] },
-          { "step": 2, "latex": "\\cos\\varphi = \\frac{a}{R},\\ \\sin\\varphi = \\frac{b}{R}", "note": "因 (a/R)²+(b/R)² = 1，由单位圆与平方关系保证辅助角 φ 唯一存在（模 2π）", "cited_formula_ids": ["math.trig.pythagorean", "math.trig.unit_circle_def"] },
-          { "step": 3, "latex": "a\\sin x + b\\cos x = R(\\sin x\\cos\\varphi + \\cos x\\sin\\varphi) = R\\sin(x + \\varphi)", "note": "逆用两角和正弦公式完成合一变形", "cited_formula_ids": ["math.trig.sin_sum"], "pitfall": "确定 φ 象限时不能只看 tan φ = b/a，必须同时根据 (a, b) 所在象限判断。" }
+          {
+            "step": 1,
+            "latex": "R = \\sqrt{a^2+b^2} > 0",
+            "note": "提取两系数构成的向量模长",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 2,
+            "latex": "\\cos\\varphi = \\frac{a}{R},\\ \\sin\\varphi = \\frac{b}{R}",
+            "note": "因 (a/R)²+(b/R)² = 1，由单位圆与平方关系保证辅助角 φ 唯一存在（模 2π）",
+            "cited_formula_ids": [
+              "math.trig.pythagorean",
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "a\\sin x + b\\cos x = R(\\sin x\\cos\\varphi + \\cos x\\sin\\varphi) = R\\sin(x + \\varphi)",
+            "note": "逆用两角和正弦公式完成合一变形",
+            "cited_formula_ids": [
+              "math.trig.sin_sum"
+            ],
+            "pitfall": "确定 φ 象限时不能只看 tan φ = b/a，必须同时根据 (a, b) 所在象限判断。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.def_to_law_of_cosines",
-      "from_formula_ids": ["math.trig.unit_circle_def", "math.trig.pythagorean"],
+      "from_formula_ids": [
+        "math.trig.unit_circle_def",
+        "math.trig.pythagorean"
+      ],
       "to_formula_id": "math.trig.law_of_cosines",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["coordinate_placement", "distance_formula"],
+      "inference_rules": [
+        "coordinate_placement",
+        "distance_formula"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将角 C 置于原点建立坐标系，用三角函数写出两顶点坐标，再用两点距离公式展开并结合平方关系。",
         "L2_standard": [
-          { "step": 1, "latex": "C(0,0),\\ A(b,0),\\ B(a\\cos C, a\\sin C)", "note": "以 C 为原点建系并用三角定义表示点 B 坐标", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "c^2 = (a\\cos C - b)^2 + (a\\sin C)^2 = a^2(\\cos^2 C + \\sin^2 C) + b^2 - 2ab\\cos C", "note": "计算 |AB|² 并展开", "cited_formula_ids": [] },
-          { "step": 3, "latex": "c^2 = a^2 + b^2 - 2ab\\cos C", "note": "代入 sin²C + cos²C = 1 得余弦定理", "cited_formula_ids": ["math.trig.pythagorean"] }
+          {
+            "step": 1,
+            "latex": "C(0,0),\\ A(b,0),\\ B(a\\cos C, a\\sin C)",
+            "note": "以 C 为原点建系并用三角定义表示点 B 坐标",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "c^2 = (a\\cos C - b)^2 + (a\\sin C)^2 = a^2(\\cos^2 C + \\sin^2 C) + b^2 - 2ab\\cos C",
+            "note": "计算 |AB|² 并展开",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "c^2 = a^2 + b^2 - 2ab\\cos C",
+            "note": "代入 sin²C + cos²C = 1 得余弦定理",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "C(0,0),\\ A(b,0),\\ B(a\\cos C, a\\sin C)", "note": "将 CA 沿 x 轴正半轴放置，无论 C 为锐角、直角或钝角，B 坐标均统一成立", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "c^2 = |AB|^2 = (a\\cos C - b)^2 + (a\\sin C - 0)^2", "note": "应用平面两点间距离公式", "cited_formula_ids": [] },
-          { "step": 3, "latex": "= a^2(\\cos^2 C + \\sin^2 C) + b^2 - 2ab\\cos C = a^2 + b^2 - 2ab\\cos C", "note": "套用同角平方关系化简", "cited_formula_ids": ["math.trig.pythagorean"], "pitfall": "当 C = 90° 时 cos C = 0，余弦定理退化为初中勾股定理 c² = a² + b²。" }
+          {
+            "step": 1,
+            "latex": "C(0,0),\\ A(b,0),\\ B(a\\cos C, a\\sin C)",
+            "note": "将 CA 沿 x 轴正半轴放置，无论 C 为锐角、直角或钝角，B 坐标均统一成立",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "c^2 = |AB|^2 = (a\\cos C - b)^2 + (a\\sin C - 0)^2",
+            "note": "应用平面两点间距离公式",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "= a^2(\\cos^2 C + \\sin^2 C) + b^2 - 2ab\\cos C = a^2 + b^2 - 2ab\\cos C",
+            "note": "套用同角平方关系化简",
+            "cited_formula_ids": [
+              "math.trig.pythagorean"
+            ],
+            "pitfall": "当 C = 90° 时 cos C = 0，余弦定理退化为初中勾股定理 c² = a² + b²。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.def_to_triangle_area",
-      "from_formula_ids": ["math.trig.unit_circle_def", "math.trig.ind_pi_minus"],
+      "from_formula_ids": [
+        "math.trig.unit_circle_def",
+        "math.trig.ind_pi_minus"
+      ],
       "to_formula_id": "math.trig.triangle_area",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["altitude_projection"],
+      "inference_rules": [
+        "altitude_projection"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "以边 a 为底，利用三角定义与补角公式证明无论夹角 C 为锐角还是钝角，底边上的高恒为 b sin C。",
         "L2_standard": [
-          { "step": 1, "latex": "h = b\\sin C", "note": "锐角时直接得 h = b sin C；钝角时 h = b sin(π - C) = b sin C", "cited_formula_ids": ["math.trig.unit_circle_def", "math.trig.ind_pi_minus"] },
-          { "step": 2, "latex": "S = \\frac{1}{2} a h = \\frac{1}{2}ab\\sin C", "note": "代入三角形底乘高除以 2 公式", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "h = b\\sin C",
+            "note": "锐角时直接得 h = b sin C；钝角时 h = b sin(π - C) = b sin C",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def",
+              "math.trig.ind_pi_minus"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "S = \\frac{1}{2} a h = \\frac{1}{2}ab\\sin C",
+            "note": "代入三角形底乘高除以 2 公式",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "h = b\\sin C \\quad (0 < C \\le \\frac{\\pi}{2})", "note": "当夹角 C 为锐角或直角时，高等于斜边 b 乘 sin C", "cited_formula_ids": ["math.trig.unit_circle_def"] },
-          { "step": 2, "latex": "h = b\\sin(\\pi - C) = b\\sin C \\quad (\\frac{\\pi}{2} < C < \\pi)", "note": "当 C 为钝角时高落在底边延长线上，用诱导公式四统一表达", "cited_formula_ids": ["math.trig.ind_pi_minus"] },
-          { "step": 3, "latex": "S = \\frac{1}{2}ah = \\frac{1}{2}ab\\sin C", "note": "代入面积公式得证", "cited_formula_ids": [], "pitfall": "公式中的角必须是两条已知边的夹角，而非其中一边的对角。" }
+          {
+            "step": 1,
+            "latex": "h = b\\sin C \\quad (0 < C \\le \\frac{\\pi}{2})",
+            "note": "当夹角 C 为锐角或直角时，高等于斜边 b 乘 sin C",
+            "cited_formula_ids": [
+              "math.trig.unit_circle_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "h = b\\sin(\\pi - C) = b\\sin C \\quad (\\frac{\\pi}{2} < C < \\pi)",
+            "note": "当 C 为钝角时高落在底边延长线上，用诱导公式四统一表达",
+            "cited_formula_ids": [
+              "math.trig.ind_pi_minus"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "S = \\frac{1}{2}ah = \\frac{1}{2}ab\\sin C",
+            "note": "代入面积公式得证",
+            "cited_formula_ids": [],
+            "pitfall": "公式中的角必须是两条已知边的夹角，而非其中一边的对角。"
+          }
         ]
       }
     },
     {
       "id": "deriv.trig.area_to_law_of_sines",
-      "from_formula_ids": ["math.trig.triangle_area"],
+      "from_formula_ids": [
+        "math.trig.triangle_area"
+      ],
       "to_formula_id": "math.trig.law_of_sines",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["cyclic_symmetry", "divide_both_sides"],
+      "inference_rules": [
+        "cyclic_symmetry",
+        "divide_both_sides"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把同一三角形的三种正弦面积表达式联立，再同除以 (1/2)abc 即得正弦定理核心比例。",
         "L2_standard": [
-          { "step": 1, "latex": "S = \\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B", "note": "用三组两边夹角分别表示同一三角形面积", "cited_formula_ids": ["math.trig.triangle_area"] },
-          { "step": 2, "latex": "\\frac{\\sin C}{c} = \\frac{\\sin A}{a} = \\frac{\\sin B}{b} \\implies \\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}", "note": "三式同除以 (1/2)abc 后取倒数", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "S = \\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B",
+            "note": "用三组两边夹角分别表示同一三角形面积",
+            "cited_formula_ids": [
+              "math.trig.triangle_area"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{\\sin C}{c} = \\frac{\\sin A}{a} = \\frac{\\sin B}{b} \\implies \\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}",
+            "note": "三式同除以 (1/2)abc 后取倒数",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B", "note": "同一三角形面积唯一，故三种正弦面积式相等", "cited_formula_ids": ["math.trig.triangle_area"] },
-          { "step": 2, "latex": "\\frac{\\sin C}{c} = \\frac{\\sin A}{a} = \\frac{\\sin B}{b}", "note": "因为 a, b, c > 0，连等式各项同除以 (1/2)abc", "cited_formula_ids": [] },
-          { "step": 3, "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R", "note": "取倒数得比例关系；再结合外接圆直径所对圆周角为直角可证比值等于 2R", "cited_formula_ids": [], "pitfall": "用正弦定理求角（已知两边及其中一边对角 SSA）时可能出现两解，须检验大边对大角。" }
+          {
+            "step": 1,
+            "latex": "\\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B",
+            "note": "同一三角形面积唯一，故三种正弦面积式相等",
+            "cited_formula_ids": [
+              "math.trig.triangle_area"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{\\sin C}{c} = \\frac{\\sin A}{a} = \\frac{\\sin B}{b}",
+            "note": "因为 a, b, c > 0，连等式各项同除以 (1/2)abc",
+            "cited_formula_ids": []
+          },
+          {
+            "step": 3,
+            "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R",
+            "note": "取倒数得比例关系；再结合外接圆直径所对圆周角为直角可证比值等于 2R",
+            "cited_formula_ids": [],
+            "pitfall": "用正弦定理求角（已知两边及其中一边对角 SSA）时可能出现两解，须检验大边对大角。"
+          }
         ]
       }
     }

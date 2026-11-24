@@ -796,8 +796,8 @@ def main() -> int:
         "schema_version": "1.1.0",
         "metadata": {
             "pack_id": f"formula-graph-master-{len(master_formulas)}",
-            "title": f"公式知识图谱全量底座（初中 + 高中 + 大学及以后 · {len(master_formulas)} 对象）",
-            "curriculum_ref": "全学段跨学科统一广义知识对象图谱（支持动态视图生成）",
+            "title": f"数理知识图谱全量底座（初中 + 高中 + 大学 · {len(master_formulas)} 对象）",
+            "curriculum_ref": "全阶段跨学科统一广义知识对象图谱（支持动态视图生成）",
             "updated_at": "2026-11-24",
         },
         "formulas": master_formulas,

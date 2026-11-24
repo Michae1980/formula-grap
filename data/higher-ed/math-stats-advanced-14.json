@@ -9,482 +9,1107 @@
   "formulas": [
     {
       "id": "stat.inf.chebyshev",
+      "node_kind": "inequality",
       "name": "切比雪夫不等式",
-      "aliases": ["尾部概率无分布上界"],
+      "aliases": [
+        "尾部概率无分布上界"
+      ],
       "latex": "P(|X - \\mu| \\ge \\varepsilon) \\le \\frac{\\sigma^2}{\\varepsilon^2}",
       "statement": "无需知道随机变量的具体分布形状，仅凭均值 μ 与有限方差 σ² 即可给出取值偏离均值超过 ε 的概率严格上界。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "\\varepsilon", "name": "偏离阈值", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\varepsilon",
+          "name": "偏离阈值",
+          "math_type": "constant",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["E(X) = μ 与 D(X) = σ² 存在且 ε > 0"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 5.1", "sympy_verified": true }
+      "conditions": [
+        "E(X) = μ 与 D(X) = σ² 存在且 ε > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.inf.lln",
+      "node_kind": "law",
       "name": "弱大数定律（辛钦大数定律）",
-      "aliases": ["样本均值依概率收敛"],
+      "aliases": [
+        "样本均值依概率收敛"
+      ],
       "latex": "\\lim_{n \\to \\infty} P\\left(|\\bar{X}_n - \\mu| < \\varepsilon\\right) = 1\\quad (\\bar{X}_n \\xrightarrow{P} \\mu)",
       "statement": "随着独立同分布样本容量 n 无限增大，样本均值以概率 1 收敛于总体真实均值 μ，赋予了频率稳定性的理论保证。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "\\bar{X}_n", "name": "样本均值", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\bar{X}_n",
+          "name": "样本均值",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["X1, ..., Xn 独立同分布且期望 μ 存在（切比雪夫版本额外要求方差 σ² 有限）"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 5.1", "sympy_verified": true }
+      "conditions": [
+        "X1, ..., Xn 独立同分布且期望 μ 存在（切比雪夫版本额外要求方差 σ² 有限）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.inf.sample_var",
+      "node_kind": "formula",
       "name": "样本无偏方差公式（贝塞尔校正）",
-      "aliases": ["自由度 n-1 样本方差"],
+      "aliases": [
+        "自由度 n-1 样本方差"
+      ],
       "latex": "S^2 = \\frac{1}{n - 1} \\sum_{i=1}^{n} (X_i - \\bar{X})^2",
       "statement": "用 n-1 而非 n 作为分母对样本离差平方和做自由度校正，从而保证样本方差的数学期望严格等于总体方差 E(S²) = σ²。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "S^2", "name": "样本无偏方差", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "S^2",
+          "name": "样本无偏方差",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["n ≥ 2；样本均值消耗了 1 个自由度，故自由度为 n - 1"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 6.1", "sympy_verified": true }
+      "conditions": [
+        "n ≥ 2；样本均值消耗了 1 个自由度，故自由度为 n - 1"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 6.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.dist.chi_square",
+      "node_kind": "distribution",
       "name": "卡方分布（χ² 分布）",
-      "aliases": ["独立标准正态平方和分布"],
+      "aliases": [
+        "独立标准正态平方和分布"
+      ],
       "latex": "\\chi^2 = \\sum_{i=1}^{n} Z_i^2 \\sim \\chi^2(n),\\quad \\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n - 1)",
       "statement": "n 个独立标准正态变量的平方和服从自由度为 n 的卡方分布，是正态总体方差抽样分布与拟合优度检验的核心。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "n", "name": "自由度（df）", "math_type": "constant", "domain": "\\mathbb{Z}^+", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "n",
+          "name": "自由度（df）",
+          "math_type": "constant",
+          "domain": "\\mathbb{Z}^+",
+          "quantity_kind": "count",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["Z1,...,Zn 独立服从 N(0,1)；E(χ²) = n，D(χ²) = 2n"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 6.3", "sympy_verified": true }
+      "conditions": [
+        "Z1,...,Zn 独立服从 N(0,1)；E(χ²) = n，D(χ²) = 2n"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 6.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.dist.t_dist",
+      "node_kind": "distribution",
       "name": "学生 t 分布（Student's t）",
-      "aliases": ["小样本均值抽样分布"],
+      "aliases": [
+        "小样本均值抽样分布"
+      ],
       "latex": "T = \\frac{Z}{\\sqrt{\\chi^2(n)/n}} \\sim t(n)",
       "statement": "标准正态变量除以独立卡方变量均方根构成的厚尾对称分布，用于总体方差未知时的均值区间估计与假设检验。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "T", "name": "t 统计量", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "T",
+          "name": "t 统计量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["Z ~ N(0,1) 与 χ²(n) 相互独立；自由度 n 越大越逼近标准正态分布 N(0,1)"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 6.3", "sympy_verified": true }
+      "conditions": [
+        "Z ~ N(0,1) 与 χ²(n) 相互独立；自由度 n 越大越逼近标准正态分布 N(0,1)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 6.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.dist.f_dist",
+      "node_kind": "distribution",
       "name": "费舍尔 F 分布",
-      "aliases": ["两卡方比值分布 / 方差分析分布"],
+      "aliases": [
+        "两卡方比值分布 / 方差分析分布"
+      ],
       "latex": "F = \\frac{\\chi^2(n_1)/n_1}{\\chi^2(n_2)/n_2} \\sim F(n_1, n_2)",
       "statement": "两个独立卡方变量各自除以自由度之比，是两总体方差齐性检验、方差分析（ANOVA）与回归整体显著性检验的核心。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "n_1, n_2", "name": "分子与分母自由度", "math_type": "constant", "domain": "\\mathbb{Z}^+", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "n_1, n_2",
+          "name": "分子与分母自由度",
+          "math_type": "constant",
+          "domain": "\\mathbb{Z}^+",
+          "quantity_kind": "count",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["两卡方变量相互独立；若 T ~ t(n) 则 T² ~ F(1, n)"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 6.3", "sympy_verified": true }
+      "conditions": [
+        "两卡方变量相互独立；若 T ~ t(n) 则 T² ~ F(1, n)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 6.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.est.ci_z",
+      "node_kind": "formula",
       "name": "总体均值 Z 置信区间（方差已知）",
-      "aliases": ["大样本均值区间估计"],
+      "aliases": [
+        "大样本均值区间估计"
+      ],
       "latex": "\\bar{X} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}}",
       "statement": "在总体方差 σ² 已知（或大样本）条件下，以 1-α 置信水平覆盖总体真实均值 μ 的对称随机区间。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "z_{\\alpha/2}", "name": "标准正态上 α/2 分位点（95% 置信度取 1.96）", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "z_{\\alpha/2}",
+          "name": "标准正态上 α/2 分位点（95% 置信度取 1.96）",
+          "math_type": "constant",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["正态总体且 σ 已知，或大样本（n ≥ 30）由中心极限定理近似"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 7.4", "sympy_verified": true }
+      "conditions": [
+        "正态总体且 σ 已知，或大样本（n ≥ 30）由中心极限定理近似"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 7.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.est.ci_t",
+      "node_kind": "formula",
       "name": "总体均值 t 置信区间（方差未知）",
-      "aliases": ["小样本均值区间估计"],
+      "aliases": [
+        "小样本均值区间估计"
+      ],
       "latex": "\\bar{X} \\pm t_{\\alpha/2}(n - 1) \\frac{S}{\\sqrt{n}}",
       "statement": "总体方差未知时用样本标准差 S 替代 σ，同时将分位点由标准正态 z 替换为更宽的 t(n-1) 分位点以弥补估计不确定性。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "t_{\\alpha/2}(n-1)", "name": "自由度 n-1 的 t 分布上 α/2 分位点", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "t_{\\alpha/2}(n-1)",
+          "name": "自由度 n-1 的 t 分布上 α/2 分位点",
+          "math_type": "constant",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["样本来自正态总体（或大样本近似）且 σ 未知"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 7.4", "sympy_verified": true }
+      "conditions": [
+        "样本来自正态总体（或大样本近似）且 σ 未知"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 7.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.test.t_stat",
+      "node_kind": "formula",
       "name": "单样本 t 检验统计量",
-      "aliases": ["均值假设检验 t 值"],
+      "aliases": [
+        "均值假设检验 t 值"
+      ],
       "latex": "t = \\frac{\\bar{X} - \\mu_0}{S / \\sqrt{n}} \\sim t(n - 1)",
       "statement": "在原假设 H0: μ = μ0 成立的条件下，衡量样本均值偏离假设均值多少个标准误，是科研与 A/B 测试最常用的检验统计量。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "\\mu_0", "name": "原假设均值", "math_type": "constant", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\mu_0",
+          "name": "原假设均值",
+          "math_type": "constant",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["原假设 H0: μ = μ0 成立且总体近似正态"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 8.2", "sympy_verified": true }
+      "conditions": [
+        "原假设 H0: μ = μ0 成立且总体近似正态"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 8.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.test.p_value",
+      "node_kind": "definition",
       "name": "p 值与显著性水平判定准则",
-      "aliases": ["假设检验决策规则"],
+      "aliases": [
+        "假设检验决策规则"
+      ],
       "latex": "p = P(|T| \\ge |t_{\\text{obs}}| \\mid H_0) \\le \\alpha \\implies \\text{拒绝 } H_0",
       "statement": "p 值表示在原假设为真的前提下观察到当前或更极端样本结果的概率；当 p ≤ α 时认为小概率事件在单次试验中几乎不会发生，故拒绝原假设。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["statistical_inference"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "statistical_inference"
+        ]
       },
       "variables": [
-        { "symbol": "\\alpha", "name": "显著性水平（第一类错误上界，常取 0.05）", "math_type": "constant", "domain": "(0, 1)", "quantity_kind": "probability", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "\\alpha",
+          "name": "显著性水平（第一类错误上界，常取 0.05）",
+          "math_type": "constant",
+          "domain": "(0, 1)",
+          "quantity_kind": "probability",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["p 值不是“原假设为真的概率”，而是“假设 H0 为真时数据如此极端的条件概率”"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 8.1", "sympy_verified": true }
+      "conditions": [
+        "p 值不是“原假设为真的概率”，而是“假设 H0 为真时数据如此极端的条件概率”"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 8.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.est.mle",
+      "node_kind": "definition",
       "name": "极大似然估计（MLE）",
-      "aliases": ["最大对数似然参数估计"],
+      "aliases": [
+        "最大对数似然参数估计"
+      ],
       "latex": "\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_{\\theta} \\sum_{i=1}^{n} \\ln f(x_i; \\theta)",
       "statement": "选取使已观测样本联合出现概率（似然函数）最大的参数值作为估计量，取对数将连乘化为连加后求导置零求解。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["estimation_regression"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "estimation_regression"
+        ]
       },
       "variables": [
-        { "symbol": "\\theta", "name": "未知总体参数", "math_type": "scalar", "domain": "\\Theta", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\theta",
+          "name": "未知总体参数",
+          "math_type": "scalar",
+          "domain": "\\Theta",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["样本独立同分布；在大样本下具备一致性与渐近正态性"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 7.1", "sympy_verified": true }
+      "conditions": [
+        "样本独立同分布；在大样本下具备一致性与渐近正态性"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 7.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.reg.ols_1d",
+      "node_kind": "formula",
       "name": "一元线性回归最小二乘估计（OLS）",
-      "aliases": ["回归直线斜率与截距公式"],
+      "aliases": [
+        "回归直线斜率与截距公式"
+      ],
       "latex": "\\hat{\\beta}_1 = \\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^{n} (x_i - \\bar{x})^2},\\quad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}",
       "statement": "使所有样本点到拟合直线的纵向残差平方和最小的最优斜率与截距，回归直线必然穿过样本重心 (x̄, ȳ)。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["estimation_regression"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "estimation_regression"
+        ]
       },
       "variables": [
-        { "symbol": "\\hat{\\beta}_1, \\hat{\\beta}_0", "name": "回归斜率与截距估计值", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\hat{\\beta}_1, \\hat{\\beta}_0",
+          "name": "回归斜率与截距估计值",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["样本 x 不全相等（分母非零）；正态误差假设下 OLS 与 MLE 完全等价"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第三册 8.1 / 概率论与数理统计 9.2", "sympy_verified": true }
+      "conditions": [
+        "样本 x 不全相等（分母非零）；正态误差假设下 OLS 与 MLE 完全等价"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第三册 8.1 / 概率论与数理统计 9.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.reg.r_squared",
+      "node_kind": "formula",
       "name": "决定系数（拟合优度 R²）",
-      "aliases": ["可解释方差比例"],
+      "aliases": [
+        "可解释方差比例"
+      ],
       "latex": "R^2 = 1 - \\frac{SS_{\\text{res}}}{SS_{\\text{tot}}} = 1 - \\frac{\\sum (y_i - \\hat{y}_i)^2}{\\sum (y_i - \\bar{y})^2}",
       "statement": "度量回归模型能够解释因变量总变异的比例；在一元线性回归中恰好等于样本相关系数 r 的平方。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["estimation_regression"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "estimation_regression"
+        ]
       },
       "variables": [
-        { "symbol": "R^2", "name": "决定系数", "math_type": "scalar", "domain": "[0, 1]", "quantity_kind": "ratio", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "R^2",
+          "name": "决定系数",
+          "math_type": "scalar",
+          "domain": "[0, 1]",
+          "quantity_kind": "ratio",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["含截距项的线性回归满足 0 ≤ R² ≤ 1；多元回归比较变量数不同的模型时应使用调整后 R²"],
-      "review": { "status": "human_verified", "source": "概率论与数理统计 9.2", "sympy_verified": true }
+      "conditions": [
+        "含截距项的线性回归满足 0 ≤ R² ≤ 1；多元回归比较变量数不同的模型时应使用调整后 R²"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "概率论与数理统计 9.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "stat.est.bayes_conj",
+      "node_kind": "formula",
       "name": "正态-正态共轭贝叶斯后验均值",
-      "aliases": ["贝叶斯精度加权平均"],
+      "aliases": [
+        "贝叶斯精度加权平均"
+      ],
       "latex": "\\mu_{\\text{post}} = \\frac{\\mu_0 / \\sigma_0^2 + n \\bar{x} / \\sigma^2}{1 / \\sigma_0^2 + n / \\sigma^2}",
       "statement": "在正态先验与正态似然下，后验均值正是先验均值 μ0 与样本均值 x̄ 按各自精度（方差倒数）的加权平均。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["estimation_regression"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "estimation_regression"
+        ]
       },
       "variables": [
-        { "symbol": "\\mu_0, \\sigma_0^2", "name": "先验均值与先验方差", "math_type": "constant", "domain": "\\mathbb{R} \\times (0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\mu_0, \\sigma_0^2",
+          "name": "先验均值与先验方差",
+          "math_type": "constant",
+          "domain": "\\mathbb{R} \\times (0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["先验 μ ~ N(μ0, σ0²)，似然 Xi | μ ~ N(μ, σ²)；当 n → ∞ 时后验均值收敛到 MLE 估计量 x̄"],
-      "review": { "status": "human_verified", "source": "Bayesian Data Analysis 2.5", "sympy_verified": true }
+      "conditions": [
+        "先验 μ ~ N(μ0, σ0²)，似然 Xi | μ ~ N(μ, σ²)；当 n → ∞ 时后验均值收敛到 MLE 估计量 x̄"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "Bayesian Data Analysis 2.5",
+        "sympy_verified": true
+      }
     }
   ],
   "derivations": [
     {
       "id": "deriv.stat.cheb_to_lln",
-      "from_formula_ids": ["stat.inf.chebyshev"],
+      "from_formula_ids": [
+        "stat.inf.chebyshev"
+      ],
       "to_formula_id": "stat.inf.lln",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["sample_mean_variance_limit"],
+      "inference_rules": [
+        "sample_mean_variance_limit"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把样本均值 X̄_n（方差 σ²/n）代入切比雪夫不等式得 P(|X̄_n - μ| ≥ ε) ≤ σ²/(nε²)，令 n → ∞ 误差概率趋于 0。",
         "L2_standard": [
-          { "step": 1, "latex": "P(|\\bar{X}_n - \\mu| \\ge \\varepsilon) \\le \\frac{D(\\bar{X}_n)}{\\varepsilon^2} = \\frac{\\sigma^2}{n \\varepsilon^2}", "note": "将样本均值方差 σ²/n 代入切比雪夫不等式", "cited_formula_ids": ["stat.inf.chebyshev"] },
-          { "step": 2, "latex": "\\lim_{n \\to \\infty} P(|\\bar{X}_n - \\mu| < \\varepsilon) \\ge 1 - \\lim_{n \\to \\infty} \\frac{\\sigma^2}{n \\varepsilon^2} = 1", "note": "n 趋于无穷时上界归零，证得弱大数定律", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "P(|\\bar{X}_n - \\mu| \\ge \\varepsilon) \\le \\frac{D(\\bar{X}_n)}{\\varepsilon^2} = \\frac{\\sigma^2}{n \\varepsilon^2}",
+            "note": "将样本均值方差 σ²/n 代入切比雪夫不等式",
+            "cited_formula_ids": [
+              "stat.inf.chebyshev"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\lim_{n \\to \\infty} P(|\\bar{X}_n - \\mu| < \\varepsilon) \\ge 1 - \\lim_{n \\to \\infty} \\frac{\\sigma^2}{n \\varepsilon^2} = 1",
+            "note": "n 趋于无穷时上界归零，证得弱大数定律",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\bar{X}_n \\xrightarrow{P} \\mu", "note": "大数定律保证的是“收敛到哪儿（均值 μ）”，中心极限定理则刻画“波动长什么样（正态分布）”", "cited_formula_ids": ["stat.inf.chebyshev"], "pitfall": "大数定律不代表“前面连续出现正面，下一次反面概率就会变大”（那是赌徒谬误）。" }
+          {
+            "step": 1,
+            "latex": "\\bar{X}_n \\xrightarrow{P} \\mu",
+            "note": "大数定律保证的是“收敛到哪儿（均值 μ）”，中心极限定理则刻画“波动长什么样（正态分布）”",
+            "cited_formula_ids": [
+              "stat.inf.chebyshev"
+            ],
+            "pitfall": "大数定律不代表“前面连续出现正面，下一次反面概率就会变大”（那是赌徒谬误）。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.lln_to_svar",
-      "from_formula_ids": ["stat.inf.lln"],
+      "from_formula_ids": [
+        "stat.inf.lln"
+      ],
       "to_formula_id": "stat.inf.sample_var",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["unbiased_expectation_correction"],
+      "inference_rules": [
+        "unbiased_expectation_correction"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "展开 ∑(Xi - X̄)² = ∑(Xi - μ)² - n(X̄ - μ)² 并取期望得 nσ² - n(σ²/n) = (n-1)σ²，故除以 n-1 才无偏。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sum_{i=1}^n (X_i - \\bar{X})^2 = \\sum_{i=1}^n (X_i - \\mu)^2 - n(\\bar{X} - \\mu)^2", "note": "插入总体均值 μ 做平方分解", "cited_formula_ids": ["stat.inf.lln"] },
-          { "step": 2, "latex": "E\\left[\\sum (X_i - \\bar{X})^2\\right] = n\\sigma^2 - n\\frac{\\sigma^2}{n} = (n - 1)\\sigma^2 \\implies E(S^2) = \\sigma^2", "note": "两端除以 n - 1 得到无偏估计量", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\sum_{i=1}^n (X_i - \\bar{X})^2 = \\sum_{i=1}^n (X_i - \\mu)^2 - n(\\bar{X} - \\mu)^2",
+            "note": "插入总体均值 μ 做平方分解",
+            "cited_formula_ids": [
+              "stat.inf.lln"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "E\\left[\\sum (X_i - \\bar{X})^2\\right] = n\\sigma^2 - n\\frac{\\sigma^2}{n} = (n - 1)\\sigma^2 \\implies E(S^2) = \\sigma^2",
+            "note": "两端除以 n - 1 得到无偏估计量",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "E(S^2) = \\sigma^2", "note": "若直接除以 n，由于样本均值比总体均值更贴近当前样本点，会系统性地低估总体方差", "cited_formula_ids": ["stat.inf.lln"], "pitfall": "虽然 S² 是 σ² 的无偏估计，但开方后的样本标准差 S 对 σ 并非严格无偏（仅渐近无偏）。" }
+          {
+            "step": 1,
+            "latex": "E(S^2) = \\sigma^2",
+            "note": "若直接除以 n，由于样本均值比总体均值更贴近当前样本点，会系统性地低估总体方差",
+            "cited_formula_ids": [
+              "stat.inf.lln"
+            ],
+            "pitfall": "虽然 S² 是 σ² 的无偏估计，但开方后的样本标准差 S 对 σ 并非严格无偏（仅渐近无偏）。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.svar_to_chi",
-      "from_formula_ids": ["stat.inf.sample_var"],
+      "from_formula_ids": [
+        "stat.inf.sample_var"
+      ],
       "to_formula_id": "stat.dist.chi_square",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["orthogonal_transformation_cochran"],
+      "inference_rules": [
+        "orthogonal_transformation_cochran"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "正态样本下 ∑((Xi-μ)/σ)² ~ χ²(n)，减去 1 个自由度的 (√n(X̄-μ)/σ)² ~ χ²(1)，由科克伦定理得 (n-1)S²/σ² ~ χ²(n-1)。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sum_{i=1}^n \\left(\\frac{X_i - \\mu}{\\sigma}\\right)^2 = \\frac{(n-1)S^2}{\\sigma^2} + \\left(\\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}}\\right)^2", "note": "将 n 维标准正态平方和正交分解为两独立部分", "cited_formula_ids": ["stat.inf.sample_var"] },
-          { "step": 2, "latex": "\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n - 1)", "note": "自由度为 n - 1 且与样本均值 X̄ 相互独立", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\sum_{i=1}^n \\left(\\frac{X_i - \\mu}{\\sigma}\\right)^2 = \\frac{(n-1)S^2}{\\sigma^2} + \\left(\\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}}\\right)^2",
+            "note": "将 n 维标准正态平方和正交分解为两独立部分",
+            "cited_formula_ids": [
+              "stat.inf.sample_var"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n - 1)",
+            "note": "自由度为 n - 1 且与样本均值 X̄ 相互独立",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)", "note": "这是正态总体独有的优美性质（样本均值与样本方差独立），也是构造 t 分布的前提", "cited_formula_ids": ["stat.inf.sample_var"], "pitfall": "若总体严重偏态且样本量很小，(n-1)S²/σ² 将偏离卡方分布。" }
+          {
+            "step": 1,
+            "latex": "\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)",
+            "note": "这是正态总体独有的优美性质（样本均值与样本方差独立），也是构造 t 分布的前提",
+            "cited_formula_ids": [
+              "stat.inf.sample_var"
+            ],
+            "pitfall": "若总体严重偏态且样本量很小，(n-1)S²/σ² 将偏离卡方分布。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.chi_to_t",
-      "from_formula_ids": ["stat.dist.chi_square"],
+      "from_formula_ids": [
+        "stat.dist.chi_square"
+      ],
       "to_formula_id": "stat.dist.t_dist",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["ratio_pivotal_construction"],
+      "inference_rules": [
+        "ratio_pivotal_construction"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将标准正态 Z 与独立卡方变量 χ²(n) 按 T = Z / √(χ²(n)/n) 构造比值，即可消去未知总体标准差 σ。",
         "L2_standard": [
-          { "step": 1, "latex": "T = \\frac{(\\bar{X} - \\mu)/(\\sigma/\\sqrt{n})}{\\sqrt{[(n-1)S^2/\\sigma^2]/(n-1)}} = \\frac{\\bar{X} - \\mu}{S/\\sqrt{n}} \\sim t(n - 1)", "note": "未知参数 σ 在分子分母中恰好约消", "cited_formula_ids": ["stat.dist.chi_square"] }
+          {
+            "step": 1,
+            "latex": "T = \\frac{(\\bar{X} - \\mu)/(\\sigma/\\sqrt{n})}{\\sqrt{[(n-1)S^2/\\sigma^2]/(n-1)}} = \\frac{\\bar{X} - \\mu}{S/\\sqrt{n}} \\sim t(n - 1)",
+            "note": "未知参数 σ 在分子分母中恰好约消",
+            "cited_formula_ids": [
+              "stat.dist.chi_square"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "T \\sim t(n-1)", "note": "由威廉·戈塞（笔名 Student）在吉尼斯啤酒厂做小样本质检时发现", "cited_formula_ids": ["stat.dist.chi_square"], "pitfall": "t 分布尾部比正态分布更厚，同样 95% 置信度下临界值大于 1.96。" }
+          {
+            "step": 1,
+            "latex": "T \\sim t(n-1)",
+            "note": "由威廉·戈塞（笔名 Student）在吉尼斯啤酒厂做小样本质检时发现",
+            "cited_formula_ids": [
+              "stat.dist.chi_square"
+            ],
+            "pitfall": "t 分布尾部比正态分布更厚，同样 95% 置信度下临界值大于 1.96。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.chi_to_f",
-      "from_formula_ids": ["stat.dist.chi_square"],
+      "from_formula_ids": [
+        "stat.dist.chi_square"
+      ],
       "to_formula_id": "stat.dist.f_dist",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["variance_ratio_construction"],
+      "inference_rules": [
+        "variance_ratio_construction"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将两组独立正态样本的卡方量各自除以自由度再作比，消去相同总体方差 σ² 即得 F 分布。",
         "L2_standard": [
-          { "step": 1, "latex": "F = \\frac{[(n_1-1)S_1^2/\\sigma_1^2]/(n_1-1)}{[(n_2-1)S_2^2/\\sigma_2^2]/(n_2-1)} = \\frac{S_1^2/\\sigma_1^2}{S_2^2/\\sigma_2^2} \\sim F(n_1-1, n_2-1)", "note": "当 σ1 = σ2 时直接化为两样本方差之比 S1²/S2²", "cited_formula_ids": ["stat.dist.chi_square"] }
+          {
+            "step": 1,
+            "latex": "F = \\frac{[(n_1-1)S_1^2/\\sigma_1^2]/(n_1-1)}{[(n_2-1)S_2^2/\\sigma_2^2]/(n_2-1)} = \\frac{S_1^2/\\sigma_1^2}{S_2^2/\\sigma_2^2} \\sim F(n_1-1, n_2-1)",
+            "note": "当 σ1 = σ2 时直接化为两样本方差之比 S1²/S2²",
+            "cited_formula_ids": [
+              "stat.dist.chi_square"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "F_{1-\\alpha}(n_1, n_2) = \\frac{1}{F_{\\alpha}(n_2, n_1)}", "note": "互换分子分母自由度即对应倒数分位点，在 ANOVA 中用于比较组间均方与组内均方", "cited_formula_ids": ["stat.dist.chi_square"], "pitfall": "F 分布是非对称右偏分布，注意分子与分母自由度顺序不可颠倒。" }
+          {
+            "step": 1,
+            "latex": "F_{1-\\alpha}(n_1, n_2) = \\frac{1}{F_{\\alpha}(n_2, n_1)}",
+            "note": "互换分子分母自由度即对应倒数分位点，在 ANOVA 中用于比较组间均方与组内均方",
+            "cited_formula_ids": [
+              "stat.dist.chi_square"
+            ],
+            "pitfall": "F 分布是非对称右偏分布，注意分子与分母自由度顺序不可颠倒。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.lln_to_ciz",
-      "from_formula_ids": ["stat.inf.lln"],
+      "from_formula_ids": [
+        "stat.inf.lln"
+      ],
       "to_formula_id": "stat.est.ci_z",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["pivotal_interval_inversion"],
+      "inference_rules": [
+        "pivotal_interval_inversion"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由中心极限定理知 P(|(X̄ - μ)/(σ/√n)| ≤ z_{α/2}) = 1 - α，对不等式反解 μ 即得 Z 置信区间。",
         "L2_standard": [
-          { "step": 1, "latex": "-z_{\\alpha/2} \\le \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\le z_{\\alpha/2} \\iff \\bar{X} - z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}} \\le \\mu \\le \\bar{X} + z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}", "note": "移项反解未知总体均值 μ", "cited_formula_ids": ["stat.inf.lln"] }
+          {
+            "step": 1,
+            "latex": "-z_{\\alpha/2} \\le \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\le z_{\\alpha/2} \\iff \\bar{X} - z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}} \\le \\mu \\le \\bar{X} + z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}",
+            "note": "移项反解未知总体均值 μ",
+            "cited_formula_ids": [
+              "stat.inf.lln"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\bar{X} \\pm z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}", "note": "若要将置信区间误差边际缩小一半，所需样本量 n 必须扩大为原来的 4 倍", "cited_formula_ids": ["stat.inf.lln"], "pitfall": "95% 置信度指的是重复抽样构造的区间有 95% 会覆盖真值 μ，切勿误读为“真值以 95% 概率落在这个固定区间内”。" }
+          {
+            "step": 1,
+            "latex": "\\bar{X} \\pm z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}",
+            "note": "若要将置信区间误差边际缩小一半，所需样本量 n 必须扩大为原来的 4 倍",
+            "cited_formula_ids": [
+              "stat.inf.lln"
+            ],
+            "pitfall": "95% 置信度指的是重复抽样构造的区间有 95% 会覆盖真值 μ，切勿误读为“真值以 95% 概率落在这个固定区间内”。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.t_ciz_to_cit",
-      "from_formula_ids": ["stat.dist.t_dist", "stat.est.ci_z"],
+      "from_formula_ids": [
+        "stat.dist.t_dist",
+        "stat.est.ci_z"
+      ],
       "to_formula_id": "stat.est.ci_t",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["pivotal_interval_inversion"],
+      "inference_rules": [
+        "pivotal_interval_inversion"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "与 Z 区间完全同构，将枢轴量换成 t = (X̄ - μ)/(S/√n) ~ t(n-1) 并反解 μ 即得方差未知时的 t 置信区间。",
         "L2_standard": [
-          { "step": 1, "latex": "P\\left(\\left|\\frac{\\bar{X} - \\mu}{S/\\sqrt{n}}\\right| \\le t_{\\alpha/2}(n-1)\\right) = 1 - \\alpha \\implies \\bar{X} \\pm t_{\\alpha/2}(n-1)\\frac{S}{\\sqrt{n}}", "note": "反解未知总体均值 μ", "cited_formula_ids": ["stat.dist.t_dist", "stat.est.ci_z"] }
+          {
+            "step": 1,
+            "latex": "P\\left(\\left|\\frac{\\bar{X} - \\mu}{S/\\sqrt{n}}\\right| \\le t_{\\alpha/2}(n-1)\\right) = 1 - \\alpha \\implies \\bar{X} \\pm t_{\\alpha/2}(n-1)\\frac{S}{\\sqrt{n}}",
+            "note": "反解未知总体均值 μ",
+            "cited_formula_ids": [
+              "stat.dist.t_dist",
+              "stat.est.ci_z"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\bar{X} \\pm t_{\\alpha/2}(n-1)\\frac{S}{\\sqrt{n}}", "note": "真实业务中总体方差 σ² 几乎总是未知的，因此 t 区间比 Z 区间实用得多", "cited_formula_ids": ["stat.dist.t_dist", "stat.est.ci_z"], "pitfall": "别忘自由度是 n - 1 而非 n。" }
+          {
+            "step": 1,
+            "latex": "\\bar{X} \\pm t_{\\alpha/2}(n-1)\\frac{S}{\\sqrt{n}}",
+            "note": "真实业务中总体方差 σ² 几乎总是未知的，因此 t 区间比 Z 区间实用得多",
+            "cited_formula_ids": [
+              "stat.dist.t_dist",
+              "stat.est.ci_z"
+            ],
+            "pitfall": "别忘自由度是 n - 1 而非 n。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.cit_to_tstat",
-      "from_formula_ids": ["stat.est.ci_t", "stat.dist.t_dist"],
+      "from_formula_ids": [
+        "stat.est.ci_t",
+        "stat.dist.t_dist"
+      ],
       "to_formula_id": "stat.test.t_stat",
       "relation_type": "equivalent_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["confidence_interval_test_duality"],
+      "inference_rules": [
+        "confidence_interval_test_duality"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "把原假设值 μ0 代入 t 枢轴量即得检验统计量 t = (X̄ - μ0)/(S/√n)；拒绝 H0 当且仅当 μ0 落在 1-α 置信区间之外。",
         "L2_standard": [
-          { "step": 1, "latex": "|t| = \\left|\\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}\\right| > t_{\\alpha/2}(n-1) \\iff \\mu_0 \\notin \\bar{X} \\pm t_{\\alpha/2}(n-1)\\frac{S}{\\sqrt{n}}", "note": "置信区间与双侧假设检验存在严格数学对偶关系", "cited_formula_ids": ["stat.est.ci_t", "stat.dist.t_dist"] }
+          {
+            "step": 1,
+            "latex": "|t| = \\left|\\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}\\right| > t_{\\alpha/2}(n-1) \\iff \\mu_0 \\notin \\bar{X} \\pm t_{\\alpha/2}(n-1)\\frac{S}{\\sqrt{n}}",
+            "note": "置信区间与双侧假设检验存在严格数学对偶关系",
+            "cited_formula_ids": [
+              "stat.est.ci_t",
+              "stat.dist.t_dist"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "t = \\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}", "note": "均值差除以标准误的“信噪比”结构贯穿几乎所有参数假设检验", "cited_formula_ids": ["stat.est.ci_t", "stat.dist.t_dist"], "pitfall": "样本量极大时，极微小的业务无意义差异也可能产生很大的 |t| 值，需同时报告效应量与置信区间。" }
+          {
+            "step": 1,
+            "latex": "t = \\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}",
+            "note": "均值差除以标准误的“信噪比”结构贯穿几乎所有参数假设检验",
+            "cited_formula_ids": [
+              "stat.est.ci_t",
+              "stat.dist.t_dist"
+            ],
+            "pitfall": "样本量极大时，极微小的业务无意义差异也可能产生很大的 |t| 值，需同时报告效应量与置信区间。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.tstat_to_pval",
-      "from_formula_ids": ["stat.test.t_stat"],
+      "from_formula_ids": [
+        "stat.test.t_stat"
+      ],
       "to_formula_id": "stat.test.p_value",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["tail_probability_comparison"],
+      "inference_rules": [
+        "tail_probability_comparison"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由观测到的检验统计量 t_obs 计算原假设分布下双侧尾部面积 p = P(|T| ≥ |t_obs|)，等价比较 |t_obs| 与临界值。",
         "L2_standard": [
-          { "step": 1, "latex": "|t_{\\text{obs}}| \\ge t_{\\alpha/2}(n-1) \\iff p = 2[1 - F_t(|t_{\\text{obs}}|)] \\le \\alpha", "note": "尾部概率小于显著性水平即落入拒绝域", "cited_formula_ids": ["stat.test.t_stat"] }
+          {
+            "step": 1,
+            "latex": "|t_{\\text{obs}}| \\ge t_{\\alpha/2}(n-1) \\iff p = 2[1 - F_t(|t_{\\text{obs}}|)] \\le \\alpha",
+            "note": "尾部概率小于显著性水平即落入拒绝域",
+            "cited_formula_ids": [
+              "stat.test.t_stat"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "p \\le \\alpha \\implies \\text{拒绝 } H_0", "note": "p 值比仅报“拒绝/不拒绝”携带更多证据强度信息", "cited_formula_ids": ["stat.test.t_stat"], "pitfall": "多重检验（如同时跑 20 个 A/B 指标）会显著抬高假阳性概率，需做 Bonferroni 或 FDR 校正。" }
+          {
+            "step": 1,
+            "latex": "p \\le \\alpha \\implies \\text{拒绝 } H_0",
+            "note": "p 值比仅报“拒绝/不拒绝”携带更多证据强度信息",
+            "cited_formula_ids": [
+              "stat.test.t_stat"
+            ],
+            "pitfall": "多重检验（如同时跑 20 个 A/B 指标）会显著抬高假阳性概率，需做 Bonferroni 或 FDR 校正。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.ciz_to_mle",
-      "from_formula_ids": ["stat.inf.lln"],
+      "from_formula_ids": [
+        "stat.inf.lln"
+      ],
       "to_formula_id": "stat.est.mle",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["log_likelihood_maximization"],
+      "inference_rules": [
+        "log_likelihood_maximization"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "独立样本联合密度 L(θ) = ∏ f(xi; θ) 取自然对数化连乘为连加 ℓ(θ) = ∑ ln f(xi; θ)，求导置零即得极大似然估计。",
         "L2_standard": [
-          { "step": 1, "latex": "\\ell(\\theta) = \\ln \\prod_{i=1}^n f(x_i; \\theta) = \\sum_{i=1}^n \\ln f(x_i; \\theta)", "note": "单调递增对数变换保持最大值点不变", "cited_formula_ids": ["stat.inf.lln"] },
-          { "step": 2, "latex": "\\frac{\\partial \\ell(\\theta)}{\\partial \\theta} = 0 \\implies \\hat{\\theta}_{\\text{MLE}}", "note": "对数似然求导求驻点（正态总体下恰好解得 μ̂ = X̄）", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\ell(\\theta) = \\ln \\prod_{i=1}^n f(x_i; \\theta) = \\sum_{i=1}^n \\ln f(x_i; \\theta)",
+            "note": "单调递增对数变换保持最大值点不变",
+            "cited_formula_ids": [
+              "stat.inf.lln"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{\\partial \\ell(\\theta)}{\\partial \\theta} = 0 \\implies \\hat{\\theta}_{\\text{MLE}}",
+            "note": "对数似然求导求驻点（正态总体下恰好解得 μ̂ = X̄）",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_{\\theta} \\sum_{i=1}^n \\ln f(x_i; \\theta)", "note": "极大似然估计等价于最小化经验分布与模型分布之间的 KL 散度（交叉熵损失）", "cited_formula_ids": ["stat.inf.lln"], "pitfall": "若参数定义域有边界（如均匀分布 U(0, θ)），极大值在边界 max(xi) 取到，不能直接求导置零。" }
+          {
+            "step": 1,
+            "latex": "\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_{\\theta} \\sum_{i=1}^n \\ln f(x_i; \\theta)",
+            "note": "极大似然估计等价于最小化经验分布与模型分布之间的 KL 散度（交叉熵损失）",
+            "cited_formula_ids": [
+              "stat.inf.lln"
+            ],
+            "pitfall": "若参数定义域有边界（如均匀分布 U(0, θ)），极大值在边界 max(xi) 取到，不能直接求导置零。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.mle_to_ols1d",
-      "from_formula_ids": ["stat.est.mle"],
+      "from_formula_ids": [
+        "stat.est.mle"
+      ],
       "to_formula_id": "stat.reg.ols_1d",
       "relation_type": "special_case_of",
       "dependency_site": "proof_level",
-      "inference_rules": ["gaussian_error_mle_equivalence"],
+      "inference_rules": [
+        "gaussian_error_mle_equivalence"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "假设回归残差 εi ~ N(0, σ²) 时，最大化对数似然等价于最小化残差平方和 ∑(yi - β0 - β1 xi)²，分别求偏导置零即证。",
         "L2_standard": [
-          { "step": 1, "latex": "\\min_{\\beta_0, \\beta_1} Q = \\sum_{i=1}^n (y_i - \\beta_0 - \\beta_1 x_i)^2", "note": "正态误差下的极大似然等价于最小二乘", "cited_formula_ids": ["stat.est.mle"] },
-          { "step": 2, "latex": "\\frac{\\partial Q}{\\partial \\beta_0} = 0 \\implies \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x};\\quad \\frac{\\partial Q}{\\partial \\beta_1} = 0 \\implies \\hat{\\beta}_1 = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}", "note": "联立两偏导方程解出最优斜率与截距", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\min_{\\beta_0, \\beta_1} Q = \\sum_{i=1}^n (y_i - \\beta_0 - \\beta_1 x_i)^2",
+            "note": "正态误差下的极大似然等价于最小二乘",
+            "cited_formula_ids": [
+              "stat.est.mle"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{\\partial Q}{\\partial \\beta_0} = 0 \\implies \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x};\\quad \\frac{\\partial Q}{\\partial \\beta_1} = 0 \\implies \\hat{\\beta}_1 = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}",
+            "note": "联立两偏导方程解出最优斜率与截距",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\hat{\\beta}_1 = r \\cdot \\frac{S_y}{S_x}", "note": "斜率恰好等于样本相关系数 r 乘以两变量标准差之比", "cited_formula_ids": ["stat.est.mle"], "pitfall": "切勿把相关关系当成因果关系，也不要在样本 x 范围之外过度外推预测。" }
+          {
+            "step": 1,
+            "latex": "\\hat{\\beta}_1 = r \\cdot \\frac{S_y}{S_x}",
+            "note": "斜率恰好等于样本相关系数 r 乘以两变量标准差之比",
+            "cited_formula_ids": [
+              "stat.est.mle"
+            ],
+            "pitfall": "切勿把相关关系当成因果关系，也不要在样本 x 范围之外过度外推预测。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.ols_to_r2",
-      "from_formula_ids": ["stat.reg.ols_1d"],
+      "from_formula_ids": [
+        "stat.reg.ols_1d"
+      ],
       "to_formula_id": "stat.reg.r_squared",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["sum_of_squares_decomposition"],
+      "inference_rules": [
+        "sum_of_squares_decomposition"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由最小二乘正交性得总平方和分解 SS_tot = SS_reg + SS_res，回归解释占比 SS_reg / SS_tot 即化为 1 - SS_res / SS_tot。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sum (y_i - \\bar{y})^2 = \\sum (\\hat{y}_i - \\bar{y})^2 + \\sum (y_i - \\hat{y}_i)^2 \\implies SS_{\\text{tot}} = SS_{\\text{reg}} + SS_{\\text{res}}", "note": "残差与拟合值正交使交叉项为零", "cited_formula_ids": ["stat.reg.ols_1d"] },
-          { "step": 2, "latex": "R^2 = \\frac{SS_{\\text{reg}}}{SS_{\\text{tot}}} = 1 - \\frac{SS_{\\text{res}}}{SS_{\\text{tot}}}", "note": "定义可解释方差比例", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\sum (y_i - \\bar{y})^2 = \\sum (\\hat{y}_i - \\bar{y})^2 + \\sum (y_i - \\hat{y}_i)^2 \\implies SS_{\\text{tot}} = SS_{\\text{reg}} + SS_{\\text{res}}",
+            "note": "残差与拟合值正交使交叉项为零",
+            "cited_formula_ids": [
+              "stat.reg.ols_1d"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "R^2 = \\frac{SS_{\\text{reg}}}{SS_{\\text{tot}}} = 1 - \\frac{SS_{\\text{res}}}{SS_{\\text{tot}}}",
+            "note": "定义可解释方差比例",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "R^2 = r^2", "note": "在一元线性回归中 R² 严格等于皮尔逊相关系数的平方", "cited_formula_ids": ["stat.reg.ols_1d"], "pitfall": "往多元回归中不断塞入无关特征也会使普通 R² 单调上升，需用调整后 R² 或交叉验证防过拟合。" }
+          {
+            "step": 1,
+            "latex": "R^2 = r^2",
+            "note": "在一元线性回归中 R² 严格等于皮尔逊相关系数的平方",
+            "cited_formula_ids": [
+              "stat.reg.ols_1d"
+            ],
+            "pitfall": "往多元回归中不断塞入无关特征也会使普通 R² 单调上升，需用调整后 R² 或交叉验证防过拟合。"
+          }
         ]
       }
     },
     {
       "id": "deriv.stat.mle_to_bayesconj",
-      "from_formula_ids": ["stat.est.mle"],
+      "from_formula_ids": [
+        "stat.est.mle"
+      ],
       "to_formula_id": "stat.est.bayes_conj",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["quadratic_exponent_completion"],
+      "inference_rules": [
+        "quadratic_exponent_completion"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把正态先验密度与正态样本似然相乘，指数项为关于 μ 的二次式，配方后中心点即得先验与样本均值的精度加权平均。",
         "L2_standard": [
-          { "step": 1, "latex": "p(\\mu \\mid x) \\propto \\exp\\left(-\\frac{(\\mu - \\mu_0)^2}{2\\sigma_0^2} - \\frac{n(\\bar{x} - \\mu)^2}{2\\sigma^2}\\right)", "note": "先验乘似然合并指数项", "cited_formula_ids": ["stat.est.mle"] },
-          { "step": 2, "latex": "\\mu_{\\text{post}} = \\frac{\\mu_0/\\sigma_0^2 + n\\bar{x}/\\sigma^2}{1/\\sigma_0^2 + n/\\sigma^2}", "note": "对 μ 配方读出后验正态分布均值", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "p(\\mu \\mid x) \\propto \\exp\\left(-\\frac{(\\mu - \\mu_0)^2}{2\\sigma_0^2} - \\frac{n(\\bar{x} - \\mu)^2}{2\\sigma^2}\\right)",
+            "note": "先验乘似然合并指数项",
+            "cited_formula_ids": [
+              "stat.est.mle"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\mu_{\\text{post}} = \\frac{\\mu_0/\\sigma_0^2 + n\\bar{x}/\\sigma^2}{1/\\sigma_0^2 + n/\\sigma^2}",
+            "note": "对 μ 配方读出后验正态分布均值",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\text{后验精度 } \\tau_{\\text{post}} = \\frac{1}{\\sigma_0^2} + \\frac{n}{\\sigma^2}", "note": "样本量 n 较小时先验起到正则化收缩作用（等价于 L2 岭回归）；n → ∞ 时退化为经典 MLE 估计 x̄", "cited_formula_ids": ["stat.est.mle"], "pitfall": "若先验分布设定过于极端（σ0² 极小），会压制真实数据信号导致后验偏差。" }
+          {
+            "step": 1,
+            "latex": "\\text{后验精度 } \\tau_{\\text{post}} = \\frac{1}{\\sigma_0^2} + \\frac{n}{\\sigma^2}",
+            "note": "样本量 n 较小时先验起到正则化收缩作用（等价于 L2 岭回归）；n → ∞ 时退化为经典 MLE 估计 x̄",
+            "cited_formula_ids": [
+              "stat.est.mle"
+            ],
+            "pitfall": "若先验分布设定过于极端（σ0² 极小），会压制真实数据信号导致后验偏差。"
+          }
         ]
       }
     }

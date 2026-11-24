@@ -9,687 +9,1667 @@
   "formulas": [
     {
       "id": "linalg.vec.dot_product",
+      "node_kind": "formula",
       "name": "向量内积（点积）公式",
-      "aliases": ["数量积", "点乘公式"],
+      "aliases": [
+        "数量积",
+        "点乘公式"
+      ],
       "latex": "\\mathbf{u} \\cdot \\mathbf{v} = \\sum_{i=1}^{n} u_i v_i = \\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\cos\\theta",
       "statement": "两个同维向量的内积等于对应分量乘积之和，几何上等于两向量模长与夹角余弦的乘积，用于度量相似度与正交性。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["vectors_inner_product"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "vectors_inner_product"
+        ]
       },
       "variables": [
-        { "symbol": "\\mathbf{u}, \\mathbf{v}", "name": "n 维实向量", "math_type": "vector", "domain": "\\mathbb{R}^n", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "\\theta", "name": "两向量夹角", "math_type": "angle", "domain": "[0, \\pi]", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\mathbf{u}, \\mathbf{v}",
+          "name": "n 维实向量",
+          "math_type": "vector",
+          "domain": "\\mathbb{R}^n",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "\\theta",
+          "name": "两向量夹角",
+          "math_type": "angle",
+          "domain": "[0, \\pi]",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["两向量维度相同；当 u·v = 0 时称两向量正交（垂直）"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.1", "sympy_verified": true }
+      "conditions": [
+        "两向量维度相同；当 u·v = 0 时称两向量正交（垂直）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.vec.norm",
+      "node_kind": "formula",
       "name": "向量欧几里得范数（L2 模长）",
-      "aliases": ["向量长度公式"],
+      "aliases": [
+        "向量长度公式"
+      ],
       "latex": "\\|\\mathbf{v}\\|_2 = \\sqrt{\\mathbf{v}^\\top \\mathbf{v}} = \\sqrt{\\sum_{i=1}^{n} v_i^2}",
       "statement": "由向量自身内积开平方定义的欧氏长度，是勾股定理向 n 维空间的直接推广。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["vectors_inner_product"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "vectors_inner_product"
+        ]
       },
       "variables": [
-        { "symbol": "\\|\\mathbf{v}\\|_2", "name": "向量欧氏范数", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\|\\mathbf{v}\\|_2",
+          "name": "向量欧氏范数",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["非负性：‖v‖ ≥ 0，且 ‖v‖ = 0 当且仅当 v = 0"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.1", "sympy_verified": true }
+      "conditions": [
+        "非负性：‖v‖ ≥ 0，且 ‖v‖ = 0 当且仅当 v = 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.vec.cauchy_schwarz",
+      "node_kind": "inequality",
       "name": "柯西-施瓦茨不等式",
-      "aliases": ["Cauchy-Schwarz 不等式"],
+      "aliases": [
+        "Cauchy-Schwarz 不等式"
+      ],
       "latex": "|\\mathbf{u} \\cdot \\mathbf{v}| \\le \\|\\mathbf{u}\\|\\|\\mathbf{v}\\|",
       "statement": "任意两向量内积的绝对值不超过各自模长的乘积，是高维空间夹角定义、三角不等式与统计相关系数有界性的根基。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["vectors_inner_product"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "vectors_inner_product"
+        ]
       },
       "variables": [
-        { "symbol": "\\mathbf{u}, \\mathbf{v}", "name": "内积空间向量", "math_type": "vector", "domain": "\\mathbb{R}^n", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\mathbf{u}, \\mathbf{v}",
+          "name": "内积空间向量",
+          "math_type": "vector",
+          "domain": "\\mathbb{R}^n",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["等号成立当且仅当 u 与 v 线性相关（共线）"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.1", "sympy_verified": true }
+      "conditions": [
+        "等号成立当且仅当 u 与 v 线性相关（共线）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.vec.projection",
+      "node_kind": "formula",
       "name": "向量正交投影公式",
-      "aliases": ["一维子空间投影"],
+      "aliases": [
+        "一维子空间投影"
+      ],
       "latex": "\\text{proj}_{\\mathbf{u}}(\\mathbf{v}) = \\frac{\\mathbf{u} \\cdot \\mathbf{v}}{\\|\\mathbf{u}\\|^2}\\mathbf{u}",
       "statement": "将向量 v 沿非零向量 u 方向作垂足分解，得到 v 在直线 span(u) 上的最佳逼近分量。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["vectors_inner_product"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "vectors_inner_product"
+        ]
       },
       "variables": [
-        { "symbol": "\\mathbf{u}", "name": "投影目标方向非零向量", "math_type": "vector", "domain": "\\mathbb{R}^n \\setminus \\{\\mathbf{0}\\}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\mathbf{u}",
+          "name": "投影目标方向非零向量",
+          "math_type": "vector",
+          "domain": "\\mathbb{R}^n \\setminus \\{\\mathbf{0}\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["u ≠ 0；误差向量 v - proj_u(v) 与 u 严格正交"],
-      "review": { "status": "human_verified", "source": "Gilbert Strang 线性代数 4.2", "sympy_verified": true }
+      "conditions": [
+        "u ≠ 0；误差向量 v - proj_u(v) 与 u 严格正交"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "Gilbert Strang 线性代数 4.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.vec.gram_schmidt",
+      "node_kind": "formula",
       "name": "施密特正交化公式（Gram-Schmidt）",
-      "aliases": ["标准正交基构造"],
+      "aliases": [
+        "标准正交基构造"
+      ],
       "latex": "\\mathbf{u}_k = \\mathbf{v}_k - \\sum_{j=1}^{k-1} \\frac{\\mathbf{u}_j \\cdot \\mathbf{v}_k}{\\mathbf{u}_j \\cdot \\mathbf{u}_j}\\mathbf{u}_j",
       "statement": "依次从当前向量减去它在已构造正交基上的全部投影，把任意线性无关向量组转化为等价的正交向量组（QR 分解核心）。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["vectors_inner_product"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "vectors_inner_product"
+        ]
       },
       "variables": [
-        { "symbol": "\\mathbf{v}_k, \\mathbf{u}_k", "name": "原始基与正交化后基向量", "math_type": "vector", "domain": "\\mathbb{R}^n", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\mathbf{v}_k, \\mathbf{u}_k",
+          "name": "原始基与正交化后基向量",
+          "math_type": "vector",
+          "domain": "\\mathbb{R}^n",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["初始向量组 v1, ..., vm 线性无关；最后再逐个除以自身模长即得标准正交基"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.1", "sympy_verified": true }
+      "conditions": [
+        "初始向量组 v1, ..., vm 线性无关；最后再逐个除以自身模长即得标准正交基"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.mat.multiply",
+      "node_kind": "definition",
       "name": "矩阵乘法定义式",
-      "aliases": ["线性变换复合"],
+      "aliases": [
+        "线性变换复合"
+      ],
       "latex": "(AB)_{ij} = \\sum_{k=1}^{n} A_{ik} B_{kj}",
       "statement": "乘积矩阵的第 (i, j) 元等于左矩阵第 i 行与右矩阵第 j 列的内积，本质上对应两个线性变换的顺序复合。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["matrices_systems"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "matrices_systems"
+        ]
       },
       "variables": [
-        { "symbol": "A, B", "name": "m×n 与 n×p 矩阵", "math_type": "matrix", "domain": "\\mathbb{R}^{m\\times n},\\ \\mathbb{R}^{n\\times p}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "A, B",
+          "name": "m×n 与 n×p 矩阵",
+          "math_type": "matrix",
+          "domain": "\\mathbb{R}^{m\\times n},\\ \\mathbb{R}^{n\\times p}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["左矩阵列数必须等于右矩阵行数；矩阵乘法满足结合律与分配律，一般不满足交换律"],
-      "review": { "status": "human_verified", "source": "同济线性代数 2.2", "sympy_verified": true }
+      "conditions": [
+        "左矩阵列数必须等于右矩阵行数；矩阵乘法满足结合律与分配律，一般不满足交换律"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.mat.transpose",
+      "node_kind": "formula",
       "name": "矩阵转置与反序乘积法则",
-      "aliases": ["穿脱鞋转置法则"],
+      "aliases": [
+        "穿脱鞋转置法则"
+      ],
       "latex": "(AB)^\\top = B^\\top A^\\top",
       "statement": "矩阵乘积的转置等于各因子转置后的反序乘积，广泛用于对称阵构造、二次型与正规方程推导。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["matrices_systems"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "matrices_systems"
+        ]
       },
       "variables": [
-        { "symbol": "A^\\top", "name": "矩阵 A 的转置", "math_type": "matrix", "domain": "\\mathbb{R}^{n\\times m}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "A^\\top",
+          "name": "矩阵 A 的转置",
+          "math_type": "matrix",
+          "domain": "\\mathbb{R}^{n\\times m}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["AB 有意义（A 的列数等于 B 的行数）"],
-      "review": { "status": "human_verified", "source": "同济线性代数 2.2", "sympy_verified": true }
+      "conditions": [
+        "AB 有意义（A 的列数等于 B 的行数）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.mat.inverse",
+      "node_kind": "formula",
       "name": "可逆矩阵与反序求逆法则",
-      "aliases": ["逆矩阵定义与乘积逆"],
+      "aliases": [
+        "逆矩阵定义与乘积逆"
+      ],
       "latex": "A A^{-1} = A^{-1} A = I,\\quad (AB)^{-1} = B^{-1} A^{-1}",
       "statement": "若方阵 A 存在逆矩阵使乘积为单位阵 I，则该线性变换可完全还原；两个可逆阵乘积的逆等于各自逆阵的反序相乘。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["matrices_systems"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "matrices_systems"
+        ]
       },
       "variables": [
-        { "symbol": "A^{-1}", "name": "n 阶可逆矩阵的逆", "math_type": "matrix", "domain": "GL(n, \\mathbb{R})", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "A^{-1}",
+          "name": "n 阶可逆矩阵的逆",
+          "math_type": "matrix",
+          "domain": "GL(n, \\mathbb{R})",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["A、B 均为同阶非奇异方阵（det ≠ 0 且满秩）"],
-      "review": { "status": "human_verified", "source": "同济线性代数 2.3", "sympy_verified": true }
+      "conditions": [
+        "A、B 均为同阶非奇异方阵（det ≠ 0 且满秩）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 2.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.mat.rank_nullity",
+      "node_kind": "theorem",
       "name": "秩-零度定理（维数公式）",
-      "aliases": ["线性方程组解空间维数定理"],
+      "aliases": [
+        "线性方程组解空间维数定理"
+      ],
       "latex": "\\text{rank}(A) + \\text{nullity}(A) = n",
       "statement": "m×n 矩阵的列空间维数（秩）与零空间维数（自由变量个数）之和恒等于列数 n，揭示线性映射的维数守恒。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["matrices_systems"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "matrices_systems"
+        ]
       },
       "variables": [
-        { "symbol": "\\text{rank}(A)", "name": "矩阵的秩（主元个数）", "math_type": "scalar", "domain": "\\{0,\\dots,\\min(m,n)\\}", "quantity_kind": "count", "dimension": "1", "si_unit": "1" },
-        { "symbol": "n", "name": "矩阵列数（未知数个数）", "math_type": "constant", "domain": "\\mathbb{Z}^+", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "\\text{rank}(A)",
+          "name": "矩阵的秩（主元个数）",
+          "math_type": "scalar",
+          "domain": "\\{0,\\dots,\\min(m,n)\\}",
+          "quantity_kind": "count",
+          "dimension": "1",
+          "si_unit": "1"
+        },
+        {
+          "symbol": "n",
+          "name": "矩阵列数（未知数个数）",
+          "math_type": "constant",
+          "domain": "\\mathbb{Z}^+",
+          "quantity_kind": "count",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["对任意 m×n 矩阵 A 恒成立；nullity(A) = dim(ker A) 即齐次方程 Ax = 0 的基础解系向量数"],
-      "review": { "status": "human_verified", "source": "同济线性代数 4.4", "sympy_verified": true }
+      "conditions": [
+        "对任意 m×n 矩阵 A 恒成立；nullity(A) = dim(ker A) 即齐次方程 Ax = 0 的基础解系向量数"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 4.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.mat.normal_eq",
+      "node_kind": "formula",
       "name": "最小二乘正规方程",
-      "aliases": ["普通最小二乘解析解（OLS）"],
+      "aliases": [
+        "普通最小二乘解析解（OLS）"
+      ],
       "latex": "A^\\top A \\hat{\\mathbf{x}} = A^\\top \\mathbf{b},\\quad \\hat{\\mathbf{x}} = (A^\\top A)^{-1} A^\\top \\mathbf{b}",
       "statement": "当超定方程 Ax = b 无精确解时，令残差 b - Ax 正交于 A 的列空间即可求得使误差平方和最小的唯一最优解。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["matrices_systems"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "matrices_systems"
+        ]
       },
       "variables": [
-        { "symbol": "\\hat{\\mathbf{x}}", "name": "最小二乘估计解向量", "math_type": "vector", "domain": "\\mathbb{R}^n", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\hat{\\mathbf{x}}",
+          "name": "最小二乘估计解向量",
+          "math_type": "vector",
+          "domain": "\\mathbb{R}^n",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["显式求逆式要求 A 列满秩（rank(A) = n），从而 A^T A 对称正定可逆"],
-      "review": { "status": "human_verified", "source": "Gilbert Strang 线性代数 4.3", "sympy_verified": true }
+      "conditions": [
+        "显式求逆式要求 A 列满秩（rank(A) = n），从而 A^T A 对称正定可逆"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "Gilbert Strang 线性代数 4.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.mat.orthogonal",
+      "node_kind": "formula",
       "name": "正交矩阵性质",
-      "aliases": ["保长旋转/反射矩阵"],
+      "aliases": [
+        "保长旋转/反射矩阵"
+      ],
       "latex": "Q^\\top Q = Q Q^\\top = I \\iff Q^{-1} = Q^\\top",
       "statement": "列向量构成标准正交基的方阵称为正交阵，其逆矩阵就是转置矩阵，在线性变换中严格保持向量长度与夹角不变。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["matrices_systems"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "matrices_systems"
+        ]
       },
       "variables": [
-        { "symbol": "Q", "name": "n 阶正交矩阵", "math_type": "matrix", "domain": "O(n)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "Q",
+          "name": "n 阶正交矩阵",
+          "math_type": "matrix",
+          "domain": "O(n)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["det(Q) = ±1；对任意向量满足 ‖Qx‖ = ‖x‖"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.1", "sympy_verified": true }
+      "conditions": [
+        "det(Q) = ±1；对任意向量满足 ‖Qx‖ = ‖x‖"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.det.laplace",
+      "node_kind": "formula",
       "name": "行列式按行展开（拉普拉斯展开）",
-      "aliases": ["代数余子式展开公式"],
+      "aliases": [
+        "代数余子式展开公式"
+      ],
       "latex": "\\det(A) = \\sum_{j=1}^{n} a_{ij} C_{ij},\\quad C_{ij} = (-1)^{i+j} M_{ij}",
       "statement": "n 阶方阵的行列式等于任意一行元素与其对应代数余子式乘积之和，几何上度量线性变换对体积的定向缩放倍数。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["determinants_cramer"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "determinants_cramer"
+        ]
       },
       "variables": [
-        { "symbol": "C_{ij}", "name": "元素 aij 的代数余子式", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "C_{ij}",
+          "name": "元素 aij 的代数余子式",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["A 为 n 阶方阵；det(A) ≠ 0 当且仅当 A 可逆"],
-      "review": { "status": "human_verified", "source": "同济线性代数 1.5", "sympy_verified": true }
+      "conditions": [
+        "A 为 n 阶方阵；det(A) ≠ 0 当且仅当 A 可逆"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 1.5",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.det.product",
+      "node_kind": "theorem",
       "name": "行列式乘法定理",
-      "aliases": ["比内-柯西特例"],
+      "aliases": [
+        "比内-柯西特例"
+      ],
       "latex": "\\det(AB) = \\det(A)\\det(B)",
       "statement": "两个同阶方阵乘积的行列式等于各自行列式的乘积，几何上对应两次线性变换的体积缩放因子直接相乘。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["determinants_cramer"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "determinants_cramer"
+        ]
       },
       "variables": [
-        { "symbol": "A, B", "name": "同阶方阵", "math_type": "matrix", "domain": "\\mathbb{R}^{n\\times n}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "A, B",
+          "name": "同阶方阵",
+          "math_type": "matrix",
+          "domain": "\\mathbb{R}^{n\\times n}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["A、B 均为 n 阶方阵；立得推论 det(A⁻¹) = 1/det(A)"],
-      "review": { "status": "human_verified", "source": "同济线性代数 2.2", "sympy_verified": true }
+      "conditions": [
+        "A、B 均为 n 阶方阵；立得推论 det(A⁻¹) = 1/det(A)"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.det.adjugate_inv",
+      "node_kind": "formula",
       "name": "伴随矩阵求逆公式",
-      "aliases": ["A* 求逆公式"],
+      "aliases": [
+        "A* 求逆公式"
+      ],
       "latex": "A^{-1} = \\frac{1}{\\det(A)} A^*,\\quad (A^*)_{ij} = C_{ji}",
       "statement": "将代数余子式矩阵转置得伴随矩阵 A*，再除以非零行列式即得逆矩阵的显式代数表达。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["determinants_cramer"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "determinants_cramer"
+        ]
       },
       "variables": [
-        { "symbol": "A^*", "name": "矩阵 A 的伴随矩阵", "math_type": "matrix", "domain": "\\mathbb{R}^{n\\times n}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "A^*",
+          "name": "矩阵 A 的伴随矩阵",
+          "math_type": "matrix",
+          "domain": "\\mathbb{R}^{n\\times n}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["det(A) ≠ 0；注意伴随矩阵下标是代数余子式的转置 Cji"],
-      "review": { "status": "human_verified", "source": "同济线性代数 2.3", "sympy_verified": true }
+      "conditions": [
+        "det(A) ≠ 0；注意伴随矩阵下标是代数余子式的转置 Cji"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 2.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.det.cramer",
+      "node_kind": "theorem",
       "name": "克莱姆法则（Cramer）",
-      "aliases": ["行列式解线性方程组"],
+      "aliases": [
+        "行列式解线性方程组"
+      ],
       "latex": "x_j = \\frac{\\det(A_j)}{\\det(A)}\\quad (j = 1, 2, \\dots, n)",
       "statement": "对于系数行列式非零的 n 元线性方程组 Ax = b，第 j 个未知数等于将第 j 列替换为 b 后的行列式与原行列式之比。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["determinants_cramer"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "determinants_cramer"
+        ]
       },
       "variables": [
-        { "symbol": "A_j", "name": "第 j 列替换为常数向量 b 的矩阵", "math_type": "matrix", "domain": "\\mathbb{R}^{n\\times n}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "A_j",
+          "name": "第 j 列替换为常数向量 b 的矩阵",
+          "math_type": "matrix",
+          "domain": "\\mathbb{R}^{n\\times n}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["方程数等于未知数个数且 det(A) ≠ 0（此时方程组有唯一解）"],
-      "review": { "status": "human_verified", "source": "同济线性代数 1.6", "sympy_verified": true }
+      "conditions": [
+        "方程数等于未知数个数且 det(A) ≠ 0（此时方程组有唯一解）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 1.6",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.eig.characteristic",
+      "node_kind": "definition",
       "name": "特征值与特征方程",
-      "aliases": ["特征多项式方程"],
+      "aliases": [
+        "特征多项式方程"
+      ],
       "latex": "A\\mathbf{v} = \\lambda\\mathbf{v}\\ (\\mathbf{v} \\neq \\mathbf{0}) \\iff \\det(A - \\lambda I) = 0",
       "statement": "在线性变换 A 下方向保持不变的非零向量称为特征向量，对应的伸缩倍数 λ 为特征值，由特征方程求根得到。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["eigen_svd"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "eigen_svd"
+        ]
       },
       "variables": [
-        { "symbol": "\\lambda", "name": "特征值", "math_type": "scalar", "domain": "\\mathbb{C}", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "\\mathbf{v}", "name": "非零特征向量", "math_type": "vector", "domain": "\\mathbb{C}^n \\setminus \\{\\mathbf{0}\\}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\lambda",
+          "name": "特征值",
+          "math_type": "scalar",
+          "domain": "\\mathbb{C}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "\\mathbf{v}",
+          "name": "非零特征向量",
+          "math_type": "vector",
+          "domain": "\\mathbb{C}^n \\setminus \\{\\mathbf{0}\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["A 为 n 阶方阵；特征向量必须非零"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.2", "sympy_verified": true }
+      "conditions": [
+        "A 为 n 阶方阵；特征向量必须非零"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.eig.trace_det",
+      "node_kind": "formula",
       "name": "特征值与迹、行列式不变量关系",
-      "aliases": ["迹等于特征值之和"],
+      "aliases": [
+        "迹等于特征值之和"
+      ],
       "latex": "\\sum_{i=1}^{n} \\lambda_i = \\text{tr}(A),\\quad \\prod_{i=1}^{n} \\lambda_i = \\det(A)",
       "statement": "方阵全部特征值（计重数）之和恒等于主对角线元素之和（迹），之积恒等于行列式，可用于快速验算与判断奇异性。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["eigen_svd"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "eigen_svd"
+        ]
       },
       "variables": [
-        { "symbol": "\\text{tr}(A)", "name": "矩阵的迹（主对角元素之和）", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\text{tr}(A)",
+          "name": "矩阵的迹（主对角元素之和）",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["复数域内计入代数重数的全部 n 个特征值"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.2", "sympy_verified": true }
+      "conditions": [
+        "复数域内计入代数重数的全部 n 个特征值"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.eig.diagonalization",
+      "node_kind": "formula",
       "name": "矩阵相似对角化公式",
-      "aliases": ["特征分解"],
+      "aliases": [
+        "特征分解"
+      ],
       "latex": "A = P \\Lambda P^{-1},\\quad A^k = P \\Lambda^k P^{-1}",
       "statement": "若 n 阶方阵拥有 n 个线性无关的特征向量，则可在特征基下化为对角阵 Λ，使矩阵高次幂与微分方程组求解瞬间简化。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["eigen_svd"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "eigen_svd"
+        ]
       },
       "variables": [
-        { "symbol": "P", "name": "以特征向量为列的可逆矩阵", "math_type": "matrix", "domain": "GL(n, \\mathbb{C})", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "\\Lambda", "name": "特征值构成的对角矩阵", "math_type": "matrix", "domain": "\\mathbb{C}^{n\\times n}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "P",
+          "name": "以特征向量为列的可逆矩阵",
+          "math_type": "matrix",
+          "domain": "GL(n, \\mathbb{C})",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "\\Lambda",
+          "name": "特征值构成的对角矩阵",
+          "math_type": "matrix",
+          "domain": "\\mathbb{C}^{n\\times n}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["充要条件是每个特征值的几何重数等于代数重数（共存在 n 个线性无关特征向量）"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.3", "sympy_verified": true }
+      "conditions": [
+        "充要条件是每个特征值的几何重数等于代数重数（共存在 n 个线性无关特征向量）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.eig.spectral",
+      "node_kind": "theorem",
       "name": "实对称矩阵谱定理（正交对角化）",
-      "aliases": ["主轴定理"],
+      "aliases": [
+        "主轴定理"
+      ],
       "latex": "A = A^\\top \\implies A = Q \\Lambda Q^\\top = \\sum_{i=1}^{n} \\lambda_i \\mathbf{q}_i \\mathbf{q}_i^\\top",
       "statement": "任何实对称矩阵的特征值必全为实数，且必可由正交矩阵 Q 对角化，是协方差阵主成分分析（PCA）与二次型标准化的理论核心。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["eigen_svd"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "eigen_svd"
+        ]
       },
       "variables": [
-        { "symbol": "Q", "name": "标准正交特征向量矩阵", "math_type": "matrix", "domain": "O(n)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "Q",
+          "name": "标准正交特征向量矩阵",
+          "math_type": "matrix",
+          "domain": "O(n)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["A 为实对称矩阵（A^T = A）；不同特征值对应的特征向量天然正交"],
-      "review": { "status": "human_verified", "source": "同济线性代数 5.4", "sympy_verified": true }
+      "conditions": [
+        "A 为实对称矩阵（A^T = A）；不同特征值对应的特征向量天然正交"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "同济线性代数 5.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "linalg.eig.svd",
+      "node_kind": "formula",
       "name": "奇异值分解（SVD）",
-      "aliases": ["任意矩阵正交分解"],
+      "aliases": [
+        "任意矩阵正交分解"
+      ],
       "latex": "A = U \\Sigma V^\\top = \\sum_{i=1}^{r} \\sigma_i \\mathbf{u}_i \\mathbf{v}_i^\\top",
       "statement": "将谱定理推广到任意 m×n 矩形矩阵：任何线性变换均可拆解为“正交旋转 V^T → 沿主轴按非负奇异值 Σ 伸缩 → 正交旋转 U”。",
       "taxonomy": {
-        "disciplines": ["mathematics", "statistics"],
-        "education_stages": ["undergraduate"],
-        "topics": ["eigen_svd"]
+        "disciplines": [
+          "mathematics",
+          "statistics"
+        ],
+        "education_stages": [
+          "undergraduate"
+        ],
+        "topics": [
+          "eigen_svd"
+        ]
       },
       "variables": [
-        { "symbol": "U, V", "name": "左、右奇异向量正交矩阵", "math_type": "matrix", "domain": "O(m),\\ O(n)", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "\\Sigma", "name": "非负奇异值对角矩阵（σi = √λi）", "math_type": "matrix", "domain": "\\mathbb{R}^{m\\times n}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "U, V",
+          "name": "左、右奇异向量正交矩阵",
+          "math_type": "matrix",
+          "domain": "O(m),\\ O(n)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "\\Sigma",
+          "name": "非负奇异值对角矩阵（σi = √λi）",
+          "math_type": "matrix",
+          "domain": "\\mathbb{R}^{m\\times n}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["对任意实数或复数 m×n 矩阵均存在；截断前 k 大奇异值即得最佳低秩逼近（Eckart-Young 定理）"],
-      "review": { "status": "human_verified", "source": "Gilbert Strang 线性代数 7.1", "sympy_verified": true }
+      "conditions": [
+        "对任意实数或复数 m×n 矩阵均存在；截断前 k 大奇异值即得最佳低秩逼近（Eckart-Young 定理）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "Gilbert Strang 线性代数 7.1",
+        "sympy_verified": true
+      }
     }
   ],
   "derivations": [
     {
       "id": "deriv.linalg.dot_to_norm",
-      "from_formula_ids": ["linalg.vec.dot_product"],
+      "from_formula_ids": [
+        "linalg.vec.dot_product"
+      ],
       "to_formula_id": "linalg.vec.norm",
       "relation_type": "special_case_of",
       "dependency_site": "definition_level",
-      "inference_rules": ["self_inner_product"],
+      "inference_rules": [
+        "self_inner_product"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在向量内积公式中令 u = v（夹角 θ = 0，cos 0 = 1），得 v·v = ‖v‖²，开平方即得 L2 范数公式。",
         "L2_standard": [
-          { "step": 1, "latex": "\\mathbf{v} \\cdot \\mathbf{v} = \\sum_{i=1}^{n} v_i^2 = \\|\\mathbf{v}\\|^2 \\cos 0 = \\|\\mathbf{v}\\|^2", "note": "令两向量重合代入内积公式", "cited_formula_ids": ["linalg.vec.dot_product"] },
-          { "step": 2, "latex": "\\|\\mathbf{v}\\|_2 = \\sqrt{\\mathbf{v}^\\top \\mathbf{v}} = \\sqrt{\\sum_{i=1}^{n} v_i^2}", "note": "两端取算术平方根", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\mathbf{v} \\cdot \\mathbf{v} = \\sum_{i=1}^{n} v_i^2 = \\|\\mathbf{v}\\|^2 \\cos 0 = \\|\\mathbf{v}\\|^2",
+            "note": "令两向量重合代入内积公式",
+            "cited_formula_ids": [
+              "linalg.vec.dot_product"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\|\\mathbf{v}\\|_2 = \\sqrt{\\mathbf{v}^\\top \\mathbf{v}} = \\sqrt{\\sum_{i=1}^{n} v_i^2}",
+            "note": "两端取算术平方根",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\|\\mathbf{v}\\|_2 = \\sqrt{\\sum_{i=1}^n v_i^2}", "note": "范数由内积诱导产生，因此同时满足平行四边形法则", "cited_formula_ids": ["linalg.vec.dot_product"], "pitfall": "在复向量空间中自身内积必须取共轭转置 v^H v，否则可能出现负数或复数。" }
+          {
+            "step": 1,
+            "latex": "\\|\\mathbf{v}\\|_2 = \\sqrt{\\sum_{i=1}^n v_i^2}",
+            "note": "范数由内积诱导产生，因此同时满足平行四边形法则",
+            "cited_formula_ids": [
+              "linalg.vec.dot_product"
+            ],
+            "pitfall": "在复向量空间中自身内积必须取共轭转置 v^H v，否则可能出现负数或复数。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.dot_norm_to_cs",
-      "from_formula_ids": ["linalg.vec.dot_product", "linalg.vec.norm"],
+      "from_formula_ids": [
+        "linalg.vec.dot_product",
+        "linalg.vec.norm"
+      ],
       "to_formula_id": "linalg.vec.cauchy_schwarz",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["nonnegative_quadratic_discriminant"],
+      "inference_rules": [
+        "nonnegative_quadratic_discriminant"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "对任意实数 t 构造非负二次式 ‖u + tv‖² = ‖v‖²t² + 2(u·v)t + ‖u‖² ≥ 0，由判别式 Δ ≤ 0 立即得证。",
         "L2_standard": [
-          { "step": 1, "latex": "\\|\\mathbf{u} + t\\mathbf{v}\\|^2 = \\|\\mathbf{v}\\|^2 t^2 + 2(\\mathbf{u}\\cdot\\mathbf{v})t + \\|\\mathbf{u}\\|^2 \\ge 0", "note": "利用范数非负性展开关于 t 的二次多项式", "cited_formula_ids": ["linalg.vec.dot_product", "linalg.vec.norm"] },
-          { "step": 2, "latex": "\\Delta = 4(\\mathbf{u}\\cdot\\mathbf{v})^2 - 4\\|\\mathbf{u}\\|^2\\|\\mathbf{v}\\|^2 \\le 0 \\implies |\\mathbf{u}\\cdot\\mathbf{v}| \\le \\|\\mathbf{u}\\|\\|\\mathbf{v}\\|", "note": "恒非负二次函数判别式必 ≤ 0", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\|\\mathbf{u} + t\\mathbf{v}\\|^2 = \\|\\mathbf{v}\\|^2 t^2 + 2(\\mathbf{u}\\cdot\\mathbf{v})t + \\|\\mathbf{u}\\|^2 \\ge 0",
+            "note": "利用范数非负性展开关于 t 的二次多项式",
+            "cited_formula_ids": [
+              "linalg.vec.dot_product",
+              "linalg.vec.norm"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\Delta = 4(\\mathbf{u}\\cdot\\mathbf{v})^2 - 4\\|\\mathbf{u}\\|^2\\|\\mathbf{v}\\|^2 \\le 0 \\implies |\\mathbf{u}\\cdot\\mathbf{v}| \\le \\|\\mathbf{u}\\|\\|\\mathbf{v}\\|",
+            "note": "恒非负二次函数判别式必 ≤ 0",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "|\\mathbf{u}\\cdot\\mathbf{v}| \\le \\|\\mathbf{u}\\|\\|\\mathbf{v}\\|", "note": "此代数证明无需先定义夹角 θ，反过来允许我们在任意 n 维内积空间中合法定义 cos θ = (u·v)/(‖u‖‖v‖)", "cited_formula_ids": ["linalg.vec.dot_product", "linalg.vec.norm"], "pitfall": "等号成立要求存在实数 t 使 u + tv = 0（或 v = 0），即两向量严格线性相关。" }
+          {
+            "step": 1,
+            "latex": "|\\mathbf{u}\\cdot\\mathbf{v}| \\le \\|\\mathbf{u}\\|\\|\\mathbf{v}\\|",
+            "note": "此代数证明无需先定义夹角 θ，反过来允许我们在任意 n 维内积空间中合法定义 cos θ = (u·v)/(‖u‖‖v‖)",
+            "cited_formula_ids": [
+              "linalg.vec.dot_product",
+              "linalg.vec.norm"
+            ],
+            "pitfall": "等号成立要求存在实数 t 使 u + tv = 0（或 v = 0），即两向量严格线性相关。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.dot_norm_to_proj",
-      "from_formula_ids": ["linalg.vec.dot_product", "linalg.vec.norm"],
+      "from_formula_ids": [
+        "linalg.vec.dot_product",
+        "linalg.vec.norm"
+      ],
       "to_formula_id": "linalg.vec.projection",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["orthogonality_condition"],
+      "inference_rules": [
+        "orthogonality_condition"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "设投影为 c u，令残差向量 v - c u 与 u 正交即 (v - c u)·u = 0，解出标量系数 c = (u·v)/‖u‖²。",
         "L2_standard": [
-          { "step": 1, "latex": "(\\mathbf{v} - c\\mathbf{u}) \\cdot \\mathbf{u} = 0 \\implies \\mathbf{v}\\cdot\\mathbf{u} - c\\|\\mathbf{u}\\|^2 = 0", "note": "垂足条件要求误差向量与方向向量 u 垂直", "cited_formula_ids": ["linalg.vec.dot_product", "linalg.vec.norm"] },
-          { "step": 2, "latex": "c = \\frac{\\mathbf{u}\\cdot\\mathbf{v}}{\\|\\mathbf{u}\\|^2} \\implies \\text{proj}_{\\mathbf{u}}(\\mathbf{v}) = \\frac{\\mathbf{u}\\cdot\\mathbf{v}}{\\|\\mathbf{u}\\|^2}\\mathbf{u}", "note": "解出投影系数并乘回方向向量 u", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "(\\mathbf{v} - c\\mathbf{u}) \\cdot \\mathbf{u} = 0 \\implies \\mathbf{v}\\cdot\\mathbf{u} - c\\|\\mathbf{u}\\|^2 = 0",
+            "note": "垂足条件要求误差向量与方向向量 u 垂直",
+            "cited_formula_ids": [
+              "linalg.vec.dot_product",
+              "linalg.vec.norm"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "c = \\frac{\\mathbf{u}\\cdot\\mathbf{v}}{\\|\\mathbf{u}\\|^2} \\implies \\text{proj}_{\\mathbf{u}}(\\mathbf{v}) = \\frac{\\mathbf{u}\\cdot\\mathbf{v}}{\\|\\mathbf{u}\\|^2}\\mathbf{u}",
+            "note": "解出投影系数并乘回方向向量 u",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\text{proj}_{\\mathbf{u}}(\\mathbf{v}) = \\frac{\\mathbf{u}\\cdot\\mathbf{v}}{\\|\\mathbf{u}\\|^2}\\mathbf{u}", "note": "若 u 已是单位向量（‖u‖ = 1），分母消失，投影简化为 (u·v)u", "cited_formula_ids": ["linalg.vec.dot_product", "linalg.vec.norm"], "pitfall": "分母是模长的平方 ‖u‖²（即 u·u），切勿误写成 ‖u‖。" }
+          {
+            "step": 1,
+            "latex": "\\text{proj}_{\\mathbf{u}}(\\mathbf{v}) = \\frac{\\mathbf{u}\\cdot\\mathbf{v}}{\\|\\mathbf{u}\\|^2}\\mathbf{u}",
+            "note": "若 u 已是单位向量（‖u‖ = 1），分母消失，投影简化为 (u·v)u",
+            "cited_formula_ids": [
+              "linalg.vec.dot_product",
+              "linalg.vec.norm"
+            ],
+            "pitfall": "分母是模长的平方 ‖u‖²（即 u·u），切勿误写成 ‖u‖。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.proj_to_gs",
-      "from_formula_ids": ["linalg.vec.projection"],
+      "from_formula_ids": [
+        "linalg.vec.projection"
+      ],
       "to_formula_id": "linalg.vec.gram_schmidt",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["iterative_orthogonal_subtraction"],
+      "inference_rules": [
+        "iterative_orthogonal_subtraction"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "按顺序取 u1 = v1；对第 k 个向量 vk，减去它在前面所有已正交向量 u1,...,u_{k-1} 上的投影即保证与前面全正交。",
         "L2_standard": [
-          { "step": 1, "latex": "\\mathbf{u}_k = \\mathbf{v}_k - \\sum_{j=1}^{k-1} \\text{proj}_{\\mathbf{u}_j}(\\mathbf{v}_k) = \\mathbf{v}_k - \\sum_{j=1}^{k-1} \\frac{\\mathbf{u}_j\\cdot\\mathbf{v}_k}{\\mathbf{u}_j\\cdot\\mathbf{u}_j}\\mathbf{u}_j", "note": "利用前 k-1 个基向量已两两正交，直接减去各轴投影", "cited_formula_ids": ["linalg.vec.projection"] },
-          { "step": 2, "latex": "\\mathbf{u}_k \\cdot \\mathbf{u}_i = \\mathbf{v}_k\\cdot\\mathbf{u}_i - \\frac{\\mathbf{u}_i\\cdot\\mathbf{v}_k}{\\mathbf{u}_i\\cdot\\mathbf{u}_i}(\\mathbf{u}_i\\cdot\\mathbf{u}_i) = 0\\quad (i < k)", "note": "逐项验证正交性成立", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\mathbf{u}_k = \\mathbf{v}_k - \\sum_{j=1}^{k-1} \\text{proj}_{\\mathbf{u}_j}(\\mathbf{v}_k) = \\mathbf{v}_k - \\sum_{j=1}^{k-1} \\frac{\\mathbf{u}_j\\cdot\\mathbf{v}_k}{\\mathbf{u}_j\\cdot\\mathbf{u}_j}\\mathbf{u}_j",
+            "note": "利用前 k-1 个基向量已两两正交，直接减去各轴投影",
+            "cited_formula_ids": [
+              "linalg.vec.projection"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\mathbf{u}_k \\cdot \\mathbf{u}_i = \\mathbf{v}_k\\cdot\\mathbf{u}_i - \\frac{\\mathbf{u}_i\\cdot\\mathbf{v}_k}{\\mathbf{u}_i\\cdot\\mathbf{u}_i}(\\mathbf{u}_i\\cdot\\mathbf{u}_i) = 0\\quad (i < k)",
+            "note": "逐项验证正交性成立",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "A = Q R", "note": "把施密特正交化过程写成矩阵形式即为数值线性代数核心分解 QR 分解", "cited_formula_ids": ["linalg.vec.projection"], "pitfall": "必须投影到已正交化的新基 u_j 上，切勿投影回尚未正交的原始向量 v_j。" }
+          {
+            "step": 1,
+            "latex": "A = Q R",
+            "note": "把施密特正交化过程写成矩阵形式即为数值线性代数核心分解 QR 分解",
+            "cited_formula_ids": [
+              "linalg.vec.projection"
+            ],
+            "pitfall": "必须投影到已正交化的新基 u_j 上，切勿投影回尚未正交的原始向量 v_j。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.dot_to_matmul",
-      "from_formula_ids": ["linalg.vec.dot_product"],
+      "from_formula_ids": [
+        "linalg.vec.dot_product"
+      ],
       "to_formula_id": "linalg.mat.multiply",
       "relation_type": "generalizes",
       "dependency_site": "definition_level",
-      "inference_rules": ["row_column_inner_product"],
+      "inference_rules": [
+        "row_column_inner_product"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把矩阵 A 按行切分、矩阵 B 按列切分，乘积矩阵的每个元素 (AB)ij 正是 A 第 i 行与 B 第 j 列的内积。",
         "L2_standard": [
-          { "step": 1, "latex": "(AB)_{ij} = \\mathbf{a}_i^\\top \\mathbf{b}_j = \\sum_{k=1}^{n} A_{ik} B_{kj}", "note": "将向量内积批量组织为二维矩阵乘法", "cited_formula_ids": ["linalg.vec.dot_product"] }
+          {
+            "step": 1,
+            "latex": "(AB)_{ij} = \\mathbf{a}_i^\\top \\mathbf{b}_j = \\sum_{k=1}^{n} A_{ik} B_{kj}",
+            "note": "将向量内积批量组织为二维矩阵乘法",
+            "cited_formula_ids": [
+              "linalg.vec.dot_product"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "AB = \\sum_{k=1}^{n} (A_{:,k})(B_{k,:})", "note": "从外积视角看，AB 也可视为 n 个秩-1 矩阵之和，这一视角在理解特征分解与 SVD 时极其重要", "cited_formula_ids": ["linalg.vec.dot_product"], "pitfall": "矩阵乘法一般不满足交换律（AB ≠ BA），且 AB = 0 不能推出 A = 0 或 B = 0。" }
+          {
+            "step": 1,
+            "latex": "AB = \\sum_{k=1}^{n} (A_{:,k})(B_{k,:})",
+            "note": "从外积视角看，AB 也可视为 n 个秩-1 矩阵之和，这一视角在理解特征分解与 SVD 时极其重要",
+            "cited_formula_ids": [
+              "linalg.vec.dot_product"
+            ],
+            "pitfall": "矩阵乘法一般不满足交换律（AB ≠ BA），且 AB = 0 不能推出 A = 0 或 B = 0。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.matmul_to_trans",
-      "from_formula_ids": ["linalg.mat.multiply"],
+      "from_formula_ids": [
+        "linalg.mat.multiply"
+      ],
       "to_formula_id": "linalg.mat.transpose",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["index_swap"],
+      "inference_rules": [
+        "index_swap"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "写出 (AB)^T 的第 (i, j) 元为 (AB)_ji = ∑ A_jk B_ki，交换标量乘法顺序即等于 (B^T A^T)_ij。",
         "L2_standard": [
-          { "step": 1, "latex": "[(AB)^\\top]_{ij} = (AB)_{ji} = \\sum_{k=1}^{n} A_{jk} B_{ki} = \\sum_{k=1}^{n} (B^\\top)_{ik} (A^\\top)_{kj} = (B^\\top A^\\top)_{ij}", "note": "逐元素核对下标即可证明反序法则", "cited_formula_ids": ["linalg.mat.multiply"] }
+          {
+            "step": 1,
+            "latex": "[(AB)^\\top]_{ij} = (AB)_{ji} = \\sum_{k=1}^{n} A_{jk} B_{ki} = \\sum_{k=1}^{n} (B^\\top)_{ik} (A^\\top)_{kj} = (B^\\top A^\\top)_{ij}",
+            "note": "逐元素核对下标即可证明反序法则",
+            "cited_formula_ids": [
+              "linalg.mat.multiply"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "(A^\\top A)^\\top = A^\\top (A^\\top)^\\top = A^\\top A", "note": "立得重要推论：对任意矩形矩阵 A，A^T A 与 A A^T 必为对称半正定方阵", "cited_formula_ids": ["linalg.mat.multiply"], "pitfall": "多个矩阵相乘取转置时顺序必须整体倒转：(ABC)^T = C^T B^T A^T。" }
+          {
+            "step": 1,
+            "latex": "(A^\\top A)^\\top = A^\\top (A^\\top)^\\top = A^\\top A",
+            "note": "立得重要推论：对任意矩形矩阵 A，A^T A 与 A A^T 必为对称半正定方阵",
+            "cited_formula_ids": [
+              "linalg.mat.multiply"
+            ],
+            "pitfall": "多个矩阵相乘取转置时顺序必须整体倒转：(ABC)^T = C^T B^T A^T。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.matmul_to_inv",
-      "from_formula_ids": ["linalg.mat.multiply"],
+      "from_formula_ids": [
+        "linalg.mat.multiply"
+      ],
       "to_formula_id": "linalg.mat.inverse",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["associativity_cancellation"],
+      "inference_rules": [
+        "associativity_cancellation"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "利用矩阵乘法结合律验证 (AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AIA⁻¹ = I，从而证明乘积逆满足反序法则。",
         "L2_standard": [
-          { "step": 1, "latex": "(AB)(B^{-1}A^{-1}) = A(B B^{-1})A^{-1} = A I A^{-1} = A A^{-1} = I", "note": "结合律逐层向内抵消", "cited_formula_ids": ["linalg.mat.multiply"] }
+          {
+            "step": 1,
+            "latex": "(AB)(B^{-1}A^{-1}) = A(B B^{-1})A^{-1} = A I A^{-1} = A A^{-1} = I",
+            "note": "结合律逐层向内抵消",
+            "cited_formula_ids": [
+              "linalg.mat.multiply"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "(AB)^{-1} = B^{-1}A^{-1}", "note": "直觉即“先穿袜子再穿鞋，脱的时候必须先脱鞋再脱袜子”", "cited_formula_ids": ["linalg.mat.multiply"], "pitfall": "两可逆阵之和 A + B 未必可逆，也绝无 (A+B)⁻¹ = A⁻¹ + B⁻¹。" }
+          {
+            "step": 1,
+            "latex": "(AB)^{-1} = B^{-1}A^{-1}",
+            "note": "直觉即“先穿袜子再穿鞋，脱的时候必须先脱鞋再脱袜子”",
+            "cited_formula_ids": [
+              "linalg.mat.multiply"
+            ],
+            "pitfall": "两可逆阵之和 A + B 未必可逆，也绝无 (A+B)⁻¹ = A⁻¹ + B⁻¹。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.inv_to_rank",
-      "from_formula_ids": ["linalg.mat.multiply", "linalg.mat.inverse"],
+      "from_formula_ids": [
+        "linalg.mat.multiply",
+        "linalg.mat.inverse"
+      ],
       "to_formula_id": "linalg.mat.rank_nullity",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["gaussian_elimination_pivot_count"],
+      "inference_rules": [
+        "gaussian_elimination_pivot_count"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "对矩阵 A 施行初等行变换化为行最简形 R，总列数 n 恰好等于主元列数（rank）加上自由列数（nullity）。",
         "L2_standard": [
-          { "step": 1, "latex": "EA = R \\implies \\text{主元列数} = r = \\text{rank}(A),\\quad \\text{自由列数} = n - r = \\text{nullity}(A)", "note": "可逆初等矩阵 E 左乘不改变零空间与秩", "cited_formula_ids": ["linalg.mat.multiply", "linalg.mat.inverse"] },
-          { "step": 2, "latex": "\\text{rank}(A) + \\text{nullity}(A) = r + (n - r) = n", "note": "主元列与自由列互斥且覆盖全部 n 列", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "EA = R \\implies \\text{主元列数} = r = \\text{rank}(A),\\quad \\text{自由列数} = n - r = \\text{nullity}(A)",
+            "note": "可逆初等矩阵 E 左乘不改变零空间与秩",
+            "cited_formula_ids": [
+              "linalg.mat.multiply",
+              "linalg.mat.inverse"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\text{rank}(A) + \\text{nullity}(A) = r + (n - r) = n",
+            "note": "主元列与自由列互斥且覆盖全部 n 列",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\text{rank}(A) + \\dim(\\ker A) = n", "note": "对方阵而言，满秩（rank = n）等价于零空间仅含零向量（nullity = 0），即等价于 A 可逆", "cited_formula_ids": ["linalg.mat.multiply", "linalg.mat.inverse"], "pitfall": "等式右端永远是列数 n（输入空间维数），而非行数 m。" }
+          {
+            "step": 1,
+            "latex": "\\text{rank}(A) + \\dim(\\ker A) = n",
+            "note": "对方阵而言，满秩（rank = n）等价于零空间仅含零向量（nullity = 0），即等价于 A 可逆",
+            "cited_formula_ids": [
+              "linalg.mat.multiply",
+              "linalg.mat.inverse"
+            ],
+            "pitfall": "等式右端永远是列数 n（输入空间维数），而非行数 m。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.proj_trans_to_normal",
-      "from_formula_ids": ["linalg.vec.projection", "linalg.mat.transpose", "linalg.mat.inverse"],
+      "from_formula_ids": [
+        "linalg.vec.projection",
+        "linalg.mat.transpose",
+        "linalg.mat.inverse"
+      ],
       "to_formula_id": "linalg.mat.normal_eq",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["subspace_orthogonality"],
+      "inference_rules": [
+        "subspace_orthogonality"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把一维投影推广到矩阵列空间：要求残差向量 b - Ax̂ 正交于 A 的每一列，即 A^T(b - Ax̂) = 0，移项即得正规方程。",
         "L2_standard": [
-          { "step": 1, "latex": "A^\\top (\\mathbf{b} - A\\hat{\\mathbf{x}}) = \\mathbf{0} \\implies A^\\top A \\hat{\\mathbf{x}} = A^\\top \\mathbf{b}", "note": "误差向量垂直于列空间等价于落在左零空间", "cited_formula_ids": ["linalg.vec.projection", "linalg.mat.transpose"] },
-          { "step": 2, "latex": "\\hat{\\mathbf{x}} = (A^\\top A)^{-1} A^\\top \\mathbf{b}", "note": "当 A 列满秩时 A^T A 可逆，左乘其逆矩阵得解析解", "cited_formula_ids": ["linalg.mat.inverse"] }
+          {
+            "step": 1,
+            "latex": "A^\\top (\\mathbf{b} - A\\hat{\\mathbf{x}}) = \\mathbf{0} \\implies A^\\top A \\hat{\\mathbf{x}} = A^\\top \\mathbf{b}",
+            "note": "误差向量垂直于列空间等价于落在左零空间",
+            "cited_formula_ids": [
+              "linalg.vec.projection",
+              "linalg.mat.transpose"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\hat{\\mathbf{x}} = (A^\\top A)^{-1} A^\\top \\mathbf{b}",
+            "note": "当 A 列满秩时 A^T A 可逆，左乘其逆矩阵得解析解",
+            "cited_formula_ids": [
+              "linalg.mat.inverse"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\min_{\\mathbf{x}} \\|A\\mathbf{x} - \\mathbf{b}\\|_2^2 \\iff A^\\top A \\hat{\\mathbf{x}} = A^\\top \\mathbf{b}", "note": "这也是线性回归普通最小二乘法（OLS）的矩阵形式，同样可由对 ‖Ax-b‖² 求梯度置零得到", "cited_formula_ids": ["linalg.vec.projection", "linalg.mat.transpose", "linalg.mat.inverse"], "pitfall": "数值计算中直接求 (A^T A)⁻¹ 条件数会平方放大，工程上更常用 QR 分解或 SVD 求解最小二乘。" }
+          {
+            "step": 1,
+            "latex": "\\min_{\\mathbf{x}} \\|A\\mathbf{x} - \\mathbf{b}\\|_2^2 \\iff A^\\top A \\hat{\\mathbf{x}} = A^\\top \\mathbf{b}",
+            "note": "这也是线性回归普通最小二乘法（OLS）的矩阵形式，同样可由对 ‖Ax-b‖² 求梯度置零得到",
+            "cited_formula_ids": [
+              "linalg.vec.projection",
+              "linalg.mat.transpose",
+              "linalg.mat.inverse"
+            ],
+            "pitfall": "数值计算中直接求 (A^T A)⁻¹ 条件数会平方放大，工程上更常用 QR 分解或 SVD 求解最小二乘。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.trans_inv_to_orth",
-      "from_formula_ids": ["linalg.mat.transpose", "linalg.mat.inverse", "linalg.vec.dot_product"],
+      "from_formula_ids": [
+        "linalg.mat.transpose",
+        "linalg.mat.inverse",
+        "linalg.vec.dot_product"
+      ],
       "to_formula_id": "linalg.mat.orthogonal",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["orthonormal_columns_matrix"],
+      "inference_rules": [
+        "orthonormal_columns_matrix"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "当方阵 Q 的各列构成标准正交基时，(Q^T Q)ij = q_i·q_j = δ_ij，故 Q^T Q = I，立得 Q⁻¹ = Q^T。",
         "L2_standard": [
-          { "step": 1, "latex": "(Q^\\top Q)_{ij} = \\mathbf{q}_i \\cdot \\mathbf{q}_j = \\delta_{ij} \\implies Q^\\top Q = I", "note": "各列单位化且两两正交", "cited_formula_ids": ["linalg.mat.transpose", "linalg.vec.dot_product"] },
-          { "step": 2, "latex": "Q^{-1} = Q^\\top,\\quad \\|Q\\mathbf{x}\\|^2 = (Q\\mathbf{x})^\\top (Q\\mathbf{x}) = \\mathbf{x}^\\top Q^\\top Q \\mathbf{x} = \\|\\mathbf{x}\\|^2", "note": "保长性质由转置反序法则瞬间得证", "cited_formula_ids": ["linalg.mat.inverse"] }
+          {
+            "step": 1,
+            "latex": "(Q^\\top Q)_{ij} = \\mathbf{q}_i \\cdot \\mathbf{q}_j = \\delta_{ij} \\implies Q^\\top Q = I",
+            "note": "各列单位化且两两正交",
+            "cited_formula_ids": [
+              "linalg.mat.transpose",
+              "linalg.vec.dot_product"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "Q^{-1} = Q^\\top,\\quad \\|Q\\mathbf{x}\\|^2 = (Q\\mathbf{x})^\\top (Q\\mathbf{x}) = \\mathbf{x}^\\top Q^\\top Q \\mathbf{x} = \\|\\mathbf{x}\\|^2",
+            "note": "保长性质由转置反序法则瞬间得证",
+            "cited_formula_ids": [
+              "linalg.mat.inverse"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "Q^{-1} = Q^\\top", "note": "正交变换不改变向量长度与夹角，数值条件数为最优值 1", "cited_formula_ids": ["linalg.mat.transpose", "linalg.mat.inverse", "linalg.vec.dot_product"], "pitfall": "矩形矩阵列标准正交时有 Q^T Q = I，但 Q Q^T ≠ I（此时 Q Q^T 是正交投影阵）。" }
+          {
+            "step": 1,
+            "latex": "Q^{-1} = Q^\\top",
+            "note": "正交变换不改变向量长度与夹角，数值条件数为最优值 1",
+            "cited_formula_ids": [
+              "linalg.mat.transpose",
+              "linalg.mat.inverse",
+              "linalg.vec.dot_product"
+            ],
+            "pitfall": "矩形矩阵列标准正交时有 Q^T Q = I，但 Q Q^T ≠ I（此时 Q Q^T 是正交投影阵）。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.matmul_to_det_prod",
-      "from_formula_ids": ["linalg.det.laplace", "linalg.mat.multiply"],
+      "from_formula_ids": [
+        "linalg.det.laplace",
+        "linalg.mat.multiply"
+      ],
       "to_formula_id": "linalg.det.product",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["elementary_matrix_decomposition"],
+      "inference_rules": [
+        "elementary_matrix_decomposition"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "若 A 奇异则 AB 亦奇异两边均为 0；若 A 可逆则分解为初等矩阵乘积 A = E1...Ek，逐次应用初等行变换对行列式的缩放性质。",
         "L2_standard": [
-          { "step": 1, "latex": "\\det(EB) = \\det(E)\\det(B)", "note": "三类初等行变换均满足该缩放规则", "cited_formula_ids": ["linalg.det.laplace"] },
-          { "step": 2, "latex": "\\det(AB) = \\det(E_1 \\cdots E_k B) = \\det(E_1)\\cdots\\det(E_k)\\det(B) = \\det(A)\\det(B)", "note": "递推合并即证乘法定理", "cited_formula_ids": ["linalg.mat.multiply"] }
+          {
+            "step": 1,
+            "latex": "\\det(EB) = \\det(E)\\det(B)",
+            "note": "三类初等行变换均满足该缩放规则",
+            "cited_formula_ids": [
+              "linalg.det.laplace"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\det(AB) = \\det(E_1 \\cdots E_k B) = \\det(E_1)\\cdots\\det(E_k)\\det(B) = \\det(A)\\det(B)",
+            "note": "递推合并即证乘法定理",
+            "cited_formula_ids": [
+              "linalg.mat.multiply"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\det(AB) = \\det(A)\\det(B)", "note": "直接推导出 det(A⁻¹) = 1/det(A) 以及相似矩阵行列式不变 det(P⁻¹AP) = det(A)", "cited_formula_ids": ["linalg.det.laplace", "linalg.mat.multiply"], "pitfall": "行列式满足乘法分配但不满足加法分配：det(A + B) 一般绝不等于 det(A) + det(B)。" }
+          {
+            "step": 1,
+            "latex": "\\det(AB) = \\det(A)\\det(B)",
+            "note": "直接推导出 det(A⁻¹) = 1/det(A) 以及相似矩阵行列式不变 det(P⁻¹AP) = det(A)",
+            "cited_formula_ids": [
+              "linalg.det.laplace",
+              "linalg.mat.multiply"
+            ],
+            "pitfall": "行列式满足乘法分配但不满足加法分配：det(A + B) 一般绝不等于 det(A) + det(B)。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.laplace_to_adj",
-      "from_formula_ids": ["linalg.det.laplace", "linalg.mat.inverse"],
+      "from_formula_ids": [
+        "linalg.det.laplace",
+        "linalg.mat.inverse"
+      ],
       "to_formula_id": "linalg.det.adjugate_inv",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["cofactor_orthogonality"],
+      "inference_rules": [
+        "cofactor_orthogonality"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由某行元素乘本行代数余子式得 det(A)、乘异行代数余子式恒得 0，汇总成矩阵恒等式 A A* = det(A) I，两边除以 det(A) 即证。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sum_{k=1}^{n} a_{ik} C_{jk} = \\delta_{ij} \\det(A) \\implies A A^* = \\det(A)\\,I", "note": "异行展开相当于两行相同的行列式，值必为 0", "cited_formula_ids": ["linalg.det.laplace"] },
-          { "step": 2, "latex": "A^{-1} = \\frac{1}{\\det(A)} A^*\\quad (\\det(A) \\neq 0)", "note": "两边除以非零标量 det(A)", "cited_formula_ids": ["linalg.mat.inverse"] }
+          {
+            "step": 1,
+            "latex": "\\sum_{k=1}^{n} a_{ik} C_{jk} = \\delta_{ij} \\det(A) \\implies A A^* = \\det(A)\\,I",
+            "note": "异行展开相当于两行相同的行列式，值必为 0",
+            "cited_formula_ids": [
+              "linalg.det.laplace"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "A^{-1} = \\frac{1}{\\det(A)} A^*\\quad (\\det(A) \\neq 0)",
+            "note": "两边除以非零标量 det(A)",
+            "cited_formula_ids": [
+              "linalg.mat.inverse"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "A A^* = A^* A = \\det(A)\\,I", "note": "该恒等式对奇异矩阵也成立；二阶矩阵求逆“主对角互换、副对角变号再除以行列式”正是其特例", "cited_formula_ids": ["linalg.det.laplace", "linalg.mat.inverse"], "pitfall": "构造伴随矩阵 A* 时最易忘记转置（第 i 行第 j 列放的是 Cji 而非 Cij）。" }
+          {
+            "step": 1,
+            "latex": "A A^* = A^* A = \\det(A)\\,I",
+            "note": "该恒等式对奇异矩阵也成立；二阶矩阵求逆“主对角互换、副对角变号再除以行列式”正是其特例",
+            "cited_formula_ids": [
+              "linalg.det.laplace",
+              "linalg.mat.inverse"
+            ],
+            "pitfall": "构造伴随矩阵 A* 时最易忘记转置（第 i 行第 j 列放的是 Cji 而非 Cij）。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.adj_to_cramer",
-      "from_formula_ids": ["linalg.det.adjugate_inv", "linalg.det.laplace"],
+      "from_formula_ids": [
+        "linalg.det.adjugate_inv",
+        "linalg.det.laplace"
+      ],
       "to_formula_id": "linalg.det.cramer",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution"],
+      "inference_rules": [
+        "identity_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将伴随求逆公式代入唯一解 x = A⁻¹b = (1/det(A)) A* b，取第 j 个分量即恰好是 Aj 按第 j 列的拉普拉斯展开。",
         "L2_standard": [
-          { "step": 1, "latex": "\\mathbf{x} = A^{-1}\\mathbf{b} = \\frac{1}{\\det(A)} A^* \\mathbf{b}", "note": "代入伴随矩阵求逆公式", "cited_formula_ids": ["linalg.det.adjugate_inv"] },
-          { "step": 2, "latex": "x_j = \\frac{1}{\\det(A)} \\sum_{i=1}^{n} C_{ij} b_i = \\frac{\\det(A_j)}{\\det(A)}", "note": "分子恰好等于将第 j 列换成 b 后按第 j 列展开的行列式", "cited_formula_ids": ["linalg.det.laplace"] }
+          {
+            "step": 1,
+            "latex": "\\mathbf{x} = A^{-1}\\mathbf{b} = \\frac{1}{\\det(A)} A^* \\mathbf{b}",
+            "note": "代入伴随矩阵求逆公式",
+            "cited_formula_ids": [
+              "linalg.det.adjugate_inv"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "x_j = \\frac{1}{\\det(A)} \\sum_{i=1}^{n} C_{ij} b_i = \\frac{\\det(A_j)}{\\det(A)}",
+            "note": "分子恰好等于将第 j 列换成 b 后按第 j 列展开的行列式",
+            "cited_formula_ids": [
+              "linalg.det.laplace"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "x_j = \\frac{\\det(A_j)}{\\det(A)}", "note": "克莱姆法则在理论分析（如求偏导灵敏度）中非常优雅，但高维数值计算效率远不如高斯消元", "cited_formula_ids": ["linalg.det.adjugate_inv", "linalg.det.laplace"], "pitfall": "当 det(A) = 0 时克莱姆法则失效，方程组可能无解也可能有无穷多解。" }
+          {
+            "step": 1,
+            "latex": "x_j = \\frac{\\det(A_j)}{\\det(A)}",
+            "note": "克莱姆法则在理论分析（如求偏导灵敏度）中非常优雅，但高维数值计算效率远不如高斯消元",
+            "cited_formula_ids": [
+              "linalg.det.adjugate_inv",
+              "linalg.det.laplace"
+            ],
+            "pitfall": "当 det(A) = 0 时克莱姆法则失效，方程组可能无解也可能有无穷多解。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.det_to_eig",
-      "from_formula_ids": ["linalg.det.laplace", "linalg.mat.rank_nullity"],
+      "from_formula_ids": [
+        "linalg.det.laplace",
+        "linalg.mat.rank_nullity"
+      ],
       "to_formula_id": "linalg.eig.characteristic",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["nontrivial_kernel_singularity"],
+      "inference_rules": [
+        "nontrivial_kernel_singularity"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "将 Av = λv 移项为齐次方程 (A - λI)v = 0；存在非零解 v 当且仅当系数阵奇异，即特征行列式 det(A - λI) = 0。",
         "L2_standard": [
-          { "step": 1, "latex": "A\\mathbf{v} = \\lambda\\mathbf{v} \\iff (A - \\lambda I)\\mathbf{v} = \\mathbf{0}", "note": "移项整理为齐次线性方程组", "cited_formula_ids": ["linalg.mat.rank_nullity"] },
-          { "step": 2, "latex": "\\exists\\ \\mathbf{v} \\neq \\mathbf{0} \\iff \\text{nullity}(A - \\lambda I) \\ge 1 \\iff \\det(A - \\lambda I) = 0", "note": "奇异方阵充要条件为行列式为零", "cited_formula_ids": ["linalg.det.laplace"] }
+          {
+            "step": 1,
+            "latex": "A\\mathbf{v} = \\lambda\\mathbf{v} \\iff (A - \\lambda I)\\mathbf{v} = \\mathbf{0}",
+            "note": "移项整理为齐次线性方程组",
+            "cited_formula_ids": [
+              "linalg.mat.rank_nullity"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\exists\\ \\mathbf{v} \\neq \\mathbf{0} \\iff \\text{nullity}(A - \\lambda I) \\ge 1 \\iff \\det(A - \\lambda I) = 0",
+            "note": "奇异方阵充要条件为行列式为零",
+            "cited_formula_ids": [
+              "linalg.det.laplace"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "p(\\lambda) = \\det(A - \\lambda I) = 0", "note": "n 阶方阵的特征多项式为 n 次多项式，在复数域必有 n 个根（计重数）", "cited_formula_ids": ["linalg.det.laplace", "linalg.mat.rank_nullity"], "pitfall": "移项时必须写成 A - λI（带单位阵 I），不能写成标量与矩阵直接相减 A - λ。" }
+          {
+            "step": 1,
+            "latex": "p(\\lambda) = \\det(A - \\lambda I) = 0",
+            "note": "n 阶方阵的特征多项式为 n 次多项式，在复数域必有 n 个根（计重数）",
+            "cited_formula_ids": [
+              "linalg.det.laplace",
+              "linalg.mat.rank_nullity"
+            ],
+            "pitfall": "移项时必须写成 A - λI（带单位阵 I），不能写成标量与矩阵直接相减 A - λ。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.eig_to_trace_det",
-      "from_formula_ids": ["linalg.eig.characteristic", "linalg.det.laplace"],
+      "from_formula_ids": [
+        "linalg.eig.characteristic",
+        "linalg.det.laplace"
+      ],
       "to_formula_id": "linalg.eig.trace_det",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["vieta_polynomial_coefficients"],
+      "inference_rules": [
+        "vieta_polynomial_coefficients"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将特征多项式 det(λI - A) = ∏(λ - λi) 展开并与按对角线展开的 λ^(n-1) 项及常数项系数对比即得。",
         "L2_standard": [
-          { "step": 1, "latex": "\\det(\\lambda I - A) = \\prod_{i=1}^{n} (\\lambda - \\lambda_i) = \\lambda^n - \\left(\\sum \\lambda_i\\right)\\lambda^{n-1} + \\cdots + (-1)^n \\prod \\lambda_i", "note": "按特征根因式分解展开", "cited_formula_ids": ["linalg.eig.characteristic"] },
-          { "step": 2, "latex": "\\lambda = 0 \\implies \\det(-A) = (-1)^n \\prod \\lambda_i \\implies \\det(A) = \\prod \\lambda_i;\\quad \\text{比对 } \\lambda^{n-1} \\text{ 系数得 } \\text{tr}(A) = \\sum \\lambda_i", "note": "对照主对角乘积中 λ^(n-1) 系数与常数项", "cited_formula_ids": ["linalg.det.laplace"] }
+          {
+            "step": 1,
+            "latex": "\\det(\\lambda I - A) = \\prod_{i=1}^{n} (\\lambda - \\lambda_i) = \\lambda^n - \\left(\\sum \\lambda_i\\right)\\lambda^{n-1} + \\cdots + (-1)^n \\prod \\lambda_i",
+            "note": "按特征根因式分解展开",
+            "cited_formula_ids": [
+              "linalg.eig.characteristic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\lambda = 0 \\implies \\det(-A) = (-1)^n \\prod \\lambda_i \\implies \\det(A) = \\prod \\lambda_i;\\quad \\text{比对 } \\lambda^{n-1} \\text{ 系数得 } \\text{tr}(A) = \\sum \\lambda_i",
+            "note": "对照主对角乘积中 λ^(n-1) 系数与常数项",
+            "cited_formula_ids": [
+              "linalg.det.laplace"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\sum \\lambda_i = \\text{tr}(A),\\quad \\prod \\lambda_i = \\det(A)", "note": "立得重要判定：A 不可逆（det(A)=0）当且仅当 0 是 A 的一个特征值", "cited_formula_ids": ["linalg.eig.characteristic", "linalg.det.laplace"], "pitfall": "二阶矩阵求特征值时，用 λ² - tr(A)λ + det(A) = 0 往往比直接算行列式快得多。" }
+          {
+            "step": 1,
+            "latex": "\\sum \\lambda_i = \\text{tr}(A),\\quad \\prod \\lambda_i = \\det(A)",
+            "note": "立得重要判定：A 不可逆（det(A)=0）当且仅当 0 是 A 的一个特征值",
+            "cited_formula_ids": [
+              "linalg.eig.characteristic",
+              "linalg.det.laplace"
+            ],
+            "pitfall": "二阶矩阵求特征值时，用 λ² - tr(A)λ + det(A) = 0 往往比直接算行列式快得多。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.eig_inv_to_diag",
-      "from_formula_ids": ["linalg.eig.characteristic", "linalg.mat.inverse"],
+      "from_formula_ids": [
+        "linalg.eig.characteristic",
+        "linalg.mat.inverse"
+      ],
       "to_formula_id": "linalg.eig.diagonalization",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["column_stacking_matrix_equation"],
+      "inference_rules": [
+        "column_stacking_matrix_equation"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把 n 个特征方程 Av_i = λ_i v_i 按列拼成矩阵等式 AP = PΛ；因 P 列线性无关故可逆，右乘 P⁻¹ 即得 A = PΛP⁻¹。",
         "L2_standard": [
-          { "step": 1, "latex": "A[\\mathbf{v}_1,\\dots,\\mathbf{v}_n] = [\\lambda_1\\mathbf{v}_1,\\dots,\\lambda_n\\mathbf{v}_n] = [\\mathbf{v}_1,\\dots,\\mathbf{v}_n]\\Lambda \\implies AP = P\\Lambda", "note": "将 n 条特征方程合并为单条矩阵方程", "cited_formula_ids": ["linalg.eig.characteristic"] },
-          { "step": 2, "latex": "A = P\\Lambda P^{-1} \\implies A^k = (P\\Lambda P^{-1})^k = P\\Lambda^k P^{-1}", "note": "右乘 P⁻¹，高次幂中间的 P⁻¹P 全部抵消", "cited_formula_ids": ["linalg.mat.inverse"] }
+          {
+            "step": 1,
+            "latex": "A[\\mathbf{v}_1,\\dots,\\mathbf{v}_n] = [\\lambda_1\\mathbf{v}_1,\\dots,\\lambda_n\\mathbf{v}_n] = [\\mathbf{v}_1,\\dots,\\mathbf{v}_n]\\Lambda \\implies AP = P\\Lambda",
+            "note": "将 n 条特征方程合并为单条矩阵方程",
+            "cited_formula_ids": [
+              "linalg.eig.characteristic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "A = P\\Lambda P^{-1} \\implies A^k = (P\\Lambda P^{-1})^k = P\\Lambda^k P^{-1}",
+            "note": "右乘 P⁻¹，高次幂中间的 P⁻¹P 全部抵消",
+            "cited_formula_ids": [
+              "linalg.mat.inverse"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "A^k = P\\Lambda^k P^{-1}", "note": "对角阵的 k 次幂只需对每个对角元单独取 k 次幂，大幅加速马尔可夫链与动力系统预测", "cited_formula_ids": ["linalg.eig.characteristic", "linalg.mat.inverse"], "pitfall": "并非所有方阵都可对角化（如剪切矩阵存在重根且特征向量不足时只能化为若尔当标准型）。" }
+          {
+            "step": 1,
+            "latex": "A^k = P\\Lambda^k P^{-1}",
+            "note": "对角阵的 k 次幂只需对每个对角元单独取 k 次幂，大幅加速马尔可夫链与动力系统预测",
+            "cited_formula_ids": [
+              "linalg.eig.characteristic",
+              "linalg.mat.inverse"
+            ],
+            "pitfall": "并非所有方阵都可对角化（如剪切矩阵存在重根且特征向量不足时只能化为若尔当标准型）。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.diag_orth_to_spectral",
-      "from_formula_ids": ["linalg.eig.diagonalization", "linalg.mat.orthogonal", "linalg.vec.gram_schmidt"],
+      "from_formula_ids": [
+        "linalg.eig.diagonalization",
+        "linalg.mat.orthogonal",
+        "linalg.vec.gram_schmidt"
+      ],
       "to_formula_id": "linalg.eig.spectral",
       "relation_type": "special_case_of",
       "dependency_site": "proof_level",
-      "inference_rules": ["symmetric_orthogonality"],
+      "inference_rules": [
+        "symmetric_orthogonality"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "实对称阵不同特征值的特征向量天然正交，重根子空间内用施密特正交化补齐标准正交基，使 P 成为正交阵 Q，从而 P⁻¹ = Q^T。",
         "L2_standard": [
-          { "step": 1, "latex": "\\lambda_1 (\\mathbf{v}_1\\cdot\\mathbf{v}_2) = (A\\mathbf{v}_1)^\\top\\mathbf{v}_2 = \\mathbf{v}_1^\\top A^\\top\\mathbf{v}_2 = \\lambda_2(\\mathbf{v}_1\\cdot\\mathbf{v}_2) \\implies \\mathbf{v}_1 \\perp \\mathbf{v}_2", "note": "λ1 ≠ λ2 时特征向量必然正交", "cited_formula_ids": ["linalg.eig.diagonalization"] },
-          { "step": 2, "latex": "P = Q \\in O(n) \\implies A = Q\\Lambda Q^{-1} = Q\\Lambda Q^\\top", "note": "重特征空间内做施密特正交化后用 Q⁻¹ = Q^T 替换", "cited_formula_ids": ["linalg.mat.orthogonal", "linalg.vec.gram_schmidt"] }
+          {
+            "step": 1,
+            "latex": "\\lambda_1 (\\mathbf{v}_1\\cdot\\mathbf{v}_2) = (A\\mathbf{v}_1)^\\top\\mathbf{v}_2 = \\mathbf{v}_1^\\top A^\\top\\mathbf{v}_2 = \\lambda_2(\\mathbf{v}_1\\cdot\\mathbf{v}_2) \\implies \\mathbf{v}_1 \\perp \\mathbf{v}_2",
+            "note": "λ1 ≠ λ2 时特征向量必然正交",
+            "cited_formula_ids": [
+              "linalg.eig.diagonalization"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = Q \\in O(n) \\implies A = Q\\Lambda Q^{-1} = Q\\Lambda Q^\\top",
+            "note": "重特征空间内做施密特正交化后用 Q⁻¹ = Q^T 替换",
+            "cited_formula_ids": [
+              "linalg.mat.orthogonal",
+              "linalg.vec.gram_schmidt"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "A = \\sum_{i=1}^{n} \\lambda_i \\mathbf{q}_i \\mathbf{q}_i^\\top", "note": "外积展开表明实对称阵就是沿 n 条相互垂直主轴的纯拉伸叠加", "cited_formula_ids": ["linalg.eig.diagonalization", "linalg.mat.orthogonal", "linalg.vec.gram_schmidt"], "pitfall": "只有对称阵（或更一般的正规阵）才保证存在正交特征基。" }
+          {
+            "step": 1,
+            "latex": "A = \\sum_{i=1}^{n} \\lambda_i \\mathbf{q}_i \\mathbf{q}_i^\\top",
+            "note": "外积展开表明实对称阵就是沿 n 条相互垂直主轴的纯拉伸叠加",
+            "cited_formula_ids": [
+              "linalg.eig.diagonalization",
+              "linalg.mat.orthogonal",
+              "linalg.vec.gram_schmidt"
+            ],
+            "pitfall": "只有对称阵（或更一般的正规阵）才保证存在正交特征基。"
+          }
         ]
       }
     },
     {
       "id": "deriv.linalg.spectral_to_svd",
-      "from_formula_ids": ["linalg.eig.spectral", "linalg.mat.transpose"],
+      "from_formula_ids": [
+        "linalg.eig.spectral",
+        "linalg.mat.transpose"
+      ],
       "to_formula_id": "linalg.eig.svd",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["gram_matrix_spectral_decomposition"],
+      "inference_rules": [
+        "gram_matrix_spectral_decomposition"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "对任意 m×n 矩阵 A 构造对称半正定阵 A^T A，由谱定理得 A^T A = V Λ V^T，取奇异值 σi = √λi 并令 ui = Av_i/σi 即得 A = UΣV^T。",
         "L2_standard": [
-          { "step": 1, "latex": "A^\\top A = V \\Lambda V^\\top,\\quad \\sigma_i = \\sqrt{\\lambda_i} \\ge 0", "note": "A^T A 必实对称且特征值非负（‖Av‖² = λ‖v‖² ≥ 0）", "cited_formula_ids": ["linalg.eig.spectral", "linalg.mat.transpose"] },
-          { "step": 2, "latex": "\\mathbf{u}_i = \\frac{1}{\\sigma_i} A\\mathbf{v}_i\\ (i \\le r) \\implies AV = U\\Sigma \\implies A = U\\Sigma V^\\top", "note": "验证 ui 构成左正交基，右乘 V^T 即得奇异值分解", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "A^\\top A = V \\Lambda V^\\top,\\quad \\sigma_i = \\sqrt{\\lambda_i} \\ge 0",
+            "note": "A^T A 必实对称且特征值非负（‖Av‖² = λ‖v‖² ≥ 0）",
+            "cited_formula_ids": [
+              "linalg.eig.spectral",
+              "linalg.mat.transpose"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\mathbf{u}_i = \\frac{1}{\\sigma_i} A\\mathbf{v}_i\\ (i \\le r) \\implies AV = U\\Sigma \\implies A = U\\Sigma V^\\top",
+            "note": "验证 ui 构成左正交基，右乘 V^T 即得奇异值分解",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "A = U\\Sigma V^\\top = \\sum_{i=1}^{r} \\sigma_i \\mathbf{u}_i \\mathbf{v}_i^\\top", "note": "SVD 突破了特征分解要求方阵且可对角化的限制，是推荐系统、图像压缩与广义逆的核心引擎", "cited_formula_ids": ["linalg.eig.spectral", "linalg.mat.transpose"], "pitfall": "非零奇异值是 A^T A 特征值的平方根 σi = √λi，不要直接把 λi 当成奇异值。" }
+          {
+            "step": 1,
+            "latex": "A = U\\Sigma V^\\top = \\sum_{i=1}^{r} \\sigma_i \\mathbf{u}_i \\mathbf{v}_i^\\top",
+            "note": "SVD 突破了特征分解要求方阵且可对角化的限制，是推荐系统、图像压缩与广义逆的核心引擎",
+            "cited_formula_ids": [
+              "linalg.eig.spectral",
+              "linalg.mat.transpose"
+            ],
+            "pitfall": "非零奇异值是 A^T A 特征值的平方根 σi = √λi，不要直接把 λi 当成奇异值。"
+          }
         ]
       }
     }

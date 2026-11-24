@@ -1,7 +1,7 @@
 {
-  "name": "公式知识图谱 · Formula Graph",
-  "short_name": "公式图谱",
-  "description": "全学段跨学科公式知识图谱与动态视图引擎（支持 L1/L2/L3 分级推导与离线使用）",
+  "name": "数理知识图谱 · Formula Graph",
+  "short_name": "数理图谱",
+  "description": "全阶段跨学科数理知识图谱（公式、公理、定理、定律与分布）与动态视图引擎（支持 L1/L2/L3 分级推导与离线使用）",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

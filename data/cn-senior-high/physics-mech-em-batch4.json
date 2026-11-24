@@ -9,630 +9,1513 @@
   "formulas": [
     {
       "id": "physics.kin.vel_time",
+      "node_kind": "formula",
       "name": "匀变速直线运动速度公式",
-      "aliases": ["v-t 公式"],
+      "aliases": [
+        "v-t 公式"
+      ],
       "latex": "v = v_0 + a t",
       "statement": "加速度恒定时，末速度等于初速度加上加速度与时间的乘积，v-t 图像是一条斜率为 a 的直线。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["kinematics_newton"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "kinematics_newton"
+        ]
       },
       "variables": [
-        { "symbol": "v, v_0", "name": "末速度与初速度", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "velocity", "dimension": "L T^{-1}", "si_unit": "m/s" },
-        { "symbol": "a", "name": "恒定加速度", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "acceleration", "dimension": "L T^{-2}", "si_unit": "m/s²" },
-        { "symbol": "t", "name": "时间", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "time", "dimension": "T", "si_unit": "s" }
+        {
+          "symbol": "v, v_0",
+          "name": "末速度与初速度",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "velocity",
+          "dimension": "L T^{-1}",
+          "si_unit": "m/s"
+        },
+        {
+          "symbol": "a",
+          "name": "恒定加速度",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "acceleration",
+          "dimension": "L T^{-2}",
+          "si_unit": "m/s²"
+        },
+        {
+          "symbol": "t",
+          "name": "时间",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
       ],
-      "conditions": ["仅适用于匀变速直线运动（a 恒定）；需先规定正方向并代入矢量正负号"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修一 2.2", "sympy_verified": true }
+      "conditions": [
+        "仅适用于匀变速直线运动（a 恒定）；需先规定正方向并代入矢量正负号"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修一 2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.kin.disp_time",
+      "node_kind": "formula",
       "name": "匀变速直线运动位移公式",
-      "aliases": ["x-t 公式"],
+      "aliases": [
+        "x-t 公式"
+      ],
       "latex": "x = v_0 t + \\frac{1}{2} a t^2",
       "statement": "匀变速直线运动的位移等于 v-t 图像梯形面积，由匀速部分 v0t 与加速增量部分 ½at² 叠加而成。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["kinematics_newton"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "kinematics_newton"
+        ]
       },
       "variables": [
-        { "symbol": "x", "name": "位移", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "length", "dimension": "L", "si_unit": "m" }
+        {
+          "symbol": "x",
+          "name": "位移",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        }
       ],
-      "conditions": ["匀变速直线运动；自由落体时 v0 = 0, a = g 化为 h = ½gt²"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修一 2.3", "sympy_verified": true }
+      "conditions": [
+        "匀变速直线运动；自由落体时 v0 = 0, a = g 化为 h = ½gt²"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修一 2.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.kin.vel_disp",
+      "node_kind": "formula",
       "name": "匀变速速度-位移公式",
-      "aliases": ["不含时间 t 推论"],
+      "aliases": [
+        "不含时间 t 推论"
+      ],
       "latex": "v^2 - v_0^2 = 2 a x",
       "statement": "消去时间 t 后直接建立初末速度平方差与位移的定量关系，是推导动能定理的运动学起点。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["kinematics_newton"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "kinematics_newton"
+        ]
       },
       "variables": [
-        { "symbol": "v, v_0, a, x", "name": "速度、加速度与位移", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": "L^2 T^{-2}", "si_unit": "m²/s²" }
+        {
+          "symbol": "v, v_0, a, x",
+          "name": "速度、加速度与位移",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": "L^2 T^{-2}",
+          "si_unit": "m²/s²"
+        }
       ],
-      "conditions": ["匀变速直线运动"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修一 2.3", "sympy_verified": true }
+      "conditions": [
+        "匀变速直线运动"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修一 2.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.dyn.newton2",
+      "node_kind": "law",
       "name": "牛顿第二定律",
-      "aliases": ["动力学基本方程"],
+      "aliases": [
+        "动力学基本方程"
+      ],
       "latex": "F_{\\text{合}} = m a",
       "statement": "物体的加速度与所受合外力成正比、与质量成反比，且加速度方向永远与合外力方向瞬时一致。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["kinematics_newton"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "kinematics_newton"
+        ]
       },
       "variables": [
-        { "symbol": "F_{\\text{合}}", "name": "合外力", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "force", "dimension": "M L T^{-2}", "si_unit": "N" },
-        { "symbol": "m", "name": "惯性质量", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "mass", "dimension": "M", "si_unit": "kg" }
+        {
+          "symbol": "F_{\\text{合}}",
+          "name": "合外力",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "force",
+          "dimension": "M L T^{-2}",
+          "si_unit": "N"
+        },
+        {
+          "symbol": "m",
+          "name": "惯性质量",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "mass",
+          "dimension": "M",
+          "si_unit": "kg"
+        }
       ],
-      "conditions": ["宏观低速（v ≪ c）惯性参考系下成立"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修一 4.3", "sympy_verified": true }
+      "conditions": [
+        "宏观低速（v ≪ c）惯性参考系下成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修一 4.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.dyn.centripetal",
+      "node_kind": "formula",
       "name": "向心力公式",
-      "aliases": ["匀速圆周运动动力学方程"],
+      "aliases": [
+        "匀速圆周运动动力学方程"
+      ],
       "latex": "F_n = m \\frac{v^2}{r} = m \\omega^2 r",
       "statement": "维持质点以速率 v、半径 r 做圆周运动所需的指向圆心的合外力，是牛顿第二定律在法向方向的应用。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["kinematics_newton"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "kinematics_newton"
+        ]
       },
       "variables": [
-        { "symbol": "F_n", "name": "向心力", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "force", "dimension": "M L T^{-2}", "si_unit": "N" },
-        { "symbol": "r", "name": "轨道半径", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" },
-        { "symbol": "\\omega", "name": "角速度", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "angular_velocity", "dimension": "T^{-1}", "si_unit": "rad/s" }
+        {
+          "symbol": "F_n",
+          "name": "向心力",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "force",
+          "dimension": "M L T^{-2}",
+          "si_unit": "N"
+        },
+        {
+          "symbol": "r",
+          "name": "轨道半径",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        },
+        {
+          "symbol": "\\omega",
+          "name": "角速度",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "angular_velocity",
+          "dimension": "T^{-1}",
+          "si_unit": "rad/s"
+        }
       ],
-      "conditions": ["向心力是按效果命名的合力，受力分析时切勿多画一个独立向心力"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修二 6.2", "sympy_verified": true }
+      "conditions": [
+        "向心力是按效果命名的合力，受力分析时切勿多画一个独立向心力"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修二 6.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.dyn.gravitation",
+      "node_kind": "law",
       "name": "万有引力定律",
-      "aliases": ["牛顿引力公式"],
+      "aliases": [
+        "牛顿引力公式"
+      ],
       "latex": "F = G \\frac{M m}{r^2}",
       "statement": "自然界任意两个质点间都存在相互吸引力，大小与质量乘积成正比、与质心距离平方成反比。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["kinematics_newton"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "kinematics_newton"
+        ]
       },
       "variables": [
-        { "symbol": "G", "name": "万有引力常量", "math_type": "constant", "domain": "6.67\\times 10^{-11}", "quantity_kind": "gravitational_constant", "dimension": "M^{-1} L^3 T^{-2}", "si_unit": "N·m²/kg²" }
+        {
+          "symbol": "G",
+          "name": "万有引力常量",
+          "math_type": "constant",
+          "domain": "6.67\\times 10^{-11}",
+          "quantity_kind": "gravitational_constant",
+          "dimension": "M^{-1} L^3 T^{-2}",
+          "si_unit": "N·m²/kg²"
+        }
       ],
-      "conditions": ["适用于两质点或均匀球体（r 为两球心距离）"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修二 7.2", "sympy_verified": true }
+      "conditions": [
+        "适用于两质点或均匀球体（r 为两球心距离）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修二 7.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.dyn.first_cosmic",
+      "node_kind": "formula",
       "name": "第一宇宙速度（环绕速度）",
-      "aliases": ["近地卫星最小发射速度"],
+      "aliases": [
+        "近地卫星最小发射速度"
+      ],
       "latex": "v_1 = \\sqrt{\\frac{G M}{R}} = \\sqrt{g R}",
       "statement": "人造卫星紧贴星球表面做匀速圆周运动的速度，对地球约为 7.9 km/s，是发射卫星的最小速度与环绕的最大速度。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["kinematics_newton"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "kinematics_newton"
+        ]
       },
       "variables": [
-        { "symbol": "R", "name": "中心天体半径", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" }
+        {
+          "symbol": "R",
+          "name": "中心天体半径",
+          "math_type": "constant",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        }
       ],
-      "conditions": ["忽略星球自转与大气阻力，万有引力全部提供向心力"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修二 7.4", "sympy_verified": true }
+      "conditions": [
+        "忽略星球自转与大气阻力，万有引力全部提供向心力"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修二 7.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.eng.kinetic_theorem",
+      "node_kind": "theorem",
       "name": "动能定理",
-      "aliases": ["合外力做功与动能变化关系"],
+      "aliases": [
+        "合外力做功与动能变化关系"
+      ],
       "latex": "W_{\\text{合}} = \\Delta E_k = \\frac{1}{2} m v^2 - \\frac{1}{2} m v_0^2",
       "statement": "合外力对物体所做的总功等于物体动能的增量，突破了恒力与直线限制，对变力与曲线运动同样成立。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["momentum_energy"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "momentum_energy"
+        ]
       },
       "variables": [
-        { "symbol": "E_k", "name": "动能", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "energy", "dimension": "M L^2 T^{-2}", "si_unit": "J" }
+        {
+          "symbol": "E_k",
+          "name": "动能",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "energy",
+          "dimension": "M L^2 T^{-2}",
+          "si_unit": "J"
+        }
       ],
-      "conditions": ["适用于恒力、变力、直线与曲线运动，只需关注初末状态"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修二 8.3", "sympy_verified": true }
+      "conditions": [
+        "适用于恒力、变力、直线与曲线运动，只需关注初末状态"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修二 8.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.eng.mech_conservation",
+      "node_kind": "law",
       "name": "机械能守恒定律",
-      "aliases": ["动能与势能转化守恒"],
+      "aliases": [
+        "动能与势能转化守恒"
+      ],
       "latex": "E_{k1} + E_{p1} = E_{k2} + E_{p2}",
       "statement": "当系统内只有重力或弹力做功时，动能与势能相互转化但机械能总量保持不变。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["momentum_energy"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "momentum_energy"
+        ]
       },
       "variables": [
-        { "symbol": "E_p", "name": "势能（重力势能 mgh 或弹性势能 ½kx²）", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "energy", "dimension": "M L^2 T^{-2}", "si_unit": "J" }
+        {
+          "symbol": "E_p",
+          "name": "势能（重力势能 mgh 或弹性势能 ½kx²）",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "energy",
+          "dimension": "M L^2 T^{-2}",
+          "si_unit": "J"
+        }
       ],
-      "conditions": ["除重力与系统内弹力外，其他外力与非保守内力（如摩擦力）做功之和为零"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修二 8.4", "sympy_verified": true }
+      "conditions": [
+        "除重力与系统内弹力外，其他外力与非保守内力（如摩擦力）做功之和为零"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修二 8.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.mom.impulse_theorem",
+      "node_kind": "theorem",
       "name": "动量定理",
-      "aliases": ["冲量与动量变化关系"],
+      "aliases": [
+        "冲量与动量变化关系"
+      ],
       "latex": "I = F_{\\text{合}} \\Delta t = \\Delta p = m v - m v_0",
       "statement": "物体所受合外力的冲量等于其动量的变化量，揭示力在时间上的累积效应（缓冲减震的物理原理）。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["momentum_energy"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "momentum_energy"
+        ]
       },
       "variables": [
-        { "symbol": "I, p", "name": "冲量与动量", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "momentum", "dimension": "M L T^{-1}", "si_unit": "kg·m/s" }
+        {
+          "symbol": "I, p",
+          "name": "冲量与动量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "momentum",
+          "dimension": "M L T^{-1}",
+          "si_unit": "kg·m/s"
+        }
       ],
-      "conditions": ["矢量式，计算一维碰撞时必须规定正方向并注意反弹速度的负号"],
-      "review": { "status": "human_verified", "source": "人教版高中物理选择性必修一 1.2", "sympy_verified": true }
+      "conditions": [
+        "矢量式，计算一维碰撞时必须规定正方向并注意反弹速度的负号"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理选择性必修一 1.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.mom.conservation",
+      "node_kind": "law",
       "name": "动量守恒定律",
-      "aliases": ["碰撞与反冲基本定律"],
+      "aliases": [
+        "碰撞与反冲基本定律"
+      ],
       "latex": "m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'",
       "statement": "若系统不受外力或所受合外力为零，则系统总动量在相互作用前后保持恒定，适用于宏观碰撞至微观粒子。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["momentum_energy"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "momentum_energy"
+        ]
       },
       "variables": [
-        { "symbol": "m_1, m_2", "name": "两物体质量", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "mass", "dimension": "M", "si_unit": "kg" }
+        {
+          "symbol": "m_1, m_2",
+          "name": "两物体质量",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "mass",
+          "dimension": "M",
+          "si_unit": "kg"
+        }
       ],
-      "conditions": ["系统合外力为零，或碰撞瞬间内力远大于外力（如爆炸、瞬间碰撞）"],
-      "review": { "status": "human_verified", "source": "人教版高中物理选择性必修一 1.3", "sympy_verified": true }
+      "conditions": [
+        "系统合外力为零，或碰撞瞬间内力远大于外力（如爆炸、瞬间碰撞）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理选择性必修一 1.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.coulomb",
+      "node_kind": "law",
       "name": "库仑定律",
-      "aliases": ["静电力平方反比定律"],
+      "aliases": [
+        "静电力平方反比定律"
+      ],
       "latex": "F = k \\frac{q_1 q_2}{r^2}",
       "statement": "真空中两个静止点电荷间的静电力与电荷量乘积成正比、与距离平方成反比，形式上与万有引力定律对称。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "k", "name": "静电力常量", "math_type": "constant", "domain": "8.99\\times 10^9", "quantity_kind": "coulomb_constant", "dimension": "M L^3 T^{-4} I^{-2}", "si_unit": "N·m²/C²" },
-        { "symbol": "q_1, q_2", "name": "点电荷电荷量", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "electric_charge", "dimension": "I T", "si_unit": "C" }
+        {
+          "symbol": "k",
+          "name": "静电力常量",
+          "math_type": "constant",
+          "domain": "8.99\\times 10^9",
+          "quantity_kind": "coulomb_constant",
+          "dimension": "M L^3 T^{-4} I^{-2}",
+          "si_unit": "N·m²/C²"
+        },
+        {
+          "symbol": "q_1, q_2",
+          "name": "点电荷电荷量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "electric_charge",
+          "dimension": "I T",
+          "si_unit": "C"
+        }
       ],
-      "conditions": ["真空中静止点电荷；同种电荷相斥、异种电荷相吸"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修三 9.2", "sympy_verified": true }
+      "conditions": [
+        "真空中静止点电荷；同种电荷相斥、异种电荷相吸"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修三 9.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.efield",
+      "node_kind": "definition",
       "name": "电场强度定义与点电荷场强",
-      "aliases": ["电场强度 E"],
+      "aliases": [
+        "电场强度 E"
+      ],
       "latex": "E = \\frac{F}{q} = k \\frac{Q}{r^2}",
       "statement": "电场强度是试探电荷所受电场力与其电荷量之比，反映电场本身的强弱与方向，与试探电荷无关。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "E", "name": "电场强度", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_field", "dimension": "M L T^{-3} I^{-1}", "si_unit": "N/C (V/m)" }
+        {
+          "symbol": "E",
+          "name": "电场强度",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_field",
+          "dimension": "M L T^{-3} I^{-1}",
+          "si_unit": "N/C (V/m)"
+        }
       ],
-      "conditions": ["E = F/q 普遍适用；E = kQ/r² 仅适用于真空中静止点电荷"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修三 9.3", "sympy_verified": true }
+      "conditions": [
+        "E = F/q 普遍适用；E = kQ/r² 仅适用于真空中静止点电荷"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修三 9.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.potential_diff",
+      "node_kind": "formula",
       "name": "匀强电场电势差与场强关系",
-      "aliases": ["U = Ed 与电场力做功"],
+      "aliases": [
+        "U = Ed 与电场力做功"
+      ],
       "latex": "U = E d,\\quad W_{AB} = q U_{AB}",
       "statement": "匀强电场中两点电势差等于场强乘以沿电场线方向的距离，静电力做功等于电荷量与电势差之积。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "U", "name": "电势差（电压）", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "electric_potential", "dimension": "M L^2 T^{-3} I^{-1}", "si_unit": "V" },
-        { "symbol": "d", "name": "沿电场线方向距离", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" }
+        {
+          "symbol": "U",
+          "name": "电势差（电压）",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "electric_potential",
+          "dimension": "M L^2 T^{-3} I^{-1}",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "d",
+          "name": "沿电场线方向距离",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        }
       ],
-      "conditions": ["U = Ed 仅适用于匀强电场，且 d 必须是沿电场方向投影距离；W = qU 对任意静电场成立"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修三 10.3", "sympy_verified": true }
+      "conditions": [
+        "U = Ed 仅适用于匀强电场，且 d 必须是沿电场方向投影距离；W = qU 对任意静电场成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修三 10.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.capacitance",
+      "node_kind": "definition",
       "name": "电容定义与平行板电容器决定式",
-      "aliases": ["电容公式"],
+      "aliases": [
+        "电容公式"
+      ],
       "latex": "C = \\frac{Q}{U} = \\frac{\\varepsilon_r S}{4\\pi k d}",
       "statement": "电容度量电容器容纳电荷的本领，其大小仅由极板正对面积 S、间距 d 与介质介电常数 εr 决定。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "C", "name": "电容", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "capacitance", "dimension": "M^{-1} L^{-2} T^4 I^2", "si_unit": "F" }
+        {
+          "symbol": "C",
+          "name": "电容",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "capacitance",
+          "dimension": "M^{-1} L^{-2} T^4 I^2",
+          "si_unit": "F"
+        }
       ],
-      "conditions": ["C 与带电量 Q、电压 U 无关；注意区分“接电源（U 不变）”与“断开电源（Q 不变）”两类动态分析"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修三 10.4", "sympy_verified": true }
+      "conditions": [
+        "C 与带电量 Q、电压 U 无关；注意区分“接电源（U 不变）”与“断开电源（Q 不变）”两类动态分析"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修三 10.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.closed_ohm",
+      "node_kind": "law",
       "name": "闭合电路欧姆定律",
-      "aliases": ["全电路欧姆定律"],
+      "aliases": [
+        "全电路欧姆定律"
+      ],
       "latex": "I = \\frac{E}{R + r},\\quad U_{\\text{路}} = E - I r",
       "statement": "考虑电源电动势 E 与内阻 r 后，闭合回路总电流等于电动势除以总电阻，路端电压随外电流增大线性下降。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "E", "name": "电源电动势", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_potential", "dimension": "M L^2 T^{-3} I^{-1}", "si_unit": "V" },
-        { "symbol": "r", "name": "电源内阻", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electrical_resistance", "dimension": "M L^2 T^{-3} I^{-2}", "si_unit": "Ω" }
+        {
+          "symbol": "E",
+          "name": "电源电动势",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_potential",
+          "dimension": "M L^2 T^{-3} I^{-1}",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "r",
+          "name": "电源内阻",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electrical_resistance",
+          "dimension": "M L^2 T^{-3} I^{-2}",
+          "si_unit": "Ω"
+        }
       ],
-      "conditions": ["纯电阻外电路适用 I = E/(R+r)；U_路 = E - Ir 对非纯电阻电路同样成立"],
-      "review": { "status": "human_verified", "source": "人教版高中物理必修三 12.2", "sympy_verified": true }
+      "conditions": [
+        "纯电阻外电路适用 I = E/(R+r)；U_路 = E - Ir 对非纯电阻电路同样成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理必修三 12.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.ampere_force",
+      "node_kind": "formula",
       "name": "安培力公式",
-      "aliases": ["通电导线磁场受力"],
+      "aliases": [
+        "通电导线磁场受力"
+      ],
       "latex": "F = B I L \\sin\\theta",
       "statement": "通电直导线在匀强磁场中所受磁场力大小与磁感应强度 B、电流 I、有效长度 L 及夹角正弦成正比，方向由左手定则判定。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "B", "name": "磁感应强度", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "magnetic_flux_density", "dimension": "M T^{-2} I^{-1}", "si_unit": "T" },
-        { "symbol": "L", "name": "导线有效长度", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" }
+        {
+          "symbol": "B",
+          "name": "磁感应强度",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "magnetic_flux_density",
+          "dimension": "M T^{-2} I^{-1}",
+          "si_unit": "T"
+        },
+        {
+          "symbol": "L",
+          "name": "导线有效长度",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        }
       ],
-      "conditions": ["匀强磁场；弯曲导线 L 取首尾连线有效长度"],
-      "review": { "status": "human_verified", "source": "人教版高中物理选择性必修二 1.1", "sympy_verified": true }
+      "conditions": [
+        "匀强磁场；弯曲导线 L 取首尾连线有效长度"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理选择性必修二 1.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.lorentz_force",
+      "node_kind": "formula",
       "name": "洛伦兹力公式",
-      "aliases": ["运动电荷磁场受力"],
+      "aliases": [
+        "运动电荷磁场受力"
+      ],
       "latex": "f = q v B \\sin\\theta",
       "statement": "单个运动电荷在磁场中受到的力始终垂直于速度方向，因此洛伦兹力永不做功，只改变运动方向不改变速率。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "f", "name": "洛伦兹力", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "force", "dimension": "M L T^{-2}", "si_unit": "N" }
+        {
+          "symbol": "f",
+          "name": "洛伦兹力",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "force",
+          "dimension": "M L T^{-2}",
+          "si_unit": "N"
+        }
       ],
-      "conditions": ["静止电荷或速度平行于磁场时 f = 0；负电荷用左手定则时四指指向运动反方向"],
-      "review": { "status": "human_verified", "source": "人教版高中物理选择性必修二 1.2", "sympy_verified": true }
+      "conditions": [
+        "静止电荷或速度平行于磁场时 f = 0；负电荷用左手定则时四指指向运动反方向"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理选择性必修二 1.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.cyclotron_radius",
+      "node_kind": "formula",
       "name": "带电粒子磁场圆周运动半径与周期",
-      "aliases": ["回旋半径与回旋周期"],
+      "aliases": [
+        "回旋半径与回旋周期"
+      ],
       "latex": "r = \\frac{m v}{q B},\\quad T = \\frac{2\\pi m}{q B}",
       "statement": "垂直射入匀强磁场的带电粒子做匀速圆周运动，轨道半径正比于动量，而回旋周期与粒子速度无关（回旋加速器原理）。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "T", "name": "回旋周期", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "time", "dimension": "T", "si_unit": "s" }
+        {
+          "symbol": "T",
+          "name": "回旋周期",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
       ],
-      "conditions": ["v ⊥ B 且忽略重力与相对论质量变化"],
-      "review": { "status": "human_verified", "source": "人教版高中物理选择性必修二 1.3", "sympy_verified": true }
+      "conditions": [
+        "v ⊥ B 且忽略重力与相对论质量变化"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理选择性必修二 1.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.em.faraday",
+      "node_kind": "law",
       "name": "法拉第电磁感应定律与切割电动势",
-      "aliases": ["感应电动势公式"],
+      "aliases": [
+        "感应电动势公式"
+      ],
       "latex": "E = n \\frac{\\Delta \\Phi}{\\Delta t},\\quad E = B L v",
       "statement": "闭合电路中感应电动势大小与穿过回路的磁通量变化率成正比；导体棒垂直切割磁感线时简化为 E = BLv。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["electromagnetism"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "electromagnetism"
+        ]
       },
       "variables": [
-        { "symbol": "\\Phi", "name": "磁通量（Φ = BS cos α）", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "magnetic_flux", "dimension": "M L^2 T^{-2} I^{-1}", "si_unit": "Wb" }
+        {
+          "symbol": "\\Phi",
+          "name": "磁通量（Φ = BS cos α）",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "magnetic_flux",
+          "dimension": "M L^2 T^{-2} I^{-1}",
+          "si_unit": "Wb"
+        }
       ],
-      "conditions": ["E = n ΔΦ/Δt 给平均电动势；E = BLv 要求 B、L、v 两两垂直"],
-      "review": { "status": "human_verified", "source": "人教版高中物理选择性必修二 2.2", "sympy_verified": true }
+      "conditions": [
+        "E = n ΔΦ/Δt 给平均电动势；E = BLv 要求 B、L、v 两两垂直"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版高中物理选择性必修二 2.2",
+        "sympy_verified": true
+      }
     }
   ],
   "derivations": [
     {
       "id": "deriv.phys.vt_to_xt",
-      "from_formula_ids": ["physics.kin.vel_time"],
+      "from_formula_ids": [
+        "physics.kin.vel_time"
+      ],
       "to_formula_id": "physics.kin.disp_time",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["vt_area_integration"],
+      "inference_rules": [
+        "vt_area_integration"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由 v-t 图像梯形面积 x = (v0 + v)t/2，代入末速度 v = v0 + at 即得位移公式 x = v0 t + ½at²。",
         "L2_standard": [
-          { "step": 1, "latex": "x = \\frac{v_0 + v}{2} t = \\frac{v_0 + (v_0 + at)}{2} t = v_0 t + \\frac{1}{2} a t^2", "note": "用平均速度乘时间并代入 v = v0 + at", "cited_formula_ids": ["physics.kin.vel_time"] }
+          {
+            "step": 1,
+            "latex": "x = \\frac{v_0 + v}{2} t = \\frac{v_0 + (v_0 + at)}{2} t = v_0 t + \\frac{1}{2} a t^2",
+            "note": "用平均速度乘时间并代入 v = v0 + at",
+            "cited_formula_ids": [
+              "physics.kin.vel_time"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "x = \\int_0^t (v_0 + a\\tau)\\,d\\tau = v_0 t + \\frac{1}{2} a t^2", "note": "从微积分角度看，位移正是速度函数对时间的定积分", "cited_formula_ids": ["physics.kin.vel_time"], "pitfall": "若刹车过程在 t 之前已经停下，不能直接代入总时间 t，必须先求刹车停止时间 t_停 = v0/|a|。" }
+          {
+            "step": 1,
+            "latex": "x = \\int_0^t (v_0 + a\\tau)\\,d\\tau = v_0 t + \\frac{1}{2} a t^2",
+            "note": "从微积分角度看，位移正是速度函数对时间的定积分",
+            "cited_formula_ids": [
+              "physics.kin.vel_time"
+            ],
+            "pitfall": "若刹车过程在 t 之前已经停下，不能直接代入总时间 t，必须先求刹车停止时间 t_停 = v0/|a|。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.vtxt_to_vx",
-      "from_formula_ids": ["physics.kin.vel_time", "physics.kin.disp_time"],
+      "from_formula_ids": [
+        "physics.kin.vel_time",
+        "physics.kin.disp_time"
+      ],
       "to_formula_id": "physics.kin.vel_disp",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["time_elimination"],
+      "inference_rules": [
+        "time_elimination"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由 v = v0 + at 解出 t = (v - v0)/a，代入平均速度位移式 x = (v0 + v)t/2，平方差展开即得 v² - v0² = 2ax。",
         "L2_standard": [
-          { "step": 1, "latex": "t = \\frac{v - v_0}{a} \\implies x = \\frac{v_0 + v}{2} \\cdot \\frac{v - v_0}{a} = \\frac{v^2 - v_0^2}{2a}", "note": "联立消去时间 t", "cited_formula_ids": ["physics.kin.vel_time", "physics.kin.disp_time"] },
-          { "step": 2, "latex": "v^2 - v_0^2 = 2 a x", "note": "两边同乘 2a 整理", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "t = \\frac{v - v_0}{a} \\implies x = \\frac{v_0 + v}{2} \\cdot \\frac{v - v_0}{a} = \\frac{v^2 - v_0^2}{2a}",
+            "note": "联立消去时间 t",
+            "cited_formula_ids": [
+              "physics.kin.vel_time",
+              "physics.kin.disp_time"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "v^2 - v_0^2 = 2 a x",
+            "note": "两边同乘 2a 整理",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "v^2 - v_0^2 = 2ax", "note": "题目不涉及时间 t 时优先选用此式，一步直达", "cited_formula_ids": ["physics.kin.vel_time", "physics.kin.disp_time"], "pitfall": "式子右侧 a 与 x 均带方向正负号，减速运动时 a 取负值。" }
+          {
+            "step": 1,
+            "latex": "v^2 - v_0^2 = 2ax",
+            "note": "题目不涉及时间 t 时优先选用此式，一步直达",
+            "cited_formula_ids": [
+              "physics.kin.vel_time",
+              "physics.kin.disp_time"
+            ],
+            "pitfall": "式子右侧 a 与 x 均带方向正负号，减速运动时 a 取负值。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.n2_vx_to_ke",
-      "from_formula_ids": ["physics.dyn.newton2", "physics.kin.vel_disp"],
+      "from_formula_ids": [
+        "physics.dyn.newton2",
+        "physics.kin.vel_disp"
+      ],
       "to_formula_id": "physics.eng.kinetic_theorem",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution"],
+      "inference_rules": [
+        "identity_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将牛顿第二定律 a = F_合/m 代入速度-位移公式 v² - v0² = 2ax，两边同乘 ½m 即得 F_合 x = ½mv² - ½mv0²。",
         "L2_standard": [
-          { "step": 1, "latex": "a = \\frac{F_{\\text{合}}}{m} \\implies v^2 - v_0^2 = 2 \\frac{F_{\\text{合}}}{m} x", "note": "用牛顿第二定律替换加速度", "cited_formula_ids": ["physics.dyn.newton2", "physics.kin.vel_disp"] },
-          { "step": 2, "latex": "W_{\\text{合}} = F_{\\text{合}} x = \\frac{1}{2} m v^2 - \\frac{1}{2} m v_0^2", "note": "两边同乘 ½m 即证动能定理", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "a = \\frac{F_{\\text{合}}}{m} \\implies v^2 - v_0^2 = 2 \\frac{F_{\\text{合}}}{m} x",
+            "note": "用牛顿第二定律替换加速度",
+            "cited_formula_ids": [
+              "physics.dyn.newton2",
+              "physics.kin.vel_disp"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "W_{\\text{合}} = F_{\\text{合}} x = \\frac{1}{2} m v^2 - \\frac{1}{2} m v_0^2",
+            "note": "两边同乘 ½m 即证动能定理",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "W_{\\text{合}} = \\Delta E_k", "note": "把变力曲线过程微元分段累加，即可从恒力直线推广到任意变力与曲线运动", "cited_formula_ids": ["physics.dyn.newton2", "physics.kin.vel_disp"], "pitfall": "动能定理是标量方程，合功等于各力做功的代数和，只需注意阻力做负功。" }
+          {
+            "step": 1,
+            "latex": "W_{\\text{合}} = \\Delta E_k",
+            "note": "把变力曲线过程微元分段累加，即可从恒力直线推广到任意变力与曲线运动",
+            "cited_formula_ids": [
+              "physics.dyn.newton2",
+              "physics.kin.vel_disp"
+            ],
+            "pitfall": "动能定理是标量方程，合功等于各力做功的代数和，只需注意阻力做负功。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.ke_to_mech",
-      "from_formula_ids": ["physics.eng.kinetic_theorem"],
+      "from_formula_ids": [
+        "physics.eng.kinetic_theorem"
+      ],
       "to_formula_id": "physics.eng.mech_conservation",
       "relation_type": "special_case_of",
       "dependency_site": "proof_level",
-      "inference_rules": ["conservative_work_potential"],
+      "inference_rules": [
+        "conservative_work_potential"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "当只有重力或弹力做功时，保守力做功等于势能减少量 W_G = Ep1 - Ep2，代入动能定理移项即得机械能守恒。",
         "L2_standard": [
-          { "step": 1, "latex": "W_G = E_{p1} - E_{p2} = E_{k2} - E_{k1} \\implies E_{k1} + E_{p1} = E_{k2} + E_{p2}", "note": "重力/弹力做功转化为动能增量", "cited_formula_ids": ["physics.eng.kinetic_theorem"] }
+          {
+            "step": 1,
+            "latex": "W_G = E_{p1} - E_{p2} = E_{k2} - E_{k1} \\implies E_{k1} + E_{p1} = E_{k2} + E_{p2}",
+            "note": "重力/弹力做功转化为动能增量",
+            "cited_formula_ids": [
+              "physics.eng.kinetic_theorem"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\Delta E_k + \\Delta E_p = 0", "note": "若存在空气阻力或摩擦力，机械能减少量恰好等于克服阻力做的功", "cited_formula_ids": ["physics.eng.kinetic_theorem"], "pitfall": "绳子拉力对单个物体可能做功（如斜面滑块系统），需对“系统整体”而非单个物体列机械能守恒。" }
+          {
+            "step": 1,
+            "latex": "\\Delta E_k + \\Delta E_p = 0",
+            "note": "若存在空气阻力或摩擦力，机械能减少量恰好等于克服阻力做的功",
+            "cited_formula_ids": [
+              "physics.eng.kinetic_theorem"
+            ],
+            "pitfall": "绳子拉力对单个物体可能做功（如斜面滑块系统），需对“系统整体”而非单个物体列机械能守恒。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.n2_vt_to_imp",
-      "from_formula_ids": ["physics.dyn.newton2", "physics.kin.vel_time"],
+      "from_formula_ids": [
+        "physics.dyn.newton2",
+        "physics.kin.vel_time"
+      ],
       "to_formula_id": "physics.mom.impulse_theorem",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution"],
+      "inference_rules": [
+        "identity_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把加速度定义 a = (v - v0)/Δt 代入牛顿第二定律 F_合 = ma，两边同乘 Δt 即得动量定理 F_合 Δt = mv - mv0。",
         "L2_standard": [
-          { "step": 1, "latex": "F_{\\text{合}} = m \\frac{v - v_0}{\\Delta t} \\implies F_{\\text{合}} \\Delta t = m v - m v_0 = \\Delta p", "note": "力对时间的累积等于动量增量", "cited_formula_ids": ["physics.dyn.newton2", "physics.kin.vel_time"] }
+          {
+            "step": 1,
+            "latex": "F_{\\text{合}} = m \\frac{v - v_0}{\\Delta t} \\implies F_{\\text{合}} \\Delta t = m v - m v_0 = \\Delta p",
+            "note": "力对时间的累积等于动量增量",
+            "cited_formula_ids": [
+              "physics.dyn.newton2",
+              "physics.kin.vel_time"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\int F_{\\text{合}}\\,dt = \\Delta p", "note": "安全气囊与缓冲垫正是通过拉长碰撞时间 Δt 来大幅减小平均冲击力 F", "cited_formula_ids": ["physics.dyn.newton2", "physics.kin.vel_time"], "pitfall": "动量变化 Δp = mv - mv0 是矢量差：若速度从 +v 反向反弹为 -v，动量变化量大小为 2mv 而非 0！" }
+          {
+            "step": 1,
+            "latex": "\\int F_{\\text{合}}\\,dt = \\Delta p",
+            "note": "安全气囊与缓冲垫正是通过拉长碰撞时间 Δt 来大幅减小平均冲击力 F",
+            "cited_formula_ids": [
+              "physics.dyn.newton2",
+              "physics.kin.vel_time"
+            ],
+            "pitfall": "动量变化 Δp = mv - mv0 是矢量差：若速度从 +v 反向反弹为 -v，动量变化量大小为 2mv 而非 0！"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.imp_to_momcons",
-      "from_formula_ids": ["physics.mom.impulse_theorem"],
+      "from_formula_ids": [
+        "physics.mom.impulse_theorem"
+      ],
       "to_formula_id": "physics.mom.conservation",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["newton3_action_reaction_cancellation"],
+      "inference_rules": [
+        "newton3_action_reaction_cancellation"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "对相互作用的两物体分别列动量定理并相加；由牛顿第三定律内力冲量等大反向抵消，当合外力为零时总动量守恒。",
         "L2_standard": [
-          { "step": 1, "latex": "F_{12}\\Delta t = m_1 v_1' - m_1 v_1,\\quad F_{21}\\Delta t = m_2 v_2' - m_2 v_2", "note": "分别对两物体应用动量定理", "cited_formula_ids": ["physics.mom.impulse_theorem"] },
-          { "step": 2, "latex": "F_{12} + F_{21} = 0 \\implies m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'", "note": "两式相加，内力冲量之和为零", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "F_{12}\\Delta t = m_1 v_1' - m_1 v_1,\\quad F_{21}\\Delta t = m_2 v_2' - m_2 v_2",
+            "note": "分别对两物体应用动量定理",
+            "cited_formula_ids": [
+              "physics.mom.impulse_theorem"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "F_{12} + F_{21} = 0 \\implies m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'",
+            "note": "两式相加，内力冲量之和为零",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\sum m_i \\vec{v}_i = \\sum m_i \\vec{v}_i'", "note": "完全弹性碰撞同时满足动量守恒与动能守恒；完全非弹性碰撞动能损失最大但动量仍守恒", "cited_formula_ids": ["physics.mom.impulse_theorem"], "pitfall": "系统总动量守恒不要求每个物体各自速度不变，也不要求机械能守恒。" }
+          {
+            "step": 1,
+            "latex": "\\sum m_i \\vec{v}_i = \\sum m_i \\vec{v}_i'",
+            "note": "完全弹性碰撞同时满足动量守恒与动能守恒；完全非弹性碰撞动能损失最大但动量仍守恒",
+            "cited_formula_ids": [
+              "physics.mom.impulse_theorem"
+            ],
+            "pitfall": "系统总动量守恒不要求每个物体各自速度不变，也不要求机械能守恒。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.n2_to_centripetal",
-      "from_formula_ids": ["physics.dyn.newton2"],
+      "from_formula_ids": [
+        "physics.dyn.newton2"
+      ],
       "to_formula_id": "physics.dyn.centripetal",
       "relation_type": "special_case_of",
       "dependency_site": "proof_level",
-      "inference_rules": ["centripetal_acceleration_substitution"],
+      "inference_rules": [
+        "centripetal_acceleration_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将匀速圆周运动的向心加速度 a_n = v²/r = ω²r 代入牛顿第二定律 F = ma 即得向心力公式。",
         "L2_standard": [
-          { "step": 1, "latex": "a_n = \\frac{v^2}{r} = \\omega^2 r \\implies F_n = m a_n = m \\frac{v^2}{r} = m \\omega^2 r", "note": "代入向心加速度表达式", "cited_formula_ids": ["physics.dyn.newton2"] }
+          {
+            "step": 1,
+            "latex": "a_n = \\frac{v^2}{r} = \\omega^2 r \\implies F_n = m a_n = m \\frac{v^2}{r} = m \\omega^2 r",
+            "note": "代入向心加速度表达式",
+            "cited_formula_ids": [
+              "physics.dyn.newton2"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "F_n = m\\frac{v^2}{r} = m\\omega^2 r = m\\frac{4\\pi^2}{T^2} r", "note": "根据题目已知量（v、ω 或周期 T）灵活选用三种等价形式", "cited_formula_ids": ["physics.dyn.newton2"], "pitfall": "最高点过山车或轻绳模型的临界条件是弹力/拉力为零，仅靠重力提供向心力 v_min = √(gR)。" }
+          {
+            "step": 1,
+            "latex": "F_n = m\\frac{v^2}{r} = m\\omega^2 r = m\\frac{4\\pi^2}{T^2} r",
+            "note": "根据题目已知量（v、ω 或周期 T）灵活选用三种等价形式",
+            "cited_formula_ids": [
+              "physics.dyn.newton2"
+            ],
+            "pitfall": "最高点过山车或轻绳模型的临界条件是弹力/拉力为零，仅靠重力提供向心力 v_min = √(gR)。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.grav_cent_to_cosmic",
-      "from_formula_ids": ["physics.dyn.gravitation", "physics.dyn.centripetal"],
+      "from_formula_ids": [
+        "physics.dyn.gravitation",
+        "physics.dyn.centripetal"
+      ],
       "to_formula_id": "physics.dyn.first_cosmic",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["force_balance_solve"],
+      "inference_rules": [
+        "force_balance_solve"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "近地卫星绕飞时万有引力全部提供向心力 GMm/R² = mv²/R，消去卫星质量 m 并结合黄金代换 GM = gR² 即得。",
         "L2_standard": [
-          { "step": 1, "latex": "G\\frac{Mm}{R^2} = m\\frac{v_1^2}{R} \\implies v_1 = \\sqrt{\\frac{GM}{R}}", "note": "联立万有引力与向心力公式消去 m", "cited_formula_ids": ["physics.dyn.gravitation", "physics.dyn.centripetal"] },
-          { "step": 2, "latex": "GM = g R^2 \\implies v_1 = \\sqrt{g R} \\approx 7.9\\text{ km/s}", "note": "代入地表重力黄金代换式", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "G\\frac{Mm}{R^2} = m\\frac{v_1^2}{R} \\implies v_1 = \\sqrt{\\frac{GM}{R}}",
+            "note": "联立万有引力与向心力公式消去 m",
+            "cited_formula_ids": [
+              "physics.dyn.gravitation",
+              "physics.dyn.centripetal"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "GM = g R^2 \\implies v_1 = \\sqrt{g R} \\approx 7.9\\text{ km/s}",
+            "note": "代入地表重力黄金代换式",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "v = \\sqrt{\\frac{GM}{r}}", "note": "轨道越高（r 越大），线速度 v、角速度 ω 和加速度 a 越小，周期 T 越大（口诀“高轨低速大周期”）", "cited_formula_ids": ["physics.dyn.gravitation", "physics.dyn.centripetal"], "pitfall": "第一宇宙速度是发射卫星的最小速度，却是所有圆轨道运行卫星的最大环绕速度。" }
+          {
+            "step": 1,
+            "latex": "v = \\sqrt{\\frac{GM}{r}}",
+            "note": "轨道越高（r 越大），线速度 v、角速度 ω 和加速度 a 越小，周期 T 越大（口诀“高轨低速大周期”）",
+            "cited_formula_ids": [
+              "physics.dyn.gravitation",
+              "physics.dyn.centripetal"
+            ],
+            "pitfall": "第一宇宙速度是发射卫星的最小速度，却是所有圆轨道运行卫星的最大环绕速度。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.coulomb_to_efield",
-      "from_formula_ids": ["physics.em.coulomb"],
+      "from_formula_ids": [
+        "physics.em.coulomb"
+      ],
       "to_formula_id": "physics.em.efield",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["divide_test_charge"],
+      "inference_rules": [
+        "divide_test_charge"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将库仑力 F = kQq/r² 除以试探电荷量 q，消去 q 后即得点电荷电场强度公式 E = kQ/r²。",
         "L2_standard": [
-          { "step": 1, "latex": "E = \\frac{F}{q} = \\frac{kQq/r^2}{q} = k\\frac{Q}{r^2}", "note": "比值定义消除试探电荷影响", "cited_formula_ids": ["physics.em.coulomb"] }
+          {
+            "step": 1,
+            "latex": "E = \\frac{F}{q} = \\frac{kQq/r^2}{q} = k\\frac{Q}{r^2}",
+            "note": "比值定义消除试探电荷影响",
+            "cited_formula_ids": [
+              "physics.em.coulomb"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "E = k\\frac{Q}{r^2}", "note": "与万有引力场强 g = GM/r² 形式完全同构", "cited_formula_ids": ["physics.em.coulomb"], "pitfall": "E = F/q 是比值定义式，不能说 E 与 F 成正比、与 q 成反比。" }
+          {
+            "step": 1,
+            "latex": "E = k\\frac{Q}{r^2}",
+            "note": "与万有引力场强 g = GM/r² 形式完全同构",
+            "cited_formula_ids": [
+              "physics.em.coulomb"
+            ],
+            "pitfall": "E = F/q 是比值定义式，不能说 E 与 F 成正比、与 q 成反比。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.efield_ke_to_ued",
-      "from_formula_ids": ["physics.em.efield", "physics.eng.kinetic_theorem"],
+      "from_formula_ids": [
+        "physics.em.efield",
+        "physics.eng.kinetic_theorem"
+      ],
       "to_formula_id": "physics.em.potential_diff",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["work_energy_equivalence"],
+      "inference_rules": [
+        "work_energy_equivalence"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "匀强电场中静电力做功 W = F d = q E d，又由电势差定义 W = q U，消去 q 即得 U = Ed，且结合动能定理得 qU = ΔEk。",
         "L2_standard": [
-          { "step": 1, "latex": "W = F d = q E d = q U \\implies U = E d", "note": "由静电力做功两种表达联立消去 q", "cited_formula_ids": ["physics.em.efield"] },
-          { "step": 2, "latex": "q U = \\frac{1}{2} m v^2 - \\frac{1}{2} m v_0^2", "note": "带电粒子在电场中加速直接套用动能定理", "cited_formula_ids": ["physics.eng.kinetic_theorem"] }
+          {
+            "step": 1,
+            "latex": "W = F d = q E d = q U \\implies U = E d",
+            "note": "由静电力做功两种表达联立消去 q",
+            "cited_formula_ids": [
+              "physics.em.efield"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "q U = \\frac{1}{2} m v^2 - \\frac{1}{2} m v_0^2",
+            "note": "带电粒子在电场中加速直接套用动能定理",
+            "cited_formula_ids": [
+              "physics.eng.kinetic_theorem"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "E = \\frac{U}{d}", "note": "说明电场强度在数值上等于沿电场方向单位距离的电势降落（单位 V/m 等价于 N/C）", "cited_formula_ids": ["physics.em.efield", "physics.eng.kinetic_theorem"], "pitfall": "非匀强电场中不能直接套用 U = Ed，但可用于定性比较等距区间电势差大小。" }
+          {
+            "step": 1,
+            "latex": "E = \\frac{U}{d}",
+            "note": "说明电场强度在数值上等于沿电场方向单位距离的电势降落（单位 V/m 等价于 N/C）",
+            "cited_formula_ids": [
+              "physics.em.efield",
+              "physics.eng.kinetic_theorem"
+            ],
+            "pitfall": "非匀强电场中不能直接套用 U = Ed，但可用于定性比较等距区间电势差大小。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.ued_to_cap",
-      "from_formula_ids": ["physics.em.potential_diff", "physics.em.efield"],
+      "from_formula_ids": [
+        "physics.em.potential_diff",
+        "physics.em.efield"
+      ],
       "to_formula_id": "physics.em.capacitance",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["parallel_plate_field_substitution"],
+      "inference_rules": [
+        "parallel_plate_field_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "平行板间场强 E = 4πkQ/(εr S)，代入 U = Ed 再代入电容定义 C = Q/U，消去 Q 即得 C = εr S/(4πkd)。",
         "L2_standard": [
-          { "step": 1, "latex": "U = E d = \\frac{4\\pi k Q d}{\\varepsilon_r S} \\implies C = \\frac{Q}{U} = \\frac{\\varepsilon_r S}{4\\pi k d}", "note": "代入板间电压表达并消去带电量 Q", "cited_formula_ids": ["physics.em.potential_diff", "physics.em.efield"] }
+          {
+            "step": 1,
+            "latex": "U = E d = \\frac{4\\pi k Q d}{\\varepsilon_r S} \\implies C = \\frac{Q}{U} = \\frac{\\varepsilon_r S}{4\\pi k d}",
+            "note": "代入板间电压表达并消去带电量 Q",
+            "cited_formula_ids": [
+              "physics.em.potential_diff",
+              "physics.em.efield"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "E = \\frac{4\\pi k Q}{\\varepsilon_r S}", "note": "断开电源（Q 不变）时仅改变板间距 d，板间场强 E 保持不变，这是高频二级结论", "cited_formula_ids": ["physics.em.potential_diff", "physics.em.efield"], "pitfall": "分析动态电容器前必须先判断“电键闭合（U 恒定）”还是“电键断开（Q 恒定）”。" }
+          {
+            "step": 1,
+            "latex": "E = \\frac{4\\pi k Q}{\\varepsilon_r S}",
+            "note": "断开电源（Q 不变）时仅改变板间距 d，板间场强 E 保持不变，这是高频二级结论",
+            "cited_formula_ids": [
+              "physics.em.potential_diff",
+              "physics.em.efield"
+            ],
+            "pitfall": "分析动态电容器前必须先判断“电键闭合（U 恒定）”还是“电键断开（Q 恒定）”。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.ued_to_closedohm",
-      "from_formula_ids": ["physics.em.potential_diff"],
+      "from_formula_ids": [
+        "physics.em.potential_diff"
+      ],
       "to_formula_id": "physics.em.closed_ohm",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["energy_conservation_circuit"],
+      "inference_rules": [
+        "energy_conservation_circuit"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由能量守恒：非静电力做功 EIt 等于外电路焦耳热 I²Rt 与内电路焦耳热 I²rt 之和，消去 It 即得 E = I(R + r)。",
         "L2_standard": [
-          { "step": 1, "latex": "E I t = I^2 R t + I^2 r t \\implies E = I(R + r) \\implies I = \\frac{E}{R + r}", "note": "由全电路能量守恒消去 It", "cited_formula_ids": ["physics.em.potential_diff"] }
+          {
+            "step": 1,
+            "latex": "E I t = I^2 R t + I^2 r t \\implies E = I(R + r) \\implies I = \\frac{E}{R + r}",
+            "note": "由全电路能量守恒消去 It",
+            "cited_formula_ids": [
+              "physics.em.potential_diff"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "P_{\\text{出}} = I^2 R = \\frac{E^2 R}{(R+r)^2} \\le \\frac{E^2}{4r}", "note": "当外电阻 R = r 时电源输出功率达到最大值 E²/(4r)", "cited_formula_ids": ["physics.em.potential_diff"], "pitfall": "电源输出功率最大时效率只有 50%，切勿与电源效率最大（R 越大效率越高）混淆。" }
+          {
+            "step": 1,
+            "latex": "P_{\\text{出}} = I^2 R = \\frac{E^2 R}{(R+r)^2} \\le \\frac{E^2}{4r}",
+            "note": "当外电阻 R = r 时电源输出功率达到最大值 E²/(4r)",
+            "cited_formula_ids": [
+              "physics.em.potential_diff"
+            ],
+            "pitfall": "电源输出功率最大时效率只有 50%，切勿与电源效率最大（R 越大效率越高）混淆。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.ampere_to_lorentz",
-      "from_formula_ids": ["physics.em.ampere_force"],
+      "from_formula_ids": [
+        "physics.em.ampere_force"
+      ],
       "to_formula_id": "physics.em.lorentz_force",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["microscopic_current_decomposition"],
+      "inference_rules": [
+        "microscopic_current_decomposition"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将宏观电流微观式 I = nqSv 代入安培力 F = BIL，再除以导线内自由电荷总数 N = nSL，即得单个电荷所受洛伦兹力 qvB。",
         "L2_standard": [
-          { "step": 1, "latex": "F = B (n q S v) L \\sin\\theta,\\quad N = n S L", "note": "代入电流微观表达式与电荷总数", "cited_formula_ids": ["physics.em.ampere_force"] },
-          { "step": 2, "latex": "f = \\frac{F}{N} = q v B \\sin\\theta", "note": "安培力是全部定向移动电荷所受洛伦兹力的宏观合力", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "F = B (n q S v) L \\sin\\theta,\\quad N = n S L",
+            "note": "代入电流微观表达式与电荷总数",
+            "cited_formula_ids": [
+              "physics.em.ampere_force"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "f = \\frac{F}{N} = q v B \\sin\\theta",
+            "note": "安培力是全部定向移动电荷所受洛伦兹力的宏观合力",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "f = q v B \\sin\\theta", "note": "洛伦兹力始终与速度垂直故永不做功，但安培力可以对外做功（本质是内部洛伦兹力一分力做正功、另一分力做负功传递能量）", "cited_formula_ids": ["physics.em.ampere_force"], "pitfall": "应用左手定则判断负电荷受力方向时，四指应指向电荷运动的反方向。" }
+          {
+            "step": 1,
+            "latex": "f = q v B \\sin\\theta",
+            "note": "洛伦兹力始终与速度垂直故永不做功，但安培力可以对外做功（本质是内部洛伦兹力一分力做正功、另一分力做负功传递能量）",
+            "cited_formula_ids": [
+              "physics.em.ampere_force"
+            ],
+            "pitfall": "应用左手定则判断负电荷受力方向时，四指应指向电荷运动的反方向。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.lorentz_cent_to_cyc",
-      "from_formula_ids": ["physics.em.lorentz_force", "physics.dyn.centripetal"],
+      "from_formula_ids": [
+        "physics.em.lorentz_force",
+        "physics.dyn.centripetal"
+      ],
       "to_formula_id": "physics.em.cyclotron_radius",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["force_balance_solve"],
+      "inference_rules": [
+        "force_balance_solve"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "带电粒子垂直进入磁场时洛伦兹力全部提供向心力 qvB = mv²/r，解出 r = mv/(qB)，再代入 T = 2πr/v 消去速度 v。",
         "L2_standard": [
-          { "step": 1, "latex": "q v B = m \\frac{v^2}{r} \\implies r = \\frac{m v}{q B}", "note": "洛伦兹力提供向心力解出轨道半径", "cited_formula_ids": ["physics.em.lorentz_force", "physics.dyn.centripetal"] },
-          { "step": 2, "latex": "T = \\frac{2\\pi r}{v} = \\frac{2\\pi m}{q B}", "note": "速度 v 恰好约掉，回旋周期仅与比荷 q/m 和 B 有关", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "q v B = m \\frac{v^2}{r} \\implies r = \\frac{m v}{q B}",
+            "note": "洛伦兹力提供向心力解出轨道半径",
+            "cited_formula_ids": [
+              "physics.em.lorentz_force",
+              "physics.dyn.centripetal"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "T = \\frac{2\\pi r}{v} = \\frac{2\\pi m}{q B}",
+            "note": "速度 v 恰好约掉，回旋周期仅与比荷 q/m 和 B 有关",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "r = \\frac{mv}{qB},\\quad T = \\frac{2\\pi m}{qB}", "note": "质谱仪测同位素质量与回旋加速器同步加速的共同数学核心", "cited_formula_ids": ["physics.em.lorentz_force", "physics.dyn.centripetal"], "pitfall": "粒子在有界磁场中的运动时间 t = (θ/2π)T 由偏转圆心角 θ 决定，而非弧长。" }
+          {
+            "step": 1,
+            "latex": "r = \\frac{mv}{qB},\\quad T = \\frac{2\\pi m}{qB}",
+            "note": "质谱仪测同位素质量与回旋加速器同步加速的共同数学核心",
+            "cited_formula_ids": [
+              "physics.em.lorentz_force",
+              "physics.dyn.centripetal"
+            ],
+            "pitfall": "粒子在有界磁场中的运动时间 t = (θ/2π)T 由偏转圆心角 θ 决定，而非弧长。"
+          }
         ]
       }
     },
     {
       "id": "deriv.phys.lorentz_ohm_to_faraday",
-      "from_formula_ids": ["physics.em.lorentz_force", "physics.em.closed_ohm"],
+      "from_formula_ids": [
+        "physics.em.lorentz_force",
+        "physics.em.closed_ohm"
+      ],
       "to_formula_id": "physics.em.faraday",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["flux_rate_equivalence"],
+      "inference_rules": [
+        "flux_rate_equivalence"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "导体棒以速度 v 垂直切割磁感线时，Δt 内扫过面积 ΔS = LvΔt，磁通量变化率 ΔΦ/Δt = BΔS/Δt = BLv，同时等价于非静电力洛伦兹力做功 qvBL/q = BLv。",
         "L2_standard": [
-          { "step": 1, "latex": "\\Delta \\Phi = B \\Delta S = B L v \\Delta t \\implies E = \\frac{\\Delta \\Phi}{\\Delta t} = B L v", "note": "动生电动势与法拉第电磁感应定律完全自洽", "cited_formula_ids": ["physics.em.lorentz_force"] },
-          { "step": 2, "latex": "I = \\frac{E}{R + r} = \\frac{B L v}{R + r}", "note": "接入闭合回路后直接联立闭合电路欧姆定律求感应电流", "cited_formula_ids": ["physics.em.closed_ohm"] }
+          {
+            "step": 1,
+            "latex": "\\Delta \\Phi = B \\Delta S = B L v \\Delta t \\implies E = \\frac{\\Delta \\Phi}{\\Delta t} = B L v",
+            "note": "动生电动势与法拉第电磁感应定律完全自洽",
+            "cited_formula_ids": [
+              "physics.em.lorentz_force"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I = \\frac{E}{R + r} = \\frac{B L v}{R + r}",
+            "note": "接入闭合回路后直接联立闭合电路欧姆定律求感应电流",
+            "cited_formula_ids": [
+              "physics.em.closed_ohm"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "E = n\\frac{\\Delta \\Phi}{\\Delta t},\\quad q = n\\frac{\\Delta \\Phi}{R_{\\text{总}}}", "note": "推导出高频二级结论：通过回路截面的总电荷量 q 只与磁通量变化量与总电阻有关，与运动快慢无关", "cited_formula_ids": ["physics.em.lorentz_force", "physics.em.closed_ohm"], "pitfall": "导体棒绕端点转动切割时各点线速度线性变化，应取中点平均速度得 E = ½BωL²。" }
+          {
+            "step": 1,
+            "latex": "E = n\\frac{\\Delta \\Phi}{\\Delta t},\\quad q = n\\frac{\\Delta \\Phi}{R_{\\text{总}}}",
+            "note": "推导出高频二级结论：通过回路截面的总电荷量 q 只与磁通量变化量与总电阻有关，与运动快慢无关",
+            "cited_formula_ids": [
+              "physics.em.lorentz_force",
+              "physics.em.closed_ohm"
+            ],
+            "pitfall": "导体棒绕端点转动切割时各点线速度线性变化，应取中点平均速度得 E = ½BωL²。"
+          }
         ]
       }
     }

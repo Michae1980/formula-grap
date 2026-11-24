@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#2563eb" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="公式图谱" />
+  <meta name="apple-mobile-web-app-title" content="数理图谱" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" type="image/svg+xml" href="./icon.svg" />
-  <title>公式知识图谱 · 动态视图生成系统</title>
+  <title>数理知识图谱 · 动态视图生成系统</title>
   <!-- 在线时自动加载 KaTeX 渲染出版级数学公式；离线时无缝回退到内置原生公式渲染器 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="window.__katexReady && window.__katexReady()"></script>
@@ -140,7 +140,9 @@
     .toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
     .toggle-btn.active { background: var(--primary-soft); border-color: var(--primary); color: var(--primary); font-weight: 600; }
 
-    .workspace { display: grid; grid-template-columns: 1fr 436px; flex: 1; min-height: 0; }
+    .workspace { display: grid; grid-template-columns: 1fr 410px; flex: 1; min-height: 0; }
+    .app.drawer-collapsed .workspace { grid-template-columns: 1fr; }
+    .app.drawer-collapsed .drawer { display: none; }
 
     .canvas-pane {
       position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 0;
@@ -193,21 +195,24 @@
     .graph-zoom-wrap { transform-origin: top left; transition: transform 0.12s ease; }
     .graph-stage { position: relative; flex-shrink: 0; }
     .lane-header {
-      position: absolute; top: 4px; width: 258px; text-align: center;
-      font-size: 11.5px; font-weight: 600; color: var(--ink-muted);
+      position: absolute; top: 4px; width: 286px; text-align: center;
+      font-size: 12px; font-weight: 600; color: var(--ink-muted);
       background: rgba(255, 255, 255, 0.94); border: 1px solid var(--border);
-      border-radius: var(--radius-pill); padding: 3px 10px;
+      border-radius: var(--radius-pill); padding: 4px 12px;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .lane-header.bridge-lane {
       background: #f8fafc; border-style: dashed; border-color: #94a3b8; color: #475569;
     }
+    .lane-header.focus-center-lane {
+      background: var(--primary-soft); border-color: var(--primary-border); color: #1d4ed8;
+    }
 
     .graph-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-    .edge-path { fill: none; stroke: #94a3b8; stroke-width: 1.6; opacity: 0.3; transition: stroke 0.18s ease, opacity 0.18s ease, stroke-width 0.18s ease; }
+    .edge-path { fill: none; stroke: #94a3b8; stroke-width: 1.7; opacity: 0.34; transition: stroke 0.18s ease, opacity 0.18s ease, stroke-width 0.18s ease; }
     .edge-path.cross-app { stroke-dasharray: 5 4; }
     .edge-path.dimmed { opacity: 0.06; }
-    .edge-path.highlight-primary { stroke: var(--primary); stroke-width: 2.6; opacity: 1; }
+    .edge-path.highlight-primary { stroke: var(--primary); stroke-width: 2.8; opacity: 1; }
     .edge-path.highlight-upstream { stroke: var(--upstream); stroke-width: 2.6; opacity: 1; }
     .edge-path.highlight-downstream { stroke: var(--downstream); stroke-width: 2.6; opacity: 1; }
     .edge-path.highlight-equiv { stroke: var(--equiv); stroke-width: 2.6; opacity: 1; }
@@ -215,37 +220,38 @@
     .edge-path.highlight-path { stroke: #e11d48; stroke-width: 3.1; opacity: 1; stroke-dasharray: 7 4; }
 
     .formula-node {
-      position: absolute; width: 258px; background: var(--surface);
+      position: absolute; width: 286px; background: var(--surface);
       border: 1.5px solid var(--border-strong); border-radius: var(--radius-lg);
-      padding: 9px 12px; box-shadow: var(--shadow-sm); cursor: pointer;
+      padding: 10px 14px; box-shadow: var(--shadow-sm); cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, opacity 0.18s ease;
       user-select: none; z-index: 3;
     }
     .formula-node.bridge-node {
-      border-style: dashed; background: #f8fafc; opacity: 0.88;
+      border-style: dashed; background: #f8fafc; opacity: 0.92;
     }
     .formula-node:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--primary); z-index: 8; opacity: 1; }
-    .formula-node.selected { border-color: var(--primary); border-style: solid; background: var(--primary-soft); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18); z-index: 7; opacity: 1; }
+    .formula-node.selected { border-color: var(--primary); border-width: 2px; border-style: solid; background: var(--primary-soft); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16); z-index: 7; opacity: 1; }
     .formula-node.rel-upstream { border-color: var(--upstream); background: var(--upstream-soft); z-index: 5; opacity: 1; }
     .formula-node.rel-downstream { border-color: var(--downstream); background: var(--downstream-soft); z-index: 5; opacity: 1; }
     .formula-node.rel-equiv { border-color: var(--equiv); background: var(--equiv-soft); z-index: 5; opacity: 1; }
     .formula-node.rel-path { border-color: #e11d48; background: #fff1f2; box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.14); z-index: 6; opacity: 1; }
     .formula-node.dimmed { opacity: 0.18; }
 
-    .node-head { display: flex; align-items: center; justify-content: space-between; gap: 5px; margin-bottom: 4px; }
-    .node-title { font-size: 12.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .node-badge { font-size: 10px; padding: 1px 5px; border-radius: var(--radius-pill); background: var(--surface-subtle); color: var(--ink-muted); border: 1px solid var(--border); flex-shrink: 0; }
+    .node-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 5px; }
+    .node-title { font-size: 13.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .node-badge { font-size: 10.5px; padding: 1px 6px; border-radius: var(--radius-pill); background: var(--surface-subtle); color: var(--ink-muted); border: 1px solid var(--border); flex-shrink: 0; }
     .node-badge.bridge-tag { background: #e2e8f0; color: #334155; }
-    .node-math { min-height: 40px; display: flex; align-items: center; justify-content: center; padding: 3px 2px; font-size: 13px; color: var(--ink); overflow-x: auto; scrollbar-width: none; }
+    .node-math { min-height: 46px; display: flex; align-items: center; justify-content: center; padding: 4px 2px; font-size: 14.8px; color: var(--ink); overflow-x: auto; scrollbar-width: none; }
     .node-math::-webkit-scrollbar { display: none; }
-    .node-math.long-math { font-size: 11.4px; }
-    .node-math.xlong-math { font-size: 10.2px; }
+    .node-math.long-math { font-size: 12.8px; }
+    .node-math.xlong-math { font-size: 11.4px; }
     .node-foot { margin-top: 4px; display: flex; align-items: center; justify-content: space-between; font-size: 10.5px; color: var(--ink-muted); }
     .node-tag { background: rgba(15, 23, 42, 0.05); padding: 1px 6px; border-radius: 5px; }
     .disc-math { background: #e0e7ff; color: #3730a3; }
     .disc-phys { background: #dcfce7; color: #166534; }
     .disc-chem { background: #fef3c7; color: #92400e; }
-    .kind-pill { font-size: 10px; padding: 1px 5px; border-radius: 5px; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; margin-right: 4px; }
+    .kind-pill { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 5px; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+    .kind-formula { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
     .kind-axiom { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
     .kind-distribution { background: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
     .kind-theorem { background: #ede9fe; color: #5b21b6; border-color: #c4b5fd; }
@@ -352,7 +358,8 @@
     }
     .device-controls { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
     .mobile-or-tablet-only { display: none; }
-    .tablet-only { display: none; }
+    .desktop-or-tablet-only { display: inline-flex; }
+    .app.mode-mobile .desktop-or-tablet-only { display: none; }
     .mobile-nav { display: none; }
     .mobile-selected-pill { display: none; }
 
@@ -442,13 +449,13 @@
         <div class="brand">
           <div class="brand-badge">∑</div>
           <div>
-            <div class="brand-title">公式知识图谱 · 动态视图引擎</div>
+            <div class="brand-title">数理知识图谱 · 动态视图引擎</div>
             <div class="brand-sub" id="statsSubtitle">加载中...</div>
           </div>
         </div>
         <div class="device-controls">
           <button class="toggle-btn mobile-or-tablet-only" id="filterToggleBtn">🔍 筛选</button>
-          <button class="toggle-btn tablet-only active" id="tabletDrawerBtn">◧ 收起详情</button>
+          <button class="toggle-btn desktop-or-tablet-only active" id="tabletDrawerBtn" title="收起右侧详情栏以横向全屏浏览画布">◧ 收起详情</button>
           <div class="select-field" title="切换桌面端、平板端或手机端适配界面">
             <label for="deviceModeSelect">界面</label>
             <select id="deviceModeSelect">
@@ -463,7 +470,7 @@
 
       <div class="toolbar">
         <div class="select-field" id="stageField">
-          <label for="stageSelect">1.学段</label>
+          <label for="stageSelect">1.阶段</label>
           <select id="stageSelect"></select>
         </div>
         <span class="step-arrow">›</span>
@@ -481,7 +488,7 @@
           <label for="topicSelect">4.专题</label>
           <select id="topicSelect"></select>
         </div>
-        <input class="search-box" id="searchInput" type="search" placeholder="搜索公式名或别名..." />
+        <input class="search-box" id="searchInput" type="search" placeholder="搜索公式/公理/定理/分布..." />
         <button class="toggle-btn" id="resetBtn">重置筛选</button>
         <button class="toggle-btn active" id="installPwaBtn" style="display:none" title="安装到桌面作为独立应用离线使用">⬇ 安装桌面版</button>
       </div>
@@ -489,18 +496,19 @@
 
     <main class="workspace">
       <section class="canvas-pane">
-        <!-- 2. 动态视图调节系统：依据已选范围实时生成并调节专门视图 -->
+        <!-- 2. 动态视图调节系统：默认聚焦关联视图，可一键回到全局视角 -->
         <div class="canvas-subbar">
           <div class="view-controls">
-            <span class="view-badge" id="viewBadge">动态视图</span>
+            <span class="view-badge" id="viewBadge">聚焦关联视图</span>
+            <button class="toggle-btn active" id="focusOnlyBtn" title="在「聚焦当前对象关联」与「全局总览视角」之间一键切换">🌐 回到全局视角</button>
             <div class="select-field">
-              <label for="layoutModeSelect">视图布局</label>
+              <label for="layoutModeSelect">全局布局</label>
               <select id="layoutModeSelect">
                 <option value="auto">自动推荐</option>
                 <option value="topo">按拓扑推导层</option>
                 <option value="topic">按专题泳道</option>
                 <option value="branch">按分支泳道</option>
-                <option value="stage">按学段泳道</option>
+                <option value="stage">按阶段泳道</option>
               </select>
             </div>
             <div class="select-field">
@@ -511,8 +519,7 @@
                 <option value="spacious">宽松</option>
               </select>
             </div>
-            <button class="toggle-btn" id="bridgeBtn" title="筛选局部时，虚框带出 1 跳跨学段/跨学科直接前置与衍生公式">⇄ 带出跨界桥梁</button>
-            <button class="toggle-btn" id="focusOnlyBtn">◎ 仅看直接关联</button>
+            <button class="toggle-btn" id="bridgeBtn" title="全局视角筛选局部时，虚框带出 1 跳跨阶段/跨学科直接前置与衍生对象">⇄ 带出跨界桥梁</button>
             <button class="toggle-btn" id="shareViewBtn" title="复制当前动态视图的直达分享链接">🔗 分享视图</button>
           </div>
 
@@ -585,7 +592,7 @@
 
       <aside class="drawer">
         <div class="drawer-tabs">
-          <button class="drawer-tab active" data-tab="formula">公式详情与量纲</button>
+          <button class="drawer-tab active" data-tab="formula">对象详情与量纲</button>
           <button class="drawer-tab" data-tab="derivation">分级推导过程</button>
         </div>
         <div class="drawer-body" id="drawerBody"></div>
@@ -594,7 +601,7 @@
 
     <nav class="mobile-nav" aria-label="移动端视图切换">
       <button class="mobile-nav-btn active" data-pane="canvas">🗺 图谱画布</button>
-      <button class="mobile-nav-btn" data-pane="formula">📐 公式详情</button>
+      <button class="mobile-nav-btn" data-pane="formula">📐 对象详情</button>
       <button class="mobile-nav-btn" data-pane="derivation">🔀 分级推导</button>
     </nav>
   </div>
@@ -602,19 +609,19 @@
   <script>
     const TAXONOMY = /*__TAXONOMY_PAYLOAD__*/;
     const MASTER_GRAPH = /*__MASTER_GRAPH_PAYLOAD__*/;
-    const NODE_W = 258;
-    const NODE_H = 112;
+    const NODE_W = 286;
+    const NODE_H = 122;
 
     const DENSITY_CFG = {
-      compact:  { colGap: 286, rowGap: 124 },
-      standard: { colGap: 310, rowGap: 138 },
-      spacious: { colGap: 342, rowGap: 154 }
+      compact:  { colGap: 318, rowGap: 136 },
+      standard: { colGap: 344, rowGap: 150 },
+      spacious: { colGap: 378, rowGap: 168 }
     };
 
     const STAGE_LIST = TAXONOMY.stages || [
       { id: "junior_high", label: "初中" },
       { id: "senior_high", label: "高中" },
-      { id: "undergraduate", label: "大学及以后" }
+      { id: "undergraduate", label: "大学" }
     ];
     const STAGE_LABELS = Object.fromEntries(STAGE_LIST.map(s => [s.id, s.label]));
     const STAGE_ORDER = Object.fromEntries(STAGE_LIST.map((s, idx) => [s.id, idx]));
@@ -656,16 +663,17 @@
       application_level: "应用级 (application_level)"
     };
     const LAYOUT_LABELS = {
+      focus: "聚焦关联视图",
       topo: "按拓扑推导层",
       topic: "按专题泳道",
       branch: "按分支泳道",
-      stage: "按学段泳道"
+      stage: "按阶段泳道"
     };
 
     const formulaById = Object.fromEntries(MASTER_GRAPH.formulas.map(f => [f.id, f]));
     const derivById = Object.fromEntries(MASTER_GRAPH.derivations.map(d => [d.id, d]));
 
-    // 为每条公式预解析规范分支、规范专题和主学段
+    // 为每条对象预解析规范分支、规范专题和主阶段
     MASTER_GRAPH.formulas.forEach(f => {
       const branches = new Set();
       const canonicalTopics = new Set();
@@ -695,12 +703,12 @@
       layoutMode: "auto",
       density: "standard",
       includeBridges: false,
-      focusOnly: false,
+      focusOnly: true,
       selectedFormulaId: "math.calc.derivative_def",
       selectedDerivId: null,
       activeTab: "formula",
       level: "L2",
-      zoom: 0.72,
+      zoom: 1.0,
       activePath: null,
       deviceMode: "auto",
       filtersOpen: false,
@@ -809,9 +817,9 @@
     function syncCascadingDropdowns() {
       const all = MASTER_GRAPH.formulas;
 
-      // 1. 学段（初中 / 高中 / 大学及以后）
+      // 1. 阶段（初中 / 高中 / 大学）
       const stageSel = document.getElementById("stageSelect");
-      stageSel.innerHTML = `<option value="all">全部学段（${all.length}）</option>`;
+      stageSel.innerHTML = `<option value="all">全部阶段（${all.length}）</option>`;
       STAGE_LIST.forEach(st => {
         const cnt = all.filter(f => f.taxonomy.education_stages.includes(st.id)).length;
         if (cnt > 0) stageSel.add(new Option(`${st.label}（${cnt}）`, st.id));
@@ -921,7 +929,7 @@
       return depth;
     }
 
-    // 核心：动态视图生成引擎（依据筛选结果 + 布局模式 + 密度 + 跨界桥梁开关实时计算画布）
+    // 核心：动态视图生成引擎（支持「聚焦关联视图」与「全局总览视角」无缝切换，横向全屏铺满）
     function generateDynamicView(autoFit = false) {
       let matched = filterByTopic(filterByBranch(filterByDisc(filterByStage(MASTER_GRAPH.formulas))));
       const q = state.searchQuery.trim().toLowerCase();
@@ -937,167 +945,213 @@
       const bridgeIds = new Set();
       const isSubset = coreIds.size > 0 && coreIds.size < MASTER_GRAPH.formulas.length;
 
-      // 可选：动态带出 1 跳跨界桥梁节点（前置来源 + 直接延伸）
-      if (state.includeBridges && isSubset) {
-        MASTER_GRAPH.derivations.forEach(d => {
-          const toIn = coreIds.has(d.to_formula_id);
-          const fromIn = d.from_formula_ids.some(fid => coreIds.has(fid));
-          if (toIn) {
-            d.from_formula_ids.forEach(fid => { if (!coreIds.has(fid)) bridgeIds.add(fid); });
-          }
-          if (fromIn && !toIn) {
-            bridgeIds.add(d.to_formula_id);
-          }
-        });
-      }
-
-      let activeIds = new Set([...coreIds, ...bridgeIds]);
-
-      // 仅看直接关联模式：基于当前选中节点再做一轮局部收敛
-      if (state.focusOnly && state.selectedFormulaId && activeIds.has(state.selectedFormulaId)) {
-        const rel = getDirectRelations(state.selectedFormulaId, MASTER_GRAPH.derivations);
-        const focusSet = new Set([state.selectedFormulaId]);
-        [...rel.upstream, ...rel.downstream, ...rel.equiv].forEach(r => {
-          if (activeIds.has(r.formula.id)) focusSet.add(r.formula.id);
-        });
-        activeIds = focusSet;
-      }
-
-      const visibleFormulas = MASTER_GRAPH.formulas.filter(f => activeIds.has(f.id));
-      const visibleDerivations = MASTER_GRAPH.derivations.filter(d =>
-        activeIds.has(d.to_formula_id) && d.from_formula_ids.some(fid => activeIds.has(fid))
-      );
-
-      // 若选中公式不在新视图内，自动选择当前视图中连接度最高的核心公式
-      if (visibleFormulas.length > 0 && !activeIds.has(state.selectedFormulaId)) {
+      // 若当前选中对象不在筛选集合内，自动定位到当前筛选范围内连接度最高的核心对象
+      if (coreIds.size > 0 && (!state.selectedFormulaId || !coreIds.has(state.selectedFormulaId))) {
         const deg = {};
-        visibleFormulas.forEach(f => { deg[f.id] = 0; });
-        visibleDerivations.forEach(d => {
+        matched.forEach(f => { deg[f.id] = 0; });
+        MASTER_GRAPH.derivations.forEach(d => {
           if (deg[d.to_formula_id] !== undefined) deg[d.to_formula_id] += 1;
           d.from_formula_ids.forEach(fid => { if (deg[fid] !== undefined) deg[fid] += 1; });
         });
-        const best = visibleFormulas.slice().sort((a, b) => (deg[b.id] - deg[a.id]))[0];
+        const best = matched.slice().sort((a, b) => (deg[b.id] - deg[a.id]))[0];
         state.selectedFormulaId = best.id;
         state.activePath = null;
         document.getElementById("clearPathBtn").style.display = "none";
       }
 
-      // 决定生效布局模式
-      let effectiveMode = state.layoutMode;
-      if (effectiveMode === "auto") {
-        if (state.topicFilter !== "all" || visibleFormulas.length <= 14) effectiveMode = "topo";
-        else if (state.branchFilter !== "all") effectiveMode = "topic";
-        else effectiveMode = "branch";
+      const focusBtn = document.getElementById("focusOnlyBtn");
+      if (focusBtn) {
+        focusBtn.classList.toggle("active", state.focusOnly);
+        focusBtn.textContent = state.focusOnly
+          ? `🌐 回到全局视角（${coreIds.size}）`
+          : "◎ 聚焦当前对象";
       }
 
-      const depths = computeTopoDepths(activeIds, visibleDerivations);
-      const columnsMap = new Map();
-
-      const addToCol = (key, label, sortOrder, formula, isBridgeLane = false) => {
-        if (!columnsMap.has(key)) columnsMap.set(key, { key, label, sortOrder, isBridgeLane, items: [] });
-        columnsMap.get(key).items.push(formula);
-      };
-
-      visibleFormulas.forEach(f => {
-        const isBridge = bridgeIds.has(f.id);
-        if (effectiveMode === "topo") {
-          const lvl = depths[f.id] || 0;
-          const lbl = lvl === 0 ? "第 1 层 · 公理 / 定义起点" : `第 ${lvl + 1} 层 · 推导层`;
-          addToCol(`topo_${lvl}`, lbl, lvl, f, false);
-        } else if (effectiveMode === "topic") {
-          if (isBridge) {
-            addToCol("bridge_ext", "跨界桥梁 · 外部关联", 9999, f, true);
-          } else {
-            const tp = TOPIC_BY_ID[f._primaryTopic];
-            addToCol(f._primaryTopic, tp ? tp.label : "其他专题", tp ? tp.order : 999, f, false);
-          }
-        } else if (effectiveMode === "stage") {
-          const st = f._primaryStage;
-          addToCol(st, `${STAGE_LABELS[st] || st}阶段`, STAGE_ORDER[st] ?? 99, f, isBridge);
-        } else {
-          // branch
-          if (isBridge) {
-            addToCol("bridge_ext", "跨界桥梁 · 外部关联", 9999, f, true);
-          } else {
-            const br = BRANCH_BY_ID[f._primaryBranch];
-            const lbl = br ? `${br.disciplineLabel} · ${br.label}` : "其他分支";
-            addToCol(f._primaryBranch, lbl, br ? br.order : 999, f, false);
-          }
-        }
-      });
-
-      const sortedCols = [...columnsMap.values()].sort((a, b) => a.sortOrder - b.sortOrder);
       const { colGap, rowGap } = DENSITY_CFG[state.density] || DENSITY_CFG.standard;
-
+      let activeIds = new Set();
+      let visibleFormulas = [];
+      let visibleDerivations = [];
       const positions = {};
       const lanes = [];
-      let colX = 24;
-      let maxRows = 1;
+      let stageW = 900;
+      let stageH = 420;
+      let effectiveMode = state.focusOnly ? "focus" : state.layoutMode;
 
-      sortedCols.forEach(col => {
-        col.items.sort((a, b) => {
-          const da = depths[a.id] || 0, db = depths[b.id] || 0;
-          if (da !== db) return da - db;
-          const ta = TOPIC_BY_ID[a._primaryTopic]?.order ?? 999;
-          const tb = TOPIC_BY_ID[b._primaryTopic]?.order ?? 999;
-          return ta - tb;
+      if (state.focusOnly && state.selectedFormulaId && formulaById[state.selectedFormulaId] && coreIds.size > 0) {
+        // 聚焦关联视图：仅显示当前对象及其直接前置依赖、直接衍生/等价对偶/反例，隐去无关对象
+        const selId = state.selectedFormulaId;
+        const rel = getDirectRelations(selId, MASTER_GRAPH.derivations);
+        const upIds = [];
+        const rightIds = [];
+        const seenNeighbors = new Set([selId]);
+
+        rel.upstream.forEach(r => {
+          if (!seenNeighbors.has(r.formula.id)) {
+            seenNeighbors.add(r.formula.id);
+            upIds.push(r.formula.id);
+            if (!coreIds.has(r.formula.id)) bridgeIds.add(r.formula.id);
+          }
+        });
+        [...rel.downstream, ...rel.equiv].forEach(r => {
+          if (!seenNeighbors.has(r.formula.id)) {
+            seenNeighbors.add(r.formula.id);
+            rightIds.push(r.formula.id);
+            if (!coreIds.has(r.formula.id)) bridgeIds.add(r.formula.id);
+          }
         });
 
-        // 若单列超过 11 个节点，自动拆分为双列以保持画布纵横比协调
-        const MAX_PER_COL = 11;
-        const chunks = [];
-        for (let i = 0; i < col.items.length; i += MAX_PER_COL) {
-          chunks.push(col.items.slice(i, i + MAX_PER_COL));
-        }
-        chunks.forEach((chunk, cIdx) => {
-          const suffix = chunks.length > 1 ? ` (${cIdx + 1}/${chunks.length})` : "";
-          lanes.push({ x: colX, label: `${col.label}${suffix} · ${chunk.length}`, isBridgeLane: col.isBridgeLane });
-          maxRows = Math.max(maxRows, chunk.length);
-          chunk.forEach((f, r) => {
-            positions[f.id] = { x: colX, y: 46 + r * rowGap };
+        activeIds = new Set([selId, ...upIds, ...rightIds]);
+        visibleFormulas = MASTER_GRAPH.formulas.filter(f => activeIds.has(f.id));
+        visibleDerivations = MASTER_GRAPH.derivations.filter(d => {
+          const touchesSel = d.to_formula_id === selId || d.from_formula_ids.includes(selId);
+          return touchesSel && activeIds.has(d.to_formula_id) && d.from_formula_ids.some(fid => activeIds.has(fid));
+        });
+
+        // 横向全屏三栏聚焦布局：左（前置依赖）— 中（当前聚焦对象）— 右（直接衍生/等价对偶/反例）
+        const cols = [];
+        if (upIds.length) cols.push({ label: `前置依赖 · ${upIds.length}`, ids: upIds, isCenter: false });
+        cols.push({ label: "当前聚焦对象", ids: [selId], isCenter: true });
+        if (rightIds.length) cols.push({ label: `直接衍生 / 等价对偶 / 反例 · ${rightIds.length}`, ids: rightIds, isCenter: false });
+
+        const scroller = document.getElementById("graphScroll");
+        const availW = Math.max(720, (scroller ? scroller.clientWidth : 1080) - 44);
+        const padX = 28;
+        const minSpan = cols.length * NODE_W + Math.max(0, cols.length - 1) * 96 + padX * 2;
+        stageW = Math.max(availW, minSpan);
+        const gapX = cols.length > 1 ? Math.floor((stageW - padX * 2 - cols.length * NODE_W) / (cols.length - 1)) : 0;
+        const maxRows = Math.max(1, ...cols.map(c => c.ids.length));
+        const totalContentH = maxRows * rowGap;
+        stageH = Math.max(380, 56 + totalContentH + 40);
+
+        cols.forEach((col, cIdx) => {
+          const x = cols.length === 1 ? Math.max(padX, Math.floor((stageW - NODE_W) / 2)) : padX + cIdx * (NODE_W + gapX);
+          lanes.push({ x, label: col.label, isBridgeLane: false, isFocusCenter: col.isCenter });
+          const colH = col.ids.length * rowGap;
+          const startY = 54 + Math.max(0, Math.floor((totalContentH - colH) / 2));
+          col.ids.forEach((fid, rIdx) => {
+            positions[fid] = { x, y: startY + rIdx * rowGap };
           });
-          colX += colGap;
         });
-      });
+      } else {
+        // 全局总览视角：展示当前筛选范围的全部对象
+        if (state.includeBridges && isSubset) {
+          MASTER_GRAPH.derivations.forEach(d => {
+            const toIn = coreIds.has(d.to_formula_id);
+            const fromIn = d.from_formula_ids.some(fid => coreIds.has(fid));
+            if (toIn) d.from_formula_ids.forEach(fid => { if (!coreIds.has(fid)) bridgeIds.add(fid); });
+            if (fromIn && !toIn) bridgeIds.add(d.to_formula_id);
+          });
+        }
 
-      const stageW = Math.max(540, colX + 20);
-      const stageH = Math.max(360, 46 + maxRows * rowGap + 44);
+        activeIds = new Set([...coreIds, ...bridgeIds]);
+        visibleFormulas = MASTER_GRAPH.formulas.filter(f => activeIds.has(f.id));
+        visibleDerivations = MASTER_GRAPH.derivations.filter(d =>
+          activeIds.has(d.to_formula_id) && d.from_formula_ids.some(fid => activeIds.has(fid))
+        );
+
+        if (effectiveMode === "auto") {
+          if (state.topicFilter !== "all" || visibleFormulas.length <= 14) effectiveMode = "topo";
+          else if (state.branchFilter !== "all") effectiveMode = "topic";
+          else effectiveMode = "branch";
+        }
+
+        const depths = computeTopoDepths(activeIds, visibleDerivations);
+        const columnsMap = new Map();
+        const addToCol = (key, label, sortOrder, formula, isBridgeLane = false) => {
+          if (!columnsMap.has(key)) columnsMap.set(key, { key, label, sortOrder, isBridgeLane, items: [] });
+          columnsMap.get(key).items.push(formula);
+        };
+
+        visibleFormulas.forEach(f => {
+          const isBridge = bridgeIds.has(f.id);
+          if (effectiveMode === "topo") {
+            const lvl = depths[f.id] || 0;
+            const lbl = lvl === 0 ? "第 1 层 · 公理 / 定义起点" : `第 ${lvl + 1} 层 · 推导层`;
+            addToCol(`topo_${lvl}`, lbl, lvl, f, false);
+          } else if (effectiveMode === "topic") {
+            if (isBridge) addToCol("bridge_ext", "跨界桥梁 · 外部关联", 9999, f, true);
+            else {
+              const tp = TOPIC_BY_ID[f._primaryTopic];
+              addToCol(f._primaryTopic, tp ? tp.label : "其他专题", tp ? tp.order : 999, f, false);
+            }
+          } else if (effectiveMode === "stage") {
+            const st = f._primaryStage;
+            addToCol(st, `${STAGE_LABELS[st] || st}阶段`, STAGE_ORDER[st] ?? 99, f, isBridge);
+          } else {
+            if (isBridge) addToCol("bridge_ext", "跨界桥梁 · 外部关联", 9999, f, true);
+            else {
+              const br = BRANCH_BY_ID[f._primaryBranch];
+              const lbl = br ? `${br.disciplineLabel} · ${br.label}` : "其他分支";
+              addToCol(f._primaryBranch, lbl, br ? br.order : 999, f, false);
+            }
+          }
+        });
+
+        const sortedCols = [...columnsMap.values()].sort((a, b) => a.sortOrder - b.sortOrder);
+        let colX = 24;
+        let maxRows = 1;
+        sortedCols.forEach(col => {
+          col.items.sort((a, b) => {
+            const da = depths[a.id] || 0, db = depths[b.id] || 0;
+            if (da !== db) return da - db;
+            const ta = TOPIC_BY_ID[a._primaryTopic]?.order ?? 999;
+            const tb = TOPIC_BY_ID[b._primaryTopic]?.order ?? 999;
+            return ta - tb;
+          });
+          const MAX_PER_COL = 11;
+          const chunks = [];
+          for (let i = 0; i < col.items.length; i += MAX_PER_COL) chunks.push(col.items.slice(i, i + MAX_PER_COL));
+          chunks.forEach((chunk, cIdx) => {
+            const suffix = chunks.length > 1 ? ` (${cIdx + 1}/${chunks.length})` : "";
+            lanes.push({ x: colX, label: `${col.label}${suffix} · ${chunk.length}`, isBridgeLane: col.isBridgeLane });
+            maxRows = Math.max(maxRows, chunk.length);
+            chunk.forEach((f, r) => { positions[f.id] = { x: colX, y: 50 + r * rowGap }; });
+            colX += colGap;
+          });
+        });
+        stageW = Math.max(640, colX + 20);
+        stageH = Math.max(380, 50 + maxRows * rowGap + 44);
+      }
 
       currentView = {
         coreIds, bridgeIds, visibleFormulas, visibleDerivations,
         positions, lanes, stageW, stageH, effectiveMode
       };
 
-      // 更新动态视图面包屑与统计信息
       const crumbs = [];
       if (state.stageFilter !== "all") crumbs.push(STAGE_LABELS[state.stageFilter]);
       if (state.discFilter !== "all") crumbs.push(DISC_BY_ID[state.discFilter]?.label || state.discFilter);
       if (state.branchFilter !== "all") crumbs.push(BRANCH_BY_ID[state.branchFilter]?.label || state.branchFilter);
       if (state.topicFilter !== "all") crumbs.push(TOPIC_BY_ID[state.topicFilter]?.label || state.topicFilter);
-      const scopeText = crumbs.length ? crumbs.join(" › ") : "全学段全学科总图";
+      const scopeText = crumbs.length ? crumbs.join(" › ") : "全阶段全学科总图";
       const bridgeNote = bridgeIds.size > 0 ? ` + ${bridgeIds.size} 跨界桥梁` : "";
 
-      document.getElementById("statsSubtitle").textContent =
-        `${scopeText} · ${coreIds.size} 核心公式${bridgeNote} · ${visibleDerivations.length} 条推导`;
-      document.getElementById("viewBadge").textContent =
-        `已生成：${crumbs.length ? crumbs[crumbs.length - 1] : "全量"}视图`;
-      document.getElementById("layoutHint").textContent =
-        `当前布局：${LAYOUT_LABELS[effectiveMode]}（${lanes.length} 列）`;
+      document.getElementById("statsSubtitle").textContent = state.focusOnly
+        ? `${scopeText} · 聚焦显示 ${visibleFormulas.length}/${coreIds.size} 个对象 · ${visibleDerivations.length} 条直接关联`
+        : `${scopeText} · ${coreIds.size} 核心对象${bridgeNote} · ${visibleDerivations.length} 条推导`;
+      document.getElementById("viewBadge").textContent = state.focusOnly
+        ? `聚焦：${formulaById[state.selectedFormulaId]?.name || "当前对象"}`
+        : `全局：${crumbs.length ? crumbs[crumbs.length - 1] : "全量"}视角`;
+      document.getElementById("layoutHint").textContent = state.focusOnly
+        ? `聚焦关联模式（点击邻近卡片可连续追踪，点击「回到全局视角」查看全部 ${coreIds.size} 项）`
+        : `当前布局：${LAYOUT_LABELS[effectiveMode]}（${lanes.length} 列 · 点击任意卡片聚焦其关联）`;
 
-      // 同步最短路径下拉框为当前动态视图内的公式
+      // 同步最短路径下拉框（包含当前筛选范围的全部对象）
       const startSel = document.getElementById("pathStart");
       const endSel = document.getElementById("pathEnd");
       const prevStart = startSel.value;
       const prevEnd = endSel.value;
       startSel.innerHTML = "";
       endSel.innerHTML = "";
-      visibleFormulas.forEach(f => {
+      const pathPool = state.focusOnly ? matched : visibleFormulas;
+      pathPool.forEach(f => {
         startSel.add(new Option(f.name, f.id));
         endSel.add(new Option(f.name, f.id));
       });
-      if (visibleFormulas.length > 0) {
-        startSel.value = activeIds.has(prevStart) ? prevStart : visibleFormulas[0].id;
-        endSel.value = activeIds.has(prevEnd) ? prevEnd : visibleFormulas[visibleFormulas.length - 1].id;
+      if (pathPool.length > 0) {
+        const poolIds = new Set(pathPool.map(f => f.id));
+        startSel.value = poolIds.has(prevStart) ? prevStart : pathPool[0].id;
+        endSel.value = poolIds.has(prevEnd) ? prevEnd : pathPool[pathPool.length - 1].id;
       }
 
       if (autoFit) fitViewToCanvas();
@@ -1108,10 +1162,14 @@
 
     function fitViewToCanvas() {
       const scroller = document.getElementById("graphScroll");
-      const availW = Math.max(320, scroller.clientWidth - 40);
-      const availH = Math.max(260, scroller.clientHeight - 40);
-      const ratio = Math.min(availW / currentView.stageW, availH / currentView.stageH);
-      state.zoom = +Math.max(0.38, Math.min(1.0, ratio)).toFixed(2);
+      const availW = Math.max(320, scroller.clientWidth - 36);
+      const ratioW = availW / currentView.stageW;
+      if (state.focusOnly) {
+        state.zoom = +Math.max(0.86, Math.min(1.06, ratioW)).toFixed(2);
+      } else {
+        // 全局视角优先横向铺满并保持默认字号适中可读，纵向自然滚动
+        state.zoom = +Math.max(0.76, Math.min(1.04, ratioW)).toFixed(2);
+      }
       applyZoom();
     }
 
@@ -1158,13 +1216,13 @@
       document.getElementById("graphSvg").setAttribute("viewBox", `0 0 ${currentView.stageW} ${currentView.stageH}`);
 
       laneLayer.innerHTML = currentView.lanes.map(l =>
-        `<div class="lane-header ${l.isBridgeLane ? "bridge-lane" : ""}" style="left:${l.x}px" title="${l.label}">${l.label}</div>`
+        `<div class="lane-header ${l.isBridgeLane ? "bridge-lane" : ""} ${l.isFocusCenter ? "focus-center-lane" : ""}" style="left:${l.x}px" title="${l.label}">${l.label}</div>`
       ).join("");
       edgeLayer.innerHTML = "";
       nodeLayer.innerHTML = "";
 
       if (currentView.visibleFormulas.length === 0) {
-        nodeLayer.innerHTML = `<div class="empty-state">当前筛选条件下暂无匹配公式，请调整学段、学科、分支或清空搜索词。</div>`;
+        nodeLayer.innerHTML = `<div class="empty-state">当前筛选条件下暂无匹配对象，请调整阶段、学科、分支或清空搜索词。</div>`;
         return;
       }
 
@@ -1258,15 +1316,18 @@
         card.style.left = `${pos.x}px`;
         card.style.top = `${pos.y}px`;
         const nKind = f.node_kind || "formula";
-        const kindTag = nKind !== "formula" ? `<span class="kind-pill kind-${nKind}">${NODE_KIND_LABELS[nKind] || nKind}</span>` : "";
+        const kindLabel = NODE_KIND_LABELS[nKind] || "公式";
         card.innerHTML = `
           <div class="node-head">
-            <span class="node-title" title="${f.name}">${kindTag}${f.name}</span>
+            <span class="node-title" title="${f.name}">${f.name}</span>
             <span class="node-badge ${isBridge ? "bridge-tag" : ""}">${isBridge ? "跨界桥梁" : `↑${rel.upstream.length} ↓${rel.downstream.length + rel.equiv.length}`}</span>
           </div>
           <div class="${mathCls}">${renderMathHTML(f.latex)}</div>
           <div class="node-foot">
-            <span class="node-tag ${discCls}">${discLabel}</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;">
+              <span class="node-tag ${discCls}">${discLabel}</span>
+              <span class="kind-pill kind-${nKind}">${kindLabel}</span>
+            </span>
             <span>${stageText}</span>
           </div>
         `;
@@ -1303,7 +1364,7 @@
             <div style="font-size:12.5px; color:var(--ink-secondary);">${renderMathHTML(item.formula.latex)}</div>
             <div class="rel-actions">
               <button class="mini-btn primary" onclick="selectDerivation('${item.deriv.id}')">查看 L1/L2/L3 推导</button>
-              <button class="mini-btn" onclick="jumpToFormula('${item.formula.id}')">聚焦该公式</button>
+              <button class="mini-btn" onclick="jumpToFormula('${item.formula.id}')">聚焦该对象</button>
             </div>
           </div>
         `).join("");
@@ -1327,7 +1388,7 @@
             <div style="font-size:12.5px; color:var(--ink-secondary);">${f.statement}</div>
             <div class="meta-row">
               <span class="chip">类型：${NODE_KIND_LABELS[f.node_kind || "formula"] || "公式"}</span>
-              ${f.taxonomy.education_stages.map(s => `<span class="chip">学段：${STAGE_LABELS[s] || s}</span>`).join("")}
+              ${f.taxonomy.education_stages.map(s => `<span class="chip">阶段：${STAGE_LABELS[s] || s}</span>`).join("")}
               ${branchTags.map(b => `<span class="chip">分支：${b}</span>`).join("")}
               ${topicTags.map(t => `<span class="chip">专题：${t}</span>`).join("")}
               <span class="chip verified">✓ 已核验</span>
@@ -1350,7 +1411,7 @@
           ${f.worked_example ? `<div class="section-label">极简数值算例</div><div class="step-card" style="font-size:12.5px; color:var(--ink-secondary); margin-bottom:0;">${f.worked_example}</div>` : ""}
           ${f.applications && f.applications.length ? `<div class="section-label">典型应用场景</div><div class="meta-row">${f.applications.map(a => `<span class="chip">${a}</span>`).join("")}</div>` : ""}
 
-          <div class="section-label">全库直接关联公式（共 ${rel.upstream.length + rel.downstream.length + rel.equiv.length} 条）</div>
+          <div class="section-label">全库直接关联对象（共 ${rel.upstream.length + rel.downstream.length + rel.equiv.length} 条）</div>
           ${renderRelGroup(rel.upstream, "upstream", "前置依赖")}
           ${renderRelGroup(rel.downstream, "downstream", "直接衍生")}
           ${renderRelGroup(rel.equiv, "equiv", "双向等价")}
@@ -1415,20 +1476,21 @@
 
     function selectFormula(id) {
       state.selectedFormulaId = id;
+      state.focusOnly = true;
       state.activeTab = "formula";
       state.activePath = null;
       document.getElementById("clearPathBtn").style.display = "none";
-      if (state.focusOnly) generateDynamicView(false);
-      else { renderGraph(); renderDrawer(); }
+      generateDynamicView(true);
     }
 
-    // 若点击的跨界公式不在当前筛选视图中，自动开启跨界桥梁或放宽筛选以平滑定位
+    // 点击抽屉内关联对象或引用芯片时，立即聚焦到该对象及其关联网络
     function jumpToFormula(id) {
       state.selectedFormulaId = id;
+      state.focusOnly = true;
       state.activeTab = "formula";
       state.activePath = null;
       document.getElementById("clearPathBtn").style.display = "none";
-      if (!currentView.positions[id]) {
+      if (!currentView.coreIds.has(id)) {
         state.stageFilter = "all";
         state.discFilter = "all";
         state.branchFilter = "all";
@@ -1436,11 +1498,8 @@
         state.searchQuery = "";
         document.getElementById("searchInput").value = "";
         syncCascadingDropdowns();
-        generateDynamicView(true);
-      } else {
-        renderGraph();
-        renderDrawer();
       }
+      generateDynamicView(true);
     }
 
     function selectDerivation(id) {
@@ -1477,16 +1536,18 @@
       };
       document.getElementById("searchInput").oninput = (e) => {
         state.searchQuery = e.target.value;
-        generateDynamicView(false);
+        if (state.searchQuery.trim()) state.focusOnly = false;
+        generateDynamicView(true);
       };
 
       document.getElementById("layoutModeSelect").onchange = (e) => {
         state.layoutMode = e.target.value;
+        state.focusOnly = false;
         generateDynamicView(true);
       };
       document.getElementById("densitySelect").onchange = (e) => {
         state.density = e.target.value;
-        generateDynamicView(false);
+        generateDynamicView(true);
       };
 
       const bridgeBtn = document.getElementById("bridgeBtn");
@@ -1499,7 +1560,6 @@
       const focusBtn = document.getElementById("focusOnlyBtn");
       focusBtn.onclick = () => {
         state.focusOnly = !state.focusOnly;
-        focusBtn.classList.toggle("active", state.focusOnly);
         generateDynamicView(true);
       };
 
@@ -1511,12 +1571,11 @@
         state.searchQuery = "";
         state.layoutMode = "auto";
         state.includeBridges = false;
-        state.focusOnly = false;
+        state.focusOnly = true;
         state.activePath = null;
         document.getElementById("searchInput").value = "";
         document.getElementById("layoutModeSelect").value = "auto";
         bridgeBtn.classList.remove("active");
-        focusBtn.classList.remove("active");
         document.getElementById("clearPathBtn").style.display = "none";
         syncCascadingDropdowns();
         generateDynamicView(true);
@@ -1530,13 +1589,13 @@
         const res = findShortestPath(
           document.getElementById("pathStart").value,
           document.getElementById("pathEnd").value,
-          currentView.visibleDerivations
+          MASTER_GRAPH.derivations
         );
-        if (!res) { alert("当前动态视图中未找到这两个公式之间的推导路径（可尝试开启「带出跨界桥梁」或放宽筛选范围）。"); return; }
+        if (!res) { alert("未找到这两个对象之间的有向推导路径。"); return; }
+        state.focusOnly = false;
         state.activePath = res;
         document.getElementById("clearPathBtn").style.display = "inline-block";
-        renderGraph();
-        renderDrawer();
+        generateDynamicView(true);
       };
       document.getElementById("clearPathBtn").onclick = () => {
         state.activePath = null;
@@ -1561,7 +1620,7 @@
       if (state.layoutMode !== "auto") params.set("layout", state.layoutMode);
       if (state.density !== "standard") params.set("density", state.density);
       if (state.includeBridges) params.set("bridges", "1");
-      if (state.focusOnly) params.set("focus", "1");
+      if (!state.focusOnly) params.set("focus", "0");
       if (state.selectedFormulaId) params.set("formula", state.selectedFormulaId);
       if (state.activeTab === "derivation" && state.selectedDerivId) {
         params.set("tab", "derivation");
@@ -1604,9 +1663,10 @@
         state.includeBridges = true;
         document.getElementById("bridgeBtn").classList.add("active");
       }
-      if (params.get("focus") === "1") {
+      if (params.get("focus") === "0") {
+        state.focusOnly = false;
+      } else if (params.get("focus") === "1") {
         state.focusOnly = true;
-        document.getElementById("focusOnlyBtn").classList.add("active");
       }
       if (params.get("formula") && formulaById[params.get("formula")]) {
         state.selectedFormulaId = params.get("formula");
@@ -1679,12 +1739,15 @@
 
       if (eff === "mobile") {
         appEl.classList.toggle("filters-open", state.filtersOpen);
+        appEl.classList.remove("drawer-collapsed");
         appEl.dataset.mobilePane = state.mobilePane;
       } else if (eff === "tablet") {
         appEl.classList.toggle("filters-open", state.filtersOpen);
         appEl.classList.toggle("tablet-drawer-closed", !state.tabletDrawerOpen);
+        appEl.classList.remove("drawer-collapsed");
       } else {
         appEl.classList.remove("filters-open", "tablet-drawer-closed");
+        appEl.classList.toggle("drawer-collapsed", !state.tabletDrawerOpen);
       }
 
       document.querySelectorAll(".mobile-nav-btn").forEach(btn => {
@@ -1699,7 +1762,7 @@
       if (filterBtn) filterBtn.classList.toggle("active", state.filtersOpen);
 
       updateMobileSelectedPill();
-      if (reFit) setTimeout(() => fitViewToCanvas(), 40);
+      if (reFit) setTimeout(() => { if (state.focusOnly) generateDynamicView(true); else fitViewToCanvas(); }, 40);
     }
 
     function updateMobileSelectedPill() {

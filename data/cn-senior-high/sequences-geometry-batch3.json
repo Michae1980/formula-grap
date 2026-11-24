@@ -9,590 +9,1366 @@
   "formulas": [
     {
       "id": "math.seq.arith_term",
+      "node_kind": "formula",
       "name": "等差数列通项公式",
-      "aliases": ["算术数列通项"],
+      "aliases": [
+        "算术数列通项"
+      ],
       "latex": "a_n = a_1 + (n - 1)d",
       "statement": "相邻两项之差恒为常数 d 的数列，第 n 项是首项加上 (n-1) 个公差，图像为一次函数直线上的离散点列。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["sequences_binomial"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "sequences_binomial"
+        ]
       },
       "variables": [
-        { "symbol": "a_1, d", "name": "首项与公差", "math_type": "constant", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "n", "name": "项数", "math_type": "scalar", "domain": "\\mathbb{Z}^+", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "a_1, d",
+          "name": "首项与公差",
+          "math_type": "constant",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "n",
+          "name": "项数",
+          "math_type": "scalar",
+          "domain": "\\mathbb{Z}^+",
+          "quantity_kind": "count",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["n ∈ Z⁺；推广式 a_n = a_m + (n - m)d"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 4.2.1", "sympy_verified": true }
+      "conditions": [
+        "n ∈ Z⁺；推广式 a_n = a_m + (n - m)d"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 4.2.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.seq.arith_sum",
+      "node_kind": "formula",
       "name": "等差数列前 n 项和公式",
-      "aliases": ["高斯求和公式"],
+      "aliases": [
+        "高斯求和公式"
+      ],
       "latex": "S_n = \\frac{n(a_1 + a_n)}{2} = n a_1 + \\frac{n(n - 1)}{2} d",
       "statement": "等差数列前 n 项之和等于首末项平均数乘以项数，展开后是关于 n 的无常数项二次函数。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["sequences_binomial"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "sequences_binomial"
+        ]
       },
       "variables": [
-        { "symbol": "S_n", "name": "前 n 项和", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "S_n",
+          "name": "前 n 项和",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["n ∈ Z⁺"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 4.2.2", "sympy_verified": true }
+      "conditions": [
+        "n ∈ Z⁺"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 4.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.seq.geom_term",
+      "node_kind": "formula",
       "name": "等比数列通项公式",
-      "aliases": ["几何数列通项"],
+      "aliases": [
+        "几何数列通项"
+      ],
       "latex": "a_n = a_1 q^{n - 1}",
       "statement": "相邻两项之比恒为非零常数 q 的数列，第 n 项按公比呈指数级增长或衰减。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["sequences_binomial"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "sequences_binomial"
+        ]
       },
       "variables": [
-        { "symbol": "q", "name": "公比", "math_type": "constant", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "q",
+          "name": "公比",
+          "math_type": "constant",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["a1 ≠ 0 且 q ≠ 0；n ∈ Z⁺"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 4.3.1", "sympy_verified": true }
+      "conditions": [
+        "a1 ≠ 0 且 q ≠ 0；n ∈ Z⁺"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 4.3.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.seq.geom_sum",
+      "node_kind": "formula",
       "name": "等比数列前 n 项和公式",
-      "aliases": ["错位相减求和基准"],
+      "aliases": [
+        "错位相减求和基准"
+      ],
       "latex": "S_n = \\frac{a_1(1 - q^n)}{1 - q}\\quad (q \\neq 1)",
       "statement": "公比不为 1 的等比数列前 n 项和由错位相减法求得；当 |q| < 1 且 n → ∞ 时收敛为 a1/(1-q)。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["sequences_binomial"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "sequences_binomial"
+        ]
       },
       "variables": [
-        { "symbol": "S_n", "name": "前 n 项和", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "S_n",
+          "name": "前 n 项和",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["q ≠ 1 时用分式；q = 1 时必须单独记为 S_n = n a_1"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 4.3.2", "sympy_verified": true }
+      "conditions": [
+        "q ≠ 1 时用分式；q = 1 时必须单独记为 S_n = n a_1"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 4.3.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.seq.sum_to_term",
+      "node_kind": "formula",
       "name": "前 n 项和与通项差分关系",
-      "aliases": ["Sn 求 an 公式"],
+      "aliases": [
+        "Sn 求 an 公式"
+      ],
       "latex": "a_n = S_n - S_{n - 1}\\quad (n \\ge 2),\\quad a_1 = S_1",
       "statement": "已知任意数列前 n 项和表达式时，相邻两项和作差即可还原第 n 项，是微积分基本定理的离散版本。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["sequences_binomial"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "sequences_binomial"
+        ]
       },
       "variables": [
-        { "symbol": "a_n, S_n", "name": "通项与前 n 项和", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a_n, S_n",
+          "name": "通项与前 n 项和",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["n ≥ 2 时差分有效；务必单独检验 n = 1 是否满足通项式"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 4.1", "sympy_verified": true }
+      "conditions": [
+        "n ≥ 2 时差分有效；务必单独检验 n = 1 是否满足通项式"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 4.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.alg.binomial_theorem",
+      "node_kind": "theorem",
       "name": "二项式定理",
-      "aliases": ["牛顿二项式展开"],
+      "aliases": [
+        "牛顿二项式展开"
+      ],
       "latex": "(a + b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n - k} b^k",
       "statement": "将两项和的 n 次幂展开为 n+1 项组合数加权多项式，连接代数多项式、组合计数与概率二项分布。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["sequences_binomial"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "sequences_binomial"
+        ]
       },
       "variables": [
-        { "symbol": "n", "name": "正整数幂次", "math_type": "constant", "domain": "\\mathbb{Z}^+", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "n",
+          "name": "正整数幂次",
+          "math_type": "constant",
+          "domain": "\\mathbb{Z}^+",
+          "quantity_kind": "count",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["n ∈ Z⁺；第 k+1 项通项为 T_{k+1} = C(n,k) a^{n-k} b^k"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第三册 6.3.1", "sympy_verified": true }
+      "conditions": [
+        "n ∈ Z⁺；第 k+1 项通项为 T_{k+1} = C(n,k) a^{n-k} b^k"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第三册 6.3.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.distance_2d",
+      "node_kind": "formula",
       "name": "平面两点间距离公式",
-      "aliases": ["解析几何欧氏距离"],
+      "aliases": [
+        "解析几何欧氏距离"
+      ],
       "latex": "|P_1 P_2| = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}",
       "statement": "直角坐标系中任意两点间的直线距离等于横纵坐标差的平方和开方，是勾股定理的坐标化表达。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "(x_1,y_1),(x_2,y_2)", "name": "两点直角坐标", "math_type": "scalar", "domain": "\\mathbb{R}^2", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "(x_1,y_1),(x_2,y_2)",
+          "name": "两点直角坐标",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}^2",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["平面直角坐标系"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 2.3.2", "sympy_verified": true }
+      "conditions": [
+        "平面直角坐标系"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 2.3.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.line_slope",
+      "node_kind": "formula",
       "name": "直线斜率与点斜式方程",
-      "aliases": ["直线点斜式"],
+      "aliases": [
+        "直线点斜式"
+      ],
       "latex": "y - y_0 = k(x - x_0),\\quad k = \\frac{y_2 - y_1}{x_2 - x_1} = \\tan\\alpha",
       "statement": "用倾斜角正切值（斜率 k）和过定点 (x0, y0) 唯一确定一条非竖直直线。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "k", "name": "直线斜率", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "\\alpha", "name": "倾斜角", "math_type": "angle", "domain": "[0, \\pi) \\setminus \\{\\pi/2\\}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "k",
+          "name": "直线斜率",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "\\alpha",
+          "name": "倾斜角",
+          "math_type": "angle",
+          "domain": "[0, \\pi) \\setminus \\{\\pi/2\\}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["要求直线不垂直于 x 轴（x1 ≠ x2，α ≠ π/2）；竖直直线方程为 x = x0"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 2.2.1", "sympy_verified": true }
+      "conditions": [
+        "要求直线不垂直于 x 轴（x1 ≠ x2，α ≠ π/2）；竖直直线方程为 x = x0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 2.2.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.point_to_line",
+      "node_kind": "formula",
       "name": "点到直线距离公式",
-      "aliases": ["垂线段距离公式"],
+      "aliases": [
+        "垂线段距离公式"
+      ],
       "latex": "d = \\frac{|A x_0 + B y_0 + C|}{\\sqrt{A^2 + B^2}}",
       "statement": "点 (x0, y0) 到一般式直线 Ax + By + C = 0 的最短距离，在判断直线与圆相切和求三角形高时高频使用。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "A, B, C", "name": "直线一般式系数", "math_type": "constant", "domain": "A^2 + B^2 > 0", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "A, B, C",
+          "name": "直线一般式系数",
+          "math_type": "constant",
+          "domain": "A^2 + B^2 > 0",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["直线方程必须先化为一般式 Ax + By + C = 0，且 A、B 不同时为 0"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 2.3.3", "sympy_verified": true }
+      "conditions": [
+        "直线方程必须先化为一般式 Ax + By + C = 0，且 A、B 不同时为 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 2.3.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.circle_std",
+      "node_kind": "formula",
       "name": "圆的标准方程",
-      "aliases": ["圆心半径式方程"],
+      "aliases": [
+        "圆心半径式方程"
+      ],
       "latex": "(x - a)^2 + (y - b)^2 = r^2",
       "statement": "平面内到定点圆心 (a, b) 距离恒等于定长半径 r 的点轨迹方程。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "(a, b)", "name": "圆心坐标", "math_type": "constant", "domain": "\\mathbb{R}^2", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "r", "name": "圆半径", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": "length", "dimension": "L", "si_unit": "m" }
+        {
+          "symbol": "(a, b)",
+          "name": "圆心坐标",
+          "math_type": "constant",
+          "domain": "\\mathbb{R}^2",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "r",
+          "name": "圆半径",
+          "math_type": "constant",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "length",
+          "dimension": "L",
+          "si_unit": "m"
+        }
       ],
-      "conditions": ["r > 0"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 2.4.1", "sympy_verified": true }
+      "conditions": [
+        "r > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 2.4.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.ellipse_std",
+      "node_kind": "formula",
       "name": "椭圆标准方程",
-      "aliases": ["焦点在 x 轴椭圆"],
+      "aliases": [
+        "焦点在 x 轴椭圆"
+      ],
       "latex": "\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1\\quad (a > b > 0,\\ c^2 = a^2 - b^2)",
       "statement": "平面内到两焦点 F1、F2 距离之和恒等于定值 2a（大于焦距 2c）的点轨迹方程。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "a, b, c", "name": "长半轴、短半轴与半焦距", "math_type": "constant", "domain": "a > b > 0,\\ c > 0", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a, b, c",
+          "name": "长半轴、短半轴与半焦距",
+          "math_type": "constant",
+          "domain": "a > b > 0,\\ c > 0",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["a > b > 0，焦点在 x 轴上 (±c, 0)，满足 a² = b² + c²"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 3.1.1", "sympy_verified": true }
+      "conditions": [
+        "a > b > 0，焦点在 x 轴上 (±c, 0)，满足 a² = b² + c²"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 3.1.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.hyperbola_std",
+      "node_kind": "formula",
       "name": "双曲线标准方程",
-      "aliases": ["焦点在 x 轴双曲线"],
+      "aliases": [
+        "焦点在 x 轴双曲线"
+      ],
       "latex": "\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1\\quad (a > 0,\\ b > 0,\\ c^2 = a^2 + b^2)",
       "statement": "平面内到两焦点距离之差的绝对值恒等于定值 2a（小于焦距 2c）的点轨迹方程。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "a, b, c", "name": "实半轴、虚半轴与半焦距", "math_type": "constant", "domain": "a > 0,\\ b > 0,\\ c > a", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a, b, c",
+          "name": "实半轴、虚半轴与半焦距",
+          "math_type": "constant",
+          "domain": "a > 0,\\ b > 0,\\ c > a",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["c² = a² + b²（注意与椭圆关系相反，双曲线中 c 最大）"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 3.2.1", "sympy_verified": true }
+      "conditions": [
+        "c² = a² + b²（注意与椭圆关系相反，双曲线中 c 最大）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 3.2.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.conic_eccentricity",
+      "node_kind": "formula",
       "name": "圆锥曲线离心率公式",
-      "aliases": ["椭圆/双曲线扁平度参数 e"],
+      "aliases": [
+        "椭圆/双曲线扁平度参数 e"
+      ],
       "latex": "e = \\frac{c}{a}",
       "statement": "半焦距与长半轴（或实半轴）之比，统一刻画圆锥曲线的几何形状：椭圆 0 < e < 1，抛物线 e = 1，双曲线 e > 1。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "e", "name": "离心率", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "ratio", "dimension": "1", "si_unit": "1" }
+        {
+          "symbol": "e",
+          "name": "离心率",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "ratio",
+          "dimension": "1",
+          "si_unit": "1"
+        }
       ],
-      "conditions": ["椭圆 e = √(1 - b²/a²) ∈ (0,1)；双曲线 e = √(1 + b²/a²) > 1"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 3.1.2", "sympy_verified": true }
+      "conditions": [
+        "椭圆 e = √(1 - b²/a²) ∈ (0,1)；双曲线 e = √(1 + b²/a²) > 1"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 3.1.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.hyperbola_asymptote",
+      "node_kind": "formula",
       "name": "双曲线渐近线方程",
-      "aliases": ["双曲线无穷远趋近直线"],
+      "aliases": [
+        "双曲线无穷远趋近直线"
+      ],
       "latex": "y = \\pm \\frac{b}{a} x",
       "statement": "当点沿双曲线趋向无穷远时，曲线无限逼近却永不相交的两条过原点直线，决定双曲线开口张角大小。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "b/a", "name": "渐近线斜率", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "b/a",
+          "name": "渐近线斜率",
+          "math_type": "constant",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["对应焦点在 x 轴的双曲线 x²/a² - y²/b² = 1；焦点在 y 轴时为 y = ±(a/b)x"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 3.2.2", "sympy_verified": true }
+      "conditions": [
+        "对应焦点在 x 轴的双曲线 x²/a² - y²/b² = 1；焦点在 y 轴时为 y = ±(a/b)x"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 3.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.parabola_std",
+      "node_kind": "formula",
       "name": "抛物线标准方程与焦半径公式",
-      "aliases": ["向右开口抛物线"],
+      "aliases": [
+        "向右开口抛物线"
+      ],
       "latex": "y^2 = 2 p x\\ (p > 0),\\quad |PF| = x_0 + \\frac{p}{2}",
       "statement": "到定点焦点 (p/2, 0) 与定直线准线 x = -p/2 距离相等的轨迹；焦半径直接化为横坐标加 p/2。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "p", "name": "焦准距（焦点到准线距离）", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "p",
+          "name": "焦准距（焦点到准线距离）",
+          "math_type": "constant",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["p > 0；焦点 F(p/2, 0)，准线 x = -p/2"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第一册 3.3.1", "sympy_verified": true }
+      "conditions": [
+        "p > 0；焦点 F(p/2, 0)，准线 x = -p/2"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第一册 3.3.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.vec_coord",
+      "node_kind": "formula",
       "name": "平面向量坐标表示与模长",
-      "aliases": ["二维向量坐标化"],
+      "aliases": [
+        "二维向量坐标化"
+      ],
       "latex": "\\vec{a} = (x, y),\\quad |\\vec{a}| = \\sqrt{x^2 + y^2}",
       "statement": "在正交基 (i, j) 下用有序实数对表示平面向量，把几何有向线段运算彻底转化为代数坐标运算。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "\\vec{a}", "name": "平面向量", "math_type": "vector", "domain": "\\mathbb{R}^2", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\vec{a}",
+          "name": "平面向量",
+          "math_type": "vector",
+          "domain": "\\mathbb{R}^2",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["平面直角坐标系标准正交基"],
-      "review": { "status": "human_verified", "source": "人教A版必修第二册 6.3.2", "sympy_verified": true }
+      "conditions": [
+        "平面直角坐标系标准正交基"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.3.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.vec_dot_2d",
+      "node_kind": "formula",
       "name": "平面向量数量积坐标公式",
-      "aliases": ["二维向量点乘"],
+      "aliases": [
+        "二维向量点乘"
+      ],
       "latex": "\\vec{a} \\cdot \\vec{b} = x_1 x_2 + y_1 y_2 = |\\vec{a}||\\vec{b}|\\cos\\theta",
       "statement": "二维平面内两向量数量积等于对应坐标乘积之和，可用于直接计算夹角余弦与投影长度。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "\\theta", "name": "两向量夹角", "math_type": "angle", "domain": "[0, \\pi]", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "\\theta",
+          "name": "两向量夹角",
+          "math_type": "angle",
+          "domain": "[0, \\pi]",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["非零向量夹角范围规定为 [0, π]"],
-      "review": { "status": "human_verified", "source": "人教A版必修第二册 6.3.5", "sympy_verified": true }
+      "conditions": [
+        "非零向量夹角范围规定为 [0, π]"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.3.5",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.geo.vec_parallel_perp",
+      "node_kind": "formula",
       "name": "平面向量共线与垂直坐标判定",
-      "aliases": ["向量平行垂直充要条件"],
+      "aliases": [
+        "向量平行垂直充要条件"
+      ],
       "latex": "\\vec{a} \\parallel \\vec{b} \\iff x_1 y_2 - x_2 y_1 = 0;\\quad \\vec{a} \\perp \\vec{b} \\iff x_1 x_2 + y_1 y_2 = 0",
       "statement": "交叉相乘差为零判定两向量共线（平行），对应相乘和为零判定两向量垂直，是解析几何快速列方程的核心工具。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["analytic_geometry"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "analytic_geometry"
+        ]
       },
       "variables": [
-        { "symbol": "\\vec{a}, \\vec{b}", "name": "平面向量", "math_type": "vector", "domain": "\\mathbb{R}^2", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "\\vec{a}, \\vec{b}",
+          "name": "平面向量",
+          "math_type": "vector",
+          "domain": "\\mathbb{R}^2",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["对任意平面向量均成立（无需讨论分母为零）"],
-      "review": { "status": "human_verified", "source": "人教A版必修第二册 6.3.5", "sympy_verified": true }
+      "conditions": [
+        "对任意平面向量均成立（无需讨论分母为零）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第二册 6.3.5",
+        "sympy_verified": true
+      }
     }
   ],
   "derivations": [
     {
       "id": "deriv.seq.arith_term_to_sum",
-      "from_formula_ids": ["math.seq.arith_term"],
+      "from_formula_ids": [
+        "math.seq.arith_term"
+      ],
       "to_formula_id": "math.seq.arith_sum",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["reverse_addition"],
+      "inference_rules": [
+        "reverse_addition"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "采用高斯倒序相加法：将 Sn 正序与倒序写两遍相加，每对首尾之和均为 a1 + an，共 n 对，除以 2 即得。",
         "L2_standard": [
-          { "step": 1, "latex": "2 S_n = (a_1 + a_n) + (a_2 + a_{n-1}) + \\cdots + (a_n + a_1) = n(a_1 + a_n)", "note": "等差性质保证首尾配对和恒相等", "cited_formula_ids": ["math.seq.arith_term"] },
-          { "step": 2, "latex": "S_n = \\frac{n(a_1 + a_n)}{2} = n a_1 + \\frac{n(n-1)}{2} d", "note": "代入通项公式 a_n = a_1 + (n-1)d", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "2 S_n = (a_1 + a_n) + (a_2 + a_{n-1}) + \\cdots + (a_n + a_1) = n(a_1 + a_n)",
+            "note": "等差性质保证首尾配对和恒相等",
+            "cited_formula_ids": [
+              "math.seq.arith_term"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "S_n = \\frac{n(a_1 + a_n)}{2} = n a_1 + \\frac{n(n-1)}{2} d",
+            "note": "代入通项公式 a_n = a_1 + (n-1)d",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "S_n = \\frac{d}{2} n^2 + \\left(a_1 - \\frac{d}{2}\\right) n", "note": "若某数列前 n 项和 Sn = An² + Bn + C 含非零常数项 C，则从第 2 项起成等差，整体不是等差数列", "cited_formula_ids": ["math.seq.arith_term"], "pitfall": "判断等差数列前 n 项和时，务必检查常数项是否为 0。" }
+          {
+            "step": 1,
+            "latex": "S_n = \\frac{d}{2} n^2 + \\left(a_1 - \\frac{d}{2}\\right) n",
+            "note": "若某数列前 n 项和 Sn = An² + Bn + C 含非零常数项 C，则从第 2 项起成等差，整体不是等差数列",
+            "cited_formula_ids": [
+              "math.seq.arith_term"
+            ],
+            "pitfall": "判断等差数列前 n 项和时，务必检查常数项是否为 0。"
+          }
         ]
       }
     },
     {
       "id": "deriv.seq.geom_term_to_sum",
-      "from_formula_ids": ["math.seq.geom_term"],
+      "from_formula_ids": [
+        "math.seq.geom_term"
+      ],
       "to_formula_id": "math.seq.geom_sum",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["shifted_subtraction"],
+      "inference_rules": [
+        "shifted_subtraction"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "用错位相减法：将 Sn 两边同乘公比 q 后与原式相减，中间项全部抵消得 (1-q)Sn = a1(1-q^n)。",
         "L2_standard": [
-          { "step": 1, "latex": "S_n - q S_n = (a_1 + a_1 q + \\cdots + a_1 q^{n-1}) - (a_1 q + \\cdots + a_1 q^n) = a_1(1 - q^n)", "note": "两边同乘 q 后错位相减", "cited_formula_ids": ["math.seq.geom_term"] },
-          { "step": 2, "latex": "S_n = \\frac{a_1(1 - q^n)}{1 - q}\\quad (q \\neq 1)", "note": "除以非零因子 (1 - q)", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "S_n - q S_n = (a_1 + a_1 q + \\cdots + a_1 q^{n-1}) - (a_1 q + \\cdots + a_1 q^n) = a_1(1 - q^n)",
+            "note": "两边同乘 q 后错位相减",
+            "cited_formula_ids": [
+              "math.seq.geom_term"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "S_n = \\frac{a_1(1 - q^n)}{1 - q}\\quad (q \\neq 1)",
+            "note": "除以非零因子 (1 - q)",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "S_n = \\frac{a_1(1 - q^n)}{1 - q}", "note": "当 |q| < 1 时取 n → ∞ 得无穷等比级数和 a1/(1-q)", "cited_formula_ids": ["math.seq.geom_term"], "pitfall": "若题目中公比 q 为未知字母，解题时必须分 q = 1 与 q ≠ 1 两种情况讨论！" }
+          {
+            "step": 1,
+            "latex": "S_n = \\frac{a_1(1 - q^n)}{1 - q}",
+            "note": "当 |q| < 1 时取 n → ∞ 得无穷等比级数和 a1/(1-q)",
+            "cited_formula_ids": [
+              "math.seq.geom_term"
+            ],
+            "pitfall": "若题目中公比 q 为未知字母，解题时必须分 q = 1 与 q ≠ 1 两种情况讨论！"
+          }
         ]
       }
     },
     {
       "id": "deriv.seq.sums_to_diff",
-      "from_formula_ids": ["math.seq.arith_sum", "math.seq.geom_sum"],
+      "from_formula_ids": [
+        "math.seq.arith_sum",
+        "math.seq.geom_sum"
+      ],
       "to_formula_id": "math.seq.sum_to_term",
       "relation_type": "generalizes",
       "dependency_site": "definition_level",
-      "inference_rules": ["telescoping_difference"],
+      "inference_rules": [
+        "telescoping_difference"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由前 n 项和定义 S_n = S_{n-1} + a_n 移项立得任意数列的差分还原公式 a_n = S_n - S_{n-1} (n ≥ 2)。",
         "L2_standard": [
-          { "step": 1, "latex": "S_n = a_1 + \\cdots + a_{n-1} + a_n = S_{n-1} + a_n \\implies a_n = S_n - S_{n-1}\\ (n \\ge 2)", "note": "利用前 n 项和定义移项", "cited_formula_ids": ["math.seq.arith_sum", "math.seq.geom_sum"] }
+          {
+            "step": 1,
+            "latex": "S_n = a_1 + \\cdots + a_{n-1} + a_n = S_{n-1} + a_n \\implies a_n = S_n - S_{n-1}\\ (n \\ge 2)",
+            "note": "利用前 n 项和定义移项",
+            "cited_formula_ids": [
+              "math.seq.arith_sum",
+              "math.seq.geom_sum"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "a_1 = S_1,\\quad a_n = S_n - S_{n-1}\\ (n \\ge 2)", "note": "若把 n = 1 代入差分式恰好等于 S1 才可合并为一个统一通项，否则必须写成分段函数", "cited_formula_ids": ["math.seq.arith_sum", "math.seq.geom_sum"], "pitfall": "最常见丢分点：直接用 S_n - S_{n-1} 而不验证 n = 1 是否成立。" }
+          {
+            "step": 1,
+            "latex": "a_1 = S_1,\\quad a_n = S_n - S_{n-1}\\ (n \\ge 2)",
+            "note": "若把 n = 1 代入差分式恰好等于 S1 才可合并为一个统一通项，否则必须写成分段函数",
+            "cited_formula_ids": [
+              "math.seq.arith_sum",
+              "math.seq.geom_sum"
+            ],
+            "pitfall": "最常见丢分点：直接用 S_n - S_{n-1} 而不验证 n = 1 是否成立。"
+          }
         ]
       }
     },
     {
       "id": "deriv.seq.geom_to_binom",
-      "from_formula_ids": ["math.seq.geom_term"],
+      "from_formula_ids": [
+        "math.seq.geom_term"
+      ],
       "to_formula_id": "math.alg.binomial_theorem",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["combinatorial_expansion"],
+      "inference_rules": [
+        "combinatorial_expansion"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将 (a+b)^n 写作 n 个 (a+b) 连乘，每个括号选 a 或选 b，恰选 k 个 b 的方案数为组合数 C(n,k)，汇总各项即得。",
         "L2_standard": [
-          { "step": 1, "latex": "(a + b)^n = \\underbrace{(a+b)(a+b)\\cdots(a+b)}_{n\\text{ 个}}", "note": "展开后每一项形如 a^{n-k} b^k", "cited_formula_ids": ["math.seq.geom_term"] },
-          { "step": 2, "latex": "(a + b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k", "note": "从 n 个因式中选 k 个取 b 共有 C(n,k) 种方式", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "(a + b)^n = \\underbrace{(a+b)(a+b)\\cdots(a+b)}_{n\\text{ 个}}",
+            "note": "展开后每一项形如 a^{n-k} b^k",
+            "cited_formula_ids": [
+              "math.seq.geom_term"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(a + b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k",
+            "note": "从 n 个因式中选 k 个取 b 共有 C(n,k) 种方式",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "(1 + 1)^n = \\sum_{k=0}^{n} \\binom{n}{k} = 2^n", "note": "令 a=b=1 立得组合数总和为等比数列 2^n，令 a=1, b=-1 得奇偶项系数和相等", "cited_formula_ids": ["math.seq.geom_term"], "pitfall": "区分“第 k+1 项的二项式系数 C(n,k)”与“该项的完整系数（含 a、b 的数字因子）”。" }
+          {
+            "step": 1,
+            "latex": "(1 + 1)^n = \\sum_{k=0}^{n} \\binom{n}{k} = 2^n",
+            "note": "令 a=b=1 立得组合数总和为等比数列 2^n，令 a=1, b=-1 得奇偶项系数和相等",
+            "cited_formula_ids": [
+              "math.seq.geom_term"
+            ],
+            "pitfall": "区分“第 k+1 项的二项式系数 C(n,k)”与“该项的完整系数（含 a、b 的数字因子）”。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.arith_to_slope",
-      "from_formula_ids": ["math.seq.arith_term", "math.geo.distance_2d"],
+      "from_formula_ids": [
+        "math.seq.arith_term",
+        "math.geo.distance_2d"
+      ],
       "to_formula_id": "math.geo.line_slope",
       "relation_type": "generalizes",
       "dependency_site": "definition_level",
-      "inference_rules": ["constant_rate_of_change"],
+      "inference_rules": [
+        "constant_rate_of_change"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "等差数列每增加 1 项函数值恒增公差 d；推广到实数平面上任意两点增量比恒为常数 k，即得直线斜率与点斜式。",
         "L2_standard": [
-          { "step": 1, "latex": "\\frac{y - y_0}{x - x_0} = k = \\frac{y_2 - y_1}{x_2 - x_1} \\implies y - y_0 = k(x - x_0)", "note": "由斜率不变性整理为点斜式方程", "cited_formula_ids": ["math.seq.arith_term", "math.geo.distance_2d"] }
+          {
+            "step": 1,
+            "latex": "\\frac{y - y_0}{x - x_0} = k = \\frac{y_2 - y_1}{x_2 - x_1} \\implies y - y_0 = k(x - x_0)",
+            "note": "由斜率不变性整理为点斜式方程",
+            "cited_formula_ids": [
+              "math.seq.arith_term",
+              "math.geo.distance_2d"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "y - y_0 = k(x - x_0)", "note": "当 x0 = 0 时化为斜截式 y = kx + b", "cited_formula_ids": ["math.seq.arith_term", "math.geo.distance_2d"], "pitfall": "设直线方程用点斜式时，务必单独检验斜率不存在（竖直直线 x = x0）的情形是否漏解。" }
+          {
+            "step": 1,
+            "latex": "y - y_0 = k(x - x_0)",
+            "note": "当 x0 = 0 时化为斜截式 y = kx + b",
+            "cited_formula_ids": [
+              "math.seq.arith_term",
+              "math.geo.distance_2d"
+            ],
+            "pitfall": "设直线方程用点斜式时，务必单独检验斜率不存在（竖直直线 x = x0）的情形是否漏解。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.slope_dist_to_ptline",
-      "from_formula_ids": ["math.geo.distance_2d", "math.geo.line_slope"],
+      "from_formula_ids": [
+        "math.geo.distance_2d",
+        "math.geo.line_slope"
+      ],
       "to_formula_id": "math.geo.point_to_line",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["perpendicular_foot_distance"],
+      "inference_rules": [
+        "perpendicular_foot_distance"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "过点 (x0,y0) 作垂线与 Ax+By+C=0 联立求垂足坐标，再代入两点距离公式化简即得 |Ax0+By0+C|/√(A²+B²)。",
         "L2_standard": [
-          { "step": 1, "latex": "\\vec{n} = (A, B),\\quad d = \\frac{|\\vec{P_0 Q} \\cdot \\vec{n}|}{|\\vec{n}|}", "note": "将任意直线上点 Q 到 P0 的向量沿法向量 (A,B) 投影", "cited_formula_ids": ["math.geo.line_slope"] },
-          { "step": 2, "latex": "d = \\frac{|A(x_0 - x_Q) + B(y_0 - y_Q)|}{\\sqrt{A^2 + B^2}} = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^2 + B^2}}", "note": "利用 AxQ + ByQ = -C 化简分子", "cited_formula_ids": ["math.geo.distance_2d"] }
+          {
+            "step": 1,
+            "latex": "\\vec{n} = (A, B),\\quad d = \\frac{|\\vec{P_0 Q} \\cdot \\vec{n}|}{|\\vec{n}|}",
+            "note": "将任意直线上点 Q 到 P0 的向量沿法向量 (A,B) 投影",
+            "cited_formula_ids": [
+              "math.geo.line_slope"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "d = \\frac{|A(x_0 - x_Q) + B(y_0 - y_Q)|}{\\sqrt{A^2 + B^2}} = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^2 + B^2}}",
+            "note": "利用 AxQ + ByQ = -C 化简分子",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "d = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^2 + B^2}}", "note": "同理两平行直线 Ax+By+C1=0 与 Ax+By+C2=0 间距为 |C1-C2|/√(A²+B²)", "cited_formula_ids": ["math.geo.distance_2d", "math.geo.line_slope"], "pitfall": "求两平行线距离时必须先统一两式 x、y 的系数 A 和 B。" }
+          {
+            "step": 1,
+            "latex": "d = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^2 + B^2}}",
+            "note": "同理两平行直线 Ax+By+C1=0 与 Ax+By+C2=0 间距为 |C1-C2|/√(A²+B²)",
+            "cited_formula_ids": [
+              "math.geo.distance_2d",
+              "math.geo.line_slope"
+            ],
+            "pitfall": "求两平行线距离时必须先统一两式 x、y 的系数 A 和 B。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.dist_to_circle",
-      "from_formula_ids": ["math.geo.distance_2d"],
+      "from_formula_ids": [
+        "math.geo.distance_2d"
+      ],
       "to_formula_id": "math.geo.circle_std",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["locus_squaring"],
+      "inference_rules": [
+        "locus_squaring"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由圆定义 √[(x-a)² + (y-b)²] = r 两边平方直接得到圆的标准方程。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sqrt{(x - a)^2 + (y - b)^2} = r \\implies (x - a)^2 + (y - b)^2 = r^2", "note": "代入两点距离公式并平方去根号", "cited_formula_ids": ["math.geo.distance_2d"] }
+          {
+            "step": 1,
+            "latex": "\\sqrt{(x - a)^2 + (y - b)^2} = r \\implies (x - a)^2 + (y - b)^2 = r^2",
+            "note": "代入两点距离公式并平方去根号",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "(x - a)^2 + (y - b)^2 = r^2", "note": "一般式 x² + y² + Dx + Ey + F = 0 表示圆的充要条件是 D² + E² - 4F > 0", "cited_formula_ids": ["math.geo.distance_2d"], "pitfall": "看到方程右边常数项时别忘开平方才是半径 r。" }
+          {
+            "step": 1,
+            "latex": "(x - a)^2 + (y - b)^2 = r^2",
+            "note": "一般式 x² + y² + Dx + Ey + F = 0 表示圆的充要条件是 D² + E² - 4F > 0",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ],
+            "pitfall": "看到方程右边常数项时别忘开平方才是半径 r。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.dist_to_ellipse",
-      "from_formula_ids": ["math.geo.distance_2d"],
+      "from_formula_ids": [
+        "math.geo.distance_2d"
+      ],
       "to_formula_id": "math.geo.ellipse_std",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["double_squaring_elimination"],
+      "inference_rules": [
+        "double_squaring_elimination"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将 |PF1| + |PF2| = 2a 用两点距离公式写出，移项后两次平方消去根号，并令 b² = a² - c² 整理即得。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sqrt{(x+c)^2 + y^2} + \\sqrt{(x-c)^2 + y^2} = 2a", "note": "以两焦点 (±c, 0) 写出轨迹距离和条件", "cited_formula_ids": ["math.geo.distance_2d"] },
-          { "step": 2, "latex": "(a^2 - c^2)x^2 + a^2 y^2 = a^2(a^2 - c^2) \\xrightarrow{b^2 = a^2 - c^2} \\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1", "note": "移项两次平方并除以 a²b²", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\sqrt{(x+c)^2 + y^2} + \\sqrt{(x-c)^2 + y^2} = 2a",
+            "note": "以两焦点 (±c, 0) 写出轨迹距离和条件",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(a^2 - c^2)x^2 + a^2 y^2 = a^2(a^2 - c^2) \\xrightarrow{b^2 = a^2 - c^2} \\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1",
+            "note": "移项两次平方并除以 a²b²",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1\\ (a > b > 0)", "note": "谁的分母大，椭圆的焦点就在哪条坐标轴上", "cited_formula_ids": ["math.geo.distance_2d"], "pitfall": "务必区分椭圆的 a² = b² + c² 与双曲线的 c² = a² + b²。" }
+          {
+            "step": 1,
+            "latex": "\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1\\ (a > b > 0)",
+            "note": "谁的分母大，椭圆的焦点就在哪条坐标轴上",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ],
+            "pitfall": "务必区分椭圆的 a² = b² + c² 与双曲线的 c² = a² + b²。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.dist_to_hyperbola",
-      "from_formula_ids": ["math.geo.distance_2d"],
+      "from_formula_ids": [
+        "math.geo.distance_2d"
+      ],
       "to_formula_id": "math.geo.hyperbola_std",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["double_squaring_elimination"],
+      "inference_rules": [
+        "double_squaring_elimination"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将 ||PF1| - |PF2|| = 2a 用两点距离公式写出，两次平方去根号并令 b² = c² - a² 即得双曲线标准方程。",
         "L2_standard": [
-          { "step": 1, "latex": "\\left|\\sqrt{(x+c)^2 + y^2} - \\sqrt{(x-c)^2 + y^2}\\right| = 2a", "note": "写出到两焦点距离之差的绝对值为 2a", "cited_formula_ids": ["math.geo.distance_2d"] },
-          { "step": 2, "latex": "(c^2 - a^2)x^2 - a^2 y^2 = a^2(c^2 - a^2) \\xrightarrow{b^2 = c^2 - a^2} \\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1", "note": "两次平方化简并除以 a²b²", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\left|\\sqrt{(x+c)^2 + y^2} - \\sqrt{(x-c)^2 + y^2}\\right| = 2a",
+            "note": "写出到两焦点距离之差的绝对值为 2a",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(c^2 - a^2)x^2 - a^2 y^2 = a^2(c^2 - a^2) \\xrightarrow{b^2 = c^2 - a^2} \\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1",
+            "note": "两次平方化简并除以 a²b²",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1", "note": "双曲线焦点位置不看分母大小，而看 x² 与 y² 哪一项系数为正", "cited_formula_ids": ["math.geo.distance_2d"], "pitfall": "若题目去掉绝对值仅写 |PF1| - |PF2| = 2a，则轨迹只是双曲线的右支而非整条双曲线。" }
+          {
+            "step": 1,
+            "latex": "\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1",
+            "note": "双曲线焦点位置不看分母大小，而看 x² 与 y² 哪一项系数为正",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ],
+            "pitfall": "若题目去掉绝对值仅写 |PF1| - |PF2| = 2a，则轨迹只是双曲线的右支而非整条双曲线。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.conic_to_ecc",
-      "from_formula_ids": ["math.geo.ellipse_std", "math.geo.hyperbola_std"],
+      "from_formula_ids": [
+        "math.geo.ellipse_std",
+        "math.geo.hyperbola_std"
+      ],
       "to_formula_id": "math.geo.conic_eccentricity",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["dimensionless_shape_ratio"],
+      "inference_rules": [
+        "dimensionless_shape_ratio"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由椭圆 a > c 得 e = c/a ∈ (0,1)，由双曲线 c > a 得 e = c/a > 1，统一刻画两类曲线的几何形态。",
         "L2_standard": [
-          { "step": 1, "latex": "e_{\\text{椭圆}} = \\frac{c}{a} = \\sqrt{1 - \\frac{b^2}{a^2}} \\in (0, 1),\\quad e_{\\text{双曲线}} = \\frac{c}{a} = \\sqrt{1 + \\frac{b^2}{a^2}} > 1", "note": "分别代入椭圆与双曲线的 a,b,c 关系", "cited_formula_ids": ["math.geo.ellipse_std", "math.geo.hyperbola_std"] }
+          {
+            "step": 1,
+            "latex": "e_{\\text{椭圆}} = \\frac{c}{a} = \\sqrt{1 - \\frac{b^2}{a^2}} \\in (0, 1),\\quad e_{\\text{双曲线}} = \\frac{c}{a} = \\sqrt{1 + \\frac{b^2}{a^2}} > 1",
+            "note": "分别代入椭圆与双曲线的 a,b,c 关系",
+            "cited_formula_ids": [
+              "math.geo.ellipse_std",
+              "math.geo.hyperbola_std"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "e = \\frac{c}{a}", "note": "椭圆 e 越接近 0 越圆、越接近 1 越扁；双曲线 e 越大开口越宽", "cited_formula_ids": ["math.geo.ellipse_std", "math.geo.hyperbola_std"], "pitfall": "双曲线离心率与渐近线斜率满足 e = √(1 + k²)（焦点在 x 轴时）。" }
+          {
+            "step": 1,
+            "latex": "e = \\frac{c}{a}",
+            "note": "椭圆 e 越接近 0 越圆、越接近 1 越扁；双曲线 e 越大开口越宽",
+            "cited_formula_ids": [
+              "math.geo.ellipse_std",
+              "math.geo.hyperbola_std"
+            ],
+            "pitfall": "双曲线离心率与渐近线斜率满足 e = √(1 + k²)（焦点在 x 轴时）。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.hyp_to_asymp",
-      "from_formula_ids": ["math.geo.hyperbola_std"],
+      "from_formula_ids": [
+        "math.geo.hyperbola_std"
+      ],
       "to_formula_id": "math.geo.hyperbola_asymptote",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["asymptotic_limit"],
+      "inference_rules": [
+        "asymptotic_limit"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "解出 y = ±(b/a)x √(1 - a²/x²)，当 |x| → ∞ 时根号趋于 1，即得渐近线 y = ±(b/a)x（速记法：把右端 1 换成 0）。",
         "L2_standard": [
-          { "step": 1, "latex": "y = \\pm \\frac{b}{a} x \\sqrt{1 - \\frac{a^2}{x^2}} \\xrightarrow{|x| \\to \\infty} \\pm \\frac{b}{a} x", "note": "令 |x| 趋于无穷大消去高阶无穷小项", "cited_formula_ids": ["math.geo.hyperbola_std"] }
+          {
+            "step": 1,
+            "latex": "y = \\pm \\frac{b}{a} x \\sqrt{1 - \\frac{a^2}{x^2}} \\xrightarrow{|x| \\to \\infty} \\pm \\frac{b}{a} x",
+            "note": "令 |x| 趋于无穷大消去高阶无穷小项",
+            "cited_formula_ids": [
+              "math.geo.hyperbola_std"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 0 \\iff y = \\pm \\frac{b}{a} x", "note": "共渐近线的双曲线系可直接设为 x²/a² - y²/b² = λ (λ ≠ 0)", "cited_formula_ids": ["math.geo.hyperbola_std"], "pitfall": "焦点在 y 轴时渐近线是 y = ±(a/b)x，直接把方程右边 1 改为 0 最不容易背反。" }
+          {
+            "step": 1,
+            "latex": "\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 0 \\iff y = \\pm \\frac{b}{a} x",
+            "note": "共渐近线的双曲线系可直接设为 x²/a² - y²/b² = λ (λ ≠ 0)",
+            "cited_formula_ids": [
+              "math.geo.hyperbola_std"
+            ],
+            "pitfall": "焦点在 y 轴时渐近线是 y = ±(a/b)x，直接把方程右边 1 改为 0 最不容易背反。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.dist_to_parabola",
-      "from_formula_ids": ["math.geo.distance_2d"],
+      "from_formula_ids": [
+        "math.geo.distance_2d"
+      ],
       "to_formula_id": "math.geo.parabola_std",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["locus_squaring"],
+      "inference_rules": [
+        "locus_squaring"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由抛物线定义“到焦点 (p/2, 0) 距离等于到准线 x = -p/2 距离”列等式并平方化简即得 y² = 2px。",
         "L2_standard": [
-          { "step": 1, "latex": "\\sqrt{\\left(x - \\frac{p}{2}\\right)^2 + y^2} = \\left|x + \\frac{p}{2}\\right|", "note": "焦半径等于到准线的水平距离", "cited_formula_ids": ["math.geo.distance_2d"] },
-          { "step": 2, "latex": "y^2 = 2px,\\quad |PF| = x_0 + \\frac{p}{2}", "note": "两端平方消去 x² 与 p²/4", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\sqrt{\\left(x - \\frac{p}{2}\\right)^2 + y^2} = \\left|x + \\frac{p}{2}\\right|",
+            "note": "焦半径等于到准线的水平距离",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "y^2 = 2px,\\quad |PF| = x_0 + \\frac{p}{2}",
+            "note": "两端平方消去 x² 与 p²/4",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "|PF| = x_0 + \\frac{p}{2}", "note": "求焦点弦长度时立得 |AB| = x1 + x2 + p，极大幅简化解析几何计算", "cited_formula_ids": ["math.geo.distance_2d"], "pitfall": "p 是焦点到准线的距离（非焦点横坐标），焦点坐标是 (p/2, 0)。" }
+          {
+            "step": 1,
+            "latex": "|PF| = x_0 + \\frac{p}{2}",
+            "note": "求焦点弦长度时立得 |AB| = x1 + x2 + p，极大幅简化解析几何计算",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ],
+            "pitfall": "p 是焦点到准线的距离（非焦点横坐标），焦点坐标是 (p/2, 0)。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.dist_to_veccoord",
-      "from_formula_ids": ["math.geo.distance_2d"],
+      "from_formula_ids": [
+        "math.geo.distance_2d"
+      ],
       "to_formula_id": "math.geo.vec_coord",
       "relation_type": "special_case_of",
       "dependency_site": "definition_level",
-      "inference_rules": ["origin_anchored_vector"],
+      "inference_rules": [
+        "origin_anchored_vector"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将向量起点平移到原点 (0,0)，终点坐标即为 (x, y)，代入两点距离公式即得向量模长 √(x² + y²)。",
         "L2_standard": [
-          { "step": 1, "latex": "|\\vec{a}| = \\sqrt{(x - 0)^2 + (y - 0)^2} = \\sqrt{x^2 + y^2}", "note": "由原点到终点的两点距离给出向量模长", "cited_formula_ids": ["math.geo.distance_2d"] }
+          {
+            "step": 1,
+            "latex": "|\\vec{a}| = \\sqrt{(x - 0)^2 + (y - 0)^2} = \\sqrt{x^2 + y^2}",
+            "note": "由原点到终点的两点距离给出向量模长",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\overrightarrow{AB} = (x_B - x_A, y_B - y_A)", "note": "任意有向线段坐标等于终点坐标减起点坐标", "cited_formula_ids": ["math.geo.distance_2d"], "pitfall": "切勿把“终点减起点”写反，否则向量方向完全相反。" }
+          {
+            "step": 1,
+            "latex": "\\overrightarrow{AB} = (x_B - x_A, y_B - y_A)",
+            "note": "任意有向线段坐标等于终点坐标减起点坐标",
+            "cited_formula_ids": [
+              "math.geo.distance_2d"
+            ],
+            "pitfall": "切勿把“终点减起点”写反，否则向量方向完全相反。"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.veccoord_to_dot2d",
-      "from_formula_ids": ["math.geo.vec_coord"],
+      "from_formula_ids": [
+        "math.geo.vec_coord"
+      ],
       "to_formula_id": "math.geo.vec_dot_2d",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["orthonormal_basis_expansion"],
+      "inference_rules": [
+        "orthonormal_basis_expansion"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把两向量写成正交基展开 x1 i + y1 j 与 x2 i + y2 j 相乘，利用 i·i = j·j = 1 及 i·j = 0 即得 x1 x2 + y1 y2。",
         "L2_standard": [
-          { "step": 1, "latex": "\\vec{a}\\cdot\\vec{b} = (x_1\\vec{i} + y_1\\vec{j})\\cdot(x_2\\vec{i} + y_2\\vec{j}) = x_1 x_2 + y_1 y_2", "note": "展开后正交交叉项 i·j 全部为零", "cited_formula_ids": ["math.geo.vec_coord"] }
+          {
+            "step": 1,
+            "latex": "\\vec{a}\\cdot\\vec{b} = (x_1\\vec{i} + y_1\\vec{j})\\cdot(x_2\\vec{i} + y_2\\vec{j}) = x_1 x_2 + y_1 y_2",
+            "note": "展开后正交交叉项 i·j 全部为零",
+            "cited_formula_ids": [
+              "math.geo.vec_coord"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\cos\\theta = \\frac{x_1 x_2 + y_1 y_2}{\\sqrt{x_1^2 + y_1^2}\\sqrt{x_2^2 + y_2^2}}", "note": "立得平面夹角余弦坐标计算公式，也是高维余弦相似度的二维起点", "cited_formula_ids": ["math.geo.vec_coord"], "pitfall": "数量积结果为标量而非向量，且 a·b > 0 包含同向共线（θ = 0），不全是锐角！" }
+          {
+            "step": 1,
+            "latex": "\\cos\\theta = \\frac{x_1 x_2 + y_1 y_2}{\\sqrt{x_1^2 + y_1^2}\\sqrt{x_2^2 + y_2^2}}",
+            "note": "立得平面夹角余弦坐标计算公式，也是高维余弦相似度的二维起点",
+            "cited_formula_ids": [
+              "math.geo.vec_coord"
+            ],
+            "pitfall": "数量积结果为标量而非向量，且 a·b > 0 包含同向共线（θ = 0），不全是锐角！"
+          }
         ]
       }
     },
     {
       "id": "deriv.geo.dot2d_to_paraperp",
-      "from_formula_ids": ["math.geo.vec_dot_2d"],
+      "from_formula_ids": [
+        "math.geo.vec_dot_2d"
+      ],
       "to_formula_id": "math.geo.vec_parallel_perp",
       "relation_type": "special_case_of",
       "dependency_site": "proof_level",
-      "inference_rules": ["special_angle_substitution"],
+      "inference_rules": [
+        "special_angle_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "垂直时夹角 θ = 90° 使 cos θ = 0，立得 x1 x2 + y1 y2 = 0；共线时 b = λa 消去 λ 即得 x1 y2 - x2 y1 = 0。",
         "L2_standard": [
-          { "step": 1, "latex": "\\vec{a}\\perp\\vec{b} \\iff \\vec{a}\\cdot\\vec{b} = 0 \\iff x_1 x_2 + y_1 y_2 = 0", "note": "代入 θ = π/2 于数量积公式", "cited_formula_ids": ["math.geo.vec_dot_2d"] },
-          { "step": 2, "latex": "\\vec{a}\\parallel\\vec{b} \\iff x_1 y_2 - x_2 y_1 = 0", "note": "等价于二阶行列式为零（平行四边形面积为零）", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\vec{a}\\perp\\vec{b} \\iff \\vec{a}\\cdot\\vec{b} = 0 \\iff x_1 x_2 + y_1 y_2 = 0",
+            "note": "代入 θ = π/2 于数量积公式",
+            "cited_formula_ids": [
+              "math.geo.vec_dot_2d"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\vec{a}\\parallel\\vec{b} \\iff x_1 y_2 - x_2 y_1 = 0",
+            "note": "等价于二阶行列式为零（平行四边形面积为零）",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "x_1 y_2 - x_2 y_1 = 0\\ (\\text{平行}),\\quad x_1 x_2 + y_1 y_2 = 0\\ (\\text{垂直})", "note": "记忆口诀：“平行交叉减，垂直对应加”", "cited_formula_ids": ["math.geo.vec_dot_2d"], "pitfall": "切勿将平行与垂直的符号和配对顺序弄混。" }
+          {
+            "step": 1,
+            "latex": "x_1 y_2 - x_2 y_1 = 0\\ (\\text{平行}),\\quad x_1 x_2 + y_1 y_2 = 0\\ (\\text{垂直})",
+            "note": "记忆口诀：“平行交叉减，垂直对应加”",
+            "cited_formula_ids": [
+              "math.geo.vec_dot_2d"
+            ],
+            "pitfall": "切勿将平行与垂直的符号和配对顺序弄混。"
+          }
         ]
       }
     }

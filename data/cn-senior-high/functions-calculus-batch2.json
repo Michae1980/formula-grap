@@ -9,624 +9,1624 @@
   "formulas": [
     {
       "id": "math.func.exp_rules",
+      "node_kind": "law",
       "name": "有理数指数幂运算律",
-      "aliases": ["指数运算法则"],
+      "aliases": [
+        "指数运算法则"
+      ],
       "latex": "a^r \\cdot a^s = a^{r+s},\\quad (a^r)^s = a^{rs}",
       "statement": "同底数幂相乘底数不变指数相加，幂的乘方底数不变指数相乘。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["functions", "exp_log"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "functions",
+          "exp_log"
+        ]
       },
       "variables": [
-        { "symbol": "a", "name": "正实底数", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "r, s", "name": "实数指数", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a",
+          "name": "正实底数",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "r, s",
+          "name": "实数指数",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["底数 a > 0；推广至无理数指数时同样成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 4.1.2", "sympy_verified": true }
+      "conditions": [
+        "底数 a > 0；推广至无理数指数时同样成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 4.1.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.func.log_def",
+      "node_kind": "definition",
       "name": "指对互化定义式",
-      "aliases": ["对数定义式"],
+      "aliases": [
+        "对数定义式"
+      ],
       "latex": "a^x = N \\iff x = \\log_a N",
       "statement": "若 a 的 x 次幂等于 N，则称 x 为以 a 为底 N 的对数，指数与对数互为逆运算。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["functions", "exp_log"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "functions",
+          "exp_log"
+        ]
       },
       "variables": [
-        { "symbol": "a", "name": "底数", "math_type": "scalar", "domain": "(0, 1) \\cup (1, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "N", "name": "真数", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "x", "name": "对数值", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a",
+          "name": "底数",
+          "math_type": "scalar",
+          "domain": "(0, 1) \\cup (1, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "N",
+          "name": "真数",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "x",
+          "name": "对数值",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["a > 0 且 a ≠ 1，真数 N > 0"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 4.3.1", "sympy_verified": true }
+      "conditions": [
+        "a > 0 且 a ≠ 1，真数 N > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 4.3.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.func.log_rules",
+      "node_kind": "law",
       "name": "对数基本运算律",
-      "aliases": ["积商幂的对数法则"],
+      "aliases": [
+        "积商幂的对数法则"
+      ],
       "latex": "\\log_a(MN) = \\log_a M + \\log_a N,\\quad \\log_a M^n = n\\log_a M",
       "statement": "同底对数相加等于真数相乘的对数，真数的幂次可提到对数符号前作系数。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["functions", "exp_log"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "functions",
+          "exp_log"
+        ]
       },
       "variables": [
-        { "symbol": "M, N", "name": "正实真数", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "a", "name": "底数", "math_type": "scalar", "domain": "(0, 1) \\cup (1, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "n", "name": "实指数", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "M, N",
+          "name": "正实真数",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "a",
+          "name": "底数",
+          "math_type": "scalar",
+          "domain": "(0, 1) \\cup (1, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "n",
+          "name": "实指数",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["a > 0, a ≠ 1，且 M > 0, N > 0"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 4.3.2", "sympy_verified": true }
+      "conditions": [
+        "a > 0, a ≠ 1，且 M > 0, N > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 4.3.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.func.log_change_base",
+      "node_kind": "formula",
       "name": "对数换底公式",
-      "aliases": ["换底公式"],
+      "aliases": [
+        "换底公式"
+      ],
       "latex": "\\log_a b = \\frac{\\log_c b}{\\log_c a}",
       "statement": "任意底数的对数均可转化为以新底数 c（常用 10 或自然底数 e）表示的两个对数之商。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["functions", "exp_log"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "functions",
+          "exp_log"
+        ]
       },
       "variables": [
-        { "symbol": "a, c", "name": "原底数与新底数", "math_type": "scalar", "domain": "(0, 1) \\cup (1, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "b", "name": "真数", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a, c",
+          "name": "原底数与新底数",
+          "math_type": "scalar",
+          "domain": "(0, 1) \\cup (1, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "b",
+          "name": "真数",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["a > 0, a ≠ 1；c > 0, c ≠ 1；b > 0"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 4.3.2", "sympy_verified": true }
+      "conditions": [
+        "a > 0, a ≠ 1；c > 0, c ≠ 1；b > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 4.3.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.alg.am_gm",
+      "node_kind": "inequality",
       "name": "基本不等式（均值不等式）",
-      "aliases": ["AM-GM 不等式"],
+      "aliases": [
+        "AM-GM 不等式"
+      ],
       "latex": "\\frac{a + b}{2} \\ge \\sqrt{ab}",
       "statement": "两个正实数的算术平均数不小于它们的几何平均数，当且仅当两数相等时取等号。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["inequalities", "inequalities_props"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "inequalities",
+          "inequalities_props"
+        ]
       },
       "variables": [
-        { "symbol": "a, b", "name": "正实数", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a, b",
+          "name": "正实数",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["一正（a, b > 0）、二定（和或积为定值）、三相等（当且仅当 a = b 时取等）"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 2.2", "sympy_verified": true }
+      "conditions": [
+        "一正（a, b > 0）、二定（和或积为定值）、三相等（当且仅当 a = b 时取等）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.alg.qm_am_gm_hm",
+      "node_kind": "inequality",
       "name": "均值不等式链",
-      "aliases": ["四均值不等式"],
+      "aliases": [
+        "四均值不等式"
+      ],
       "latex": "\\frac{2}{\\frac{1}{a}+\\frac{1}{b}} \\le \\sqrt{ab} \\le \\frac{a+b}{2} \\le \\sqrt{\\frac{a^2+b^2}{2}}",
       "statement": "对任意正实数 a, b，调和平均数 ≤ 几何平均数 ≤ 算术平均数 ≤ 平方平均数。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["inequalities", "inequalities_props"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "inequalities",
+          "inequalities_props"
+        ]
       },
       "variables": [
-        { "symbol": "a, b", "name": "正实数", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a, b",
+          "name": "正实数",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["a > 0, b > 0；各等号均当且仅当 a = b 时成立"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 2.2 拓展", "sympy_verified": true }
+      "conditions": [
+        "a > 0, b > 0；各等号均当且仅当 a = b 时成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 2.2 拓展",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.func.odd_even",
+      "node_kind": "definition",
       "name": "函数奇偶性判定式",
-      "aliases": ["奇函数与偶函数定义"],
+      "aliases": [
+        "奇函数与偶函数定义"
+      ],
       "latex": "f(-x) = f(x)\\ (\\text{偶}),\\quad f(-x) = -f(x)\\ (\\text{奇})",
       "statement": "定义域关于原点对称的函数，若满足 f(-x)=f(x) 为偶函数（关于 y 轴对称），满足 f(-x)=-f(x) 为奇函数（关于原点对称）。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high"],
-        "topics": ["functions", "inequalities_props"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "functions",
+          "inequalities_props"
+        ]
       },
       "variables": [
-        { "symbol": "f", "name": "实值函数", "math_type": "function", "domain": "D\\ (\\text{关于原点对称})", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "x", "name": "自变量", "math_type": "scalar", "domain": "D", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "f",
+          "name": "实值函数",
+          "math_type": "function",
+          "domain": "D\\ (\\text{关于原点对称})",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "D",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["首要前提：定义域 D 必须关于原点对称"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 3.2.2", "sympy_verified": true }
+      "conditions": [
+        "首要前提：定义域 D 必须关于原点对称"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 3.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.func.periodicity",
+      "node_kind": "definition",
       "name": "函数周期性定义式",
-      "aliases": ["周期函数定义"],
+      "aliases": [
+        "周期函数定义"
+      ],
       "latex": "f(x + T) = f(x)\\ (T \\neq 0)",
       "statement": "若存在非零常数 T 使定义域内任意 x 均满足 f(x+T) = f(x)，则 f(x) 为周期函数，T 为其一个周期。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["senior_high"],
-        "topics": ["functions", "inequalities_props"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high"
+        ],
+        "topics": [
+          "functions",
+          "inequalities_props"
+        ]
       },
       "variables": [
-        { "symbol": "T", "name": "周期", "math_type": "constant", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": "period", "dimension": "T", "si_unit": "s" },
-        { "symbol": "x", "name": "自变量", "math_type": "scalar", "domain": "D", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "T",
+          "name": "周期",
+          "math_type": "constant",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": "period",
+          "dimension": "T",
+          "si_unit": "s"
+        },
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "D",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["对定义域内任意 x 均需满足 x + T 仍在定义域内"],
-      "review": { "status": "human_verified", "source": "人教A版必修第一册 5.4.1", "sympy_verified": true }
+      "conditions": [
+        "对定义域内任意 x 均需满足 x + T 仍在定义域内"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版必修第一册 5.4.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.derivative_def",
+      "node_kind": "definition",
       "name": "导数定义式（瞬时变化率）",
-      "aliases": ["函数在一点的导数"],
+      "aliases": [
+        "函数在一点的导数"
+      ],
       "latex": "f'(x_0) = \\lim_{\\Delta x \\to 0} \\frac{f(x_0 + \\Delta x) - f(x_0)}{\\Delta x}",
       "statement": "函数在 x0 处的导数等于平均变化率在自变量增量趋近于 0 时的极限，物理上对应瞬时速度与加速度。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_basics"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_basics"
+        ]
       },
       "variables": [
-        { "symbol": "f'(x_0)", "name": "x0 处导数值", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": "rate_of_change", "dimension": null, "si_unit": null },
-        { "symbol": "\\Delta x", "name": "自变量增量", "math_type": "scalar", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "f'(x_0)",
+          "name": "x0 处导数值",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "rate_of_change",
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "\\Delta x",
+          "name": "自变量增量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["该极限必须存在且有限"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.1.2", "sympy_verified": true }
+      "conditions": [
+        "该极限必须存在且有限"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.1.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.deriv_power",
+      "node_kind": "formula",
       "name": "幂函数求导公式",
-      "aliases": ["幂函数导数"],
+      "aliases": [
+        "幂函数导数"
+      ],
       "latex": "(x^\\alpha)' = \\alpha x^{\\alpha - 1}",
       "statement": "幂函数求导时将原指数提到前面作系数，同时指数减 1。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_basics"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_basics"
+        ]
       },
       "variables": [
-        { "symbol": "x", "name": "自变量", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "\\alpha", "name": "实数指数", "math_type": "constant", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "\\alpha",
+          "name": "实数指数",
+          "math_type": "constant",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["在 x^α 与 x^(α-1) 均有定义的区间上成立；常数导数为 0"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.2.1", "sympy_verified": true }
+      "conditions": [
+        "在 x^α 与 x^(α-1) 均有定义的区间上成立；常数导数为 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.2.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.deriv_exp_log",
+      "node_kind": "formula",
       "name": "自然指对数求导公式",
-      "aliases": ["e^x 与 ln x 导数"],
+      "aliases": [
+        "e^x 与 ln x 导数"
+      ],
       "latex": "(e^x)' = e^x,\\quad (\\ln x)' = \\frac{1}{x}",
       "statement": "自然指数函数 e^x 的导数等于自身，自然对数函数 ln x 的导数为 1/x。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_basics"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_basics"
+        ]
       },
       "variables": [
-        { "symbol": "x", "name": "自变量", "math_type": "scalar", "domain": "\\mathbb{R} / (0,+\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} / (0,+\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["(e^x)' 对任意实数成立；(ln x)' 要求 x > 0"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.2.1", "sympy_verified": true }
+      "conditions": [
+        "(e^x)' 对任意实数成立；(ln x)' 要求 x > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.2.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.deriv_trig",
+      "node_kind": "formula",
       "name": "正余弦函数求导公式",
-      "aliases": ["三角函数基本导数"],
+      "aliases": [
+        "三角函数基本导数"
+      ],
       "latex": "(\\sin x)' = \\cos x,\\quad (\\cos x)' = -\\sin x",
       "statement": "正弦函数求导得余弦函数，余弦函数求导得负正弦函数（自变量须为弧度制）。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_basics"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_basics"
+        ]
       },
       "variables": [
-        { "symbol": "x", "name": "弧度角", "math_type": "angle", "domain": "\\mathbb{R}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+        {
+          "symbol": "x",
+          "name": "弧度角",
+          "math_type": "angle",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": "plane_angle",
+          "dimension": "1",
+          "si_unit": "rad"
+        }
       ],
-      "conditions": ["角 x 必须采用弧度制（rad）"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.2.1", "sympy_verified": true }
+      "conditions": [
+        "角 x 必须采用弧度制（rad）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.2.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.deriv_linear",
+      "node_kind": "formula",
       "name": "导数线性运算法则",
-      "aliases": ["和差与数乘求导法则"],
+      "aliases": [
+        "和差与数乘求导法则"
+      ],
       "latex": "[a f(x) \\pm b g(x)]' = a f'(x) \\pm b g'(x)",
       "statement": "两个可导函数的线性组合的导数，等于各自导数的同系数线性组合。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_rules"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_rules"
+        ]
       },
       "variables": [
-        { "symbol": "f, g", "name": "可导函数", "math_type": "function", "domain": "D", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "a, b", "name": "实常数", "math_type": "constant", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "f, g",
+          "name": "可导函数",
+          "math_type": "function",
+          "domain": "D",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "a, b",
+          "name": "实常数",
+          "math_type": "constant",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["f(x) 与 g(x) 在点 x 处均可导"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.2.2", "sympy_verified": true }
+      "conditions": [
+        "f(x) 与 g(x) 在点 x 处均可导"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.deriv_product",
+      "node_kind": "formula",
       "name": "导数乘法法则（莱布尼茨法则）",
-      "aliases": ["积的求导法则"],
+      "aliases": [
+        "积的求导法则"
+      ],
       "latex": "[f(x)g(x)]' = f'(x)g(x) + f(x)g'(x)",
       "statement": "两个函数乘积的导数等于前导乘后不导加上前不导乘后导。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_rules"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_rules"
+        ]
       },
       "variables": [
-        { "symbol": "f, g", "name": "可导函数", "math_type": "function", "domain": "D", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "f, g",
+          "name": "可导函数",
+          "math_type": "function",
+          "domain": "D",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["f(x) 与 g(x) 在点 x 处均可导"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.2.2", "sympy_verified": true }
+      "conditions": [
+        "f(x) 与 g(x) 在点 x 处均可导"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.deriv_quotient",
+      "node_kind": "formula",
       "name": "导数除法法则",
-      "aliases": ["商的求导法则"],
+      "aliases": [
+        "商的求导法则"
+      ],
       "latex": "\\left[\\frac{f(x)}{g(x)}\\right]' = \\frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}",
       "statement": "两函数之商的导数等于“子导母不导减子不导母导”再除以分母的平方。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_rules"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_rules"
+        ]
       },
       "variables": [
-        { "symbol": "f, g", "name": "可导函数", "math_type": "function", "domain": "D", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "f, g",
+          "name": "可导函数",
+          "math_type": "function",
+          "domain": "D",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["f(x), g(x) 均可导且分母 g(x) ≠ 0"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.2.2", "sympy_verified": true }
+      "conditions": [
+        "f(x), g(x) 均可导且分母 g(x) ≠ 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.chain_rule",
+      "node_kind": "formula",
       "name": "复合函数求导（链式法则）",
-      "aliases": ["链式法则"],
+      "aliases": [
+        "链式法则"
+      ],
       "latex": "[f(g(x))]' = f'(g(x)) \\cdot g'(x)",
       "statement": "复合函数的导数等于外层函数对中间变量的导数乘以内层函数对自变量的导数。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_rules"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_rules"
+        ]
       },
       "variables": [
-        { "symbol": "f, g", "name": "外层与内层可导函数", "math_type": "function", "domain": "D", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "f, g",
+          "name": "外层与内层可导函数",
+          "math_type": "function",
+          "domain": "D",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["u = g(x) 在 x 处可导，且 y = f(u) 在 u = g(x) 处可导"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.2.3", "sympy_verified": true }
+      "conditions": [
+        "u = g(x) 在 x 处可导，且 y = f(u) 在 u = g(x) 处可导"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.2.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.tangent_line",
+      "node_kind": "formula",
       "name": "曲线切线方程",
-      "aliases": ["点斜式切线方程"],
+      "aliases": [
+        "点斜式切线方程"
+      ],
       "latex": "y - f(x_0) = f'(x_0)(x - x_0)",
       "statement": "曲线 y = f(x) 在切点 (x0, f(x0)) 处的切线斜率等于该点导数值 f'(x0)。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_applications"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_applications"
+        ]
       },
       "variables": [
-        { "symbol": "x_0", "name": "切点横坐标", "math_type": "scalar", "domain": "D", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "f'(x_0)", "name": "切线斜率", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "x_0",
+          "name": "切点横坐标",
+          "math_type": "scalar",
+          "domain": "D",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "f'(x_0)",
+          "name": "切线斜率",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["f(x) 在切点 x0 处可导；注意区分“在点 P 处”与“过点 P”的切线"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.1.2", "sympy_verified": true }
+      "conditions": [
+        "f(x) 在切点 x0 处可导；注意区分“在点 P 处”与“过点 P”的切线"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.1.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.monotonicity",
+      "node_kind": "formula",
       "name": "导数与函数单调性判定",
-      "aliases": ["单调性导数判别法"],
+      "aliases": [
+        "单调性导数判别法"
+      ],
       "latex": "f'(x) > 0 \\implies f(x) \\text{ 递增},\\quad f'(x) < 0 \\implies f(x) \\text{ 递减}",
       "statement": "在某区间内，导数恒正推出原函数单调递增，导数恒负推出原函数单调递减。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_applications"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_applications"
+        ]
       },
       "variables": [
-        { "symbol": "f'(x)", "name": "导函数", "math_type": "function", "domain": "(a, b)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "f'(x)",
+          "name": "导函数",
+          "math_type": "function",
+          "domain": "(a, b)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["f(x) 在区间 (a, b) 内可导；反过来递增仅推出 f'(x) ≥ 0"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.3.1", "sympy_verified": true }
+      "conditions": [
+        "f(x) 在区间 (a, b) 内可导；反过来递增仅推出 f'(x) ≥ 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.3.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.extremum_necessary",
+      "node_kind": "theorem",
       "name": "可导函数极值必要条件（费马引理）",
-      "aliases": ["驻点极值条件"],
+      "aliases": [
+        "驻点极值条件"
+      ],
       "latex": "f'(x_0) = 0",
       "statement": "若可导函数在 x0 处取得极值，则必有 f'(x0) = 0；且需结合左右两侧导数变号确认极值。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_applications"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_applications"
+        ]
       },
       "variables": [
-        { "symbol": "x_0", "name": "驻点（极值候选点）", "math_type": "scalar", "domain": "(a, b)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "x_0",
+          "name": "驻点（极值候选点）",
+          "math_type": "scalar",
+          "domain": "(a, b)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["仅为必要条件（如 y = x³ 在 x = 0 处导数为 0 但无极值），需验证导数左右异号"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.3.2", "sympy_verified": true }
+      "conditions": [
+        "仅为必要条件（如 y = x³ 在 x = 0 处导数为 0 但无极值），需验证导数左右异号"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.3.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.calc.deriv_general_exp_log",
+      "node_kind": "formula",
       "name": "一般底数指对数求导公式",
-      "aliases": ["a^x 与 log_a x 导数"],
+      "aliases": [
+        "a^x 与 log_a x 导数"
+      ],
       "latex": "(a^x)' = a^x \\ln a,\\quad (\\log_a x)' = \\frac{1}{x \\ln a}",
       "statement": "任意正底数指数函数与对数函数的导数公式，均可通过换底转化为自然底数 e 后由链式法则推得。",
       "taxonomy": {
-        "disciplines": ["mathematics"],
-        "education_stages": ["senior_high", "undergraduate"],
-        "topics": ["calculus", "derivative_applications"]
+        "disciplines": [
+          "mathematics"
+        ],
+        "education_stages": [
+          "senior_high",
+          "undergraduate"
+        ],
+        "topics": [
+          "calculus",
+          "derivative_applications"
+        ]
       },
       "variables": [
-        { "symbol": "a", "name": "底数", "math_type": "scalar", "domain": "(0, 1) \\cup (1, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "x", "name": "自变量", "math_type": "scalar", "domain": "\\mathbb{R} / (0,+\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a",
+          "name": "底数",
+          "math_type": "scalar",
+          "domain": "(0, 1) \\cup (1, +\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} / (0,+\\infty)",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["a > 0 且 a ≠ 1；对数求导要求 x > 0"],
-      "review": { "status": "human_verified", "source": "人教A版选择性必修第二册 5.2.1", "sympy_verified": true }
+      "conditions": [
+        "a > 0 且 a ≠ 1；对数求导要求 x > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教A版选择性必修第二册 5.2.1",
+        "sympy_verified": true
+      }
     }
   ],
   "derivations": [
     {
       "id": "deriv.func.exp_def_to_log_rules",
-      "from_formula_ids": ["math.func.exp_rules", "math.func.log_def"],
+      "from_formula_ids": [
+        "math.func.exp_rules",
+        "math.func.log_def"
+      ],
       "to_formula_id": "math.func.log_rules",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["exponential_conversion", "exponent_addition"],
+      "inference_rules": [
+        "exponential_conversion",
+        "exponent_addition"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "设 M = a^m、N = a^n，利用同底数幂相乘指数相加得到 MN = a^(m+n)，再转回对数形式即得对数加法法则。",
         "L2_standard": [
-          { "step": 1, "latex": "M = a^m,\\ N = a^n \\iff m = \\log_a M,\\ n = \\log_a N", "note": "由指对互化定义设出指数", "cited_formula_ids": ["math.func.log_def"] },
-          { "step": 2, "latex": "MN = a^m \\cdot a^n = a^{m+n} \\implies \\log_a(MN) = m + n = \\log_a M + \\log_a N", "note": "应用指数运算律后再转回对数", "cited_formula_ids": ["math.func.exp_rules", "math.func.log_def"] }
+          {
+            "step": 1,
+            "latex": "M = a^m,\\ N = a^n \\iff m = \\log_a M,\\ n = \\log_a N",
+            "note": "由指对互化定义设出指数",
+            "cited_formula_ids": [
+              "math.func.log_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "MN = a^m \\cdot a^n = a^{m+n} \\implies \\log_a(MN) = m + n = \\log_a M + \\log_a N",
+            "note": "应用指数运算律后再转回对数",
+            "cited_formula_ids": [
+              "math.func.exp_rules",
+              "math.func.log_def"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "M = a^m,\\ N = a^n \\implies MN = a^{m+n}", "note": "指数运算把乘积转化为指数之和", "cited_formula_ids": ["math.func.exp_rules", "math.func.log_def"] },
-          { "step": 2, "latex": "\\log_a(MN) = m + n = \\log_a M + \\log_a N", "note": "同样令 M^k = (a^m)^k = a^(km) 即证 log_a(M^k) = k log_a M", "cited_formula_ids": ["math.func.log_def"], "pitfall": "切勿混淆为 log_a(M+N) = log_a M + log_a N，真数相加不能拆开。" }
+          {
+            "step": 1,
+            "latex": "M = a^m,\\ N = a^n \\implies MN = a^{m+n}",
+            "note": "指数运算把乘积转化为指数之和",
+            "cited_formula_ids": [
+              "math.func.exp_rules",
+              "math.func.log_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\log_a(MN) = m + n = \\log_a M + \\log_a N",
+            "note": "同样令 M^k = (a^m)^k = a^(km) 即证 log_a(M^k) = k log_a M",
+            "cited_formula_ids": [
+              "math.func.log_def"
+            ],
+            "pitfall": "切勿混淆为 log_a(M+N) = log_a M + log_a N，真数相加不能拆开。"
+          }
         ]
       }
     },
     {
       "id": "deriv.func.def_rules_to_change_base",
-      "from_formula_ids": ["math.func.log_def", "math.func.log_rules"],
+      "from_formula_ids": [
+        "math.func.log_def",
+        "math.func.log_rules"
+      ],
       "to_formula_id": "math.func.log_change_base",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["take_log_both_sides"],
+      "inference_rules": [
+        "take_log_both_sides"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "设 x = log_a b 即 a^x = b，两边同时取以 c 为底的对数并用幂的对数法则解出 x。",
         "L2_standard": [
-          { "step": 1, "latex": "x = \\log_a b \\iff a^x = b", "note": "化为指数式", "cited_formula_ids": ["math.func.log_def"] },
-          { "step": 2, "latex": "\\log_c(a^x) = \\log_c b \\implies x\\log_c a = \\log_c b \\implies x = \\frac{\\log_c b}{\\log_c a}", "note": "两边同取底数 c 的对数并解出 x", "cited_formula_ids": ["math.func.log_rules"] }
+          {
+            "step": 1,
+            "latex": "x = \\log_a b \\iff a^x = b",
+            "note": "化为指数式",
+            "cited_formula_ids": [
+              "math.func.log_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\log_c(a^x) = \\log_c b \\implies x\\log_c a = \\log_c b \\implies x = \\frac{\\log_c b}{\\log_c a}",
+            "note": "两边同取底数 c 的对数并解出 x",
+            "cited_formula_ids": [
+              "math.func.log_rules"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "a^x = b \\implies \\log_c(a^x) = \\log_c b", "note": "因 c > 0, c ≠ 1 且两边真数均为正，取对数保持等价", "cited_formula_ids": ["math.func.log_def"] },
-          { "step": 2, "latex": "x = \\frac{\\log_c b}{\\log_c a}", "note": "因 a ≠ 1 故 log_c a ≠ 0，可直接除以 log_c a；特例得 log_a b · log_b a = 1", "cited_formula_ids": ["math.func.log_rules"], "pitfall": "换底时记住“真数在上、底数在下”，常用自然对数化为 ln b / ln a。" }
+          {
+            "step": 1,
+            "latex": "a^x = b \\implies \\log_c(a^x) = \\log_c b",
+            "note": "因 c > 0, c ≠ 1 且两边真数均为正，取对数保持等价",
+            "cited_formula_ids": [
+              "math.func.log_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "x = \\frac{\\log_c b}{\\log_c a}",
+            "note": "因 a ≠ 1 故 log_c a ≠ 0，可直接除以 log_c a；特例得 log_a b · log_b a = 1",
+            "cited_formula_ids": [
+              "math.func.log_rules"
+            ],
+            "pitfall": "换底时记住“真数在上、底数在下”，常用自然对数化为 ln b / ln a。"
+          }
         ]
       }
     },
     {
       "id": "deriv.alg.am_gm_to_chain",
-      "from_formula_ids": ["math.alg.am_gm"],
+      "from_formula_ids": [
+        "math.alg.am_gm"
+      ],
       "to_formula_id": "math.alg.qm_am_gm_hm",
       "relation_type": "generalizes",
       "dependency_site": "proof_level",
-      "inference_rules": ["variable_substitution", "squaring"],
+      "inference_rules": [
+        "variable_substitution",
+        "squaring"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "对倒数 1/a, 1/b 套用基本不等式可得调和 ≤ 几何；对 (a-b)² ≥ 0 变形可得算术 ≤ 平方。",
         "L2_standard": [
-          { "step": 1, "latex": "\\frac{\\frac{1}{a} + \\frac{1}{b}}{2} \\ge \\sqrt{\\frac{1}{ab}} \\implies \\frac{2}{\\frac{1}{a}+\\frac{1}{b}} \\le \\sqrt{ab}", "note": "对 1/a, 1/b 应用基本不等式并取倒数", "cited_formula_ids": ["math.alg.am_gm"] },
-          { "step": 2, "latex": "\\frac{a^2+b^2}{2} - \\left(\\frac{a+b}{2}\\right)^2 = \\frac{(a-b)^2}{4} \\ge 0 \\implies \\frac{a+b}{2} \\le \\sqrt{\\frac{a^2+b^2}{2}}", "note": "作差配方证明算术平均数 ≤ 平方平均数", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\frac{\\frac{1}{a} + \\frac{1}{b}}{2} \\ge \\sqrt{\\frac{1}{ab}} \\implies \\frac{2}{\\frac{1}{a}+\\frac{1}{b}} \\le \\sqrt{ab}",
+            "note": "对 1/a, 1/b 应用基本不等式并取倒数",
+            "cited_formula_ids": [
+              "math.alg.am_gm"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{a^2+b^2}{2} - \\left(\\frac{a+b}{2}\\right)^2 = \\frac{(a-b)^2}{4} \\ge 0 \\implies \\frac{a+b}{2} \\le \\sqrt{\\frac{a^2+b^2}{2}}",
+            "note": "作差配方证明算术平均数 ≤ 平方平均数",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{2}{\\frac{1}{a}+\\frac{1}{b}} \\le \\sqrt{ab} \\le \\frac{a+b}{2} \\le \\sqrt{\\frac{a^2+b^2}{2}}", "note": "串联三个不等号，构成高中最值放缩的核心链条", "cited_formula_ids": ["math.alg.am_gm"], "pitfall": "连续多次使用均值不等式放缩时，必须确保每一次取等条件能同时满足。" }
+          {
+            "step": 1,
+            "latex": "\\frac{2}{\\frac{1}{a}+\\frac{1}{b}} \\le \\sqrt{ab} \\le \\frac{a+b}{2} \\le \\sqrt{\\frac{a^2+b^2}{2}}",
+            "note": "串联三个不等号，构成高中最值放缩的核心链条",
+            "cited_formula_ids": [
+              "math.alg.am_gm"
+            ],
+            "pitfall": "连续多次使用均值不等式放缩时，必须确保每一次取等条件能同时满足。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.def_to_power",
-      "from_formula_ids": ["math.calc.derivative_def"],
+      "from_formula_ids": [
+        "math.calc.derivative_def"
+      ],
       "to_formula_id": "math.calc.deriv_power",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["binomial_expansion", "take_limit"],
+      "inference_rules": [
+        "binomial_expansion",
+        "take_limit"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "对正整数次幂将 (x+Δx)^n 用二项式展开，消去 x^n 并约去 Δx，令 Δx → 0 仅保留首项 nx^(n-1)。",
         "L2_standard": [
-          { "step": 1, "latex": "\\frac{(x+\\Delta x)^n - x^n}{\\Delta x} = n x^{n-1} + \\binom{n}{2} x^{n-2}\\Delta x + \\cdots + (\\Delta x)^{n-1}", "note": "二项式展开并约去 Δx", "cited_formula_ids": ["math.calc.derivative_def"] },
-          { "step": 2, "latex": "(x^n)' = \\lim_{\\Delta x \\to 0} \\frac{(x+\\Delta x)^n - x^n}{\\Delta x} = n x^{n-1}", "note": "令 Δx → 0，含 Δx 的高阶项全部归零（可进一步推广至实指数 α）", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\frac{(x+\\Delta x)^n - x^n}{\\Delta x} = n x^{n-1} + \\binom{n}{2} x^{n-2}\\Delta x + \\cdots + (\\Delta x)^{n-1}",
+            "note": "二项式展开并约去 Δx",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(x^n)' = \\lim_{\\Delta x \\to 0} \\frac{(x+\\Delta x)^n - x^n}{\\Delta x} = n x^{n-1}",
+            "note": "令 Δx → 0，含 Δx 的高阶项全部归零（可进一步推广至实指数 α）",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "(x^\\alpha)' = \\alpha x^{\\alpha - 1}", "note": "实指数 α 情形可写为 x^α = e^(α ln x) 后用链式法则证明，结论形式完全统一", "cited_formula_ids": ["math.calc.derivative_def"], "pitfall": "根式与分式幂先化为分数/负指数再求导，如 (1/x)' = (x⁻¹)' = -x⁻² = -1/x²。" }
+          {
+            "step": 1,
+            "latex": "(x^\\alpha)' = \\alpha x^{\\alpha - 1}",
+            "note": "实指数 α 情形可写为 x^α = e^(α ln x) 后用链式法则证明，结论形式完全统一",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ],
+            "pitfall": "根式与分式幂先化为分数/负指数再求导，如 (1/x)' = (x⁻¹)' = -x⁻² = -1/x²。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.def_to_exp_log",
-      "from_formula_ids": ["math.calc.derivative_def", "math.func.exp_rules"],
+      "from_formula_ids": [
+        "math.calc.derivative_def",
+        "math.func.exp_rules"
+      ],
       "to_formula_id": "math.calc.deriv_exp_log",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["important_limit"],
+      "inference_rules": [
+        "important_limit"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "代入导数定义式，利用重要极限 lim(e^Δx - 1)/Δx = 1 与 lim ln(1+u)/u = 1 得证。",
         "L2_standard": [
-          { "step": 1, "latex": "(e^x)' = \\lim_{\\Delta x \\to 0} \\frac{e^{x+\\Delta x} - e^x}{\\Delta x} = e^x \\lim_{\\Delta x \\to 0} \\frac{e^{\\Delta x} - 1}{\\Delta x} = e^x", "note": "提出 e^x 并使用自然底数极限性质", "cited_formula_ids": ["math.calc.derivative_def", "math.func.exp_rules"] },
-          { "step": 2, "latex": "(\\ln x)' = \\lim_{\\Delta x \\to 0} \\frac{\\ln(x+\\Delta x) - \\ln x}{\\Delta x} = \\frac{1}{x} \\lim_{u \\to 0} \\frac{\\ln(1+u)}{u} = \\frac{1}{x}", "note": "令 u = Δx/x 化简对数差商极限", "cited_formula_ids": ["math.calc.derivative_def", "math.func.log_rules"] }
+          {
+            "step": 1,
+            "latex": "(e^x)' = \\lim_{\\Delta x \\to 0} \\frac{e^{x+\\Delta x} - e^x}{\\Delta x} = e^x \\lim_{\\Delta x \\to 0} \\frac{e^{\\Delta x} - 1}{\\Delta x} = e^x",
+            "note": "提出 e^x 并使用自然底数极限性质",
+            "cited_formula_ids": [
+              "math.calc.derivative_def",
+              "math.func.exp_rules"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(\\ln x)' = \\lim_{\\Delta x \\to 0} \\frac{\\ln(x+\\Delta x) - \\ln x}{\\Delta x} = \\frac{1}{x} \\lim_{u \\to 0} \\frac{\\ln(1+u)}{u} = \\frac{1}{x}",
+            "note": "令 u = Δx/x 化简对数差商极限",
+            "cited_formula_ids": [
+              "math.calc.derivative_def",
+              "math.func.log_rules"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "(e^x)' = e^x,\\quad (\\ln x)' = \\frac{1}{x}", "note": "自然底数 e 的核心意义即让指数函数导数系数恰好为 1", "cited_formula_ids": ["math.calc.derivative_def", "math.func.exp_rules"], "pitfall": "注意对数导数 1/x 的定义域仍继承自原函数 ln x，要求 x > 0。" }
+          {
+            "step": 1,
+            "latex": "(e^x)' = e^x,\\quad (\\ln x)' = \\frac{1}{x}",
+            "note": "自然底数 e 的核心意义即让指数函数导数系数恰好为 1",
+            "cited_formula_ids": [
+              "math.calc.derivative_def",
+              "math.func.exp_rules"
+            ],
+            "pitfall": "注意对数导数 1/x 的定义域仍继承自原函数 ln x，要求 x > 0。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.def_to_trig",
-      "from_formula_ids": ["math.calc.derivative_def", "math.func.odd_even", "math.func.periodicity"],
+      "from_formula_ids": [
+        "math.calc.derivative_def",
+        "math.func.odd_even",
+        "math.func.periodicity"
+      ],
       "to_formula_id": "math.calc.deriv_trig",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["important_limit", "symmetry_preservation"],
+      "inference_rules": [
+        "important_limit",
+        "symmetry_preservation"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由导数定义结合重要极限 lim(sin h)/h = 1 推出 (sin x)' = cos x；同时体现奇函数求导得偶函数且保持 2π 周期。",
         "L2_standard": [
-          { "step": 1, "latex": "(\\sin x)' = \\lim_{\\Delta x \\to 0} \\frac{\\sin(x+\\Delta x) - \\sin x}{\\Delta x} = \\cos x", "note": "展开 sin(x+Δx) 并代入 lim(sin Δx)/Δx = 1", "cited_formula_ids": ["math.calc.derivative_def"] },
-          { "step": 2, "latex": "(\\cos x)' = -\\sin x", "note": "同理可证余弦求导得负正弦，奇偶性互换而周期 2π 不变", "cited_formula_ids": ["math.func.odd_even", "math.func.periodicity"] }
+          {
+            "step": 1,
+            "latex": "(\\sin x)' = \\lim_{\\Delta x \\to 0} \\frac{\\sin(x+\\Delta x) - \\sin x}{\\Delta x} = \\cos x",
+            "note": "展开 sin(x+Δx) 并代入 lim(sin Δx)/Δx = 1",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(\\cos x)' = -\\sin x",
+            "note": "同理可证余弦求导得负正弦，奇偶性互换而周期 2π 不变",
+            "cited_formula_ids": [
+              "math.func.odd_even",
+              "math.func.periodicity"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "(\\sin x)' = \\cos x,\\quad (\\cos x)' = -\\sin x", "note": "弧度制下才有 lim(sin Δx)/Δx = 1，故公式仅在弧度制下无附加系数", "cited_formula_ids": ["math.calc.derivative_def", "math.func.odd_even", "math.func.periodicity"], "pitfall": "最易错符号：(cos x)' 带负号为 -sin x，而 (sin x)' 为 +cos x。" }
+          {
+            "step": 1,
+            "latex": "(\\sin x)' = \\cos x,\\quad (\\cos x)' = -\\sin x",
+            "note": "弧度制下才有 lim(sin Δx)/Δx = 1，故公式仅在弧度制下无附加系数",
+            "cited_formula_ids": [
+              "math.calc.derivative_def",
+              "math.func.odd_even",
+              "math.func.periodicity"
+            ],
+            "pitfall": "最易错符号：(cos x)' 带负号为 -sin x，而 (sin x)' 为 +cos x。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.def_to_linear",
-      "from_formula_ids": ["math.calc.derivative_def"],
+      "from_formula_ids": [
+        "math.calc.derivative_def"
+      ],
       "to_formula_id": "math.calc.deriv_linear",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["limit_linearity"],
+      "inference_rules": [
+        "limit_linearity"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "利用极限的线性运算法则，将增量差商拆分为两项各自求极限即可。",
         "L2_standard": [
-          { "step": 1, "latex": "[a f(x) + b g(x)]' = a\\lim_{\\Delta x \\to 0}\\frac{\\Delta f}{\\Delta x} + b\\lim_{\\Delta x \\to 0}\\frac{\\Delta g}{\\Delta x} = a f'(x) + b g'(x)", "note": "套用导数定义与极限四则运算", "cited_formula_ids": ["math.calc.derivative_def"] }
+          {
+            "step": 1,
+            "latex": "[a f(x) + b g(x)]' = a\\lim_{\\Delta x \\to 0}\\frac{\\Delta f}{\\Delta x} + b\\lim_{\\Delta x \\to 0}\\frac{\\Delta g}{\\Delta x} = a f'(x) + b g'(x)",
+            "note": "套用导数定义与极限四则运算",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "[a f(x) \\pm b g(x)]' = a f'(x) \\pm b g'(x)", "note": "常系数可直接提至求导符号之外，使多项式可逐项求导", "cited_formula_ids": ["math.calc.derivative_def"], "pitfall": "线性法则仅适用于加减与数乘，绝不可推广为 [f·g]' = f'·g'。" }
+          {
+            "step": 1,
+            "latex": "[a f(x) \\pm b g(x)]' = a f'(x) \\pm b g'(x)",
+            "note": "常系数可直接提至求导符号之外，使多项式可逐项求导",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ],
+            "pitfall": "线性法则仅适用于加减与数乘，绝不可推广为 [f·g]' = f'·g'。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.def_to_product",
-      "from_formula_ids": ["math.calc.derivative_def"],
+      "from_formula_ids": [
+        "math.calc.derivative_def"
+      ],
       "to_formula_id": "math.calc.deriv_product",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["add_subtract_middle_term", "take_limit"],
+      "inference_rules": [
+        "add_subtract_middle_term",
+        "take_limit"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在乘积增量分子中添减过渡项 f(x)g(x+Δx)，分组拆成两项分别取极限即得乘法求导法则。",
         "L2_standard": [
-          { "step": 1, "latex": "\\frac{f(x+\\Delta x)g(x+\\Delta x) - f(x)g(x)}{\\Delta x} = \\frac{f(x+\\Delta x)-f(x)}{\\Delta x}g(x+\\Delta x) + f(x)\\frac{g(x+\\Delta x)-g(x)}{\\Delta x}", "note": "分子减去并加上 f(x)g(x+Δx) 后分组", "cited_formula_ids": ["math.calc.derivative_def"] },
-          { "step": 2, "latex": "\\xrightarrow{\\Delta x \\to 0} f'(x)g(x) + f(x)g'(x)", "note": "可导必连续故 g(x+Δx) → g(x)", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\frac{f(x+\\Delta x)g(x+\\Delta x) - f(x)g(x)}{\\Delta x} = \\frac{f(x+\\Delta x)-f(x)}{\\Delta x}g(x+\\Delta x) + f(x)\\frac{g(x+\\Delta x)-g(x)}{\\Delta x}",
+            "note": "分子减去并加上 f(x)g(x+Δx) 后分组",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\xrightarrow{\\Delta x \\to 0} f'(x)g(x) + f(x)g'(x)",
+            "note": "可导必连续故 g(x+Δx) → g(x)",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "[f(x)g(x)]' = f'(x)g(x) + f(x)g'(x)", "note": "添减中间项构造两个标准差商，再分别取极限", "cited_formula_ids": ["math.calc.derivative_def"], "pitfall": "口诀“前导后不导 + 前不导后导”，注意中间是加号。" }
+          {
+            "step": 1,
+            "latex": "[f(x)g(x)]' = f'(x)g(x) + f(x)g'(x)",
+            "note": "添减中间项构造两个标准差商，再分别取极限",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ],
+            "pitfall": "口诀“前导后不导 + 前不导后导”，注意中间是加号。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.def_to_chain",
-      "from_formula_ids": ["math.calc.derivative_def"],
+      "from_formula_ids": [
+        "math.calc.derivative_def"
+      ],
       "to_formula_id": "math.calc.chain_rule",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["differential_chain"],
+      "inference_rules": [
+        "differential_chain"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "令中间变量 u = g(x)，将增量比 Δy/Δx 改写为 (Δy/Δu)·(Δu/Δx) 后取极限即得链式法则。",
         "L2_standard": [
-          { "step": 1, "latex": "\\frac{\\Delta y}{\\Delta x} = \\frac{\\Delta y}{\\Delta u} \\cdot \\frac{\\Delta u}{\\Delta x}", "note": "引入中间变量增量 Δu = g(x+Δx) - g(x)", "cited_formula_ids": ["math.calc.derivative_def"] },
-          { "step": 2, "latex": "[f(g(x))]' = f'(g(x)) \\cdot g'(x)", "note": "令 Δx → 0（此时 Δu → 0）分别取极限", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\frac{\\Delta y}{\\Delta x} = \\frac{\\Delta y}{\\Delta u} \\cdot \\frac{\\Delta u}{\\Delta x}",
+            "note": "引入中间变量增量 Δu = g(x+Δx) - g(x)",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "[f(g(x))]' = f'(g(x)) \\cdot g'(x)",
+            "note": "令 Δx → 0（此时 Δu → 0）分别取极限",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx} = f'(g(x)) \\cdot g'(x)", "note": "由外向内逐层剥离求导并连乘（当 Δu=0 附近需用可微性线性逼近严格补全）", "cited_formula_ids": ["math.calc.derivative_def"], "pitfall": "高中最高频丢分点：漏乘内层导数 g'(x)，如 (e^(2x))' = 2e^(2x) 而非 e^(2x)。" }
+          {
+            "step": 1,
+            "latex": "\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx} = f'(g(x)) \\cdot g'(x)",
+            "note": "由外向内逐层剥离求导并连乘（当 Δu=0 附近需用可微性线性逼近严格补全）",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ],
+            "pitfall": "高中最高频丢分点：漏乘内层导数 g'(x)，如 (e^(2x))' = 2e^(2x) 而非 e^(2x)。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.prod_chain_to_quotient",
-      "from_formula_ids": ["math.calc.deriv_product", "math.calc.chain_rule", "math.calc.deriv_power"],
+      "from_formula_ids": [
+        "math.calc.deriv_product",
+        "math.calc.chain_rule",
+        "math.calc.deriv_power"
+      ],
       "to_formula_id": "math.calc.deriv_quotient",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["rewrite_as_product", "chain_rule"],
+      "inference_rules": [
+        "rewrite_as_product",
+        "chain_rule"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将 f(x)/g(x) 改写为 f(x)·[g(x)]⁻¹，结合乘法法则、幂函数求导与链式法则通分即得除法法则。",
         "L2_standard": [
-          { "step": 1, "latex": "\\left[f(x) \\cdot g(x)^{-1}\\right]' = f'(x)g(x)^{-1} + f(x) \\cdot (-1)g(x)^{-2}g'(x)", "note": "套用乘法法则、幂函数求导与链式法则", "cited_formula_ids": ["math.calc.deriv_product", "math.calc.deriv_power", "math.calc.chain_rule"] },
-          { "step": 2, "latex": "= \\frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}", "note": "通分合并为同分母 [g(x)]²", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\left[f(x) \\cdot g(x)^{-1}\\right]' = f'(x)g(x)^{-1} + f(x) \\cdot (-1)g(x)^{-2}g'(x)",
+            "note": "套用乘法法则、幂函数求导与链式法则",
+            "cited_formula_ids": [
+              "math.calc.deriv_product",
+              "math.calc.deriv_power",
+              "math.calc.chain_rule"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "= \\frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}",
+            "note": "通分合并为同分母 [g(x)]²",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\left(\\frac{1}{g(x)}\\right)' = -\\frac{g'(x)}{[g(x)]^2}", "note": "先用链式法则与 (u⁻¹)' = -u⁻² 算出倒数导数", "cited_formula_ids": ["math.calc.chain_rule", "math.calc.deriv_power"] },
-          { "step": 2, "latex": "\\left[\\frac{f(x)}{g(x)}\\right]' = \\frac{f'(x)}{g(x)} - \\frac{f(x)g'(x)}{[g(x)]^2} = \\frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}", "note": "代入乘法法则并通分", "cited_formula_ids": ["math.calc.deriv_product"], "pitfall": "分子中间是减号，且一定是“子导母不导”在前，顺序颠倒会导致整体变号。" }
+          {
+            "step": 1,
+            "latex": "\\left(\\frac{1}{g(x)}\\right)' = -\\frac{g'(x)}{[g(x)]^2}",
+            "note": "先用链式法则与 (u⁻¹)' = -u⁻² 算出倒数导数",
+            "cited_formula_ids": [
+              "math.calc.chain_rule",
+              "math.calc.deriv_power"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\left[\\frac{f(x)}{g(x)}\\right]' = \\frac{f'(x)}{g(x)} - \\frac{f(x)g'(x)}{[g(x)]^2} = \\frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}",
+            "note": "代入乘法法则并通分",
+            "cited_formula_ids": [
+              "math.calc.deriv_product"
+            ],
+            "pitfall": "分子中间是减号，且一定是“子导母不导”在前，顺序颠倒会导致整体变号。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.def_to_tangent",
-      "from_formula_ids": ["math.calc.derivative_def"],
+      "from_formula_ids": [
+        "math.calc.derivative_def"
+      ],
       "to_formula_id": "math.calc.tangent_line",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["geometric_interpretation"],
+      "inference_rules": [
+        "geometric_interpretation"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "割线斜率在 Δx → 0 时的极限即切线斜率 k = f'(x0)，代入直线点斜式即得切线方程。",
         "L2_standard": [
-          { "step": 1, "latex": "k = \\lim_{\\Delta x \\to 0}\\frac{f(x_0+\\Delta x)-f(x_0)}{\\Delta x} = f'(x_0)", "note": "导数的几何意义即切点处的切线斜率", "cited_formula_ids": ["math.calc.derivative_def"] },
-          { "step": 2, "latex": "y - f(x_0) = f'(x_0)(x - x_0)", "note": "套用直线点斜式方程", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "k = \\lim_{\\Delta x \\to 0}\\frac{f(x_0+\\Delta x)-f(x_0)}{\\Delta x} = f'(x_0)",
+            "note": "导数的几何意义即切点处的切线斜率",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "y - f(x_0) = f'(x_0)(x - x_0)",
+            "note": "套用直线点斜式方程",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "y - f(x_0) = f'(x_0)(x - x_0)", "note": "若题目给的是“过点 (x1, y1) 的切线”，须先设未知切点 (x0, f(x0))，再把 (x1, y1) 代入切线方程反解 x0", "cited_formula_ids": ["math.calc.derivative_def"], "pitfall": "务必先检验已知点是否在曲线上，区分“在点处”与“过点”两类题型。" }
+          {
+            "step": 1,
+            "latex": "y - f(x_0) = f'(x_0)(x - x_0)",
+            "note": "若题目给的是“过点 (x1, y1) 的切线”，须先设未知切点 (x0, f(x0))，再把 (x1, y1) 代入切线方程反解 x0",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ],
+            "pitfall": "务必先检验已知点是否在曲线上，区分“在点处”与“过点”两类题型。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.def_to_monotonicity",
-      "from_formula_ids": ["math.calc.derivative_def"],
+      "from_formula_ids": [
+        "math.calc.derivative_def"
+      ],
       "to_formula_id": "math.calc.monotonicity",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["sign_preservation"],
+      "inference_rules": [
+        "sign_preservation"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "导数 f'(x) > 0 意味着每一点的瞬时变化率（切线斜率）为正，从而函数值随 x 增大而严格递增。",
         "L2_standard": [
-          { "step": 1, "latex": "f'(x) > 0 \\text{ on } (a,b) \\implies \\text{任意 } x_1 < x_2,\\ f(x_2) > f(x_1)", "note": "区间内导数恒正推出严格递增（大学微积分中由拉格朗日中值定理严格证明）", "cited_formula_ids": ["math.calc.derivative_def"] }
+          {
+            "step": 1,
+            "latex": "f'(x) > 0 \\text{ on } (a,b) \\implies \\text{任意 } x_1 < x_2,\\ f(x_2) > f(x_1)",
+            "note": "区间内导数恒正推出严格递增（大学微积分中由拉格朗日中值定理严格证明）",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "f'(x) > 0 \\implies f(x) \\text{ 递增},\\quad f'(x) < 0 \\implies f(x) \\text{ 递减}", "note": "允许在孤立点处导数为 0（如 y = x³ 在 x = 0），仍保持整体单调递增", "cited_formula_ids": ["math.calc.derivative_def"], "pitfall": "若已知函数在区间上单调递增求参数范围，转化条件应写 f'(x) ≥ 0（含等号），再检验是否恒为常函数。" }
+          {
+            "step": 1,
+            "latex": "f'(x) > 0 \\implies f(x) \\text{ 递增},\\quad f'(x) < 0 \\implies f(x) \\text{ 递减}",
+            "note": "允许在孤立点处导数为 0（如 y = x³ 在 x = 0），仍保持整体单调递增",
+            "cited_formula_ids": [
+              "math.calc.derivative_def"
+            ],
+            "pitfall": "若已知函数在区间上单调递增求参数范围，转化条件应写 f'(x) ≥ 0（含等号），再检验是否恒为常函数。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.mono_amgm_to_extremum",
-      "from_formula_ids": ["math.calc.monotonicity", "math.alg.am_gm"],
+      "from_formula_ids": [
+        "math.calc.monotonicity",
+        "math.alg.am_gm"
+      ],
       "to_formula_id": "math.calc.extremum_necessary",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["sign_change_at_extremum"],
+      "inference_rules": [
+        "sign_change_at_extremum"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "函数在极值点处单调性发生反转（增变减或减变增），故可导极值点必满足 f'(x0) = 0；与均值不等式取等条件高度一致。",
         "L2_standard": [
-          { "step": 1, "latex": "f'(x) \\text{ 在 } x_0 \\text{ 左侧与右侧异号} \\implies f'(x_0) = 0", "note": "由单调性反转得出驻点条件 f'(x0) = 0", "cited_formula_ids": ["math.calc.monotonicity"] },
-          { "step": 2, "latex": "f(x) = x + \\frac{k}{x}\\ (x,k>0) \\implies f'(x) = 1 - \\frac{k}{x^2} = 0 \\implies x = \\sqrt{k}", "note": "与基本不等式 x + k/x ≥ 2√k 的取等条件 x = √k 完全吻合", "cited_formula_ids": ["math.alg.am_gm"] }
+          {
+            "step": 1,
+            "latex": "f'(x) \\text{ 在 } x_0 \\text{ 左侧与右侧异号} \\implies f'(x_0) = 0",
+            "note": "由单调性反转得出驻点条件 f'(x0) = 0",
+            "cited_formula_ids": [
+              "math.calc.monotonicity"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "f(x) = x + \\frac{k}{x}\\ (x,k>0) \\implies f'(x) = 1 - \\frac{k}{x^2} = 0 \\implies x = \\sqrt{k}",
+            "note": "与基本不等式 x + k/x ≥ 2√k 的取等条件 x = √k 完全吻合",
+            "cited_formula_ids": [
+              "math.alg.am_gm"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "f'(x_0) = 0", "note": "左正右负为极大值点，左负右正为极小值点；若两侧同号则非极值点", "cited_formula_ids": ["math.calc.monotonicity", "math.alg.am_gm"], "pitfall": "求闭区间 [a, b] 最值时，不仅要算驻点函数值，还必须与区间端点 f(a)、f(b) 比较。" }
+          {
+            "step": 1,
+            "latex": "f'(x_0) = 0",
+            "note": "左正右负为极大值点，左负右正为极小值点；若两侧同号则非极值点",
+            "cited_formula_ids": [
+              "math.calc.monotonicity",
+              "math.alg.am_gm"
+            ],
+            "pitfall": "求闭区间 [a, b] 最值时，不仅要算驻点函数值，还必须与区间端点 f(a)、f(b) 比较。"
+          }
         ]
       }
     },
     {
       "id": "deriv.calc.base_chain_to_general_exp_log",
-      "from_formula_ids": ["math.func.log_change_base", "math.calc.deriv_exp_log", "math.calc.chain_rule"],
+      "from_formula_ids": [
+        "math.func.log_change_base",
+        "math.calc.deriv_exp_log",
+        "math.calc.chain_rule"
+      ],
       "to_formula_id": "math.calc.deriv_general_exp_log",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["change_of_base", "chain_rule"],
+      "inference_rules": [
+        "change_of_base",
+        "chain_rule"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "将 a^x 改写为 e^(x ln a)、将 log_a x 用换底公式改写为 ln x / ln a，再套用自然指对数求导与链式法则即得。",
         "L2_standard": [
-          { "step": 1, "latex": "(a^x)' = (e^{x \\ln a})' = e^{x \\ln a} \\cdot \\ln a = a^x \\ln a", "note": "化为自然底数后套用 (e^u)' = e^u 与链式法则", "cited_formula_ids": ["math.calc.deriv_exp_log", "math.calc.chain_rule"] },
-          { "step": 2, "latex": "(\\log_a x)' = \\left(\\frac{\\ln x}{\\ln a}\\right)' = \\frac{1}{\\ln a} \\cdot \\frac{1}{x} = \\frac{1}{x \\ln a}", "note": "用换底公式化为自然对数后求导", "cited_formula_ids": ["math.func.log_change_base", "math.calc.deriv_exp_log"] }
+          {
+            "step": 1,
+            "latex": "(a^x)' = (e^{x \\ln a})' = e^{x \\ln a} \\cdot \\ln a = a^x \\ln a",
+            "note": "化为自然底数后套用 (e^u)' = e^u 与链式法则",
+            "cited_formula_ids": [
+              "math.calc.deriv_exp_log",
+              "math.calc.chain_rule"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "(\\log_a x)' = \\left(\\frac{\\ln x}{\\ln a}\\right)' = \\frac{1}{\\ln a} \\cdot \\frac{1}{x} = \\frac{1}{x \\ln a}",
+            "note": "用换底公式化为自然对数后求导",
+            "cited_formula_ids": [
+              "math.func.log_change_base",
+              "math.calc.deriv_exp_log"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "a^x = e^{\\ln(a^x)} = e^{x \\ln a} \\implies (a^x)' = a^x \\ln a", "note": "内层函数 u = x ln a 的导数为常数 ln a", "cited_formula_ids": ["math.calc.deriv_exp_log", "math.calc.chain_rule"] },
-          { "step": 2, "latex": "\\log_a x = \\frac{\\ln x}{\\ln a} \\implies (\\log_a x)' = \\frac{1}{x \\ln a}", "note": "1/ln a 为常系数直接提出，再乘以 (ln x)' = 1/x", "cited_formula_ids": ["math.func.log_change_base", "math.calc.deriv_exp_log"], "pitfall": "注意 ln a 的位置：指数求导是“乘以 ln a”，对数求导是“除以 ln a”。" }
+          {
+            "step": 1,
+            "latex": "a^x = e^{\\ln(a^x)} = e^{x \\ln a} \\implies (a^x)' = a^x \\ln a",
+            "note": "内层函数 u = x ln a 的导数为常数 ln a",
+            "cited_formula_ids": [
+              "math.calc.deriv_exp_log",
+              "math.calc.chain_rule"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\log_a x = \\frac{\\ln x}{\\ln a} \\implies (\\log_a x)' = \\frac{1}{x \\ln a}",
+            "note": "1/ln a 为常系数直接提出，再乘以 (ln x)' = 1/x",
+            "cited_formula_ids": [
+              "math.func.log_change_base",
+              "math.calc.deriv_exp_log"
+            ],
+            "pitfall": "注意 ln a 的位置：指数求导是“乘以 ln a”，对数求导是“除以 ln a”。"
+          }
         ]
       }
     }

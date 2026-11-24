@@ -9,600 +9,1709 @@
   "formulas": [
     {
       "id": "math.func.direct_proportion",
+      "node_kind": "formula",
       "name": "正比例函数",
-      "aliases": ["线性正比关系"],
+      "aliases": [
+        "线性正比关系"
+      ],
       "latex": "y = kx\\ (k \\neq 0)",
       "statement": "因变量 y 与自变量 x 的比值为非零常数 k，图像是过原点的直线。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["functions", "proportionality"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "functions",
+          "proportionality"
+        ]
       },
       "variables": [
-        { "symbol": "x", "name": "自变量", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "y", "name": "因变量", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "k", "name": "比例系数", "math_type": "constant", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "y",
+          "name": "因变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "k",
+          "name": "比例系数",
+          "math_type": "constant",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["比例系数 k ≠ 0；物理应用中常在控制其余变量不变时成立"],
-      "review": { "status": "human_verified", "source": "人教版八年级下册 19.2.1", "sympy_verified": true }
+      "conditions": [
+        "比例系数 k ≠ 0；物理应用中常在控制其余变量不变时成立"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版八年级下册 19.2.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.func.inverse_proportion",
+      "node_kind": "formula",
       "name": "反比例函数",
-      "aliases": ["反比关系"],
+      "aliases": [
+        "反比关系"
+      ],
       "latex": "y = \\frac{k}{x}\\ (k \\neq 0)",
       "statement": "因变量 y 与自变量 x 的乘积为非零常数 k，图像为双曲线。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["functions", "proportionality"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "functions",
+          "proportionality"
+        ]
       },
       "variables": [
-        { "symbol": "x", "name": "自变量", "math_type": "scalar", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "y", "name": "因变量", "math_type": "scalar", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": null, "dimension": null, "si_unit": null },
-        { "symbol": "k", "name": "比例系数", "math_type": "constant", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "x",
+          "name": "自变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "y",
+          "name": "因变量",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        },
+        {
+          "symbol": "k",
+          "name": "比例系数",
+          "math_type": "constant",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["x ≠ 0 且 k ≠ 0"],
-      "review": { "status": "human_verified", "source": "人教版九年级下册 26.1.1", "sympy_verified": true }
+      "conditions": [
+        "x ≠ 0 且 k ≠ 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版九年级下册 26.1.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "math.alg.reciprocal_sum",
+      "node_kind": "formula",
       "name": "异分母分式通分（倒数和）",
-      "aliases": ["两数倒数和公式"],
+      "aliases": [
+        "两数倒数和公式"
+      ],
       "latex": "\\frac{1}{a} + \\frac{1}{b} = \\frac{a + b}{ab}",
       "statement": "两个非零实数的倒数之和等于两数之和除以两数之积。",
       "taxonomy": {
-        "disciplines": ["mathematics", "physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["algebra", "rational_expressions"]
+        "disciplines": [
+          "mathematics",
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "algebra",
+          "rational_expressions"
+        ]
       },
       "variables": [
-        { "symbol": "a, b", "name": "非零实数", "math_type": "scalar", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": null, "dimension": null, "si_unit": null }
+        {
+          "symbol": "a, b",
+          "name": "非零实数",
+          "math_type": "scalar",
+          "domain": "\\mathbb{R} \\setminus \\{0\\}",
+          "quantity_kind": null,
+          "dimension": null,
+          "si_unit": null
+        }
       ],
-      "conditions": ["a ≠ 0 且 b ≠ 0"],
-      "review": { "status": "human_verified", "source": "人教版八年级上册 15.2.2", "sympy_verified": true }
+      "conditions": [
+        "a ≠ 0 且 b ≠ 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版八年级上册 15.2.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.current_def",
+      "node_kind": "definition",
       "name": "电流强度定义式",
-      "aliases": ["电流定义式"],
+      "aliases": [
+        "电流定义式"
+      ],
       "latex": "I = \\frac{Q}{t}",
       "statement": "电流强度等于单位时间内通过导体横截面的电荷量。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "electric_basics"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_basics"
+        ]
       },
       "variables": [
-        { "symbol": "I", "name": "电流强度", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" },
-        { "symbol": "Q", "name": "电荷量", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_charge", "dimension": "I T", "si_unit": "C" },
-        { "symbol": "t", "name": "通电时间", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "time", "dimension": "T", "si_unit": "s" }
+        {
+          "symbol": "I",
+          "name": "电流强度",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "Q",
+          "name": "电荷量",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_charge",
+          "dimension": "I T",
+          "si_unit": "C"
+        },
+        {
+          "symbol": "t",
+          "name": "通电时间",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
       ],
-      "conditions": ["恒定电流时各时刻电流相等；t > 0"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 15.4（拓展定义）", "sympy_verified": true }
+      "conditions": [
+        "恒定电流时各时刻电流相等；t > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 15.4（拓展定义）",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.ohms_law",
+      "node_kind": "law",
       "name": "欧姆定律",
-      "aliases": ["部分电路欧姆定律"],
+      "aliases": [
+        "部分电路欧姆定律"
+      ],
       "latex": "I = \\frac{U}{R}",
       "statement": "导体中的电流与导体两端的电压成正比，与导体的电阻成反比。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "ohms_law"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "ohms_law"
+        ]
       },
       "variables": [
-        { "symbol": "I", "name": "电流", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" },
-        { "symbol": "U", "name": "电压", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" },
-        { "symbol": "R", "name": "电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" }
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
       ],
-      "conditions": ["适用于纯电阻线性导体（温度不变时 R 为定值），同一导体、同一时刻"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 17.2", "sympy_verified": true }
+      "conditions": [
+        "适用于纯电阻线性导体（温度不变时 R 为定值），同一导体、同一时刻"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.ohms_voltage",
+      "node_kind": "formula",
       "name": "欧姆定律变形（求电压）",
-      "aliases": ["电压计算式"],
+      "aliases": [
+        "电压计算式"
+      ],
       "latex": "U = IR",
       "statement": "纯电阻导体两端的电压等于通过它的电流与电阻的乘积。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "ohms_law"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "ohms_law"
+        ]
       },
       "variables": [
-        { "symbol": "U", "name": "电压", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" },
-        { "symbol": "I", "name": "电流", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" },
-        { "symbol": "R", "name": "电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" }
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
       ],
-      "conditions": ["适用于纯电阻导体"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 17.2", "sympy_verified": true }
+      "conditions": [
+        "适用于纯电阻导体"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.ohms_resistance",
+      "node_kind": "formula",
       "name": "伏安法测电阻公式",
-      "aliases": ["电阻量度式"],
+      "aliases": [
+        "电阻量度式"
+      ],
       "latex": "R = \\frac{U}{I}",
       "statement": "导体的电阻在数值上等于导体两端电压与通过电流的比值。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "ohms_law"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "ohms_law"
+        ]
       },
       "variables": [
-        { "symbol": "R", "name": "电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" },
-        { "symbol": "U", "name": "电压", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" },
-        { "symbol": "I", "name": "电流", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" }
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        }
       ],
-      "conditions": ["I > 0；注意 R 是导体自身属性，不随 U、I 改变"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 17.3", "sympy_verified": true }
+      "conditions": [
+        "I > 0；注意 R 是导体自身属性，不随 U、I 改变"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.3",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.series_basic",
+      "node_kind": "formula",
       "name": "串联电路电流与电压规律",
-      "aliases": ["串联基本规律"],
+      "aliases": [
+        "串联基本规律"
+      ],
       "latex": "I = I_1 = I_2,\\quad U = U_1 + U_2",
       "statement": "串联电路中各处电流相等，总电压等于各用电器两端电压之和。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "series_circuit"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "series_circuit"
+        ]
       },
       "variables": [
-        { "symbol": "I, I_1, I_2", "name": "总电流与各处电流", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" },
-        { "symbol": "U, U_1, U_2", "name": "总电压与各部分电压", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" }
+        {
+          "symbol": "I, I_1, I_2",
+          "name": "总电流与各处电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "U, U_1, U_2",
+          "name": "总电压与各部分电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        }
       ],
-      "conditions": ["适用于两元件或多元件纯串联支路"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 15.5 & 16.2", "sympy_verified": true }
+      "conditions": [
+        "适用于两元件或多元件纯串联支路"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 15.5 & 16.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.series_resistance",
+      "node_kind": "formula",
       "name": "串联总电阻公式",
-      "aliases": ["串联等效电阻"],
+      "aliases": [
+        "串联等效电阻"
+      ],
       "latex": "R_{\\text{总}} = R_1 + R_2",
       "statement": "串联电路的等效总电阻等于各串联电阻之和。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "series_circuit"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "series_circuit"
+        ]
       },
       "variables": [
-        { "symbol": "R_{\\text{总}}, R_1, R_2", "name": "总电阻与各分电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" }
+        {
+          "symbol": "R_{\\text{总}}, R_1, R_2",
+          "name": "总电阻与各分电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
       ],
-      "conditions": ["各元件均为纯电阻且串联连接"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 17.4", "sympy_verified": true }
+      "conditions": [
+        "各元件均为纯电阻且串联连接"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.series_voltage_divider",
+      "node_kind": "formula",
       "name": "串联分压公式",
-      "aliases": ["串联电压分配规律"],
+      "aliases": [
+        "串联电压分配规律"
+      ],
       "latex": "\\frac{U_1}{U_2} = \\frac{R_1}{R_2}",
       "statement": "串联电路中，各电阻两端的电压之比等于它们的电阻之比（正比分压）。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "series_circuit"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "series_circuit"
+        ]
       },
       "variables": [
-        { "symbol": "U_1, U_2", "name": "两电阻两端电压", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" },
-        { "symbol": "R_1, R_2", "name": "两串联电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" }
+        {
+          "symbol": "U_1, U_2",
+          "name": "两电阻两端电压",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "R_1, R_2",
+          "name": "两串联电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
       ],
-      "conditions": ["串联且电流 I > 0，各元件为纯电阻"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 17.4", "sympy_verified": true }
+      "conditions": [
+        "串联且电流 I > 0，各元件为纯电阻"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.parallel_basic",
+      "node_kind": "formula",
       "name": "并联电路电流与电压规律",
-      "aliases": ["并联基本规律"],
+      "aliases": [
+        "并联基本规律"
+      ],
       "latex": "U = U_1 = U_2,\\quad I = I_1 + I_2",
       "statement": "并联电路中各支路两端电压相等，干路总电流等于各支路电流之和。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "parallel_circuit"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "parallel_circuit"
+        ]
       },
       "variables": [
-        { "symbol": "U, U_1, U_2", "name": "总电压与各支路电压", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" },
-        { "symbol": "I, I_1, I_2", "name": "干路与支路电流", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" }
+        {
+          "symbol": "U, U_1, U_2",
+          "name": "总电压与各支路电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I, I_1, I_2",
+          "name": "干路与支路电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        }
       ],
-      "conditions": ["适用于两支路或多支路并联电路"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 15.5 & 16.2", "sympy_verified": true }
+      "conditions": [
+        "适用于两支路或多支路并联电路"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 15.5 & 16.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.parallel_resistance",
+      "node_kind": "formula",
       "name": "并联总电阻倒数公式",
-      "aliases": ["并联等效电阻公式"],
+      "aliases": [
+        "并联等效电阻公式"
+      ],
       "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
       "statement": "并联电路总电阻的倒数等于各并联支路电阻倒数之和。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "parallel_circuit"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "parallel_circuit"
+        ]
       },
       "variables": [
-        { "symbol": "R_{\\text{总}}, R_1, R_2", "name": "等效总电阻与支路电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" }
+        {
+          "symbol": "R_{\\text{总}}, R_1, R_2",
+          "name": "等效总电阻与支路电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
       ],
-      "conditions": ["各支路均为纯电阻，且 R1, R2 > 0"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 17.4", "sympy_verified": true }
+      "conditions": [
+        "各支路均为纯电阻，且 R1, R2 > 0"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.parallel_two_resistors",
+      "node_kind": "formula",
       "name": "两电阻并联化简公式",
-      "aliases": ["积除以和公式"],
+      "aliases": [
+        "积除以和公式"
+      ],
       "latex": "R_{\\text{总}} = \\frac{R_1 R_2}{R_1 + R_2}",
       "statement": "两个电阻并联时的等效总电阻等于两电阻之积除以两电阻之和，且总电阻小于任一支路电阻。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "parallel_circuit"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "parallel_circuit"
+        ]
       },
       "variables": [
-        { "symbol": "R_{\\text{总}}, R_1, R_2", "name": "等效总电阻与支路电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" }
+        {
+          "symbol": "R_{\\text{总}}, R_1, R_2",
+          "name": "等效总电阻与支路电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
       ],
-      "conditions": ["仅适用于两个电阻并联（三个以上电阻需先用倒数和公式）"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 17.4", "sympy_verified": true }
+      "conditions": [
+        "仅适用于两个电阻并联（三个以上电阻需先用倒数和公式）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 17.4",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.electric_work",
+      "node_kind": "formula",
       "name": "电功基本公式",
-      "aliases": ["电能公式"],
+      "aliases": [
+        "电能公式"
+      ],
       "latex": "W = UIt",
       "statement": "电流在某段电路上所做的功等于这段电路两端的电压、电路中的电流和通电时间的乘积。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "electric_power"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
       },
       "variables": [
-        { "symbol": "W", "name": "电功（消耗电能）", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "energy", "dimension": "M L^2 T^-2", "si_unit": "J" },
-        { "symbol": "U", "name": "电压", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" },
-        { "symbol": "I", "name": "电流", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" },
-        { "symbol": "t", "name": "通电时间", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "time", "dimension": "T", "si_unit": "s" }
+        {
+          "symbol": "W",
+          "name": "电功（消耗电能）",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "energy",
+          "dimension": "M L^2 T^-2",
+          "si_unit": "J"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "t",
+          "name": "通电时间",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
       ],
-      "conditions": ["适用于所有直流电路（包括电动机等非纯电阻用电器）"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 18.1", "sympy_verified": true }
+      "conditions": [
+        "适用于所有直流电路（包括电动机等非纯电阻用电器）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.1",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.electric_power_def",
+      "node_kind": "definition",
       "name": "电功率定义式",
-      "aliases": ["电功率通用定义"],
+      "aliases": [
+        "电功率通用定义"
+      ],
       "latex": "P = \\frac{W}{t}",
       "statement": "电功率等于电流所做的功与完成这些功所用时间之比，表示消耗电能的快慢。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "electric_power"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
       },
       "variables": [
-        { "symbol": "P", "name": "电功率", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "power", "dimension": "M L^2 T^-3", "si_unit": "W" },
-        { "symbol": "W", "name": "电功", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "energy", "dimension": "M L^2 T^-2", "si_unit": "J" },
-        { "symbol": "t", "name": "通电时间", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "time", "dimension": "T", "si_unit": "s" }
+        {
+          "symbol": "P",
+          "name": "电功率",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "power",
+          "dimension": "M L^2 T^-3",
+          "si_unit": "W"
+        },
+        {
+          "symbol": "W",
+          "name": "电功",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "energy",
+          "dimension": "M L^2 T^-2",
+          "si_unit": "J"
+        },
+        {
+          "symbol": "t",
+          "name": "通电时间",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
       ],
-      "conditions": ["普遍适用；注意单位配套（J/s = W 或 kW·h/h = kW）"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 18.2", "sympy_verified": true }
+      "conditions": [
+        "普遍适用；注意单位配套（J/s = W 或 kW·h/h = kW）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.electric_power_ui",
+      "node_kind": "formula",
       "name": "电功率计算式",
-      "aliases": ["伏安电功率公式"],
+      "aliases": [
+        "伏安电功率公式"
+      ],
       "latex": "P = UI",
       "statement": "用电器的电功率等于其两端电压与通过电流的乘积。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "electric_power"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
       },
       "variables": [
-        { "symbol": "P", "name": "电功率", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "power", "dimension": "M L^2 T^-3", "si_unit": "W" },
-        { "symbol": "U", "name": "电压", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" },
-        { "symbol": "I", "name": "电流", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" }
+        {
+          "symbol": "P",
+          "name": "电功率",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "power",
+          "dimension": "M L^2 T^-3",
+          "si_unit": "W"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        }
       ],
-      "conditions": ["适用于所有直流电路（含非纯电阻电路的总电功率）"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 18.2", "sympy_verified": true }
+      "conditions": [
+        "适用于所有直流电路（含非纯电阻电路的总电功率）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.electric_power_variants",
+      "node_kind": "formula",
       "name": "纯电阻电功率衍生式",
-      "aliases": ["电功率电阻形式"],
+      "aliases": [
+        "电功率电阻形式"
+      ],
       "latex": "P = I^2 R = \\frac{U^2}{R}",
       "statement": "在纯电阻电路中，电功率可用电流平方乘电阻或电压平方除以电阻表示。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "electric_power"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
       },
       "variables": [
-        { "symbol": "P", "name": "电功率", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "power", "dimension": "M L^2 T^-3", "si_unit": "W" },
-        { "symbol": "I", "name": "电流", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" },
-        { "symbol": "U", "name": "电压", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_potential_difference", "dimension": "M L^2 T^-3 I^-1", "si_unit": "V" },
-        { "symbol": "R", "name": "电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" }
+        {
+          "symbol": "P",
+          "name": "电功率",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "power",
+          "dimension": "M L^2 T^-3",
+          "si_unit": "W"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "U",
+          "name": "电压",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_potential_difference",
+          "dimension": "M L^2 T^-3 I^-1",
+          "si_unit": "V"
+        },
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        }
       ],
-      "conditions": ["仅适用于纯电阻电路（电能全部转化为内能）"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 18.2", "sympy_verified": true }
+      "conditions": [
+        "仅适用于纯电阻电路（电能全部转化为内能）"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.2",
+        "sympy_verified": true
+      }
     },
     {
       "id": "physics.elec.joules_law",
+      "node_kind": "law",
       "name": "焦耳定律",
-      "aliases": ["电热公式"],
+      "aliases": [
+        "电热公式"
+      ],
       "latex": "Q = I^2 R t",
       "statement": "电流通过导体产生的热量跟电流的二次方成正比，跟导体的电阻成正比，跟通电时间成正比。",
       "taxonomy": {
-        "disciplines": ["physics"],
-        "education_stages": ["junior_high"],
-        "topics": ["electricity", "electric_power"]
+        "disciplines": [
+          "physics"
+        ],
+        "education_stages": [
+          "junior_high"
+        ],
+        "topics": [
+          "electricity",
+          "electric_power"
+        ]
       },
       "variables": [
-        { "symbol": "Q", "name": "电热（热量）", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "heat_energy", "dimension": "M L^2 T^-2", "si_unit": "J" },
-        { "symbol": "I", "name": "电流", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "electric_current", "dimension": "I", "si_unit": "A" },
-        { "symbol": "R", "name": "电阻", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": "electric_resistance", "dimension": "M L^2 T^-3 I^-2", "si_unit": "Ω" },
-        { "symbol": "t", "name": "通电时间", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": "time", "dimension": "T", "si_unit": "s" }
+        {
+          "symbol": "Q",
+          "name": "电热（热量）",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "heat_energy",
+          "dimension": "M L^2 T^-2",
+          "si_unit": "J"
+        },
+        {
+          "symbol": "I",
+          "name": "电流",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "electric_current",
+          "dimension": "I",
+          "si_unit": "A"
+        },
+        {
+          "symbol": "R",
+          "name": "电阻",
+          "math_type": "scalar",
+          "domain": "(0, +\\infty)",
+          "quantity_kind": "electric_resistance",
+          "dimension": "M L^2 T^-3 I^-2",
+          "si_unit": "Ω"
+        },
+        {
+          "symbol": "t",
+          "name": "通电时间",
+          "math_type": "scalar",
+          "domain": "[0, +\\infty)",
+          "quantity_kind": "time",
+          "dimension": "T",
+          "si_unit": "s"
+        }
       ],
-      "conditions": ["普遍适用于计算任何电路产生的电热；仅在纯电阻电路中 Q = W"],
-      "review": { "status": "human_verified", "source": "人教版初中物理九年级 18.4", "sympy_verified": true }
+      "conditions": [
+        "普遍适用于计算任何电路产生的电热；仅在纯电阻电路中 Q = W"
+      ],
+      "review": {
+        "status": "human_verified",
+        "source": "人教版初中物理九年级 18.4",
+        "sympy_verified": true
+      }
     }
   ],
   "derivations": [
     {
       "id": "deriv.cross.prop_to_ohm",
-      "from_formula_ids": ["math.func.direct_proportion", "math.func.inverse_proportion"],
+      "from_formula_ids": [
+        "math.func.direct_proportion",
+        "math.func.inverse_proportion"
+      ],
       "to_formula_id": "physics.elec.ohms_law",
       "relation_type": "applies_in",
       "dependency_site": "application_level",
-      "inference_rules": ["control_variable_modeling", "dimensional_proportionality"],
+      "inference_rules": [
+        "control_variable_modeling",
+        "dimensional_proportionality"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "控制变量实验表明：电阻一定时 I 与 U 满足正比例函数，电压一定时 I 与 R 满足反比例函数，联立得到欧姆定律 I = U/R。",
         "L2_standard": [
-          { "step": 1, "latex": "R \\text{ 一定时：} I = \\frac{1}{R} U", "note": "套用正比例函数模型 y = kx（斜率 k = 1/R）", "cited_formula_ids": ["math.func.direct_proportion"] },
-          { "step": 2, "latex": "U \\text{ 一定时：} I = \\frac{U}{R}", "note": "套用反比例函数模型 y = k/x（常数 k = U）", "cited_formula_ids": ["math.func.inverse_proportion"] },
-          { "step": 3, "latex": "I = \\frac{U}{R}", "note": "综合两组定量规律并结合 SI 单位定义，比例系数为 1", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "R \\text{ 一定时：} I = \\frac{1}{R} U",
+            "note": "套用正比例函数模型 y = kx（斜率 k = 1/R）",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "U \\text{ 一定时：} I = \\frac{U}{R}",
+            "note": "套用反比例函数模型 y = k/x（常数 k = U）",
+            "cited_formula_ids": [
+              "math.func.inverse_proportion"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "I = \\frac{U}{R}",
+            "note": "综合两组定量规律并结合 SI 单位定义，比例系数为 1",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "I = k_1 U \\quad (R \\text{ 不变})", "note": "保持定值电阻 R 不变，I-U 图像为过原点直线，符合正比例函数", "cited_formula_ids": ["math.func.direct_proportion"] },
-          { "step": 2, "latex": "I = \\frac{k_2}{R} \\quad (U \\text{ 不变})", "note": "保持导体两端电压 U 不变，I-R 图像为双曲线分支，符合反比例函数", "cited_formula_ids": ["math.func.inverse_proportion"] },
-          { "step": 3, "latex": "I = \\frac{U}{R}", "note": "在国际单位制中 1 Ω 定义为 1 V/A，合并为无附加系数的欧姆定律", "cited_formula_ids": [], "pitfall": "因果顺序不能颠倒：只能说“电流与电压成正比”，不能说“电压与电流成正比”。" }
+          {
+            "step": 1,
+            "latex": "I = k_1 U \\quad (R \\text{ 不变})",
+            "note": "保持定值电阻 R 不变，I-U 图像为过原点直线，符合正比例函数",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I = \\frac{k_2}{R} \\quad (U \\text{ 不变})",
+            "note": "保持导体两端电压 U 不变，I-R 图像为双曲线分支，符合反比例函数",
+            "cited_formula_ids": [
+              "math.func.inverse_proportion"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "I = \\frac{U}{R}",
+            "note": "在国际单位制中 1 Ω 定义为 1 V/A，合并为无附加系数的欧姆定律",
+            "cited_formula_ids": [],
+            "pitfall": "因果顺序不能颠倒：只能说“电流与电压成正比”，不能说“电压与电流成正比”。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.ohm_to_voltage",
-      "from_formula_ids": ["physics.elec.ohms_law"],
+      "from_formula_ids": [
+        "physics.elec.ohms_law"
+      ],
       "to_formula_id": "physics.elec.ohms_voltage",
       "relation_type": "equivalent_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["multiply_both_sides"],
+      "inference_rules": [
+        "multiply_both_sides"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "将欧姆定律 I = U/R 两边同乘电阻 R 即可解出电压 U = IR。",
         "L2_standard": [
-          { "step": 1, "latex": "I \\cdot R = \\frac{U}{R} \\cdot R \\implies U = IR", "note": "因为 R > 0，两边同乘 R 化简", "cited_formula_ids": ["physics.elec.ohms_law"] }
+          {
+            "step": 1,
+            "latex": "I \\cdot R = \\frac{U}{R} \\cdot R \\implies U = IR",
+            "note": "因为 R > 0，两边同乘 R 化简",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "I = \\frac{U}{R}\\ (R > 0)", "note": "写出欧姆定律", "cited_formula_ids": ["physics.elec.ohms_law"] },
-          { "step": 2, "latex": "U = IR", "note": "等式两边同乘 R，量纲核验：[A]·[Ω] = [V]", "cited_formula_ids": [], "pitfall": "代入数值时三者必须对应同一段导体、同一时刻，且统一用国际单位（V、A、Ω）。" }
+          {
+            "step": 1,
+            "latex": "I = \\frac{U}{R}\\ (R > 0)",
+            "note": "写出欧姆定律",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "U = IR",
+            "note": "等式两边同乘 R，量纲核验：[A]·[Ω] = [V]",
+            "cited_formula_ids": [],
+            "pitfall": "代入数值时三者必须对应同一段导体、同一时刻，且统一用国际单位（V、A、Ω）。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.ohm_to_resistance",
-      "from_formula_ids": ["physics.elec.ohms_law"],
+      "from_formula_ids": [
+        "physics.elec.ohms_law"
+      ],
       "to_formula_id": "physics.elec.ohms_resistance",
       "relation_type": "equivalent_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["algebraic_rearrangement"],
+      "inference_rules": [
+        "algebraic_rearrangement"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "在 I = U/R 中将分母 R 与左侧 I 互换位置，得到伏安法电阻计算式 R = U/I。",
         "L2_standard": [
-          { "step": 1, "latex": "I = \\frac{U}{R} \\implies IR = U \\implies R = \\frac{U}{I}", "note": "当 I > 0 时移项解出 R", "cited_formula_ids": ["physics.elec.ohms_law"] }
+          {
+            "step": 1,
+            "latex": "I = \\frac{U}{R} \\implies IR = U \\implies R = \\frac{U}{I}",
+            "note": "当 I > 0 时移项解出 R",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "U = IR", "note": "先由欧姆定律去分母", "cited_formula_ids": ["physics.elec.ohms_law"] },
-          { "step": 2, "latex": "R = \\frac{U}{I}\\ (I > 0)", "note": "两边同除以 I 得到电阻量度式", "cited_formula_ids": [], "pitfall": "数学上虽写作 R = U/I，但物理上电阻由材料、长度、横截面积和温度决定，与 U、I 无关。" }
+          {
+            "step": 1,
+            "latex": "U = IR",
+            "note": "先由欧姆定律去分母",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "R = \\frac{U}{I}\\ (I > 0)",
+            "note": "两边同除以 I 得到电阻量度式",
+            "cited_formula_ids": [],
+            "pitfall": "数学上虽写作 R = U/I，但物理上电阻由材料、长度、横截面积和温度决定，与 U、I 无关。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.series_to_total_r",
-      "from_formula_ids": ["physics.elec.series_basic", "physics.elec.ohms_voltage"],
+      "from_formula_ids": [
+        "physics.elec.series_basic",
+        "physics.elec.ohms_voltage"
+      ],
       "to_formula_id": "physics.elec.series_resistance",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution", "divide_both_sides"],
+      "inference_rules": [
+        "identity_substitution",
+        "divide_both_sides"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把 U = IR 代入串联总电压公式 U = U1 + U2，再消去处处相等的电流 I。",
         "L2_standard": [
-          { "step": 1, "latex": "U = U_1 + U_2", "note": "写出串联电路电压规律", "cited_formula_ids": ["physics.elec.series_basic"] },
-          { "step": 2, "latex": "I R_{\\text{总}} = I_1 R_1 + I_2 R_2", "note": "分别代入 U = IR", "cited_formula_ids": ["physics.elec.ohms_voltage"] },
-          { "step": 3, "latex": "R_{\\text{总}} = R_1 + R_2", "note": "因串联电流 I = I1 = I2 > 0，两边同除以 I", "cited_formula_ids": ["physics.elec.series_basic"] }
+          {
+            "step": 1,
+            "latex": "U = U_1 + U_2",
+            "note": "写出串联电路电压规律",
+            "cited_formula_ids": [
+              "physics.elec.series_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I R_{\\text{总}} = I_1 R_1 + I_2 R_2",
+            "note": "分别代入 U = IR",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "R_{\\text{总}} = R_1 + R_2",
+            "note": "因串联电流 I = I1 = I2 > 0，两边同除以 I",
+            "cited_formula_ids": [
+              "physics.elec.series_basic"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "U = U_1 + U_2,\\quad I = I_1 = I_2", "note": "列出串联电路电流与电压规律", "cited_formula_ids": ["physics.elec.series_basic"] },
-          { "step": 2, "latex": "I R_{\\text{总}} = I R_1 + I R_2 = I(R_1 + R_2)", "note": "用 U = IR 替换各项并提取公因式 I", "cited_formula_ids": ["physics.elec.ohms_voltage"] },
-          { "step": 3, "latex": "R_{\\text{总}} = R_1 + R_2", "note": "约去非零电流 I，说明串联相当于增加导体长度，总电阻越串越大", "cited_formula_ids": [], "pitfall": "若电路中混入非纯电阻（如电动机），不能直接用 U = IR 推算等效电阻。" }
+          {
+            "step": 1,
+            "latex": "U = U_1 + U_2,\\quad I = I_1 = I_2",
+            "note": "列出串联电路电流与电压规律",
+            "cited_formula_ids": [
+              "physics.elec.series_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I R_{\\text{总}} = I R_1 + I R_2 = I(R_1 + R_2)",
+            "note": "用 U = IR 替换各项并提取公因式 I",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "R_{\\text{总}} = R_1 + R_2",
+            "note": "约去非零电流 I，说明串联相当于增加导体长度，总电阻越串越大",
+            "cited_formula_ids": [],
+            "pitfall": "若电路中混入非纯电阻（如电动机），不能直接用 U = IR 推算等效电阻。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.series_to_divider",
-      "from_formula_ids": ["physics.elec.series_basic", "physics.elec.ohms_voltage", "math.func.direct_proportion"],
+      "from_formula_ids": [
+        "physics.elec.series_basic",
+        "physics.elec.ohms_voltage",
+        "math.func.direct_proportion"
+      ],
       "to_formula_id": "physics.elec.series_voltage_divider",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["ratio_cancellation", "proportionality"],
+      "inference_rules": [
+        "ratio_cancellation",
+        "proportionality"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "串联电路各处电流 I 相等，由 U = IR 可知电压与电阻成正比，两式相除即得 U1/U2 = R1/R2。",
         "L2_standard": [
-          { "step": 1, "latex": "U_1 = I R_1,\\quad U_2 = I R_2", "note": "串联电流相同，分别写出两电阻两端电压", "cited_formula_ids": ["physics.elec.series_basic", "physics.elec.ohms_voltage"] },
-          { "step": 2, "latex": "\\frac{U_1}{U_2} = \\frac{I R_1}{I R_2} = \\frac{R_1}{R_2}", "note": "两式相除约去相同电流 I（正比例分配）", "cited_formula_ids": ["math.func.direct_proportion"] }
+          {
+            "step": 1,
+            "latex": "U_1 = I R_1,\\quad U_2 = I R_2",
+            "note": "串联电流相同，分别写出两电阻两端电压",
+            "cited_formula_ids": [
+              "physics.elec.series_basic",
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{U_1}{U_2} = \\frac{I R_1}{I R_2} = \\frac{R_1}{R_2}",
+            "note": "两式相除约去相同电流 I（正比例分配）",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "I_1 = I_2 = I > 0", "note": "串联电路各处电流处处相等", "cited_formula_ids": ["physics.elec.series_basic"] },
-          { "step": 2, "latex": "U_1 = I R_1,\\ U_2 = I R_2", "note": "将 I 视为正比例函数中的常数斜率，电压 U 与电阻 R 成正比", "cited_formula_ids": ["physics.elec.ohms_voltage", "math.func.direct_proportion"] },
-          { "step": 3, "latex": "\\frac{U_1}{U_2} = \\frac{R_1}{R_2}", "note": "作比消去电流 I，得到“串联正比分压”规律", "cited_formula_ids": [], "pitfall": "注意串联是正比分压（阻大压大），切勿与并联反比分流（I1/I2 = R2/R1）混淆。" }
+          {
+            "step": 1,
+            "latex": "I_1 = I_2 = I > 0",
+            "note": "串联电路各处电流处处相等",
+            "cited_formula_ids": [
+              "physics.elec.series_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "U_1 = I R_1,\\ U_2 = I R_2",
+            "note": "将 I 视为正比例函数中的常数斜率，电压 U 与电阻 R 成正比",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage",
+              "math.func.direct_proportion"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\frac{U_1}{U_2} = \\frac{R_1}{R_2}",
+            "note": "作比消去电流 I，得到“串联正比分压”规律",
+            "cited_formula_ids": [],
+            "pitfall": "注意串联是正比分压（阻大压大），切勿与并联反比分流（I1/I2 = R2/R1）混淆。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.parallel_to_total_r",
-      "from_formula_ids": ["physics.elec.parallel_basic", "physics.elec.ohms_law"],
+      "from_formula_ids": [
+        "physics.elec.parallel_basic",
+        "physics.elec.ohms_law"
+      ],
       "to_formula_id": "physics.elec.parallel_resistance",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution", "divide_both_sides"],
+      "inference_rules": [
+        "identity_substitution",
+        "divide_both_sides"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "把 I = U/R 代入并联干路电流公式 I = I1 + I2，再约去各支路相等的电压 U。",
         "L2_standard": [
-          { "step": 1, "latex": "I = I_1 + I_2", "note": "写出并联电路电流规律", "cited_formula_ids": ["physics.elec.parallel_basic"] },
-          { "step": 2, "latex": "\\frac{U}{R_{\\text{总}}} = \\frac{U_1}{R_1} + \\frac{U_2}{R_2}", "note": "用欧姆定律 I = U/R 替换各项", "cited_formula_ids": ["physics.elec.ohms_law"] },
-          { "step": 3, "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2}", "note": "因并联电压 U = U1 = U2 > 0，两边同除以 U", "cited_formula_ids": ["physics.elec.parallel_basic"] }
+          {
+            "step": 1,
+            "latex": "I = I_1 + I_2",
+            "note": "写出并联电路电流规律",
+            "cited_formula_ids": [
+              "physics.elec.parallel_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{U}{R_{\\text{总}}} = \\frac{U_1}{R_1} + \\frac{U_2}{R_2}",
+            "note": "用欧姆定律 I = U/R 替换各项",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
+            "note": "因并联电压 U = U1 = U2 > 0，两边同除以 U",
+            "cited_formula_ids": [
+              "physics.elec.parallel_basic"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "I = I_1 + I_2,\\quad U = U_1 = U_2", "note": "列出并联电路电压与电流规律", "cited_formula_ids": ["physics.elec.parallel_basic"] },
-          { "step": 2, "latex": "\\frac{U}{R_{\\text{总}}} = \\frac{U}{R_1} + \\frac{U}{R_2} = U\\left(\\frac{1}{R_1} + \\frac{1}{R_2}\\right)", "note": "代入欧姆定律并提取公因式 U", "cited_formula_ids": ["physics.elec.ohms_law"] },
-          { "step": 3, "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2}", "note": "两边约去非零电压 U，说明并联相当于增大横截面积，总电阻越并越小", "cited_formula_ids": [], "pitfall": "算出右边倒数和后切记再取一次倒数，才是最终的总电阻 R总。" }
+          {
+            "step": 1,
+            "latex": "I = I_1 + I_2,\\quad U = U_1 = U_2",
+            "note": "列出并联电路电压与电流规律",
+            "cited_formula_ids": [
+              "physics.elec.parallel_basic"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "\\frac{U}{R_{\\text{总}}} = \\frac{U}{R_1} + \\frac{U}{R_2} = U\\left(\\frac{1}{R_1} + \\frac{1}{R_2}\\right)",
+            "note": "代入欧姆定律并提取公因式 U",
+            "cited_formula_ids": [
+              "physics.elec.ohms_law"
+            ]
+          },
+          {
+            "step": 3,
+            "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
+            "note": "两边约去非零电压 U，说明并联相当于增大横截面积，总电阻越并越小",
+            "cited_formula_ids": [],
+            "pitfall": "算出右边倒数和后切记再取一次倒数，才是最终的总电阻 R总。"
+          }
         ]
       }
     },
     {
       "id": "deriv.cross.reciprocal_to_two_parallel",
-      "from_formula_ids": ["physics.elec.parallel_resistance", "math.alg.reciprocal_sum"],
+      "from_formula_ids": [
+        "physics.elec.parallel_resistance",
+        "math.alg.reciprocal_sum"
+      ],
       "to_formula_id": "physics.elec.parallel_two_resistors",
       "relation_type": "derives_to",
       "dependency_site": "application_level",
-      "inference_rules": ["common_denominator", "take_reciprocal"],
+      "inference_rules": [
+        "common_denominator",
+        "take_reciprocal"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "利用初中数学异分母通分将 1/R1 + 1/R2 合并为 (R1+R2)/(R1R2)，再两边取倒数。",
         "L2_standard": [
-          { "step": 1, "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2} = \\frac{R_1 + R_2}{R_1 R_2}", "note": "套用异分母分式倒数和通分公式", "cited_formula_ids": ["physics.elec.parallel_resistance", "math.alg.reciprocal_sum"] },
-          { "step": 2, "latex": "R_{\\text{总}} = \\frac{R_1 R_2}{R_1 + R_2}", "note": "等式两边同时取倒数", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{1}{R_1} + \\frac{1}{R_2} = \\frac{R_1 + R_2}{R_1 R_2}",
+            "note": "套用异分母分式倒数和通分公式",
+            "cited_formula_ids": [
+              "physics.elec.parallel_resistance",
+              "math.alg.reciprocal_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "R_{\\text{总}} = \\frac{R_1 R_2}{R_1 + R_2}",
+            "note": "等式两边同时取倒数",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{R_2}{R_1 R_2} + \\frac{R_1}{R_1 R_2} = \\frac{R_1 + R_2}{R_1 R_2}", "note": "以 R1R2 为公分母通分合并", "cited_formula_ids": ["physics.elec.parallel_resistance", "math.alg.reciprocal_sum"] },
-          { "step": 2, "latex": "R_{\\text{总}} = \\frac{R_1 R_2}{R_1 + R_2}", "note": "因分子分母均大于 0，取倒数即得“积除以和”快捷式", "cited_formula_ids": [], "pitfall": "若为三个电阻并联，切忌误写为 R1R2R3/(R1+R2+R3)，该快捷式仅限两电阻并联。" }
+          {
+            "step": 1,
+            "latex": "\\frac{1}{R_{\\text{总}}} = \\frac{R_2}{R_1 R_2} + \\frac{R_1}{R_1 R_2} = \\frac{R_1 + R_2}{R_1 R_2}",
+            "note": "以 R1R2 为公分母通分合并",
+            "cited_formula_ids": [
+              "physics.elec.parallel_resistance",
+              "math.alg.reciprocal_sum"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "R_{\\text{总}} = \\frac{R_1 R_2}{R_1 + R_2}",
+            "note": "因分子分母均大于 0，取倒数即得“积除以和”快捷式",
+            "cited_formula_ids": [],
+            "pitfall": "若为三个电阻并联，切忌误写为 R1R2R3/(R1+R2+R3)，该快捷式仅限两电阻并联。"
+          }
         ]
       }
     },
     {
       "id": "deriv.cross.prop_to_current",
-      "from_formula_ids": ["math.func.direct_proportion"],
+      "from_formula_ids": [
+        "math.func.direct_proportion"
+      ],
       "to_formula_id": "physics.elec.current_def",
       "relation_type": "applies_in",
       "dependency_site": "application_level",
-      "inference_rules": ["constant_rate_model"],
+      "inference_rules": [
+        "constant_rate_model"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "恒定电流下通过横截面的电荷量 Q 与时间 t 成正比（Q = It），比值 I 即为电流强度。",
         "L2_standard": [
-          { "step": 1, "latex": "Q = I t \\implies I = \\frac{Q}{t}", "note": "恒定电流对应正比例关系 y = kx，比例系数 k 即电流 I", "cited_formula_ids": ["math.func.direct_proportion"] }
+          {
+            "step": 1,
+            "latex": "Q = I t \\implies I = \\frac{Q}{t}",
+            "note": "恒定电流对应正比例关系 y = kx，比例系数 k 即电流 I",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "Q = I t", "note": "恒定电流电路中电荷量随时间均匀累积，满足正比例函数", "cited_formula_ids": ["math.func.direct_proportion"] },
-          { "step": 2, "latex": "I = \\frac{Q}{t}\\ (t > 0)", "note": "量纲核验：[C]/[s] = [A]", "cited_formula_ids": [], "pitfall": "计算电荷量时时间 t 必须换算为秒（s），不可直接代入分钟。" }
+          {
+            "step": 1,
+            "latex": "Q = I t",
+            "note": "恒定电流电路中电荷量随时间均匀累积，满足正比例函数",
+            "cited_formula_ids": [
+              "math.func.direct_proportion"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "I = \\frac{Q}{t}\\ (t > 0)",
+            "note": "量纲核验：[C]/[s] = [A]",
+            "cited_formula_ids": [],
+            "pitfall": "计算电荷量时时间 t 必须换算为秒（s），不可直接代入分钟。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.current_to_work",
-      "from_formula_ids": ["physics.elec.current_def"],
+      "from_formula_ids": [
+        "physics.elec.current_def"
+      ],
       "to_formula_id": "physics.elec.electric_work",
       "relation_type": "derives_to",
       "dependency_site": "definition_level",
-      "inference_rules": ["definition_substitution"],
+      "inference_rules": [
+        "definition_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由电功与电荷量关系 W = UQ，代入电流定义变形 Q = It 即得 W = UIt。",
         "L2_standard": [
-          { "step": 1, "latex": "Q = I t", "note": "由电流强度定义式变形", "cited_formula_ids": ["physics.elec.current_def"] },
-          { "step": 2, "latex": "W = U Q = U I t", "note": "代入电压做功关系 W = UQ", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "Q = I t",
+            "note": "由电流强度定义式变形",
+            "cited_formula_ids": [
+              "physics.elec.current_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "W = U Q = U I t",
+            "note": "代入电压做功关系 W = UQ",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "I = \\frac{Q}{t} \\implies Q = I t", "note": "写出时间 t 内通过导体横截面的总电荷量", "cited_formula_ids": ["physics.elec.current_def"] },
-          { "step": 2, "latex": "W = U Q = U I t", "note": "电压 U 表示移动单位正电荷所做的功，乘以总电荷量 Q 即为总电功，量纲 [V]·[A]·[s] = [J]", "cited_formula_ids": [], "pitfall": "W = UIt 对电动机等非纯电阻同样适用，计算的是总消耗电能而非仅热能。" }
+          {
+            "step": 1,
+            "latex": "I = \\frac{Q}{t} \\implies Q = I t",
+            "note": "写出时间 t 内通过导体横截面的总电荷量",
+            "cited_formula_ids": [
+              "physics.elec.current_def"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "W = U Q = U I t",
+            "note": "电压 U 表示移动单位正电荷所做的功，乘以总电荷量 Q 即为总电功，量纲 [V]·[A]·[s] = [J]",
+            "cited_formula_ids": [],
+            "pitfall": "W = UIt 对电动机等非纯电阻同样适用，计算的是总消耗电能而非仅热能。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.work_def_to_power_ui",
-      "from_formula_ids": ["physics.elec.electric_work", "physics.elec.electric_power_def"],
+      "from_formula_ids": [
+        "physics.elec.electric_work",
+        "physics.elec.electric_power_def"
+      ],
       "to_formula_id": "physics.elec.electric_power_ui",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution", "cancel_common_factor"],
+      "inference_rules": [
+        "identity_substitution",
+        "cancel_common_factor"
+      ],
       "bidirectional": true,
       "levels": {
         "L1_summary": "将电功公式 W = UIt 代入电功率定义式 P = W/t，约去时间 t 即得 P = UI。",
         "L2_standard": [
-          { "step": 1, "latex": "P = \\frac{W}{t} = \\frac{U I t}{t}", "note": "把 W = UIt 代入电功率定义式", "cited_formula_ids": ["physics.elec.electric_power_def", "physics.elec.electric_work"] },
-          { "step": 2, "latex": "P = U I", "note": "约去通电时间 t（t > 0）", "cited_formula_ids": [] }
+          {
+            "step": 1,
+            "latex": "P = \\frac{W}{t} = \\frac{U I t}{t}",
+            "note": "把 W = UIt 代入电功率定义式",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_def",
+              "physics.elec.electric_work"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = U I",
+            "note": "约去通电时间 t（t > 0）",
+            "cited_formula_ids": []
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "P = \\frac{W}{t},\\quad W = U I t", "note": "联立电功率定义式与电功基本式", "cited_formula_ids": ["physics.elec.electric_power_def", "physics.elec.electric_work"] },
-          { "step": 2, "latex": "P = \\frac{U I t}{t} = U I", "note": "分子分母约去 t，量纲核验：[V]·[A] = [J/s] = [W]", "cited_formula_ids": [], "pitfall": "测量小灯泡额定功率的伏安法实验即直接基于 P = UI。" }
+          {
+            "step": 1,
+            "latex": "P = \\frac{W}{t},\\quad W = U I t",
+            "note": "联立电功率定义式与电功基本式",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_def",
+              "physics.elec.electric_work"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = \\frac{U I t}{t} = U I",
+            "note": "分子分母约去 t，量纲核验：[V]·[A] = [J/s] = [W]",
+            "cited_formula_ids": [],
+            "pitfall": "测量小灯泡额定功率的伏安法实验即直接基于 P = UI。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.power_ohm_to_variants",
-      "from_formula_ids": ["physics.elec.electric_power_ui", "physics.elec.ohms_law", "physics.elec.ohms_voltage"],
+      "from_formula_ids": [
+        "physics.elec.electric_power_ui",
+        "physics.elec.ohms_law",
+        "physics.elec.ohms_voltage"
+      ],
       "to_formula_id": "physics.elec.electric_power_variants",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution"],
+      "inference_rules": [
+        "identity_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在纯电阻电路中，将 U = IR 和 I = U/R 分别代入 P = UI，即可消去 U 或 I 得到两个衍生式。",
         "L2_standard": [
-          { "step": 1, "latex": "P = U I = (I R) \\cdot I = I^2 R", "note": "代入 U = IR 消去电压 U（适合串联比较功率）", "cited_formula_ids": ["physics.elec.electric_power_ui", "physics.elec.ohms_voltage"] },
-          { "step": 2, "latex": "P = U I = U \\cdot \\frac{U}{R} = \\frac{U^2}{R}", "note": "代入 I = U/R 消去电流 I（适合并联比较功率）", "cited_formula_ids": ["physics.elec.electric_power_ui", "physics.elec.ohms_law"] }
+          {
+            "step": 1,
+            "latex": "P = U I = (I R) \\cdot I = I^2 R",
+            "note": "代入 U = IR 消去电压 U（适合串联比较功率）",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_ui",
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = U I = U \\cdot \\frac{U}{R} = \\frac{U^2}{R}",
+            "note": "代入 I = U/R 消去电流 I（适合并联比较功率）",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_ui",
+              "physics.elec.ohms_law"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "P = U I = (I R) I = I^2 R", "note": "因为纯电阻满足欧姆定律，可用 U = IR 替换 U", "cited_formula_ids": ["physics.elec.electric_power_ui", "physics.elec.ohms_voltage"] },
-          { "step": 2, "latex": "P = U I = U \\left(\\frac{U}{R}\\right) = \\frac{U^2}{R}", "note": "同理用 I = U/R 替换 I，得到纯电压电阻形式", "cited_formula_ids": ["physics.elec.electric_power_ui", "physics.elec.ohms_law"], "pitfall": "电动机转动时欧姆定律不成立，绝不能用 P = U²/R 计算电动机总功率。" }
+          {
+            "step": 1,
+            "latex": "P = U I = (I R) I = I^2 R",
+            "note": "因为纯电阻满足欧姆定律，可用 U = IR 替换 U",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_ui",
+              "physics.elec.ohms_voltage"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "P = U I = U \\left(\\frac{U}{R}\\right) = \\frac{U^2}{R}",
+            "note": "同理用 I = U/R 替换 I，得到纯电压电阻形式",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_ui",
+              "physics.elec.ohms_law"
+            ],
+            "pitfall": "电动机转动时欧姆定律不成立，绝不能用 P = U²/R 计算电动机总功率。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.work_ohm_to_joule",
-      "from_formula_ids": ["physics.elec.electric_work", "physics.elec.ohms_voltage"],
+      "from_formula_ids": [
+        "physics.elec.electric_work",
+        "physics.elec.ohms_voltage"
+      ],
       "to_formula_id": "physics.elec.joules_law",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["energy_conservation", "identity_substitution"],
+      "inference_rules": [
+        "energy_conservation",
+        "identity_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "在纯电阻电路中电能全部转化为内能（Q = W = UIt），代入 U = IR 即得焦耳定律 Q = I²Rt。",
         "L2_standard": [
-          { "step": 1, "latex": "Q = W = U I t", "note": "纯电阻电路中消耗的电能全部转化为电热", "cited_formula_ids": ["physics.elec.electric_work"] },
-          { "step": 2, "latex": "Q = (I R) I t = I^2 R t", "note": "代入纯电阻欧姆定律 U = IR", "cited_formula_ids": ["physics.elec.ohms_voltage"] }
+          {
+            "step": 1,
+            "latex": "Q = W = U I t",
+            "note": "纯电阻电路中消耗的电能全部转化为电热",
+            "cited_formula_ids": [
+              "physics.elec.electric_work"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "Q = (I R) I t = I^2 R t",
+            "note": "代入纯电阻欧姆定律 U = IR",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "Q = W = U I t", "note": "在纯电阻条件下，由能量守恒得电热等于电功", "cited_formula_ids": ["physics.elec.electric_work"] },
-          { "step": 2, "latex": "Q = (I R) \\cdot I \\cdot t = I^2 R t", "note": "代入 U = IR 整理，量纲核验：[A²]·[Ω]·[s] = [J]", "cited_formula_ids": ["physics.elec.ohms_voltage"], "pitfall": "注意 Q = I²Rt 本身是实验定律，对非纯电阻（如电动机线圈发热）也适用；但非纯电阻中 Q < W。" }
+          {
+            "step": 1,
+            "latex": "Q = W = U I t",
+            "note": "在纯电阻条件下，由能量守恒得电热等于电功",
+            "cited_formula_ids": [
+              "physics.elec.electric_work"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "Q = (I R) \\cdot I \\cdot t = I^2 R t",
+            "note": "代入 U = IR 整理，量纲核验：[A²]·[Ω]·[s] = [J]",
+            "cited_formula_ids": [
+              "physics.elec.ohms_voltage"
+            ],
+            "pitfall": "注意 Q = I²Rt 本身是实验定律，对非纯电阻（如电动机线圈发热）也适用；但非纯电阻中 Q < W。"
+          }
         ]
       }
     },
     {
       "id": "deriv.elec.power_to_joule",
-      "from_formula_ids": ["physics.elec.electric_power_variants", "physics.elec.electric_power_def"],
+      "from_formula_ids": [
+        "physics.elec.electric_power_variants",
+        "physics.elec.electric_power_def"
+      ],
       "to_formula_id": "physics.elec.joules_law",
       "relation_type": "derives_to",
       "dependency_site": "proof_level",
-      "inference_rules": ["identity_substitution"],
+      "inference_rules": [
+        "identity_substitution"
+      ],
       "bidirectional": false,
       "levels": {
         "L1_summary": "由发热功率 P热 = I²R 乘以通电时间 t，直接得到焦耳定律 Q = I²Rt。",
         "L2_standard": [
-          { "step": 1, "latex": "Q = P_{\\text{热}} t = I^2 R t", "note": "将纯电阻发热功率 P = I²R 代入 W = Pt", "cited_formula_ids": ["physics.elec.electric_power_variants", "physics.elec.electric_power_def"] }
+          {
+            "step": 1,
+            "latex": "Q = P_{\\text{热}} t = I^2 R t",
+            "note": "将纯电阻发热功率 P = I²R 代入 W = Pt",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_variants",
+              "physics.elec.electric_power_def"
+            ]
+          }
         ],
         "L3_detailed": [
-          { "step": 1, "latex": "W = P t,\\quad P_{\\text{热}} = I^2 R", "note": "联立功率定义变形与电阻发热功率式", "cited_formula_ids": ["physics.elec.electric_power_def", "physics.elec.electric_power_variants"] },
-          { "step": 2, "latex": "Q = I^2 R t", "note": "代入即得焦耳定律，提供与 W = UIt 互补的另一条推导路径", "cited_formula_ids": [], "pitfall": "串联比较电热优先用 Q = I²Rt，并联纯电阻比较电热优先用 Q = (U²/R)t。" }
+          {
+            "step": 1,
+            "latex": "W = P t,\\quad P_{\\text{热}} = I^2 R",
+            "note": "联立功率定义变形与电阻发热功率式",
+            "cited_formula_ids": [
+              "physics.elec.electric_power_def",
+              "physics.elec.electric_power_variants"
+            ]
+          },
+          {
+            "step": 2,
+            "latex": "Q = I^2 R t",
+            "note": "代入即得焦耳定律，提供与 W = UIt 互补的另一条推导路径",
+            "cited_formula_ids": [],
+            "pitfall": "串联比较电热优先用 Q = I²Rt，并联纯电阻比较电热优先用 Q = (U²/R)t。"
+          }
         ]
       }
     }

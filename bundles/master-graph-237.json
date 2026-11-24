@@ -2,13 +2,14 @@
   "schema_version": "1.1.0",
   "metadata": {
     "pack_id": "formula-graph-master-237",
-    "title": "公式知识图谱全量底座（初中 + 高中 + 大学及以后 · 237 对象）",
-    "curriculum_ref": "全学段跨学科统一广义知识对象图谱（支持动态视图生成）",
+    "title": "数理知识图谱全量底座（初中 + 高中 + 大学 · 237 对象）",
+    "curriculum_ref": "全阶段跨学科统一广义知识对象图谱（支持动态视图生成）",
     "updated_at": "2026-11-24"
   },
   "formulas": [
     {
       "id": "math.func.direct_proportion",
+      "node_kind": "formula",
       "name": "正比例函数",
       "aliases": [
         "线性正比关系"
@@ -68,6 +69,7 @@
     },
     {
       "id": "math.func.inverse_proportion",
+      "node_kind": "formula",
       "name": "反比例函数",
       "aliases": [
         "反比关系"
@@ -127,6 +129,7 @@
     },
     {
       "id": "math.alg.reciprocal_sum",
+      "node_kind": "formula",
       "name": "异分母分式通分（倒数和）",
       "aliases": [
         "两数倒数和公式"
@@ -168,6 +171,7 @@
     },
     {
       "id": "physics.elec.current_def",
+      "node_kind": "definition",
       "name": "电流强度定义式",
       "aliases": [
         "电流定义式"
@@ -226,6 +230,7 @@
     },
     {
       "id": "physics.elec.ohms_law",
+      "node_kind": "law",
       "name": "欧姆定律",
       "aliases": [
         "部分电路欧姆定律"
@@ -284,6 +289,7 @@
     },
     {
       "id": "physics.elec.ohms_voltage",
+      "node_kind": "formula",
       "name": "欧姆定律变形（求电压）",
       "aliases": [
         "电压计算式"
@@ -342,6 +348,7 @@
     },
     {
       "id": "physics.elec.ohms_resistance",
+      "node_kind": "formula",
       "name": "伏安法测电阻公式",
       "aliases": [
         "电阻量度式"
@@ -400,6 +407,7 @@
     },
     {
       "id": "physics.elec.series_basic",
+      "node_kind": "formula",
       "name": "串联电路电流与电压规律",
       "aliases": [
         "串联基本规律"
@@ -449,6 +457,7 @@
     },
     {
       "id": "physics.elec.series_resistance",
+      "node_kind": "formula",
       "name": "串联总电阻公式",
       "aliases": [
         "串联等效电阻"
@@ -489,6 +498,7 @@
     },
     {
       "id": "physics.elec.series_voltage_divider",
+      "node_kind": "formula",
       "name": "串联分压公式",
       "aliases": [
         "串联电压分配规律"
@@ -538,6 +548,7 @@
     },
     {
       "id": "physics.elec.parallel_basic",
+      "node_kind": "formula",
       "name": "并联电路电流与电压规律",
       "aliases": [
         "并联基本规律"
@@ -587,6 +598,7 @@
     },
     {
       "id": "physics.elec.parallel_resistance",
+      "node_kind": "formula",
       "name": "并联总电阻倒数公式",
       "aliases": [
         "并联等效电阻公式"
@@ -627,6 +639,7 @@
     },
     {
       "id": "physics.elec.parallel_two_resistors",
+      "node_kind": "formula",
       "name": "两电阻并联化简公式",
       "aliases": [
         "积除以和公式"
@@ -667,6 +680,7 @@
     },
     {
       "id": "physics.elec.electric_work",
+      "node_kind": "formula",
       "name": "电功基本公式",
       "aliases": [
         "电能公式"
@@ -734,6 +748,7 @@
     },
     {
       "id": "physics.elec.electric_power_def",
+      "node_kind": "definition",
       "name": "电功率定义式",
       "aliases": [
         "电功率通用定义"
@@ -792,6 +807,7 @@
     },
     {
       "id": "physics.elec.electric_power_ui",
+      "node_kind": "formula",
       "name": "电功率计算式",
       "aliases": [
         "伏安电功率公式"
@@ -850,6 +866,7 @@
     },
     {
       "id": "physics.elec.electric_power_variants",
+      "node_kind": "formula",
       "name": "纯电阻电功率衍生式",
       "aliases": [
         "电功率电阻形式"
@@ -917,6 +934,7 @@
     },
     {
       "id": "physics.elec.joules_law",
+      "node_kind": "law",
       "name": "焦耳定律",
       "aliases": [
         "电热公式"
@@ -984,6 +1002,7 @@
     },
     {
       "id": "math.alg.distributive",
+      "node_kind": "law",
       "name": "多项式乘法分配律",
       "aliases": [
         "二项式展开基本律"
@@ -1024,6 +1043,7 @@
     },
     {
       "id": "math.alg.diff_of_squares",
+      "node_kind": "formula",
       "name": "平方差公式",
       "aliases": [
         "和差乘积公式"
@@ -1064,6 +1084,7 @@
     },
     {
       "id": "math.alg.perfect_square_sum",
+      "node_kind": "formula",
       "name": "完全平方和公式",
       "aliases": [
         "两数和的平方"
@@ -1104,6 +1125,7 @@
     },
     {
       "id": "math.alg.perfect_square_diff",
+      "node_kind": "formula",
       "name": "完全平方差公式",
       "aliases": [
         "两数差的平方"
@@ -1144,6 +1166,7 @@
     },
     {
       "id": "math.alg.factor_diff_squares",
+      "node_kind": "formula",
       "name": "因式分解（平方差法）",
       "aliases": [
         "平方差分解"
@@ -1184,6 +1207,7 @@
     },
     {
       "id": "math.alg.factor_perfect_square",
+      "node_kind": "formula",
       "name": "因式分解（完全平方法）",
       "aliases": [
         "完全平方式逆用"
@@ -1224,6 +1248,7 @@
     },
     {
       "id": "math.alg.cross_factor",
+      "node_kind": "formula",
       "name": "十字相乘法（首项为 1）",
       "aliases": [
         "二次三项式因式分解"
@@ -1273,6 +1298,7 @@
     },
     {
       "id": "math.alg.completing_square",
+      "node_kind": "formula",
       "name": "二次三项式配方法",
       "aliases": [
         "一般二次式配方"
@@ -1322,6 +1348,7 @@
     },
     {
       "id": "math.eq.quadratic_standard",
+      "node_kind": "formula",
       "name": "一元二次方程一般式",
       "aliases": [
         "标准一元二次方程"
@@ -1371,6 +1398,7 @@
     },
     {
       "id": "math.eq.quadratic_completed",
+      "node_kind": "formula",
       "name": "一元二次方程配方形式",
       "aliases": [
         "方程配方标准式"
@@ -1420,6 +1448,7 @@
     },
     {
       "id": "math.eq.discriminant",
+      "node_kind": "formula",
       "name": "一元二次方程根的判别式",
       "aliases": [
         "判别式 Δ"
@@ -1469,6 +1498,7 @@
     },
     {
       "id": "math.eq.quadratic_formula",
+      "node_kind": "formula",
       "name": "一元二次方程求根公式",
       "aliases": [
         "二次方程通解公式"
@@ -1518,6 +1548,7 @@
     },
     {
       "id": "math.eq.vieta_sum",
+      "node_kind": "theorem",
       "name": "韦达定理（两根之和）",
       "aliases": [
         "根与系数关系（和）"
@@ -1567,6 +1598,7 @@
     },
     {
       "id": "math.eq.vieta_product",
+      "node_kind": "theorem",
       "name": "韦达定理（两根之积）",
       "aliases": [
         "根与系数关系（积）"
@@ -1616,6 +1648,7 @@
     },
     {
       "id": "math.eq.root_diff",
+      "node_kind": "formula",
       "name": "两根之差绝对值公式",
       "aliases": [
         "抛物线截距弦长公式"
@@ -1665,6 +1698,7 @@
     },
     {
       "id": "math.eq.root_sq_sum",
+      "node_kind": "formula",
       "name": "两根平方和韦达变形",
       "aliases": [
         "对称多项式平方和公式"
@@ -1705,6 +1739,7 @@
     },
     {
       "id": "math.func.quad_general",
+      "node_kind": "formula",
       "name": "二次函数一般式",
       "aliases": [
         "抛物线一般方程"
@@ -1755,6 +1790,7 @@
     },
     {
       "id": "math.func.quad_vertex",
+      "node_kind": "formula",
       "name": "二次函数顶点式",
       "aliases": [
         "抛物线顶点方程"
@@ -1804,6 +1840,7 @@
     },
     {
       "id": "math.func.quad_extremum",
+      "node_kind": "formula",
       "name": "二次函数对称轴与顶点最值公式",
       "aliases": [
         "抛物线顶点公式"
@@ -1854,6 +1891,7 @@
     },
     {
       "id": "math.func.quad_intercept",
+      "node_kind": "formula",
       "name": "二次函数交点式（两根式）",
       "aliases": [
         "抛物线两根式"
@@ -1903,6 +1941,7 @@
     },
     {
       "id": "physics.mech.velocity",
+      "node_kind": "formula",
       "name": "速度公式",
       "aliases": [
         "匀速直线运动速度"
@@ -1961,6 +2000,7 @@
     },
     {
       "id": "physics.mech.density",
+      "node_kind": "formula",
       "name": "密度公式",
       "aliases": [
         "物质密度定义式"
@@ -2021,6 +2061,7 @@
     },
     {
       "id": "physics.mech.gravity",
+      "node_kind": "formula",
       "name": "重力公式",
       "aliases": [
         "物重与质量关系"
@@ -2079,6 +2120,7 @@
     },
     {
       "id": "physics.mech.volume_prism",
+      "node_kind": "formula",
       "name": "柱体体积公式",
       "aliases": [
         "直柱体体积"
@@ -2138,6 +2180,7 @@
     },
     {
       "id": "physics.mech.pressure_def",
+      "node_kind": "definition",
       "name": "压强定义式",
       "aliases": [
         "通用压强公式"
@@ -2196,6 +2239,7 @@
     },
     {
       "id": "physics.mech.liquid_pressure",
+      "node_kind": "formula",
       "name": "液体压强公式",
       "aliases": [
         "静水压强公式"
@@ -2254,6 +2298,7 @@
     },
     {
       "id": "physics.mech.archimedes",
+      "node_kind": "law",
       "name": "阿基米德原理（浮力公式）",
       "aliases": [
         "浮力计算式"
@@ -2312,6 +2357,7 @@
     },
     {
       "id": "physics.mech.floating_balance",
+      "node_kind": "formula",
       "name": "漂浮与悬浮平衡条件",
       "aliases": [
         "浮沉平衡式"
@@ -2361,6 +2407,7 @@
     },
     {
       "id": "physics.mech.lever_balance",
+      "node_kind": "formula",
       "name": "杠杆平衡条件",
       "aliases": [
         "杠杆原理"
@@ -2410,6 +2457,7 @@
     },
     {
       "id": "physics.mech.pulley_force",
+      "node_kind": "formula",
       "name": "滑轮组拉力公式",
       "aliases": [
         "竖直滑轮组省力式"
@@ -2468,6 +2516,7 @@
     },
     {
       "id": "physics.mech.pulley_distance",
+      "node_kind": "formula",
       "name": "滑轮组绳端移动距离",
       "aliases": [
         "滑轮组位移关系"
@@ -2526,6 +2575,7 @@
     },
     {
       "id": "physics.mech.work_def",
+      "node_kind": "formula",
       "name": "机械功公式",
       "aliases": [
         "功的计算式"
@@ -2584,6 +2634,7 @@
     },
     {
       "id": "physics.mech.useful_work_lift",
+      "node_kind": "formula",
       "name": "竖直提重物有用功",
       "aliases": [
         "克服重力做功"
@@ -2642,6 +2693,7 @@
     },
     {
       "id": "physics.mech.power_def",
+      "node_kind": "definition",
       "name": "机械功率定义式",
       "aliases": [
         "功率通用式"
@@ -2700,6 +2752,7 @@
     },
     {
       "id": "physics.mech.power_fv",
+      "node_kind": "formula",
       "name": "功率速度公式",
       "aliases": [
         "牵引力功率公式"
@@ -2758,6 +2811,7 @@
     },
     {
       "id": "physics.mech.mech_efficiency",
+      "node_kind": "formula",
       "name": "机械效率公式",
       "aliases": [
         "机械效率定义式"
@@ -2807,6 +2861,7 @@
     },
     {
       "id": "chemistry.sol.mass_fraction",
+      "node_kind": "formula",
       "name": "溶质质量分数公式",
       "aliases": [
         "溶液浓度（质量分数）"
@@ -2864,6 +2919,7 @@
     },
     {
       "id": "chemistry.sol.solution_mass",
+      "node_kind": "formula",
       "name": "溶液质量组成关系",
       "aliases": [
         "溶液质量守恒"
@@ -2903,6 +2959,7 @@
     },
     {
       "id": "chemistry.sol.dilution",
+      "node_kind": "formula",
       "name": "溶液稀释溶质守恒公式",
       "aliases": [
         "溶液稀释计算式"
@@ -2952,6 +3009,7 @@
     },
     {
       "id": "chemistry.sol.solubility_fraction",
+      "node_kind": "formula",
       "name": "饱和溶液溶解度与质量分数换算",
       "aliases": [
         "饱和溶液浓度公式"
@@ -3000,6 +3058,7 @@
     },
     {
       "id": "math.trig.unit_circle_def",
+      "node_kind": "definition",
       "name": "单位圆三角函数定义",
       "aliases": [
         "任意角三角函数定义"
@@ -3049,6 +3108,7 @@
     },
     {
       "id": "math.trig.pythagorean",
+      "node_kind": "formula",
       "name": "同角三角函数平方关系",
       "aliases": [
         "三角勾股恒等式",
@@ -3090,6 +3150,7 @@
     },
     {
       "id": "math.trig.quotient",
+      "node_kind": "formula",
       "name": "同角三角函数商数关系",
       "aliases": [
         "商数关系"
@@ -3130,6 +3191,7 @@
     },
     {
       "id": "math.trig.sec_tan_pythagorean",
+      "node_kind": "formula",
       "name": "正切与余弦平方转化公式",
       "aliases": [
         "正割平方关系",
@@ -3173,6 +3235,7 @@
     },
     {
       "id": "math.trig.ind_neg",
+      "node_kind": "formula",
       "name": "诱导公式三（负角奇偶性）",
       "aliases": [
         "正余弦奇偶性",
@@ -3214,6 +3277,7 @@
     },
     {
       "id": "math.trig.ind_pi_minus",
+      "node_kind": "formula",
       "name": "诱导公式四（补角关系）",
       "aliases": [
         "补角公式"
@@ -3254,6 +3318,7 @@
     },
     {
       "id": "math.trig.ind_half_pi_minus",
+      "node_kind": "formula",
       "name": "诱导公式五（余角互换）",
       "aliases": [
         "余角公式",
@@ -3295,6 +3360,7 @@
     },
     {
       "id": "math.trig.ind_half_pi_plus",
+      "node_kind": "formula",
       "name": "诱导公式六（π/2+α）",
       "aliases": [
         "九十度加角公式"
@@ -3335,6 +3401,7 @@
     },
     {
       "id": "math.trig.cos_diff",
+      "node_kind": "formula",
       "name": "两角差的余弦公式",
       "aliases": [
         "余弦差角公式",
@@ -3385,6 +3452,7 @@
     },
     {
       "id": "math.trig.cos_sum",
+      "node_kind": "formula",
       "name": "两角和的余弦公式",
       "aliases": [
         "余弦和角公式",
@@ -3435,6 +3503,7 @@
     },
     {
       "id": "math.trig.sin_sum",
+      "node_kind": "formula",
       "name": "两角和的正弦公式",
       "aliases": [
         "正弦和角公式",
@@ -3485,6 +3554,7 @@
     },
     {
       "id": "math.trig.sin_diff",
+      "node_kind": "formula",
       "name": "两角差的正弦公式",
       "aliases": [
         "正弦差角公式",
@@ -3535,6 +3605,7 @@
     },
     {
       "id": "math.trig.tan_sum",
+      "node_kind": "formula",
       "name": "两角和的正切公式",
       "aliases": [
         "正切和角公式",
@@ -3576,6 +3647,7 @@
     },
     {
       "id": "math.trig.tan_diff",
+      "node_kind": "formula",
       "name": "两角差的正切公式",
       "aliases": [
         "正切差角公式",
@@ -3617,6 +3689,7 @@
     },
     {
       "id": "math.trig.sin_double",
+      "node_kind": "formula",
       "name": "二倍角正弦公式",
       "aliases": [
         "正弦二倍角",
@@ -3658,6 +3731,7 @@
     },
     {
       "id": "math.trig.cos_double",
+      "node_kind": "formula",
       "name": "二倍角余弦公式（基本形式）",
       "aliases": [
         "余弦二倍角公式",
@@ -3699,6 +3773,7 @@
     },
     {
       "id": "math.trig.cos_double_cos",
+      "node_kind": "formula",
       "name": "二倍角余弦公式（纯余弦形式）",
       "aliases": [
         "二倍角余弦单函数形式"
@@ -3739,6 +3814,7 @@
     },
     {
       "id": "math.trig.cos_double_sin",
+      "node_kind": "formula",
       "name": "二倍角余弦公式（纯正弦形式）",
       "aliases": [
         "二倍角余弦正弦形式"
@@ -3779,6 +3855,7 @@
     },
     {
       "id": "math.trig.tan_double",
+      "node_kind": "formula",
       "name": "二倍角正切公式",
       "aliases": [
         "正切二倍角",
@@ -3820,6 +3897,7 @@
     },
     {
       "id": "math.trig.power_reduction_cos",
+      "node_kind": "formula",
       "name": "余弦降幂公式",
       "aliases": [
         "扩角降幂公式（余弦）",
@@ -3863,6 +3941,7 @@
     },
     {
       "id": "math.trig.power_reduction_sin",
+      "node_kind": "formula",
       "name": "正弦降幂公式",
       "aliases": [
         "扩角降幂公式（正弦）",
@@ -3906,6 +3985,7 @@
     },
     {
       "id": "math.trig.auxiliary_angle",
+      "node_kind": "formula",
       "name": "辅助角公式",
       "aliases": [
         "合一变形公式"
@@ -3966,6 +4046,7 @@
     },
     {
       "id": "math.trig.law_of_cosines",
+      "node_kind": "theorem",
       "name": "余弦定理",
       "aliases": [
         "广义勾股定理"
@@ -4016,6 +4097,7 @@
     },
     {
       "id": "math.trig.law_of_sines",
+      "node_kind": "theorem",
       "name": "正弦定理",
       "aliases": [
         "三角形正弦比例定理"
@@ -4075,6 +4157,7 @@
     },
     {
       "id": "math.trig.triangle_area",
+      "node_kind": "formula",
       "name": "三角形正弦面积公式",
       "aliases": [
         "两边夹角面积公式"
@@ -4133,6 +4216,7 @@
     },
     {
       "id": "math.func.exp_rules",
+      "node_kind": "law",
       "name": "有理数指数幂运算律",
       "aliases": [
         "指数运算法则"
@@ -4182,6 +4266,7 @@
     },
     {
       "id": "math.func.log_def",
+      "node_kind": "definition",
       "name": "指对互化定义式",
       "aliases": [
         "对数定义式"
@@ -4240,6 +4325,7 @@
     },
     {
       "id": "math.func.log_rules",
+      "node_kind": "law",
       "name": "对数基本运算律",
       "aliases": [
         "积商幂的对数法则"
@@ -4298,6 +4384,7 @@
     },
     {
       "id": "math.func.log_change_base",
+      "node_kind": "formula",
       "name": "对数换底公式",
       "aliases": [
         "换底公式"
@@ -4348,6 +4435,7 @@
     },
     {
       "id": "math.alg.am_gm",
+      "node_kind": "inequality",
       "name": "基本不等式（均值不等式）",
       "aliases": [
         "AM-GM 不等式"
@@ -4388,6 +4476,7 @@
     },
     {
       "id": "math.alg.qm_am_gm_hm",
+      "node_kind": "inequality",
       "name": "均值不等式链",
       "aliases": [
         "四均值不等式"
@@ -4428,6 +4517,7 @@
     },
     {
       "id": "math.func.odd_even",
+      "node_kind": "definition",
       "name": "函数奇偶性判定式",
       "aliases": [
         "奇函数与偶函数定义"
@@ -4477,6 +4567,7 @@
     },
     {
       "id": "math.func.periodicity",
+      "node_kind": "definition",
       "name": "函数周期性定义式",
       "aliases": [
         "周期函数定义"
@@ -4527,6 +4618,7 @@
     },
     {
       "id": "math.calc.derivative_def",
+      "node_kind": "definition",
       "name": "导数定义式（瞬时变化率）",
       "aliases": [
         "函数在一点的导数"
@@ -4578,6 +4670,7 @@
     },
     {
       "id": "math.calc.deriv_power",
+      "node_kind": "formula",
       "name": "幂函数求导公式",
       "aliases": [
         "幂函数导数"
@@ -4628,6 +4721,7 @@
     },
     {
       "id": "math.calc.deriv_exp_log",
+      "node_kind": "formula",
       "name": "自然指对数求导公式",
       "aliases": [
         "e^x 与 ln x 导数"
@@ -4669,6 +4763,7 @@
     },
     {
       "id": "math.calc.deriv_trig",
+      "node_kind": "formula",
       "name": "正余弦函数求导公式",
       "aliases": [
         "三角函数基本导数"
@@ -4711,6 +4806,7 @@
     },
     {
       "id": "math.calc.deriv_linear",
+      "node_kind": "formula",
       "name": "导数线性运算法则",
       "aliases": [
         "和差与数乘求导法则"
@@ -4761,6 +4857,7 @@
     },
     {
       "id": "math.calc.deriv_product",
+      "node_kind": "formula",
       "name": "导数乘法法则（莱布尼茨法则）",
       "aliases": [
         "积的求导法则"
@@ -4802,6 +4899,7 @@
     },
     {
       "id": "math.calc.deriv_quotient",
+      "node_kind": "formula",
       "name": "导数除法法则",
       "aliases": [
         "商的求导法则"
@@ -4843,6 +4941,7 @@
     },
     {
       "id": "math.calc.chain_rule",
+      "node_kind": "formula",
       "name": "复合函数求导（链式法则）",
       "aliases": [
         "链式法则"
@@ -4885,6 +4984,7 @@
     },
     {
       "id": "math.calc.tangent_line",
+      "node_kind": "formula",
       "name": "曲线切线方程",
       "aliases": [
         "点斜式切线方程"
@@ -4935,6 +5035,7 @@
     },
     {
       "id": "math.calc.monotonicity",
+      "node_kind": "formula",
       "name": "导数与函数单调性判定",
       "aliases": [
         "单调性导数判别法"
@@ -4976,6 +5077,7 @@
     },
     {
       "id": "math.calc.extremum_necessary",
+      "node_kind": "theorem",
       "name": "可导函数极值必要条件（费马引理）",
       "aliases": [
         "驻点极值条件"
@@ -5017,6 +5119,7 @@
     },
     {
       "id": "math.calc.deriv_general_exp_log",
+      "node_kind": "formula",
       "name": "一般底数指对数求导公式",
       "aliases": [
         "a^x 与 log_a x 导数"
@@ -5067,6 +5170,7 @@
     },
     {
       "id": "stat.prob.classical",
+      "node_kind": "formula",
       "name": "古典概型概率公式",
       "aliases": [
         "等可能概型公式"
@@ -5117,6 +5221,7 @@
     },
     {
       "id": "stat.prob.addition",
+      "node_kind": "formula",
       "name": "概率加法公式（容斥原理）",
       "aliases": [
         "两事件并集概率公式"
@@ -5158,6 +5263,7 @@
     },
     {
       "id": "stat.prob.conditional",
+      "node_kind": "definition",
       "name": "条件概率公式",
       "aliases": [
         "条件概率定义式"
@@ -5199,6 +5305,7 @@
     },
     {
       "id": "stat.prob.multiplication",
+      "node_kind": "formula",
       "name": "概率乘法公式",
       "aliases": [
         "联合概率分解式"
@@ -5240,6 +5347,7 @@
     },
     {
       "id": "stat.prob.independence",
+      "node_kind": "definition",
       "name": "事件独立性判定式",
       "aliases": [
         "相互独立事件公式"
@@ -5281,6 +5389,7 @@
     },
     {
       "id": "stat.prob.total_probability",
+      "node_kind": "formula",
       "name": "全概率公式",
       "aliases": [
         "完备事件组概率展开"
@@ -5322,6 +5431,7 @@
     },
     {
       "id": "stat.prob.bayes",
+      "node_kind": "formula",
       "name": "贝叶斯公式",
       "aliases": [
         "后验概率更新公式"
@@ -5372,6 +5482,7 @@
     },
     {
       "id": "stat.rv.expectation_discrete",
+      "node_kind": "definition",
       "name": "离散型随机变量数学期望",
       "aliases": [
         "期望定义式",
@@ -5423,6 +5534,7 @@
     },
     {
       "id": "stat.rv.expectation_linear",
+      "node_kind": "formula",
       "name": "数学期望线性性质",
       "aliases": [
         "期望可加性"
@@ -5464,6 +5576,7 @@
     },
     {
       "id": "stat.rv.variance_def",
+      "node_kind": "definition",
       "name": "方差定义式与展开公式",
       "aliases": [
         "方差计算式"
@@ -5505,6 +5618,7 @@
     },
     {
       "id": "stat.rv.variance_props",
+      "node_kind": "formula",
       "name": "方差伸缩与独立可加性质",
       "aliases": [
         "方差运算法则"
@@ -5546,6 +5660,7 @@
     },
     {
       "id": "stat.rv.covariance",
+      "node_kind": "definition",
       "name": "协方差公式",
       "aliases": [
         "两变量协方差"
@@ -5586,6 +5701,7 @@
     },
     {
       "id": "stat.rv.correlation",
+      "node_kind": "definition",
       "name": "皮尔逊相关系数",
       "aliases": [
         "线性相关系数 ρ"
@@ -5626,6 +5742,7 @@
     },
     {
       "id": "stat.dist.binomial",
+      "node_kind": "distribution",
       "name": "二项分布概率律",
       "aliases": [
         "n 重伯努利试验分布"
@@ -5685,6 +5802,7 @@
     },
     {
       "id": "stat.dist.binomial_moments",
+      "node_kind": "formula",
       "name": "二项分布期望与方差",
       "aliases": [
         "B(n,p) 数字特征"
@@ -5726,6 +5844,7 @@
     },
     {
       "id": "stat.dist.normal_pdf",
+      "node_kind": "distribution",
       "name": "正态分布概率密度函数",
       "aliases": [
         "高斯分布密度函数"
@@ -5776,6 +5895,7 @@
     },
     {
       "id": "stat.dist.standardization",
+      "node_kind": "formula",
       "name": "正态分布标准化变换（Z 分数）",
       "aliases": [
         "Z-score 变换"
@@ -5817,6 +5937,7 @@
     },
     {
       "id": "stat.inf.clt",
+      "node_kind": "theorem",
       "name": "独立同分布中心极限定理（CLT）",
       "aliases": [
         "林德伯格-列维中心极限定理"
@@ -5866,6 +5987,7 @@
     },
     {
       "id": "calc.lim.important_sin",
+      "node_kind": "formula",
       "name": "第一重要极限",
       "aliases": [
         "正弦比值极限"
@@ -5905,6 +6027,7 @@
     },
     {
       "id": "calc.lim.important_e",
+      "node_kind": "formula",
       "name": "第二重要极限（自然常数 e）",
       "aliases": [
         "连续复利极限"
@@ -5944,6 +6067,7 @@
     },
     {
       "id": "calc.lim.equiv_infinitesimal",
+      "node_kind": "formula",
       "name": "等价无穷小替换",
       "aliases": [
         "无穷小阶替换公式"
@@ -5983,6 +6107,7 @@
     },
     {
       "id": "calc.lim.lhopital",
+      "node_kind": "theorem",
       "name": "洛必达法则（L'Hôpital）",
       "aliases": [
         "未定式求导极限法则"
@@ -6022,6 +6147,7 @@
     },
     {
       "id": "calc.diff.differential",
+      "node_kind": "definition",
       "name": "微分定义与线性主部",
       "aliases": [
         "一阶微分公式"
@@ -6061,6 +6187,7 @@
     },
     {
       "id": "calc.diff.rolle",
+      "node_kind": "theorem",
       "name": "罗尔中值定理",
       "aliases": [
         "Rolle 定理"
@@ -6100,6 +6227,7 @@
     },
     {
       "id": "calc.diff.lagrange",
+      "node_kind": "theorem",
       "name": "拉格朗日中值定理",
       "aliases": [
         "微分中值定理（MVT）"
@@ -6139,6 +6267,7 @@
     },
     {
       "id": "calc.diff.cauchy",
+      "node_kind": "theorem",
       "name": "柯西中值定理",
       "aliases": [
         "参数方程中值定理"
@@ -6178,6 +6307,7 @@
     },
     {
       "id": "calc.series.taylor",
+      "node_kind": "formula",
       "name": "泰勒公式（带拉格朗日余项）",
       "aliases": [
         "泰勒展开式"
@@ -6226,6 +6356,7 @@
     },
     {
       "id": "calc.series.maclaurin_exp",
+      "node_kind": "formula",
       "name": "常用麦克劳林级数展开",
       "aliases": [
         "零点泰勒展开（e^x, sin x, cos x）"
@@ -6265,6 +6396,7 @@
     },
     {
       "id": "calc.int.antiderivative",
+      "node_kind": "definition",
       "name": "不定积分与原函数定义",
       "aliases": [
         "反导数定义式"
@@ -6313,6 +6445,7 @@
     },
     {
       "id": "calc.int.riemann",
+      "node_kind": "definition",
       "name": "定积分的黎曼和定义",
       "aliases": [
         "曲边梯形面积极限"
@@ -6361,6 +6494,7 @@
     },
     {
       "id": "calc.int.var_upper_limit",
+      "node_kind": "formula",
       "name": "变上限积分求导公式",
       "aliases": [
         "微积分基本定理第一部分"
@@ -6400,6 +6534,7 @@
     },
     {
       "id": "calc.int.newton_leibniz",
+      "node_kind": "formula",
       "name": "牛顿-莱布尼茨公式",
       "aliases": [
         "微积分基本定理（FTC）"
@@ -6439,6 +6574,7 @@
     },
     {
       "id": "calc.int.substitution",
+      "node_kind": "formula",
       "name": "换元积分法",
       "aliases": [
         "凑微分法 / 变量代换积分"
@@ -6478,6 +6614,7 @@
     },
     {
       "id": "calc.int.by_parts",
+      "node_kind": "formula",
       "name": "分部积分法",
       "aliases": [
         "乘积求导逆法则"
@@ -6517,6 +6654,7 @@
     },
     {
       "id": "calc.int.improper",
+      "node_kind": "definition",
       "name": "无穷区间广义积分（反常积分）",
       "aliases": [
         "无穷限反常积分"
@@ -6556,6 +6694,7 @@
     },
     {
       "id": "calc.multi.partial_deriv",
+      "node_kind": "definition",
       "name": "偏导数定义式",
       "aliases": [
         "多元函数偏导数"
@@ -6595,6 +6734,7 @@
     },
     {
       "id": "calc.multi.total_diff",
+      "node_kind": "formula",
       "name": "多元函数全微分公式",
       "aliases": [
         "切平面线性近似"
@@ -6634,6 +6774,7 @@
     },
     {
       "id": "calc.multi.gradient",
+      "node_kind": "definition",
       "name": "梯度向量与最速上升方向",
       "aliases": [
         "梯度算子 ∇f"
@@ -6673,6 +6814,7 @@
     },
     {
       "id": "linalg.vec.dot_product",
+      "node_kind": "formula",
       "name": "向量内积（点积）公式",
       "aliases": [
         "数量积",
@@ -6723,6 +6865,7 @@
     },
     {
       "id": "linalg.vec.norm",
+      "node_kind": "formula",
       "name": "向量欧几里得范数（L2 模长）",
       "aliases": [
         "向量长度公式"
@@ -6763,6 +6906,7 @@
     },
     {
       "id": "linalg.vec.cauchy_schwarz",
+      "node_kind": "inequality",
       "name": "柯西-施瓦茨不等式",
       "aliases": [
         "Cauchy-Schwarz 不等式"
@@ -6802,6 +6946,7 @@
     },
     {
       "id": "linalg.vec.projection",
+      "node_kind": "formula",
       "name": "向量正交投影公式",
       "aliases": [
         "一维子空间投影"
@@ -6841,6 +6986,7 @@
     },
     {
       "id": "linalg.vec.gram_schmidt",
+      "node_kind": "formula",
       "name": "施密特正交化公式（Gram-Schmidt）",
       "aliases": [
         "标准正交基构造"
@@ -6880,6 +7026,7 @@
     },
     {
       "id": "linalg.mat.multiply",
+      "node_kind": "definition",
       "name": "矩阵乘法定义式",
       "aliases": [
         "线性变换复合"
@@ -6919,6 +7066,7 @@
     },
     {
       "id": "linalg.mat.transpose",
+      "node_kind": "formula",
       "name": "矩阵转置与反序乘积法则",
       "aliases": [
         "穿脱鞋转置法则"
@@ -6958,6 +7106,7 @@
     },
     {
       "id": "linalg.mat.inverse",
+      "node_kind": "formula",
       "name": "可逆矩阵与反序求逆法则",
       "aliases": [
         "逆矩阵定义与乘积逆"
@@ -6997,6 +7146,7 @@
     },
     {
       "id": "linalg.mat.rank_nullity",
+      "node_kind": "theorem",
       "name": "秩-零度定理（维数公式）",
       "aliases": [
         "线性方程组解空间维数定理"
@@ -7045,6 +7195,7 @@
     },
     {
       "id": "linalg.mat.normal_eq",
+      "node_kind": "formula",
       "name": "最小二乘正规方程",
       "aliases": [
         "普通最小二乘解析解（OLS）"
@@ -7085,6 +7236,7 @@
     },
     {
       "id": "linalg.mat.orthogonal",
+      "node_kind": "formula",
       "name": "正交矩阵性质",
       "aliases": [
         "保长旋转/反射矩阵"
@@ -7124,6 +7276,7 @@
     },
     {
       "id": "linalg.det.laplace",
+      "node_kind": "formula",
       "name": "行列式按行展开（拉普拉斯展开）",
       "aliases": [
         "代数余子式展开公式"
@@ -7163,6 +7316,7 @@
     },
     {
       "id": "linalg.det.product",
+      "node_kind": "theorem",
       "name": "行列式乘法定理",
       "aliases": [
         "比内-柯西特例"
@@ -7202,6 +7356,7 @@
     },
     {
       "id": "linalg.det.adjugate_inv",
+      "node_kind": "formula",
       "name": "伴随矩阵求逆公式",
       "aliases": [
         "A* 求逆公式"
@@ -7241,6 +7396,7 @@
     },
     {
       "id": "linalg.det.cramer",
+      "node_kind": "theorem",
       "name": "克莱姆法则（Cramer）",
       "aliases": [
         "行列式解线性方程组"
@@ -7280,6 +7436,7 @@
     },
     {
       "id": "linalg.eig.characteristic",
+      "node_kind": "definition",
       "name": "特征值与特征方程",
       "aliases": [
         "特征多项式方程"
@@ -7328,6 +7485,7 @@
     },
     {
       "id": "linalg.eig.trace_det",
+      "node_kind": "formula",
       "name": "特征值与迹、行列式不变量关系",
       "aliases": [
         "迹等于特征值之和"
@@ -7367,6 +7525,7 @@
     },
     {
       "id": "linalg.eig.diagonalization",
+      "node_kind": "formula",
       "name": "矩阵相似对角化公式",
       "aliases": [
         "特征分解"
@@ -7415,6 +7574,7 @@
     },
     {
       "id": "linalg.eig.spectral",
+      "node_kind": "theorem",
       "name": "实对称矩阵谱定理（正交对角化）",
       "aliases": [
         "主轴定理"
@@ -7455,6 +7615,7 @@
     },
     {
       "id": "linalg.eig.svd",
+      "node_kind": "formula",
       "name": "奇异值分解（SVD）",
       "aliases": [
         "任意矩阵正交分解"
@@ -7504,6 +7665,7 @@
     },
     {
       "id": "math.seq.arith_term",
+      "node_kind": "formula",
       "name": "等差数列通项公式",
       "aliases": [
         "算术数列通项"
@@ -7552,6 +7714,7 @@
     },
     {
       "id": "math.seq.arith_sum",
+      "node_kind": "formula",
       "name": "等差数列前 n 项和公式",
       "aliases": [
         "高斯求和公式"
@@ -7591,6 +7754,7 @@
     },
     {
       "id": "math.seq.geom_term",
+      "node_kind": "formula",
       "name": "等比数列通项公式",
       "aliases": [
         "几何数列通项"
@@ -7630,6 +7794,7 @@
     },
     {
       "id": "math.seq.geom_sum",
+      "node_kind": "formula",
       "name": "等比数列前 n 项和公式",
       "aliases": [
         "错位相减求和基准"
@@ -7669,6 +7834,7 @@
     },
     {
       "id": "math.seq.sum_to_term",
+      "node_kind": "formula",
       "name": "前 n 项和与通项差分关系",
       "aliases": [
         "Sn 求 an 公式"
@@ -7708,6 +7874,7 @@
     },
     {
       "id": "math.alg.binomial_theorem",
+      "node_kind": "theorem",
       "name": "二项式定理",
       "aliases": [
         "牛顿二项式展开"
@@ -7747,6 +7914,7 @@
     },
     {
       "id": "math.geo.distance_2d",
+      "node_kind": "formula",
       "name": "平面两点间距离公式",
       "aliases": [
         "解析几何欧氏距离"
@@ -7786,6 +7954,7 @@
     },
     {
       "id": "math.geo.line_slope",
+      "node_kind": "formula",
       "name": "直线斜率与点斜式方程",
       "aliases": [
         "直线点斜式"
@@ -7834,6 +8003,7 @@
     },
     {
       "id": "math.geo.point_to_line",
+      "node_kind": "formula",
       "name": "点到直线距离公式",
       "aliases": [
         "垂线段距离公式"
@@ -7873,6 +8043,7 @@
     },
     {
       "id": "math.geo.circle_std",
+      "node_kind": "formula",
       "name": "圆的标准方程",
       "aliases": [
         "圆心半径式方程"
@@ -7921,6 +8092,7 @@
     },
     {
       "id": "math.geo.ellipse_std",
+      "node_kind": "formula",
       "name": "椭圆标准方程",
       "aliases": [
         "焦点在 x 轴椭圆"
@@ -7960,6 +8132,7 @@
     },
     {
       "id": "math.geo.hyperbola_std",
+      "node_kind": "formula",
       "name": "双曲线标准方程",
       "aliases": [
         "焦点在 x 轴双曲线"
@@ -7999,6 +8172,7 @@
     },
     {
       "id": "math.geo.conic_eccentricity",
+      "node_kind": "formula",
       "name": "圆锥曲线离心率公式",
       "aliases": [
         "椭圆/双曲线扁平度参数 e"
@@ -8038,6 +8212,7 @@
     },
     {
       "id": "math.geo.hyperbola_asymptote",
+      "node_kind": "formula",
       "name": "双曲线渐近线方程",
       "aliases": [
         "双曲线无穷远趋近直线"
@@ -8077,6 +8252,7 @@
     },
     {
       "id": "math.geo.parabola_std",
+      "node_kind": "formula",
       "name": "抛物线标准方程与焦半径公式",
       "aliases": [
         "向右开口抛物线"
@@ -8116,6 +8292,7 @@
     },
     {
       "id": "math.geo.vec_coord",
+      "node_kind": "formula",
       "name": "平面向量坐标表示与模长",
       "aliases": [
         "二维向量坐标化"
@@ -8155,6 +8332,7 @@
     },
     {
       "id": "math.geo.vec_dot_2d",
+      "node_kind": "formula",
       "name": "平面向量数量积坐标公式",
       "aliases": [
         "二维向量点乘"
@@ -8194,6 +8372,7 @@
     },
     {
       "id": "math.geo.vec_parallel_perp",
+      "node_kind": "formula",
       "name": "平面向量共线与垂直坐标判定",
       "aliases": [
         "向量平行垂直充要条件"
@@ -8233,6 +8412,7 @@
     },
     {
       "id": "physics.kin.vel_time",
+      "node_kind": "formula",
       "name": "匀变速直线运动速度公式",
       "aliases": [
         "v-t 公式"
@@ -8290,6 +8470,7 @@
     },
     {
       "id": "physics.kin.disp_time",
+      "node_kind": "formula",
       "name": "匀变速直线运动位移公式",
       "aliases": [
         "x-t 公式"
@@ -8329,6 +8510,7 @@
     },
     {
       "id": "physics.kin.vel_disp",
+      "node_kind": "formula",
       "name": "匀变速速度-位移公式",
       "aliases": [
         "不含时间 t 推论"
@@ -8368,6 +8550,7 @@
     },
     {
       "id": "physics.dyn.newton2",
+      "node_kind": "law",
       "name": "牛顿第二定律",
       "aliases": [
         "动力学基本方程"
@@ -8416,6 +8599,7 @@
     },
     {
       "id": "physics.dyn.centripetal",
+      "node_kind": "formula",
       "name": "向心力公式",
       "aliases": [
         "匀速圆周运动动力学方程"
@@ -8473,6 +8657,7 @@
     },
     {
       "id": "physics.dyn.gravitation",
+      "node_kind": "law",
       "name": "万有引力定律",
       "aliases": [
         "牛顿引力公式"
@@ -8512,6 +8697,7 @@
     },
     {
       "id": "physics.dyn.first_cosmic",
+      "node_kind": "formula",
       "name": "第一宇宙速度（环绕速度）",
       "aliases": [
         "近地卫星最小发射速度"
@@ -8551,6 +8737,7 @@
     },
     {
       "id": "physics.eng.kinetic_theorem",
+      "node_kind": "theorem",
       "name": "动能定理",
       "aliases": [
         "合外力做功与动能变化关系"
@@ -8590,6 +8777,7 @@
     },
     {
       "id": "physics.eng.mech_conservation",
+      "node_kind": "law",
       "name": "机械能守恒定律",
       "aliases": [
         "动能与势能转化守恒"
@@ -8629,6 +8817,7 @@
     },
     {
       "id": "physics.mom.impulse_theorem",
+      "node_kind": "theorem",
       "name": "动量定理",
       "aliases": [
         "冲量与动量变化关系"
@@ -8668,6 +8857,7 @@
     },
     {
       "id": "physics.mom.conservation",
+      "node_kind": "law",
       "name": "动量守恒定律",
       "aliases": [
         "碰撞与反冲基本定律"
@@ -8707,6 +8897,7 @@
     },
     {
       "id": "physics.em.coulomb",
+      "node_kind": "law",
       "name": "库仑定律",
       "aliases": [
         "静电力平方反比定律"
@@ -8755,6 +8946,7 @@
     },
     {
       "id": "physics.em.efield",
+      "node_kind": "definition",
       "name": "电场强度定义与点电荷场强",
       "aliases": [
         "电场强度 E"
@@ -8794,6 +8986,7 @@
     },
     {
       "id": "physics.em.potential_diff",
+      "node_kind": "formula",
       "name": "匀强电场电势差与场强关系",
       "aliases": [
         "U = Ed 与电场力做功"
@@ -8842,6 +9035,7 @@
     },
     {
       "id": "physics.em.capacitance",
+      "node_kind": "definition",
       "name": "电容定义与平行板电容器决定式",
       "aliases": [
         "电容公式"
@@ -8881,6 +9075,7 @@
     },
     {
       "id": "physics.em.closed_ohm",
+      "node_kind": "law",
       "name": "闭合电路欧姆定律",
       "aliases": [
         "全电路欧姆定律"
@@ -8929,6 +9124,7 @@
     },
     {
       "id": "physics.em.ampere_force",
+      "node_kind": "formula",
       "name": "安培力公式",
       "aliases": [
         "通电导线磁场受力"
@@ -8977,6 +9173,7 @@
     },
     {
       "id": "physics.em.lorentz_force",
+      "node_kind": "formula",
       "name": "洛伦兹力公式",
       "aliases": [
         "运动电荷磁场受力"
@@ -9016,6 +9213,7 @@
     },
     {
       "id": "physics.em.cyclotron_radius",
+      "node_kind": "formula",
       "name": "带电粒子磁场圆周运动半径与周期",
       "aliases": [
         "回旋半径与回旋周期"
@@ -9055,6 +9253,7 @@
     },
     {
       "id": "physics.em.faraday",
+      "node_kind": "law",
       "name": "法拉第电磁感应定律与切割电动势",
       "aliases": [
         "感应电动势公式"
@@ -9094,6 +9293,7 @@
     },
     {
       "id": "stat.inf.chebyshev",
+      "node_kind": "inequality",
       "name": "切比雪夫不等式",
       "aliases": [
         "尾部概率无分布上界"
@@ -9134,6 +9334,7 @@
     },
     {
       "id": "stat.inf.lln",
+      "node_kind": "law",
       "name": "弱大数定律（辛钦大数定律）",
       "aliases": [
         "样本均值依概率收敛"
@@ -9174,6 +9375,7 @@
     },
     {
       "id": "stat.inf.sample_var",
+      "node_kind": "formula",
       "name": "样本无偏方差公式（贝塞尔校正）",
       "aliases": [
         "自由度 n-1 样本方差"
@@ -9214,6 +9416,7 @@
     },
     {
       "id": "stat.dist.chi_square",
+      "node_kind": "distribution",
       "name": "卡方分布（χ² 分布）",
       "aliases": [
         "独立标准正态平方和分布"
@@ -9254,6 +9457,7 @@
     },
     {
       "id": "stat.dist.t_dist",
+      "node_kind": "distribution",
       "name": "学生 t 分布（Student's t）",
       "aliases": [
         "小样本均值抽样分布"
@@ -9294,6 +9498,7 @@
     },
     {
       "id": "stat.dist.f_dist",
+      "node_kind": "distribution",
       "name": "费舍尔 F 分布",
       "aliases": [
         "两卡方比值分布 / 方差分析分布"
@@ -9334,6 +9539,7 @@
     },
     {
       "id": "stat.est.ci_z",
+      "node_kind": "formula",
       "name": "总体均值 Z 置信区间（方差已知）",
       "aliases": [
         "大样本均值区间估计"
@@ -9374,6 +9580,7 @@
     },
     {
       "id": "stat.est.ci_t",
+      "node_kind": "formula",
       "name": "总体均值 t 置信区间（方差未知）",
       "aliases": [
         "小样本均值区间估计"
@@ -9414,6 +9621,7 @@
     },
     {
       "id": "stat.test.t_stat",
+      "node_kind": "formula",
       "name": "单样本 t 检验统计量",
       "aliases": [
         "均值假设检验 t 值"
@@ -9454,6 +9662,7 @@
     },
     {
       "id": "stat.test.p_value",
+      "node_kind": "definition",
       "name": "p 值与显著性水平判定准则",
       "aliases": [
         "假设检验决策规则"
@@ -9494,6 +9703,7 @@
     },
     {
       "id": "stat.est.mle",
+      "node_kind": "definition",
       "name": "极大似然估计（MLE）",
       "aliases": [
         "最大对数似然参数估计"
@@ -9534,6 +9744,7 @@
     },
     {
       "id": "stat.reg.ols_1d",
+      "node_kind": "formula",
       "name": "一元线性回归最小二乘估计（OLS）",
       "aliases": [
         "回归直线斜率与截距公式"
@@ -9575,6 +9786,7 @@
     },
     {
       "id": "stat.reg.r_squared",
+      "node_kind": "formula",
       "name": "决定系数（拟合优度 R²）",
       "aliases": [
         "可解释方差比例"
@@ -9615,6 +9827,7 @@
     },
     {
       "id": "stat.est.bayes_conj",
+      "node_kind": "formula",
       "name": "正态-正态共轭贝叶斯后验均值",
       "aliases": [
         "贝叶斯精度加权平均"
