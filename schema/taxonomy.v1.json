@@ -1,6 +1,11 @@
 {
-  "taxonomy_version": "1.0.0",
-  "description": "公式知识图谱三级分类体系（学科 Discipline → 分支领域 Branch → 规范专题 Topic）",
+  "taxonomy_version": "1.1.0",
+  "description": "公式知识图谱多级分类体系（学段 Stage → 学科 Discipline → 分支领域 Branch → 规范专题 Topic）",
+  "stages": [
+    { "id": "junior_high", "label": "初中" },
+    { "id": "senior_high", "label": "高中" },
+    { "id": "undergraduate", "label": "大学及以后" }
+  ],
   "disciplines": [
     {
       "id": "mathematics",

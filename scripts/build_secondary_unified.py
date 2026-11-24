@@ -270,85 +270,47 @@ def main() -> int:
     jh_bundle = json.loads((bundles_dir / "junior-high-unified-58.json").read_text(encoding="utf-8"))
     jh_pos, jh_lanes, jh_w, jh_h = build_positions_from_cols(jh_builder.UNIFIED_COLUMNS, row_gap=126)
 
-    trig_data = json.loads((data_dir / "cn-senior-high" / "trig-seed-25.json").read_text(encoding="utf-8"))
-    calc_data = json.loads((data_dir / "cn-senior-high" / "functions-calculus-batch2.json").read_text(encoding="utf-8"))
-    sr_pos, sr_lanes, sr_w, sr_h = build_positions_from_cols(SECONDARY_COLUMNS[8:], row_gap=122)
-
     stat_data = json.loads((data_dir / "higher-ed" / "probability-statistics-18.json").read_text(encoding="utf-8"))
-    stat_pos, stat_lanes, stat_w, stat_h = build_positions_from_cols(STAT_COLUMNS, row_gap=132)
-    stat_ids = {f["id"] for f in stat_data["formulas"]}
-    assert set(stat_pos.keys()) == stat_ids, f"概率统计坐标缺失或多余: {set(stat_pos.keys()) ^ stat_ids}"
 
-    packs_payload = {
-        "secondary_unified": {
-            "label": "中学总图 · 初高中全量（103公式）",
-            "data": secondary_unified,
-            "stageW": sec_w,
-            "stageH": sec_h,
-            "defaultZoom": 0.56,
-            "defaultFormula": "math.calc.derivative_def",
-            "defaultDeriv": "deriv.bridge.velocity_to_deriv_def",
-            "defaultPathStart": "math.alg.perfect_square_diff",
-            "defaultPathEnd": "math.calc.extremum_necessary",
-            "lanes": sec_lanes,
-            "positions": sec_pos,
+    # 合并全量总图（中学 103 + 大学及以后 18 = 121 公式），供原型按 学段 → 学科 → 分支 → 专题 动态生成视图
+    master_formulas = list(all_formulas)
+    master_derivations = list(all_derivations)
+    master_seen_f = set(seen_f)
+    master_seen_d = set(seen_d)
+    for f in stat_data["formulas"]:
+        if f["id"] not in master_seen_f:
+            master_seen_f.add(f["id"])
+            master_formulas.append(f)
+    for d in stat_data["derivations"]:
+        if d["id"] not in master_seen_d:
+            master_seen_d.add(d["id"])
+            master_derivations.append(d)
+
+    master_graph = {
+        "schema_version": "1.0.0",
+        "metadata": {
+            "pack_id": "formula-graph-master-121",
+            "title": "公式知识图谱全量底座（初中 + 高中 + 大学及以后）",
+            "curriculum_ref": "全学段跨学科统一公式知识图谱（支持动态视图生成）",
+            "updated_at": "2026-11-23",
         },
-        "higher_stat": {
-            "label": "高等专题 · 概率与统计学（18公式）",
-            "data": stat_data,
-            "stageW": stat_w,
-            "stageH": stat_h,
-            "defaultZoom": 0.82,
-            "defaultFormula": "stat.prob.bayes",
-            "defaultDeriv": "deriv.stat.cond_total_to_bayes",
-            "defaultPathStart": "stat.prob.classical",
-            "defaultPathEnd": "stat.inf.clt",
-            "lanes": stat_lanes,
-            "positions": stat_pos,
-        },
-        "junior_unified": {
-            "label": "子视图 · 初中跨学科（58公式）",
-            "data": jh_bundle,
-            "stageW": jh_w,
-            "stageH": jh_h,
-            "defaultZoom": 0.64,
-            "defaultFormula": "math.func.direct_proportion",
-            "defaultDeriv": "deriv.bridge.quad_ext_to_elec_power",
-            "defaultPathStart": "math.alg.distributive",
-            "defaultPathEnd": "physics.elec.joules_law",
-            "lanes": jh_lanes,
-            "positions": jh_pos,
-        },
-        "senior_unified": {
-            "label": "子视图 · 高中数学核心（45公式）",
-            "data": {
-                "schema_version": "1.0.0",
-                "metadata": {
-                    "pack_id": "cn-senior-high-unified-45",
-                    "title": "高中数学核心子视图（三角函数 + 函数与导数 · 45 公式）",
-                    "curriculum_ref": "人教A版高中数学必修与选择性必修",
-                    "updated_at": "2026-11-23",
-                },
-                "formulas": trig_data["formulas"] + calc_data["formulas"],
-                "derivations": trig_data["derivations"] + calc_data["derivations"] + [
-                    b for b in SECONDARY_BRIDGES if b["id"] in {
-                        "deriv.bridge.ind_neg_to_odd_even",
-                        "deriv.bridge.sin_sum_to_deriv_trig",
-                        "deriv.bridge.power_red_to_deriv_trig",
-                    }
-                ],
-            },
-            "stageW": sr_w,
-            "stageH": sr_h,
-            "defaultZoom": 0.66,
-            "defaultFormula": "math.calc.deriv_trig",
-            "defaultDeriv": "deriv.bridge.sin_sum_to_deriv_trig",
-            "defaultPathStart": "math.trig.cos_diff",
-            "defaultPathEnd": "math.calc.deriv_trig",
-            "lanes": sr_lanes,
-            "positions": sr_pos,
-        },
+        "formulas": master_formulas,
+        "derivations": master_derivations,
     }
+    master_bundle = bundles_dir / "master-graph-121.json"
+    master_bundle.write_text(json.dumps(master_graph, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    m_errs, m_warns, m_summary = validate.validate_pack(master_bundle, None, None)
+    if m_errs:
+        print("全量总图校验失败:", m_errs)
+        return 1
+    print(
+        f"[PASS] bundles/master-graph-121.json | "
+        f"公式 {m_summary['formula_count']} 个 · "
+        f"推导 {m_summary['derivation_count']} 条 · "
+        f"连通分量 {m_summary['connected_components']} · "
+        f"孤立节点 {m_summary['isolated_count']} · 警告 {len(m_warns)}"
+    )
 
     taxonomy_path = repo_root / "schema" / "taxonomy.v1.json"
     taxonomy_obj = json.loads(taxonomy_path.read_text(encoding="utf-8"))
@@ -359,18 +321,17 @@ def main() -> int:
             for tp in br["topics"]:
                 for rt in tp.get("raw_topics", [tp["id"]]):
                     raw_map.add(rt)
-    all_checked = all_formulas + stat_data["formulas"]
-    unmapped = [f["id"] for f in all_checked if not any(t in raw_map for t in f["taxonomy"]["topics"])]
-    assert not unmapped, f"存在未归入三级分类树的公式: {unmapped}"
+    unmapped = [f["id"] for f in master_formulas if not any(t in raw_map for t in f["taxonomy"]["topics"])]
+    assert not unmapped, f"存在未归入分类树的公式: {unmapped}"
 
     tpl_path = repo_root / "prototype" / "template.html"
     html_path = repo_root / "prototype" / "index.html"
     tpl = tpl_path.read_text(encoding="utf-8")
-    assert "/*__TAXONOMY_PAYLOAD__*/" in tpl and "/*__PACKS_PAYLOAD__*/" in tpl
+    assert "/*__TAXONOMY_PAYLOAD__*/" in tpl and "/*__MASTER_GRAPH_PAYLOAD__*/" in tpl
     rendered = tpl.replace("/*__TAXONOMY_PAYLOAD__*/", json.dumps(taxonomy_obj, ensure_ascii=False, indent=2), 1)
-    rendered = rendered.replace("/*__PACKS_PAYLOAD__*/", json.dumps(packs_payload, ensure_ascii=False, indent=2), 1)
+    rendered = rendered.replace("/*__MASTER_GRAPH_PAYLOAD__*/", json.dumps(master_graph, ensure_ascii=False, indent=2), 1)
     html_path.write_text(rendered, encoding="utf-8")
-    print(f"OK: {len(all_checked)} 公式（中学 103 + 概率与统计学 18）全部完成三级分类映射，已重新生成 prototype/index.html。")
+    print(f"OK: {len(master_formulas)} 公式全部完成多级分类映射，已生成动态视图原型 prototype/index.html。")
     return 0
 
 
