@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>公式知识图谱 · 中学全量跨学科总图（三级联动筛选）</title>
+  <title>公式知识图谱 · 中学总图与高等专题（三级联动筛选）</title>
   <!-- 在线时自动加载 KaTeX 渲染出版级数学公式；离线时无缝回退到内置原生公式渲染器 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="window.__katexReady && window.__katexReady()"></script>
@@ -545,8 +545,37 @@
         },
         {
           "id": "math.statistics",
-          "label": "概率与统计学（预留扩展）",
-          "topics": []
+          "label": "概率与统计学",
+          "topics": [
+            {
+              "id": "prob_basics",
+              "label": "古典概型与条件概率",
+              "raw_topics": [
+                "prob_basics"
+              ]
+            },
+            {
+              "id": "bayes_inference",
+              "label": "独立性、全概率与贝叶斯",
+              "raw_topics": [
+                "bayes_inference"
+              ]
+            },
+            {
+              "id": "expectation_variance",
+              "label": "期望、方差与相关性",
+              "raw_topics": [
+                "expectation_variance"
+              ]
+            },
+            {
+              "id": "distributions_clt",
+              "label": "二项/正态分布与中心极限定理",
+              "raw_topics": [
+                "distributions_clt"
+              ]
+            }
+          ]
         },
         {
           "id": "math.linear_algebra",
@@ -10933,6 +10962,1611 @@
       }
     }
   },
+  "higher_stat": {
+    "label": "高等专题 · 概率与统计学（18公式）",
+    "data": {
+      "schema_version": "1.0.0",
+      "metadata": {
+        "pack_id": "higher-ed-probability-statistics-18",
+        "title": "概率论与统计学核心公式包（18 公式）",
+        "curriculum_ref": "高中概率统计衔接与本科《概率论与数理统计》核心主线",
+        "updated_at": "2026-11-23"
+      },
+      "formulas": [
+        {
+          "id": "stat.prob.classical",
+          "name": "古典概型概率公式",
+          "aliases": [
+            "等可能概型公式"
+          ],
+          "latex": "P(A) = \\frac{m}{n}",
+          "statement": "若样本空间包含 n 个等可能基本事件，事件 A 包含其中 m 个，则事件 A 发生的概率为 m/n。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "prob_basics"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "P(A)",
+              "name": "事件 A 的概率",
+              "math_type": "scalar",
+              "domain": "[0, 1]",
+              "quantity_kind": "probability",
+              "dimension": "1",
+              "si_unit": "1"
+            },
+            {
+              "symbol": "m, n",
+              "name": "有利与总基本事件数",
+              "math_type": "scalar",
+              "domain": "\\mathbb{Z}^+",
+              "quantity_kind": "count",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "样本空间有限（n < ∞），且每个基本事件出现的可能性完全相等"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 1.3",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.prob.addition",
+          "name": "概率加法公式（容斥原理）",
+          "aliases": [
+            "两事件并集概率公式"
+          ],
+          "latex": "P(A \\cup B) = P(A) + P(B) - P(AB)",
+          "statement": "两个事件至少发生其一的概率，等于两事件各自概率之和减去它们同时发生的概率。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "prob_basics"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "A, B",
+              "name": "随机事件",
+              "math_type": "set",
+              "domain": "\\Omega",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "对任意两事件均成立；当 A、B 互斥（AB = ∅）时退化为 P(A∪B) = P(A) + P(B)"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 1.2",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.prob.conditional",
+          "name": "条件概率公式",
+          "aliases": [
+            "条件概率定义式"
+          ],
+          "latex": "P(B \\mid A) = \\frac{P(AB)}{P(A)}",
+          "statement": "在已知事件 A 发生的条件下，事件 B 发生的概率等于两者同时发生的概率除以事件 A 发生的概率。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "prob_basics"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "P(B \\mid A)",
+              "name": "A 条件下 B 的概率",
+              "math_type": "scalar",
+              "domain": "[0, 1]",
+              "quantity_kind": "probability",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "必须满足 P(A) > 0"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 1.4",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.prob.multiplication",
+          "name": "概率乘法公式",
+          "aliases": [
+            "联合概率分解式"
+          ],
+          "latex": "P(AB) = P(A) P(B \\mid A)",
+          "statement": "两事件同时发生的联合概率等于事件 A 发生的概率乘以在 A 发生条件下 B 发生的条件概率。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "prob_basics"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "P(AB)",
+              "name": "联合概率",
+              "math_type": "scalar",
+              "domain": "[0, 1]",
+              "quantity_kind": "probability",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "P(A) > 0；多事件可递推展开为链式乘法公式"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 1.4",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.prob.independence",
+          "name": "事件独立性判定式",
+          "aliases": [
+            "相互独立事件公式"
+          ],
+          "latex": "P(AB) = P(A) P(B)",
+          "statement": "若事件 A 是否发生不影响事件 B 发生的概率，则两事件相互独立，联合概率等于边缘概率之积。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "bayes_inference"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "A, B",
+              "name": "相互独立事件",
+              "math_type": "set",
+              "domain": "\\Omega",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "注意区分独立与互斥：两个正概率事件若互斥则必然不独立"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 1.5",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.prob.total_probability",
+          "name": "全概率公式",
+          "aliases": [
+            "完备事件组概率展开"
+          ],
+          "latex": "P(B) = \\sum_{i=1}^{n} P(A_i) P(B \\mid A_i)",
+          "statement": "将样本空间划分为两两互斥且完备的若干原因事件 Ai，结果事件 B 的总概率等于各路径概率之和。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "bayes_inference"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "A_i",
+              "name": "完备事件组（划分）",
+              "math_type": "set",
+              "domain": "\\Omega",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "A1, ..., An 两两互斥、并集为全空间 Ω，且 P(Ai) > 0"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 1.4",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.prob.bayes",
+          "name": "贝叶斯公式",
+          "aliases": [
+            "后验概率更新公式"
+          ],
+          "latex": "P(A_k \\mid B) = \\frac{P(A_k) P(B \\mid A_k)}{\\sum_{i=1}^{n} P(A_i) P(B \\mid A_i)}",
+          "statement": "在观测到结果 B 后，将原因 Ak 的先验概率结合似然度更新为后验概率，是统计推断与机器学习的基石。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "bayes_inference"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "P(A_k \\mid B)",
+              "name": "后验概率",
+              "math_type": "scalar",
+              "domain": "[0, 1]",
+              "quantity_kind": "probability",
+              "dimension": "1",
+              "si_unit": "1"
+            },
+            {
+              "symbol": "P(A_k)",
+              "name": "先验概率",
+              "math_type": "scalar",
+              "domain": "(0, 1]",
+              "quantity_kind": "probability",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "A1, ..., An 为样本空间划分，P(Ai) > 0 且 P(B) > 0"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 1.4",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.rv.expectation_discrete",
+          "name": "离散型随机变量数学期望",
+          "aliases": [
+            "期望定义式",
+            "概率加权平均"
+          ],
+          "latex": "E(X) = \\sum_i x_i p_i",
+          "statement": "离散型随机变量的数学期望等于各可能取值与其对应概率乘积之和，刻画分布的中心位置。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "expectation_variance"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "x_i",
+              "name": "随机变量取值",
+              "math_type": "scalar",
+              "domain": "\\mathbb{R}",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            },
+            {
+              "symbol": "p_i",
+              "name": "对应概率",
+              "math_type": "scalar",
+              "domain": "[0, 1]",
+              "quantity_kind": "probability",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "∑ p_i = 1；无穷级数情形要求绝对收敛 ∑ |x_i| p_i < ∞"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 4.1",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.rv.expectation_linear",
+          "name": "数学期望线性性质",
+          "aliases": [
+            "期望可加性"
+          ],
+          "latex": "E(aX + bY + c) = a E(X) + b E(Y) + c",
+          "statement": "无论随机变量 X 与 Y 是否独立，线性组合的期望恒等于各自期望的同系数线性组合。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "expectation_variance"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "a, b, c",
+              "name": "实常数",
+              "math_type": "constant",
+              "domain": "\\mathbb{R}",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "E(X) 与 E(Y) 存在；无需假设 X 与 Y 独立"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 4.1",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.rv.variance_def",
+          "name": "方差定义式与展开公式",
+          "aliases": [
+            "方差计算式"
+          ],
+          "latex": "D(X) = E[(X - E(X))^2] = E(X^2) - [E(X)]^2",
+          "statement": "方差度量随机变量偏离其期望的离散程度，计算上常化为“平方的期望减去期望的平方”。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "expectation_variance"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "D(X)",
+              "name": "方差（亦记 Var(X)）",
+              "math_type": "scalar",
+              "domain": "[0, +\\infty)",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "E(X²) 存在；标准差 σ = √D(X)"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 4.2",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.rv.variance_props",
+          "name": "方差伸缩与独立可加性质",
+          "aliases": [
+            "方差运算法则"
+          ],
+          "latex": "D(aX + b) = a^2 D(X),\\quad D(X \\pm Y) = D(X) + D(Y)",
+          "statement": "常数平移不改变方差，缩放 a 倍使方差变为 a² 倍；两独立随机变量之和或差的方差均等于各自方差之和。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "expectation_variance"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "a, b",
+              "name": "实常数",
+              "math_type": "constant",
+              "domain": "\\mathbb{R}",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "D(X ± Y) = D(X) + D(Y) 要求 X 与 Y 相互独立（或至少不相关）"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 4.2",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.rv.covariance",
+          "name": "协方差公式",
+          "aliases": [
+            "两变量协方差"
+          ],
+          "latex": "\\text{Cov}(X, Y) = E(XY) - E(X)E(Y)",
+          "statement": "协方差度量两个随机变量协同变化的方向与强度，是方差概念向二维随机变量的自然推广。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "undergraduate"
+            ],
+            "topics": [
+              "expectation_variance"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "\\text{Cov}(X, Y)",
+              "name": "协方差",
+              "math_type": "scalar",
+              "domain": "\\mathbb{R}",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "E(X²), E(Y²) 存在；若 X、Y 独立则 Cov(X, Y) = 0（逆命题一般不成立）"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 4.3",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.rv.correlation",
+          "name": "皮尔逊相关系数",
+          "aliases": [
+            "线性相关系数 ρ"
+          ],
+          "latex": "\\rho_{XY} = \\frac{\\text{Cov}(X, Y)}{\\sqrt{D(X)}\\sqrt{D(Y)}}",
+          "statement": "将协方差除以两变量标准差之积实现无量纲标准化，取值恒在 [-1, 1] 之间以度量线性相关强弱。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "undergraduate"
+            ],
+            "topics": [
+              "expectation_variance"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "\\rho_{XY}",
+              "name": "相关系数",
+              "math_type": "scalar",
+              "domain": "[-1, 1]",
+              "quantity_kind": "correlation",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "D(X) > 0 且 D(Y) > 0；|ρ| = 1 当且仅当两变量几乎必然线性相关"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 4.3",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.dist.binomial",
+          "name": "二项分布概率律",
+          "aliases": [
+            "n 重伯努利试验分布"
+          ],
+          "latex": "P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}",
+          "statement": "进行 n 次相互独立、单次成功概率均为 p 的伯努利试验，恰好成功 k 次的概率分布。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "distributions_clt"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "n",
+              "name": "试验总次数",
+              "math_type": "constant",
+              "domain": "\\mathbb{Z}^+",
+              "quantity_kind": "count",
+              "dimension": "1",
+              "si_unit": "1"
+            },
+            {
+              "symbol": "p",
+              "name": "单次成功概率",
+              "math_type": "constant",
+              "domain": "(0, 1)",
+              "quantity_kind": "probability",
+              "dimension": "1",
+              "si_unit": "1"
+            },
+            {
+              "symbol": "k",
+              "name": "成功次数",
+              "math_type": "scalar",
+              "domain": "\\{0,1,\\dots,n\\}",
+              "quantity_kind": "count",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "各次试验相互独立且成功概率 p 保持不变，记作 X ~ B(n, p)"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "人教A版选择性必修第三册 7.4.1",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.dist.binomial_moments",
+          "name": "二项分布期望与方差",
+          "aliases": [
+            "B(n,p) 数字特征"
+          ],
+          "latex": "E(X) = n p,\\quad D(X) = n p (1 - p)",
+          "statement": "服从二项分布 B(n, p) 的随机变量，其期望为 np，方差为 np(1-p)。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "distributions_clt"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "n, p",
+              "name": "试验次数与成功概率",
+              "math_type": "constant",
+              "domain": "\\mathbb{Z}^+ \\times (0,1)",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "X ~ B(n, p)"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "人教A版选择性必修第三册 7.4.1",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.dist.normal_pdf",
+          "name": "正态分布概率密度函数",
+          "aliases": [
+            "高斯分布密度函数"
+          ],
+          "latex": "f(x) = \\frac{1}{\\sqrt{2\\pi}\\sigma} e^{-\\frac{(x - \\mu)^2}{2\\sigma^2}}",
+          "statement": "均值 μ 决定钟形曲线的对称轴位置，标准差 σ 决定曲线的胖瘦离散程度，记作 X ~ N(μ, σ²)。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "distributions_clt"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "\\mu",
+              "name": "总体均值",
+              "math_type": "constant",
+              "domain": "\\mathbb{R}",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            },
+            {
+              "symbol": "\\sigma",
+              "name": "总体标准差",
+              "math_type": "constant",
+              "domain": "(0, +\\infty)",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            }
+          ],
+          "conditions": [
+            "σ > 0；全实轴积分 ∫ f(x) dx = 1"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 2.4",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.dist.standardization",
+          "name": "正态分布标准化变换（Z 分数）",
+          "aliases": [
+            "Z-score 变换"
+          ],
+          "latex": "Z = \\frac{X - \\mu}{\\sigma} \\sim N(0, 1)",
+          "statement": "将任意正态变量减去均值再除以标准差，均可化为均值为 0、方差为 1 的标准正态分布以便查表计算概率。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "senior_high",
+              "undergraduate"
+            ],
+            "topics": [
+              "distributions_clt"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "Z",
+              "name": "标准正态变量（Z 分数）",
+              "math_type": "scalar",
+              "domain": "\\mathbb{R}",
+              "quantity_kind": "z_score",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "X ~ N(μ, σ²) 且 σ > 0"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 2.4",
+            "sympy_verified": true
+          }
+        },
+        {
+          "id": "stat.inf.clt",
+          "name": "独立同分布中心极限定理（CLT）",
+          "aliases": [
+            "林德伯格-列维中心极限定理"
+          ],
+          "latex": "\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}} \\xrightarrow{d} N(0, 1)",
+          "statement": "无论总体原始分布形态如何，只要均值 μ 与有限方差 σ² 存在，当样本量 n 充分大时样本均值的标准化量渐近服从标准正态分布。",
+          "taxonomy": {
+            "disciplines": [
+              "mathematics",
+              "statistics"
+            ],
+            "education_stages": [
+              "undergraduate"
+            ],
+            "topics": [
+              "distributions_clt"
+            ]
+          },
+          "variables": [
+            {
+              "symbol": "\\bar{X}",
+              "name": "样本均值",
+              "math_type": "scalar",
+              "domain": "\\mathbb{R}",
+              "quantity_kind": null,
+              "dimension": null,
+              "si_unit": null
+            },
+            {
+              "symbol": "n",
+              "name": "样本容量",
+              "math_type": "constant",
+              "domain": "\\mathbb{Z}^+",
+              "quantity_kind": "count",
+              "dimension": "1",
+              "si_unit": "1"
+            }
+          ],
+          "conditions": [
+            "X1, ..., Xn 独立同分布（i.i.d.），且 0 < σ² < ∞；工程经验常取 n ≥ 30"
+          ],
+          "review": {
+            "status": "human_verified",
+            "source": "概率论与数理统计 5.2",
+            "sympy_verified": true
+          }
+        }
+      ],
+      "derivations": [
+        {
+          "id": "deriv.stat.class_to_add",
+          "from_formula_ids": [
+            "stat.prob.classical"
+          ],
+          "to_formula_id": "stat.prob.addition",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "inclusion_exclusion"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "由集合元素个数容斥公式 |A∪B| = |A| + |B| - |AB| 两边同除以样本空间总数 n 即得概率加法公式。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "|A \\cup B| = |A| + |B| - |AB|",
+                "note": "并集计数减去被重复计算一次的交集",
+                "cited_formula_ids": []
+              },
+              {
+                "step": 2,
+                "latex": "P(A \\cup B) = \\frac{|A \\cup B|}{n} = P(A) + P(B) - P(AB)",
+                "note": "两边同除以 n 并代入古典概型定义",
+                "cited_formula_ids": [
+                  "stat.prob.classical"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "P(A \\cup B) = P(A) + P(B) - P(AB)",
+                "note": "一般概率空间下可由 A∪B = A ∪ (B - AB) 互斥分解严格证明，不限于古典概型",
+                "cited_formula_ids": [
+                  "stat.prob.classical"
+                ],
+                "pitfall": "若未验证 A、B 互斥，切勿遗漏末尾的 -P(AB)。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.class_to_cond",
+          "from_formula_ids": [
+            "stat.prob.classical"
+          ],
+          "to_formula_id": "stat.prob.conditional",
+          "relation_type": "derives_to",
+          "dependency_site": "definition_level",
+          "inference_rules": [
+            "sample_space_reduction"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "已知 A 发生后样本空间缩减为 A，有利事件缩减为 AB，分子分母同除以总样本数 n 即得 P(AB)/P(A)。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "P(B \\mid A) = \\frac{m_{AB}}{m_A} = \\frac{m_{AB}/n}{m_A/n} = \\frac{P(AB)}{P(A)}",
+                "note": "缩减样本空间后上下同除以 n",
+                "cited_formula_ids": [
+                  "stat.prob.classical"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "P(B \\mid A) = \\frac{P(AB)}{P(A)}\\ (P(A) > 0)",
+                "note": "古典概型直观动机推广为公理化条件概率定义",
+                "cited_formula_ids": [
+                  "stat.prob.classical"
+                ],
+                "pitfall": "切忌把 P(B|A) 与 P(A|B) 混淆，竖线右侧永远是已知前提条件。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.cond_to_mult",
+          "from_formula_ids": [
+            "stat.prob.conditional"
+          ],
+          "to_formula_id": "stat.prob.multiplication",
+          "relation_type": "equivalent_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "multiply_both_sides"
+          ],
+          "bidirectional": true,
+          "levels": {
+            "L1_summary": "将条件概率公式两边同乘 P(A) 即得概率乘法公式 P(AB) = P(A)P(B|A)。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "P(B \\mid A) = \\frac{P(AB)}{P(A)} \\implies P(AB) = P(A) P(B \\mid A)",
+                "note": "两边同乘非零项 P(A)",
+                "cited_formula_ids": [
+                  "stat.prob.conditional"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "P(AB) = P(A)P(B \\mid A) = P(B)P(A \\mid B)",
+                "note": "三事件可递推为 P(ABC) = P(A)P(B|A)P(C|AB)",
+                "cited_formula_ids": [
+                  "stat.prob.conditional"
+                ],
+                "pitfall": "不放回抽样必须使用乘法公式而非直接相乘，因为每次抽样条件概率都在变化。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.mult_to_indep",
+          "from_formula_ids": [
+            "stat.prob.multiplication"
+          ],
+          "to_formula_id": "stat.prob.independence",
+          "relation_type": "special_case_of",
+          "dependency_site": "definition_level",
+          "inference_rules": [
+            "specialization"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "当 A 发生与否不改变 B 的概率即 P(B|A) = P(B) 时，概率乘法公式退化为独立性判定式 P(AB) = P(A)P(B)。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "P(B \\mid A) = P(B) \\implies P(AB) = P(A) P(B)",
+                "note": "将条件无关性代入概率乘法公式",
+                "cited_formula_ids": [
+                  "stat.prob.multiplication"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "P(AB) = P(A)P(B)",
+                "note": "采用乘积形式作正式定义还能涵盖 P(A) = 0 的边界情形",
+                "cited_formula_ids": [
+                  "stat.prob.multiplication"
+                ],
+                "pitfall": "三事件两两独立并不能保证三事件相互独立，还需额外满足 P(ABC) = P(A)P(B)P(C)。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.add_mult_to_total",
+          "from_formula_ids": [
+            "stat.prob.addition",
+            "stat.prob.multiplication"
+          ],
+          "to_formula_id": "stat.prob.total_probability",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "disjoint_partition",
+            "identity_substitution"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "把事件 B 按完备互斥事件组分解为 B = ⋃(AiB)，先由互斥加法求和，再对每项应用乘法公式。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "P(B) = P\\left(\\bigcup_{i=1}^n A_i B\\right) = \\sum_{i=1}^n P(A_i B)",
+                "note": "因 AiB 两两互斥，套用有限可加性",
+                "cited_formula_ids": [
+                  "stat.prob.addition"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "= \\sum_{i=1}^n P(A_i) P(B \\mid A_i)",
+                "note": "对每项应用概率乘法公式",
+                "cited_formula_ids": [
+                  "stat.prob.multiplication"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "B = B \\cap \\Omega = \\bigcup_{i=1}^n (A_i B)",
+                "note": "利用完备事件组将复杂事件 B 拆成若干互不相交的原因分支",
+                "cited_formula_ids": [
+                  "stat.prob.addition"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "P(B) = \\sum_{i=1}^n P(A_i) P(B \\mid A_i)",
+                "note": "逐项展开联合概率，实现“由因推果”",
+                "cited_formula_ids": [
+                  "stat.prob.multiplication"
+                ],
+                "pitfall": "确认所选原因事件组满足“不重不漏”（互斥且概率和为 1）。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.cond_total_to_bayes",
+          "from_formula_ids": [
+            "stat.prob.conditional",
+            "stat.prob.multiplication",
+            "stat.prob.total_probability"
+          ],
+          "to_formula_id": "stat.prob.bayes",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "identity_substitution"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "在条件概率 P(Ak|B) = P(AkB)/P(B) 中，分子用乘法公式展开，分母用全概率公式展开即得贝叶斯公式。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "P(A_k \\mid B) = \\frac{P(A_k B)}{P(B)} = \\frac{P(A_k) P(B \\mid A_k)}{P(B)}",
+                "note": "联立条件概率与乘法公式展开分子",
+                "cited_formula_ids": [
+                  "stat.prob.conditional",
+                  "stat.prob.multiplication"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "= \\frac{P(A_k) P(B \\mid A_k)}{\\sum_{i=1}^n P(A_i) P(B \\mid A_i)}",
+                "note": "用全概率公式替换分母 P(B)",
+                "cited_formula_ids": [
+                  "stat.prob.total_probability"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "P(A_k \\mid B) = \\frac{P(A_k) P(B \\mid A_k)}{\\sum_{i=1}^n P(A_i) P(B \\mid A_i)}",
+                "note": "实现“执果索因”：先验概率 P(Ak) 经观测证据 B 的似然 P(B|Ak) 修正后归一为后验概率",
+                "cited_formula_ids": [
+                  "stat.prob.conditional",
+                  "stat.prob.multiplication",
+                  "stat.prob.total_probability"
+                ],
+                "pitfall": "低患病率（极小先验）下即使检测准确率 99%，阳性后验概率仍可能远低于直觉，勿忽略基础概率。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.exp_to_linear",
+          "from_formula_ids": [
+            "stat.rv.expectation_discrete"
+          ],
+          "to_formula_id": "stat.rv.expectation_linear",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "summation_linearity"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "将线性组合代入期望求和定义，利用求和符号的分配律与提公因式性质直接拆分。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "E(aX + bY + c) = \\sum_{i,j} (a x_i + b y_j + c) p_{ij} = a\\sum_i x_i p_{i\\cdot} + b\\sum_j y_j p_{\\cdot j} + c\\sum_{i,j} p_{ij}",
+                "note": "按边缘概率求和拆分各项",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_discrete"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "= a E(X) + b E(Y) + c",
+                "note": "代入各自期望定义及概率和为 1",
+                "cited_formula_ids": []
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "E(aX + bY + c) = aE(X) + bE(Y) + c",
+                "note": "整个推导只用到联合分布边缘化，完全不需要 X 与 Y 独立",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_discrete"
+                ],
+                "pitfall": "期望可加不要求独立，但期望乘积 E(XY) = E(X)E(Y) 需要独立（或不相关）。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.exp_lin_to_var",
+          "from_formula_ids": [
+            "stat.rv.expectation_linear"
+          ],
+          "to_formula_id": "stat.rv.variance_def",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "expand_square",
+            "expectation_linearity"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "将方差定义中的平方项展开为 X² - 2μX + μ²，逐项取期望并合并同类项即得 E(X²) - [E(X)]²。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "D(X) = E[(X - \\mu)^2] = E(X^2 - 2\\mu X + \\mu^2)",
+                "note": "记 μ = E(X) 为常数并展开平方",
+                "cited_formula_ids": []
+              },
+              {
+                "step": 2,
+                "latex": "= E(X^2) - 2\\mu E(X) + \\mu^2 = E(X^2) - \\mu^2 = E(X^2) - [E(X)]^2",
+                "note": "利用期望线性性质化简",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_linear"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "D(X) = E(X^2) - [E(X)]^2",
+                "note": "因方差非负，同时立得柯西/琴生推论 E(X²) ≥ [E(X)]²",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_linear"
+                ],
+                "pitfall": "计算 E(X²) 时是先对取值平方再乘概率，切勿与 [E(X)]² 混淆。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.var_to_props",
+          "from_formula_ids": [
+            "stat.rv.variance_def",
+            "stat.rv.expectation_linear",
+            "stat.prob.independence"
+          ],
+          "to_formula_id": "stat.rv.variance_props",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "identity_substitution",
+            "independence_zero_covariance"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "把 aX + b 代入方差定义式，常数 b 抵消、系数 a 平方后提出；独立和差展开后交叉项 2Cov(X,Y) 为 0。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "D(aX + b) = E[(aX + b - aE(X) - b)^2] = a^2 E[(X - E(X))^2] = a^2 D(X)",
+                "note": "常数 b 相减抵消，a² 提到期望外",
+                "cited_formula_ids": [
+                  "stat.rv.variance_def",
+                  "stat.rv.expectation_linear"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "D(X \\pm Y) = D(X) + D(Y) \\pm 2\\text{Cov}(X,Y) = D(X) + D(Y)",
+                "note": "X、Y 独立时交叉项为 0，故和与差的方差均相加",
+                "cited_formula_ids": [
+                  "stat.prob.independence"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "D(aX + b) = a^2 D(X),\\quad D(X - Y) = D(X) + D(Y)",
+                "note": "即使两变量相减，独立不确定性也会叠加放大而非抵消",
+                "cited_formula_ids": [
+                  "stat.rv.variance_def",
+                  "stat.rv.expectation_linear",
+                  "stat.prob.independence"
+                ],
+                "pitfall": "最易错处：D(X - Y) 等于 D(X) + D(Y)，绝不是 D(X) - D(Y)！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.exp_to_cov",
+          "from_formula_ids": [
+            "stat.rv.expectation_linear",
+            "stat.rv.variance_def"
+          ],
+          "to_formula_id": "stat.rv.covariance",
+          "relation_type": "generalizes",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "expand_product",
+            "expectation_linearity"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "把协方差定义 E[(X-E(X))(Y-E(Y))] 展开并逐项取期望，整理即得 E(XY) - E(X)E(Y)。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "\\text{Cov}(X,Y) = E[(X - \\mu_X)(Y - \\mu_Y)] = E(XY - \\mu_Y X - \\mu_X Y + \\mu_X\\mu_Y)",
+                "note": "展开乘积项",
+                "cited_formula_ids": [
+                  "stat.rv.variance_def"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "= E(XY) - \\mu_Y E(X) - \\mu_X E(Y) + \\mu_X\\mu_Y = E(XY) - E(X)E(Y)",
+                "note": "利用期望线性性质合并后三项",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_linear"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "\\text{Cov}(X, Y) = E(XY) - E(X)E(Y)",
+                "note": "当 Y = X 时即退化为方差展开式 D(X) = E(X²) - [E(X)]²",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_linear",
+                  "stat.rv.variance_def"
+                ],
+                "pitfall": "协方差数值受量纲缩放影响，比较不同指标相关性需进一步标准化为相关系数。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.cov_var_to_corr",
+          "from_formula_ids": [
+            "stat.rv.covariance",
+            "stat.rv.variance_def"
+          ],
+          "to_formula_id": "stat.rv.correlation",
+          "relation_type": "derives_to",
+          "dependency_site": "definition_level",
+          "inference_rules": [
+            "standardization"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "先将 X、Y 分别标准化为 X*=(X-μX)/σX 与 Y*=(Y-μY)/σY，再求其协方差即得无量纲相关系数。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "\\rho_{XY} = \\text{Cov}\\left(\\frac{X-\\mu_X}{\\sigma_X}, \\frac{Y-\\mu_Y}{\\sigma_Y}\\right) = \\frac{\\text{Cov}(X,Y)}{\\sqrt{D(X)}\\sqrt{D(Y)}}",
+                "note": "提取标准差倒数消除量纲影响",
+                "cited_formula_ids": [
+                  "stat.rv.covariance",
+                  "stat.rv.variance_def"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "|\\rho_{XY}| \\le 1",
+                "note": "由柯西-施瓦茨不等式保证相关系数恒落在 [-1, 1] 区间内",
+                "cited_formula_ids": [
+                  "stat.rv.covariance",
+                  "stat.rv.variance_def"
+                ],
+                "pitfall": "ρ = 0 仅代表“无线性相关”，两变量仍可能存在强非线性关系（如 Y = X²）。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.indep_to_binom",
+          "from_formula_ids": [
+            "stat.prob.independence",
+            "stat.prob.addition"
+          ],
+          "to_formula_id": "stat.dist.binomial",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "combinatorial_counting",
+            "independence_product"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "任一固定的 k 次成功序列概率由独立性为 p^k(1-p)^(n-k)，共有 C(n,k) 个互斥序列，相加即得二项分布。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "P(\\text{固定某 } k \\text{ 次成功}) = p^k (1 - p)^{n - k}",
+                "note": "由 n 次试验相互独立直接连乘",
+                "cited_formula_ids": [
+                  "stat.prob.independence"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}",
+                "note": "所有 C(n,k) 种位置组合两两互斥，概率相加",
+                "cited_formula_ids": [
+                  "stat.prob.addition"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "\\sum_{k=0}^n \\binom{n}{k} p^k (1-p)^{n-k} = [p + (1-p)]^n = 1",
+                "note": "恰好与代数二项式定理对应，自动满足概率归一性",
+                "cited_formula_ids": [
+                  "stat.prob.independence",
+                  "stat.prob.addition"
+                ],
+                "pitfall": "无放回抽样时每次成功概率变化，服从超几何分布而非二项分布。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.binom_to_moments",
+          "from_formula_ids": [
+            "stat.dist.binomial",
+            "stat.rv.expectation_linear",
+            "stat.rv.variance_props"
+          ],
+          "to_formula_id": "stat.dist.binomial_moments",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "bernoulli_decomposition"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "将二项变量拆分为 n 个独立 0-1 伯努利变量之和 X = X1 + ... + Xn，分别套用期望线性性与独立方差可加性。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "X = \\sum_{i=1}^n X_i,\\quad E(X_i) = p,\\quad D(X_i) = p(1 - p)",
+                "note": "单次伯努利试验期望为 p、方差为 p - p² = p(1-p)",
+                "cited_formula_ids": [
+                  "stat.dist.binomial"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "E(X) = \\sum_{i=1}^n E(X_i) = np,\\quad D(X) = \\sum_{i=1}^n D(X_i) = np(1 - p)",
+                "note": "由期望线性性与独立方差可加性瞬间得证",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_linear",
+                  "stat.rv.variance_props"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "E(X) = np,\\quad D(X) = np(1 - p)",
+                "note": "利用 0-1 指示变量分解比直接对组合级数求和简洁得多",
+                "cited_formula_ids": [
+                  "stat.dist.binomial",
+                  "stat.rv.expectation_linear",
+                  "stat.rv.variance_props"
+                ],
+                "pitfall": "当 p = 0.5 时方差 np(1-p) 达到最大值 n/4，不确定性最大。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.normal_to_std",
+          "from_formula_ids": [
+            "stat.dist.normal_pdf",
+            "stat.rv.expectation_linear",
+            "stat.rv.variance_props"
+          ],
+          "to_formula_id": "stat.dist.standardization",
+          "relation_type": "derives_to",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "linear_transformation"
+          ],
+          "bidirectional": true,
+          "levels": {
+            "L1_summary": "对正态变量作线性变换 Z = (X - μ)/σ，由期望与方差性质得 E(Z) = 0、D(Z) = 1，故 Z ~ N(0, 1)。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "E(Z) = \\frac{E(X) - \\mu}{\\sigma} = 0,\\quad D(Z) = \\frac{D(X)}{\\sigma^2} = 1",
+                "note": "套用期望线性性与方差伸缩性质",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_linear",
+                  "stat.rv.variance_props"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "Z = \\frac{X - \\mu}{\\sigma} \\sim N(0, 1)",
+                "note": "正态分布在线性变换下仍保持正态性",
+                "cited_formula_ids": [
+                  "stat.dist.normal_pdf"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "P(X \\le x) = P\\left(Z \\le \\frac{x - \\mu}{\\sigma}\\right) = \\Phi\\left(\\frac{x - \\mu}{\\sigma}\\right)",
+                "note": "任意正态概率计算全部归约为标准正态分布函数 Φ(z)",
+                "cited_formula_ids": [
+                  "stat.dist.normal_pdf",
+                  "stat.rv.expectation_linear",
+                  "stat.rv.variance_props"
+                ],
+                "pitfall": "分母是标准差 σ 而非方差 σ²，切勿漏开方。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "deriv.stat.std_props_to_clt",
+          "from_formula_ids": [
+            "stat.dist.standardization",
+            "stat.rv.expectation_linear",
+            "stat.rv.variance_props",
+            "stat.dist.binomial_moments"
+          ],
+          "to_formula_id": "stat.inf.clt",
+          "relation_type": "generalizes",
+          "dependency_site": "proof_level",
+          "inference_rules": [
+            "sample_mean_moments",
+            "asymptotic_normality"
+          ],
+          "bidirectional": false,
+          "levels": {
+            "L1_summary": "由期望线性与独立方差可加性算出样本均值 E(X̄)=μ、D(X̄)=σ²/n，标准化后在大样本下依分布收敛于 N(0,1)。",
+            "L2_standard": [
+              {
+                "step": 1,
+                "latex": "E(\\bar{X}) = \\frac{1}{n}\\sum_{i=1}^n E(X_i) = \\mu,\\quad D(\\bar{X}) = \\frac{1}{n^2}\\sum_{i=1}^n D(X_i) = \\frac{\\sigma^2}{n}",
+                "note": "样本均值的标准误为 σ/√n",
+                "cited_formula_ids": [
+                  "stat.rv.expectation_linear",
+                  "stat.rv.variance_props"
+                ]
+              },
+              {
+                "step": 2,
+                "latex": "Z_n = \\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}} \\xrightarrow{d} N(0, 1)",
+                "note": "标准化后大样本收敛于标准正态分布（二项分布正态近似为其经典特例）",
+                "cited_formula_ids": [
+                  "stat.dist.standardization",
+                  "stat.dist.binomial_moments"
+                ]
+              }
+            ],
+            "L3_detailed": [
+              {
+                "step": 1,
+                "latex": "\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}} \\xrightarrow{d} N(0, 1)",
+                "note": "严格证明依赖特征函数泰勒展开，该定理是区间估计与 Z 检验/t 检验的理论核心",
+                "cited_formula_ids": [
+                  "stat.dist.standardization",
+                  "stat.rv.expectation_linear",
+                  "stat.rv.variance_props",
+                  "stat.dist.binomial_moments"
+                ],
+                "pitfall": "样本均值的标准差（标准误）是 σ/√n 而不是 σ，样本量翻 4 倍标准误才减半。"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "stageW": 1384,
+    "stageH": 616,
+    "defaultZoom": 0.82,
+    "defaultFormula": "stat.prob.bayes",
+    "defaultDeriv": "deriv.stat.cond_total_to_bayes",
+    "defaultPathStart": "stat.prob.classical",
+    "defaultPathEnd": "stat.inf.clt",
+    "lanes": [
+      {
+        "x": 24,
+        "label": "1. 概率公理与条件概率"
+      },
+      {
+        "x": 292,
+        "label": "2. 独立性与贝叶斯推断"
+      },
+      {
+        "x": 560,
+        "label": "3. 期望与方差体系"
+      },
+      {
+        "x": 828,
+        "label": "4. 协方差与二项分布"
+      },
+      {
+        "x": 1096,
+        "label": "5. 正态分布与极限定理"
+      }
+    ],
+    "positions": {
+      "stat.prob.classical": {
+        "x": 24,
+        "y": 48
+      },
+      "stat.prob.addition": {
+        "x": 24,
+        "y": 180
+      },
+      "stat.prob.conditional": {
+        "x": 24,
+        "y": 312
+      },
+      "stat.prob.multiplication": {
+        "x": 24,
+        "y": 444
+      },
+      "stat.prob.independence": {
+        "x": 292,
+        "y": 48
+      },
+      "stat.prob.total_probability": {
+        "x": 292,
+        "y": 180
+      },
+      "stat.prob.bayes": {
+        "x": 292,
+        "y": 312
+      },
+      "stat.rv.expectation_discrete": {
+        "x": 560,
+        "y": 48
+      },
+      "stat.rv.expectation_linear": {
+        "x": 560,
+        "y": 180
+      },
+      "stat.rv.variance_def": {
+        "x": 560,
+        "y": 312
+      },
+      "stat.rv.variance_props": {
+        "x": 560,
+        "y": 444
+      },
+      "stat.rv.covariance": {
+        "x": 828,
+        "y": 48
+      },
+      "stat.rv.correlation": {
+        "x": 828,
+        "y": 180
+      },
+      "stat.dist.binomial": {
+        "x": 828,
+        "y": 312
+      },
+      "stat.dist.binomial_moments": {
+        "x": 828,
+        "y": 444
+      },
+      "stat.dist.normal_pdf": {
+        "x": 1096,
+        "y": 48
+      },
+      "stat.dist.standardization": {
+        "x": 1096,
+        "y": 180
+      },
+      "stat.inf.clt": {
+        "x": 1096,
+        "y": 312
+      }
+    }
+  },
   "junior_unified": {
     "label": "子视图 · 初中跨学科（58公式）",
     "data": {
@@ -21178,16 +22812,21 @@
       let s = latex
         .replace(/\\text\{([^}]*)\}/g, "$1")
         .replace(/\\mathbb\{R\}/g, "ℝ").replace(/\\mathbb\{Z\}\^\+/g, "ℤ⁺")
-        .replace(/\\setminus/g, "\\").replace(/\\cup/g, "∪")
+        .replace(/\\setminus/g, "\\").replace(/\\cup/g, "∪").replace(/\\cap/g, "∩")
         .replace(/\\left|\\right/g, "")
         .replace(/\\implies/g, "⇒").replace(/\\iff/g, "⇔")
         .replace(/\\xrightarrow\{([^}]*)\}/g, " → ")
         .replace(/\\lim_\{([^}]*)\}/g, "lim<sub>$1</sub>")
-        .replace(/\\to/g, "→").replace(/\\cdots/g, "⋯")
+        .replace(/\\sum_\{([^}]*)\}\^\{([^}]*)\}/g, "∑<sub>$1</sub><sup>$2</sup>")
+        .replace(/\\sum_\{([^}]*)\}/g, "∑<sub>$1</sub>").replace(/\\sum/g, "∑")
+        .replace(/\\binom\{([^}]+)\}\{([^}]+)\}/g, "C($1,$2)")
+        .replace(/\\bar\{([^}]+)\}/g, "$1̄")
+        .replace(/\\to/g, "→").replace(/\\cdots|\\dots/g, "⋯").replace(/\\mid/g, "|").replace(/\\sim/g, "~")
         .replace(/\\quad|\\ /g, "&nbsp;")
         .replace(/\\cdot/g, "·").replace(/\\times/g, "×").replace(/\\%/g, "%")
         .replace(/\\neq/g, "≠").replace(/\\pm/g, "±").replace(/\\le/g, "≤").replace(/\\ge/g, "≥").replace(/\\infty/g, "∞")
         .replace(/\\alpha/g, "α").replace(/\\beta/g, "β").replace(/\\varphi/g, "φ").replace(/\\pi/g, "π")
+        .replace(/\\sigma/g, "σ").replace(/\\mu/g, "μ").replace(/\\Phi/g, "Φ").replace(/\\Omega/g, "Ω")
         .replace(/\\Delta/g, "Δ").replace(/\\rho/g, "ρ").replace(/\\eta/g, "η").replace(/\\omega/g, "ω")
         .replace(/\\sin/g, "sin").replace(/\\cos/g, "cos").replace(/\\tan/g, "tan").replace(/\\ln/g, "ln").replace(/\\log/g, "log")
         .replace(/\\sqrt\{([^}]+)\}/g, "√($1)")
@@ -21758,7 +23397,8 @@
 
     window.__katexReady = () => { renderGraph(); renderDrawer(); };
     initControls();
-    loadPack("secondary_unified");
+    document.getElementById("packSelect").value = "higher_stat";
+    loadPack("higher_stat");
   </script>
 </body>
 </html>

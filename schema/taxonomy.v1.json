@@ -53,8 +53,13 @@
         },
         {
           "id": "math.statistics",
-          "label": "概率与统计学（预留扩展）",
-          "topics": []
+          "label": "概率与统计学",
+          "topics": [
+            { "id": "prob_basics", "label": "古典概型与条件概率", "raw_topics": ["prob_basics"] },
+            { "id": "bayes_inference", "label": "独立性、全概率与贝叶斯", "raw_topics": ["bayes_inference"] },
+            { "id": "expectation_variance", "label": "期望、方差与相关性", "raw_topics": ["expectation_variance"] },
+            { "id": "distributions_clt", "label": "二项/正态分布与中心极限定理", "raw_topics": ["distributions_clt"] }
+          ]
         },
         {
           "id": "math.linear_algebra",

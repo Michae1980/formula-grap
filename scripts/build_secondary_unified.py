@@ -162,6 +162,30 @@ SECONDARY_COLUMNS = jh_builder.UNIFIED_COLUMNS + [
     ]),
 ]
 
+# 高等专题 · 概率与统计学（5 列 18 公式）
+STAT_COLUMNS = [
+    ("1. 概率公理与条件概率", [
+        "stat.prob.classical", "stat.prob.addition",
+        "stat.prob.conditional", "stat.prob.multiplication"
+    ]),
+    ("2. 独立性与贝叶斯推断", [
+        "stat.prob.independence", "stat.prob.total_probability",
+        "stat.prob.bayes"
+    ]),
+    ("3. 期望与方差体系", [
+        "stat.rv.expectation_discrete", "stat.rv.expectation_linear",
+        "stat.rv.variance_def", "stat.rv.variance_props"
+    ]),
+    ("4. 协方差与二项分布", [
+        "stat.rv.covariance", "stat.rv.correlation",
+        "stat.dist.binomial", "stat.dist.binomial_moments"
+    ]),
+    ("5. 正态分布与极限定理", [
+        "stat.dist.normal_pdf", "stat.dist.standardization",
+        "stat.inf.clt"
+    ]),
+]
+
 
 def build_positions_from_cols(columns, row_gap=122):
     positions = {}
@@ -250,6 +274,11 @@ def main() -> int:
     calc_data = json.loads((data_dir / "cn-senior-high" / "functions-calculus-batch2.json").read_text(encoding="utf-8"))
     sr_pos, sr_lanes, sr_w, sr_h = build_positions_from_cols(SECONDARY_COLUMNS[8:], row_gap=122)
 
+    stat_data = json.loads((data_dir / "higher-ed" / "probability-statistics-18.json").read_text(encoding="utf-8"))
+    stat_pos, stat_lanes, stat_w, stat_h = build_positions_from_cols(STAT_COLUMNS, row_gap=132)
+    stat_ids = {f["id"] for f in stat_data["formulas"]}
+    assert set(stat_pos.keys()) == stat_ids, f"概率统计坐标缺失或多余: {set(stat_pos.keys()) ^ stat_ids}"
+
     packs_payload = {
         "secondary_unified": {
             "label": "中学总图 · 初高中全量（103公式）",
@@ -263,6 +292,19 @@ def main() -> int:
             "defaultPathEnd": "math.calc.extremum_necessary",
             "lanes": sec_lanes,
             "positions": sec_pos,
+        },
+        "higher_stat": {
+            "label": "高等专题 · 概率与统计学（18公式）",
+            "data": stat_data,
+            "stageW": stat_w,
+            "stageH": stat_h,
+            "defaultZoom": 0.82,
+            "defaultFormula": "stat.prob.bayes",
+            "defaultDeriv": "deriv.stat.cond_total_to_bayes",
+            "defaultPathStart": "stat.prob.classical",
+            "defaultPathEnd": "stat.inf.clt",
+            "lanes": stat_lanes,
+            "positions": stat_pos,
         },
         "junior_unified": {
             "label": "子视图 · 初中跨学科（58公式）",
@@ -317,7 +359,8 @@ def main() -> int:
             for tp in br["topics"]:
                 for rt in tp.get("raw_topics", [tp["id"]]):
                     raw_map.add(rt)
-    unmapped = [f["id"] for f in all_formulas if not any(t in raw_map for t in f["taxonomy"]["topics"])]
+    all_checked = all_formulas + stat_data["formulas"]
+    unmapped = [f["id"] for f in all_checked if not any(t in raw_map for t in f["taxonomy"]["topics"])]
     assert not unmapped, f"存在未归入三级分类树的公式: {unmapped}"
 
     tpl_path = repo_root / "prototype" / "template.html"
@@ -327,7 +370,7 @@ def main() -> int:
     rendered = tpl.replace("/*__TAXONOMY_PAYLOAD__*/", json.dumps(taxonomy_obj, ensure_ascii=False, indent=2), 1)
     rendered = rendered.replace("/*__PACKS_PAYLOAD__*/", json.dumps(packs_payload, ensure_ascii=False, indent=2), 1)
     html_path.write_text(rendered, encoding="utf-8")
-    print("OK: 103 公式全部完成三级分类映射，已基于 template.html 生成三级联动原型 prototype/index.html。")
+    print(f"OK: {len(all_checked)} 公式（中学 103 + 概率与统计学 18）全部完成三级分类映射，已重新生成 prototype/index.html。")
     return 0
 
 

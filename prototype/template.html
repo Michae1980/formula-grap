@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>公式知识图谱 · 中学全量跨学科总图（三级联动筛选）</title>
+  <title>公式知识图谱 · 中学总图与高等专题（三级联动筛选）</title>
   <!-- 在线时自动加载 KaTeX 渲染出版级数学公式；离线时无缝回退到内置原生公式渲染器 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="window.__katexReady && window.__katexReady()"></script>
@@ -475,16 +475,21 @@
       let s = latex
         .replace(/\\text\{([^}]*)\}/g, "$1")
         .replace(/\\mathbb\{R\}/g, "ℝ").replace(/\\mathbb\{Z\}\^\+/g, "ℤ⁺")
-        .replace(/\\setminus/g, "\\").replace(/\\cup/g, "∪")
+        .replace(/\\setminus/g, "\\").replace(/\\cup/g, "∪").replace(/\\cap/g, "∩")
         .replace(/\\left|\\right/g, "")
         .replace(/\\implies/g, "⇒").replace(/\\iff/g, "⇔")
         .replace(/\\xrightarrow\{([^}]*)\}/g, " → ")
         .replace(/\\lim_\{([^}]*)\}/g, "lim<sub>$1</sub>")
-        .replace(/\\to/g, "→").replace(/\\cdots/g, "⋯")
+        .replace(/\\sum_\{([^}]*)\}\^\{([^}]*)\}/g, "∑<sub>$1</sub><sup>$2</sup>")
+        .replace(/\\sum_\{([^}]*)\}/g, "∑<sub>$1</sub>").replace(/\\sum/g, "∑")
+        .replace(/\\binom\{([^}]+)\}\{([^}]+)\}/g, "C($1,$2)")
+        .replace(/\\bar\{([^}]+)\}/g, "$1̄")
+        .replace(/\\to/g, "→").replace(/\\cdots|\\dots/g, "⋯").replace(/\\mid/g, "|").replace(/\\sim/g, "~")
         .replace(/\\quad|\\ /g, "&nbsp;")
         .replace(/\\cdot/g, "·").replace(/\\times/g, "×").replace(/\\%/g, "%")
         .replace(/\\neq/g, "≠").replace(/\\pm/g, "±").replace(/\\le/g, "≤").replace(/\\ge/g, "≥").replace(/\\infty/g, "∞")
         .replace(/\\alpha/g, "α").replace(/\\beta/g, "β").replace(/\\varphi/g, "φ").replace(/\\pi/g, "π")
+        .replace(/\\sigma/g, "σ").replace(/\\mu/g, "μ").replace(/\\Phi/g, "Φ").replace(/\\Omega/g, "Ω")
         .replace(/\\Delta/g, "Δ").replace(/\\rho/g, "ρ").replace(/\\eta/g, "η").replace(/\\omega/g, "ω")
         .replace(/\\sin/g, "sin").replace(/\\cos/g, "cos").replace(/\\tan/g, "tan").replace(/\\ln/g, "ln").replace(/\\log/g, "log")
         .replace(/\\sqrt\{([^}]+)\}/g, "√($1)")
@@ -1055,7 +1060,8 @@
 
     window.__katexReady = () => { renderGraph(); renderDrawer(); };
     initControls();
-    loadPack("secondary_unified");
+    document.getElementById("packSelect").value = "higher_stat";
+    loadPack("higher_stat");
   </script>
 </body>
 </html>
