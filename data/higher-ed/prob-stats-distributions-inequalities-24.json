@@ -1,0 +1,1045 @@
+{
+  "schema_version": "1.1.0",
+  "metadata": {
+    "pack_id": "higher-ed-prob-stats-distributions-inequalities-24",
+    "title": "概率与统计学经典分布与不等式扩展包（24 对象）",
+    "curriculum_ref": "本科《概率论与数理统计》完整概率公理、经典离散/连续分布族（含柯西反例）、概率不等式、矩母/特征函数与条件期望方差定律",
+    "updated_at": "2026-11-24"
+  },
+  "formulas": [
+    {
+      "id": "stat.prob.kolmogorov_axioms",
+      "node_kind": "axiom",
+      "name": "柯尔莫哥洛夫概率公理",
+      "aliases": ["概率论三大公理", "概率测度公理体系"],
+      "latex": "P(A) \\ge 0,\\quad P(\\Omega) = 1,\\quad P\\!\\left(\\bigcup_{i=1}^{\\infty} A_i\\right) = \\sum_{i=1}^{\\infty} P(A_i)",
+      "statement": "在概率空间 (Ω, ℱ, P) 上，概率测度 P 满足非负性、规范性与可列可加性（Ai 两两互斥），构成现代概率论的公理化基石。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_axioms_rv"]
+      },
+      "variables": [
+        { "symbol": "\\Omega", "name": "样本空间", "math_type": "set", "domain": "\\Omega", "quantity_kind": null, "dimension": null, "si_unit": null },
+        { "symbol": "P(A)", "name": "事件 A 的概率测度", "math_type": "scalar", "domain": "[0, 1]", "quantity_kind": "probability", "dimension": "1", "si_unit": "1" },
+        { "symbol": "A_i", "name": "两两互斥事件序列", "math_type": "set", "domain": "\\mathcal{F}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["(Ω, ℱ, P) 为测度空间；可列可加性要求 A_i ∩ A_j = ∅ (i ≠ j)"],
+      "intuition": "把“概率”抽象成总质量恰好为 1 的非负质量分布，切开互不重叠的区域后总质量等于各块质量之和。",
+      "worked_example": "抛掷均匀硬币直到首次正面朝上，第 k 次成功的概率为 2^(-k)，由可列可加性得总概率 ∑_{k=1}^∞ 2^(-k) = 1。",
+      "applications": ["现代测度论概率基础", "随机过程与鞅论", "连续型概率空间构造"],
+      "review": { "status": "human_verified", "source": "Kolmogorov (1933) / 概率论与数理统计 1.2", "sympy_verified": true }
+    },
+    {
+      "id": "stat.rv.cdf",
+      "node_kind": "definition",
+      "name": "累积分布函数（CDF）",
+      "aliases": ["分布函数 F(x)", "累计概率函数"],
+      "latex": "F_X(x) = P(X \\le x),\\quad P(a < X \\le b) = F_X(b) - F_X(a)",
+      "statement": "对任意实数 x 给出随机变量 X 不超过 x 的累积概率，统一刻画离散型、连续型与混合型随机变量的完整分布信息。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_axioms_rv"]
+      },
+      "variables": [
+        { "symbol": "F_X(x)", "name": "累积分布函数", "math_type": "function", "domain": "[0, 1]", "quantity_kind": "probability", "dimension": "1", "si_unit": "1" },
+        { "symbol": "x", "name": "实数阈值", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["单调不减、右连续，且满足 F(-∞) = 0 与 F(+∞) = 1"],
+      "intuition": "从负无穷一路向右扫描实数轴，累计扫过的全部概率质量曲线就是 CDF。",
+      "worked_example": "若 X ~ U(0, 2)，则 x ∈ [0, 2] 时 F(x) = x/2，故 P(0.5 < X ≤ 1.5) = F(1.5) - F(0.5) = 0.5。",
+      "applications": ["分位点与 VaR 风险度量", "逆变换法生成随机数", "KS 检验比较分布差异"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 2.2", "sympy_verified": true }
+    },
+    {
+      "id": "stat.rv.pdf",
+      "node_kind": "definition",
+      "name": "概率密度函数（PDF）",
+      "aliases": ["连续型分布密度 f(x)"],
+      "latex": "F_X(x) = \\int_{-\\infty}^{x} f_X(t)\\,dt,\\quad f_X(x) = F_X'(x),\\quad \\int_{-\\infty}^{+\\infty} f_X(x)\\,dx = 1",
+      "statement": "连续型随机变量的非负密度函数，其在任意区间 [a, b] 上的定积分等于随机变量落入该区间的概率，在连续点处即 CDF 的导数。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_axioms_rv"]
+      },
+      "variables": [
+        { "symbol": "f_X(x)", "name": "概率密度函数", "math_type": "function", "domain": "[0, +\\infty)", "quantity_kind": "probability_density", "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["f_X(x) ≥ 0 且全实轴广义积分为 1；单点概率 P(X = x0) = 0，密度值 f(x) 本身可大于 1"],
+      "intuition": "就像一维细杆的线密度：单点没有质量，但“密度 × 微小长度 dx”才是落入微小区间 [x, x+dx] 的概率。",
+      "worked_example": "均匀分布 U(0, 0.5) 的密度 f(x) = 2 > 1（在 [0, 0.5] 上），但其总面积 2 × 0.5 = 1 仍严格归一。",
+      "applications": ["连续分布概率积分计算", "极大似然估计对数似然构造", "核密度估计（KDE）"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 2.3", "sympy_verified": true }
+    },
+    {
+      "id": "stat.rv.expectation_continuous",
+      "node_kind": "definition",
+      "name": "连续型随机变量数学期望",
+      "aliases": ["连续期望积分式", "期望绝对收敛条件"],
+      "latex": "E(X) = \\int_{-\\infty}^{+\\infty} x f_X(x)\\,dx \\quad \\left(\\int_{-\\infty}^{+\\infty} |x| f_X(x)\\,dx < \\infty\\right)",
+      "statement": "连续型随机变量的数学期望定义为取值 x 按概率密度 f(x) 加权的全实轴广义积分，要求该积分绝对收敛。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_axioms_rv"]
+      },
+      "variables": [
+        { "symbol": "E(X)", "name": "连续型数学期望", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null },
+        { "symbol": "f_X(x)", "name": "概率密度函数", "math_type": "function", "domain": "[0, +\\infty)", "quantity_kind": "probability_density", "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["必须满足绝对收敛 ∫_{-∞}^{+∞} |x| f(x) dx < ∞，不能仅以柯西主值代替"],
+      "intuition": "密度曲线所围均匀薄板的水平重心横坐标就是连续型随机变量的数学期望。",
+      "worked_example": "对指数分布 f(x) = λe^(-λx) (x ≥ 0)，分部积分得 E(X) = ∫_0^∞ x λ e^(-λx) dx = 1/λ。",
+      "applications": ["连续分布数字特征推导", "金融衍生品风险中性定价", "重尾分布期望存在性判别"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 4.1", "sympy_verified": true }
+    },
+    {
+      "id": "stat.law.total_expectation",
+      "node_kind": "law",
+      "name": "全期望公式（重期望定律）",
+      "aliases": ["迭代期望定律", "塔性质 (Tower Property)"],
+      "latex": "E(X) = E\\big[E(X \\mid Y)\\big]",
+      "statement": "随机变量 X 的无条件期望等于先在给定 Y 条件下求条件期望 E(X|Y)，再对 Y 取期望；常用于分层随机系统的均值分解。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_axioms_rv"]
+      },
+      "variables": [
+        { "symbol": "E(X \\mid Y)", "name": "给定 Y 时 X 的条件期望（关于 Y 的随机变量）", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["E(|X|) < ∞；离散情形写作 E(X) = ∑_y E(X|Y=y)P(Y=y)"],
+      "intuition": "求全校平均分，可以先算每个班的平均分，再按各班人数比例做加权平均。",
+      "worked_example": "随机项数和 S = ∑_{i=1}^N X_i（N 与 Xi 独立），E(S|N) = N·E(X)，故 E(S) = E(N)·E(X)（Wald 恒等式）。",
+      "applications": ["复合泊松过程定价", "EM 算法期望步", "分层抽样与随机停止时间"],
+      "review": { "status": "human_verified", "source": "Ross《概率论基础教程》7.5", "sympy_verified": true }
+    },
+    {
+      "id": "stat.law.total_variance",
+      "node_kind": "law",
+      "name": "全方差公式（Eve 定律）",
+      "aliases": ["条件方差分解公式", "Law of Total Variance"],
+      "latex": "D(X) = E\\big[D(X \\mid Y)\\big] + D\\big[E(X \\mid Y)\\big]",
+      "statement": "总方差等于“条件方差的期望（组内变异均值）”加上“条件期望的方差（组间均值变异）”，是方差分析与分层建模的理论底座。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_axioms_rv"]
+      },
+      "variables": [
+        { "symbol": "D(X \\mid Y)", "name": "给定 Y 时的条件方差", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["E(X²) < ∞；直观助记口诀 EVVE：Var(X) = E[Var(X|Y)] + Var(E[X|Y])"],
+      "intuition": "全校成绩总波动 = 各班内部波动的平均水平 + 各班平均分之间的差距波动。",
+      "worked_example": "复合随机和 S = ∑_{i=1}^N X_i，D(S|N) = Nσ²、E(S|N) = Nμ，代入得 D(S) = E(N)σ² + D(N)μ²。",
+      "applications": ["方差分析（ANOVA）组内/组间分解", "贝叶斯分层模型与蒙特卡洛方差缩减", "精算赔付总额方差计算"],
+      "review": { "status": "human_verified", "source": "Ross《概率论基础教程》7.5", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.bernoulli",
+      "node_kind": "distribution",
+      "name": "伯努利分布（0-1 分布）",
+      "aliases": ["两点分布", "Bernoulli(p)"],
+      "latex": "P(X = k) = p^k (1 - p)^{1 - k}\\ (k \\in \\{0, 1\\}),\\quad E(X) = p,\\quad D(X) = p(1 - p)",
+      "statement": "描述单次只有成功（1）与失败（0）两种结果的随机试验，是二项、几何、负二项与泊松等离散分布族的原子构件。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["senior_high", "undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "p", "name": "单次成功概率", "math_type": "constant", "domain": "(0, 1)", "quantity_kind": "probability", "dimension": "1", "si_unit": "1" },
+        { "symbol": "k", "name": "试验结果（0 或 1）", "math_type": "scalar", "domain": "\\{0, 1\\}", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["0 < p < 1；是二项分布 B(1, p) 的单次特例"],
+      "intuition": "一枚可能不均匀的硬币抛一次：正面记 1（概率 p），反面记 0（概率 1-p）。",
+      "worked_example": "某广告单次曝光点击率 p = 0.2，则单次曝光点击指示变量 E(X) = 0.2，方差 D(X) = 0.2 × 0.8 = 0.16。",
+      "applications": ["A/B 测试转化率建模", "逻辑回归二分类标签分布", "指示随机变量分解技巧"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 2.1", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.geometric",
+      "node_kind": "distribution",
+      "name": "几何分布",
+      "aliases": ["首次成功等待次数分布", "Geom(p)"],
+      "latex": "P(X = k) = (1 - p)^{k - 1} p\\ (k = 1, 2, \\dots),\\quad E(X) = \\frac{1}{p},\\quad D(X) = \\frac{1 - p}{p^2}",
+      "statement": "在独立重复伯努利试验中，恰好在第 k 次试验首次取得成功所需的试验次数分布，是唯一具有无记忆性的离散概率分布。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "p", "name": "单次成功概率", "math_type": "constant", "domain": "(0, 1]", "quantity_kind": "probability", "dimension": "1", "si_unit": "1" },
+        { "symbol": "k", "name": "首次成功试验次数", "math_type": "scalar", "domain": "\\mathbb{Z}^+", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["各次试验独立同分布；无记忆性 P(X > m + n | X > m) = P(X > n)"],
+      "intuition": "连续失败 k-1 次后在第 k 次终于成功；无论前面失败过多少次，下一次重新开始等待的分布完全不变。",
+      "worked_example": "掷骰子首次掷出 6 点（p = 1/6），平均需要 E(X) = 6 次，方差 D(X) = 30。",
+      "applications": ["网络数据包重传次数建模", "可靠性离散寿命分析", "抽卡/盲盒首次出货期望"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 2.1", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.negative_binomial",
+      "node_kind": "distribution",
+      "name": "负二项分布（帕斯卡分布）",
+      "aliases": ["第 r 次成功等待次数分布", "NB(r, p)"],
+      "latex": "P(X = k) = \\binom{k - 1}{r - 1} p^r (1 - p)^{k - r}\\ (k = r, r+1, \\dots),\\quad E(X) = \\frac{r}{p},\\quad D(X) = \\frac{r(1 - p)}{p^2}",
+      "statement": "在独立伯努利试验序列中，累积取得第 r 次成功所需的总试验次数分布，等价于 r 个独立同分布几何随机变量之和。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "r", "name": "目标成功次数", "math_type": "constant", "domain": "\\mathbb{Z}^+", "quantity_kind": "count", "dimension": "1", "si_unit": "1" },
+        { "symbol": "p", "name": "单次成功概率", "math_type": "constant", "domain": "(0, 1]", "quantity_kind": "probability", "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["k ≥ r；当 r = 1 时退化为几何分布 Geom(p)"],
+      "intuition": "前 k-1 次里恰好成功了 r-1 次，且第 k 次恰好是最后那次成功；也可以看作串联等待 r 个独立的几何分布。",
+      "worked_example": "单次投篮命中率 p = 0.5，命中第 r = 3 球平均需要 E(X) = 3/0.5 = 6 次出手。",
+      "applications": ["过离散计数回归（负二项回归）", "生物测序 RNA-seq 计数建模", "客服/销售达成定额所需接触次数"],
+      "review": { "status": "human_verified", "source": "Ross《概率论基础教程》4.8.2", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.hypergeometric",
+      "node_kind": "distribution",
+      "name": "超几何分布",
+      "aliases": ["不放回抽样分布", "Hypergeom(N, M, n)"],
+      "latex": "P(X = k) = \\frac{\\binom{M}{k}\\binom{N - M}{n - k}}{\\binom{N}{n}},\\quad E(X) = n\\frac{M}{N},\\quad D(X) = n\\frac{M}{N}\\left(1-\\frac{M}{N}\\right)\\frac{N - n}{N - 1}",
+      "statement": "从含 M 个次品的 N 件有限总体中不放回抽取 n 件，抽得次品数 X 的精确分布；方差相较二项分布多出有限总体修正因子 (N-n)/(N-1)。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["senior_high", "undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "N", "name": "总体容量", "math_type": "constant", "domain": "\\mathbb{Z}^+", "quantity_kind": "count", "dimension": "1", "si_unit": "1" },
+        { "symbol": "M", "name": "总体中目标类数量", "math_type": "constant", "domain": "\\{0,\\dots,N\\}", "quantity_kind": "count", "dimension": "1", "si_unit": "1" },
+        { "symbol": "n", "name": "不放回抽样样本量", "math_type": "constant", "domain": "\\{1,\\dots,N\\}", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["max(0, n - (N - M)) ≤ k ≤ min(n, M)；当 N → ∞ 且 M/N → p 时收敛到二项分布 B(n, p)"],
+      "intuition": "不放回抽样使各次抽取负相关，因此均值与放回抽样相同，但方差因“抽完即少”而被压缩。",
+      "worked_example": "10 件产品含 3 件次品，不放回抽 4 件，期望次品数 E(X) = 4 × 0.3 = 1.2，修正因子为 (10-4)/(10-1) = 2/3。",
+      "applications": ["工业质量抽检（AQL）", "Fisher 精确检验", "生物基因富集分析（GO/KEGG）"],
+      "review": { "status": "human_verified", "source": "人教A版选择性必修第三册 7.4.2 / 概率论与数理统计 2.1", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.poisson",
+      "node_kind": "distribution",
+      "name": "泊松分布",
+      "aliases": ["稀有事件计数分布", "Pois(λ)"],
+      "latex": "P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}\\ (k = 0, 1, 2, \\dots),\\quad E(X) = D(X) = \\lambda",
+      "statement": "刻画固定时间或空间区间内独立稀有随机事件发生次数的离散分布，其显著特征是数学期望与方差严格相等，均为速率参数 λ。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "\\lambda", "name": "单位区间平均发生次数（速率参数）", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": "rate", "dimension": "1", "si_unit": "1" },
+        { "symbol": "k", "name": "事件发生次数", "math_type": "scalar", "domain": "\\mathbb{Z}_{\\ge 0}", "quantity_kind": "count", "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["λ > 0；作为二项分布 B(n, p) 在 n → ∞、p → 0 且 np → λ 时的极限（泊松定理）"],
+      "intuition": "把一小时切成无数微秒，每微秒极小概率来一个请求且彼此独立，一小时内到达总数的分布就是泊松分布。",
+      "worked_example": "客服热线平均每分钟接电 λ = 2 通，则某分钟恰好 0 通电话的概率为 e^(-2) ≈ 0.1353。",
+      "applications": ["服务器 QPS 与呼叫中心排队论", "放射性衰变计数", "保险理赔频次与广义线性泊松回归"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 2.1", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.uniform",
+      "node_kind": "distribution",
+      "name": "连续均匀分布",
+      "aliases": ["矩形分布", "U(a, b)"],
+      "latex": "f(x) = \\frac{1}{b - a}\\ (a \\le x \\le b),\\quad E(X) = \\frac{a + b}{2},\\quad D(X) = \\frac{(b - a)^2}{12}",
+      "statement": "在有限闭区间 [a, b] 上概率密度处处相等的最简连续分布，落入任意子区间的概率仅与子区间长度成正比。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "a, b", "name": "区间下界与上界", "math_type": "constant", "domain": "a < b", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["a < b；区间外密度 f(x) = 0；在固定支集 [a, b] 上具有最大微分熵"],
+      "intuition": "完全没有偏好的连续随机选点：区间内每一点“机会均等”，密度曲线是一块平整的矩形。",
+      "worked_example": "公交车每 12 分钟一班，随机到站等待时间 X ~ U(0, 12)，平均等待 6 分钟，方差为 12²/12 = 12。",
+      "applications": ["伪随机数生成器底层标准 U(0,1)", "概率积分变换与蒙特卡洛模拟", "量化误差建模"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 2.4", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.exponential",
+      "node_kind": "distribution",
+      "name": "指数分布",
+      "aliases": ["连续等待时间分布", "Exp(λ)"],
+      "latex": "f(x) = \\lambda e^{-\\lambda x}\\ (x \\ge 0),\\quad F(x) = 1 - e^{-\\lambda x},\\quad E(X) = \\frac{1}{\\lambda},\\quad D(X) = \\frac{1}{\\lambda^2}",
+      "statement": "描述泊松过程中相邻两次事件的时间间隔或无老化元件寿命的连续分布，是唯一具有无记忆性的连续概率分布。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "\\lambda", "name": "失效率 / 到达率参数", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": "rate", "dimension": "T^-1", "si_unit": "s^-1" }
+      ],
+      "conditions": ["λ > 0，x ≥ 0；无记忆性 P(X > s + t | X > s) = P(X > t)"],
+      "intuition": "电子元件如果不会磨损老化，它已经工作了 100 小时与刚出厂时，剩余寿命的分布完全一样。",
+      "worked_example": "某服务平均到达率 λ = 0.5 次/分钟，则平均等待时间 E(X) = 2 分钟，超过 2 分钟才到达的概率为 e^(-1) ≈ 0.368。",
+      "applications": ["排队论 M/M/1 模型到达与服务间隔", "生存分析与可靠性工程", "马尔可夫链连续时间停留时长"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 2.4", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.gamma",
+      "node_kind": "distribution",
+      "name": "伽马分布",
+      "aliases": ["Gamma(α, β)", "爱尔朗分布推广"],
+      "latex": "f(x) = \\frac{\\beta^{\\alpha}}{\\Gamma(\\alpha)} x^{\\alpha - 1} e^{-\\beta x}\\ (x > 0),\\quad E(X) = \\frac{\\alpha}{\\beta},\\quad D(X) = \\frac{\\alpha}{\\beta^2}",
+      "statement": "由形状参数 α 与速率参数 β 控制的右偏正值连续分布族，当 α 为正整数时表示泊松过程中等待第 α 次事件发生的总时间。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "\\alpha", "name": "形状参数（shape）", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": "1", "si_unit": "1" },
+        { "symbol": "\\beta", "name": "速率参数（rate）", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": "rate", "dimension": null, "si_unit": null },
+        { "symbol": "\\Gamma(\\alpha)", "name": "伽马函数 ∫_0^∞ t^(α-1) e^(-t) dt", "math_type": "function", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["α > 0，β > 0，x > 0；特例：Gamma(1, λ) = Exp(λ)，Gamma(n/2, 1/2) = χ²(n)"],
+      "intuition": "把 α 个独立同速率的指数等待时间串起来相加，就得到形状更对称的伽马分布。",
+      "worked_example": "泊松速率 β = 2 次/小时，等待第 α = 4 位顾客到达的总时间期望为 4/2 = 2 小时，方差为 4/4 = 1。",
+      "applications": ["泊松与指数分布的贝叶斯共轭先验", "精算索赔金额与降雨量建模", "统一指数分布与卡方分布"],
+      "review": { "status": "human_verified", "source": "Casella & Berger《统计推断》3.3", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.beta",
+      "node_kind": "distribution",
+      "name": "贝塔分布",
+      "aliases": ["Beta(α, β)", "概率的概率分布"],
+      "latex": "f(x) = \\frac{1}{B(\\alpha, \\beta)} x^{\\alpha - 1}(1 - x)^{\\beta - 1}\\ (0 < x < 1),\\quad E(X) = \\frac{\\alpha}{\\alpha + \\beta},\\quad D(X) = \\frac{\\alpha\\beta}{(\\alpha+\\beta)^2(\\alpha+\\beta+1)}",
+      "statement": "定义在区间 (0, 1) 上的灵活连续分布族，其中 B(α, β) = Γ(α)Γ(β)/Γ(α+β)，是伯努利与二项分布成功概率 p 的标准共轭先验。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "\\alpha, \\beta", "name": "正形状参数（伪成功/伪失败次数）", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": "1", "si_unit": "1" },
+        { "symbol": "B(\\alpha, \\beta)", "name": "贝塔函数 Γ(α)Γ(β)/Γ(α+β)", "math_type": "function", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["α > 0，β > 0，x ∈ (0, 1)；当 α = β = 1 时退化为标准均匀分布 U(0, 1)"],
+      "intuition": "把 α-1 想成先验见过的成功次数、β-1 想成失败次数，观测到新数据后直接把成功和失败次数加到 α、β 上即得后验分布。",
+      "worked_example": "先验 Beta(1, 1) 观测到 7 次成功与 3 次失败后，后验立得 Beta(8, 4)，后验均值期望为 8/12 ≈ 0.667。",
+      "applications": ["贝叶斯 A/B 测试与多臂老虎机 Thompson Sampling", "次序统计量分布", "项目管理 PERT 工期估计"],
+      "review": { "status": "human_verified", "source": "Casella & Berger《统计推断》3.3", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.lognormal",
+      "node_kind": "distribution",
+      "name": "对数正态分布",
+      "aliases": ["LogNormal(μ, σ²)", "乘性随机过程分布"],
+      "latex": "f(x) = \\frac{1}{x\\sigma\\sqrt{2\\pi}} \\exp\\!\\left(-\\frac{(\\ln x - \\mu)^2}{2\\sigma^2}\\right)\\ (x > 0),\\quad E(X) = e^{\\mu + \\sigma^2/2},\\quad D(X) = (e^{\\sigma^2} - 1)e^{2\\mu + \\sigma^2}",
+      "statement": "若正随机变量 X 满足 ln X ~ N(μ, σ²)，则称 X 服从对数正态分布；它刻画大量独立正随机因子相乘形成的右偏正值数据。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "\\mu, \\sigma", "name": "对数尺度均值与标准差（非 X 自身均值/标准差）", "math_type": "constant", "domain": "\\mathbb{R} \\times (0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["x > 0，σ > 0；中位数为 e^μ，小于均值 e^(μ + σ²/2)（右偏）"],
+      "intuition": "相加的中心极限产生正态分布，相乘的中心极限（取对数变相加）产生对数正态分布。",
+      "worked_example": "几何布朗运动股票价格 S_T = S_0 e^X（X ~ N(0, 0.2²)），中位数为 S_0，而期望 E(S_T) = S_0 e^(0.02) ≈ 1.0202 S_0。",
+      "applications": ["Black-Scholes 期权定价资产价格模型", "个人收入与城市规模分布", "互联网页面延迟与文件大小建模"],
+      "review": { "status": "human_verified", "source": "Casella & Berger《统计推断》3.3", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.cauchy",
+      "node_kind": "distribution",
+      "name": "柯西分布（密度与分布函数）",
+      "aliases": ["洛伦兹分布", "Cauchy(x0, γ)"],
+      "latex": "f(x) = \\frac{1}{\\pi\\gamma\\left[1 + \\left(\\frac{x - x_0}{\\gamma}\\right)^2\\right]},\\quad F(x) = \\frac{1}{2} + \\frac{1}{\\pi}\\arctan\\!\\left(\\frac{x - x_0}{\\gamma}\\right)",
+      "statement": "位置参数为 x0（中位数与众数）、尺度参数为 γ（半高全宽之半）的对称重尾连续分布，其尾部按 1/x² 缓慢衰减。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "x_0", "name": "位置参数（中位数与众数）", "math_type": "constant", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null },
+        { "symbol": "\\gamma", "name": "尺度参数（四分位半距）", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["γ > 0，x ∈ ℝ；标准柯西分布取 x0 = 0、γ = 1，其特征函数为 φ(t) = e^(i x0 t - γ|t|)"],
+      "intuition": "外观像一个更尖更厚尾的钟形曲线，但两侧“肥尾”藏着巨大的极端值概率，足以击穿所有整数阶矩。",
+      "worked_example": "标准柯西分布落入 [-1, 1] 的概率为 F(1) - F(-1) = (3/4) - (1/4) = 0.5，而落入 |X| > 10 的概率仍高达 6.3%。",
+      "applications": ["物理学共振谱线（洛伦兹线型）", "稳健统计与极端风险压力测试", "大数定律与中心极限定理经典反例"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 2.4 / Feller Vol.2", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.cauchy_no_moments",
+      "node_kind": "theorem",
+      "name": "柯西分布期望与方差不存在定理",
+      "aliases": ["柯西重尾反例定理", "样本均值不收敛反例"],
+      "latex": "\\int_{-\\infty}^{+\\infty} |x|\\,\\frac{1}{\\pi(1 + x^2)}\\,dx = +\\infty \\implies E(X),\\ D(X) \\text{ 均不存在},\\quad \\bar{X}_n \\overset{d}{=} X_1",
+      "statement": "标准柯西分布一阶绝对矩积分对数发散，故数学期望、方差及所有高阶矩均不存在；独立同分布样本均值 X̄_n 仍严格服从原柯西分布，构成大数定律与中心极限定理的核心反例。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "\\bar{X}_n", "name": "n 个独立柯西样本均值", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["虽然柯西主值 lim_{A→∞} ∫_{-A}^A x f(x) dx = 0，但期望定义要求绝对收敛 ∫ |x| f(x) dx < ∞"],
+      "intuition": "采样再多也挡不住偶尔冒出一个天文数字级的极端值把样本均值一把拉偏，因此平均一百万次和只采一次一样抖动。",
+      "worked_example": "设 X1,...,Xn i.i.d. ~ Cauchy(0, 1)，特征函数 φ_{X̄_n}(t) = [e^(-|t|/n)]^n = e^(-|t|)，证得无论 n 多大 X̄_n 分布丝毫不收窄。",
+      "applications": ["检验统计方法对重尾异常值的稳健性（改用样本中位数估计 x0）", "演示 LLN/CLT 有限矩前提不可省略"],
+      "review": { "status": "human_verified", "source": "Durrett《概率论》2.2 / Casella & Berger 2.2", "sympy_verified": true }
+    },
+    {
+      "id": "stat.dist.cauchy_normal_ratio",
+      "node_kind": "theorem",
+      "name": "柯西分布与标准正态商 / t(1) 等价定理",
+      "aliases": ["正态商分布定理", "t(1) = Cauchy(0,1)"],
+      "latex": "Z_1, Z_2 \\overset{\\text{i.i.d.}}{\\sim} N(0,1) \\implies \\frac{Z_1}{Z_2} \\sim \\text{Cauchy}(0, 1) \\equiv t(1)",
+      "statement": "两个独立标准正态随机变量之比精确服从标准柯西分布，同时也与自由度为 1 的学生 t 分布 t(1) 完全等价。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["classic_distributions"]
+      },
+      "variables": [
+        { "symbol": "Z_1, Z_2", "name": "两个独立标准正态随机变量", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["Z1、Z2 必须相互独立且均服从 N(0, 1)；极坐标角 θ ~ U(-π/2, π/2) 满足 tan θ = Z1/Z2"],
+      "intuition": "分母 Z2 以正密度穿过 0 附近，导致比值 Z1/Z2 频繁爆出极大值，把轻尾的正态分布瞬间“炸”成无期望的重尾柯西分布。",
+      "worked_example": "在 t(n) 定义中取自由度 n = 1，T = Z1 / √(Z2²/1) = Z1/|Z2|，由对称性与 Z1/Z2 同分布，密度正是 1/[π(1+x²)]。",
+      "applications": ["解释两均值估计量比值的重尾风险", "桥接正态分布、卡方分布与 t 分布族"],
+      "review": { "status": "human_verified", "source": "概率论与数理统计 3.5 / 6.3", "sympy_verified": true }
+    },
+    {
+      "id": "stat.ineq.markov",
+      "node_kind": "inequality",
+      "name": "马尔可夫不等式",
+      "aliases": ["非负随机变量尾部上界", "Markov Inequality"],
+      "latex": "P(X \\ge a) \\le \\frac{E(X)}{a} \\quad (X \\ge 0,\\ a > 0)",
+      "statement": "对任意非负随机变量 X 与正阈值 a，X 超过 a 的概率至多为均值与阈值之比；它是切比雪夫、切尔诺夫与霍夫丁等所有集中不等式的总源头。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_inequalities_transforms"]
+      },
+      "variables": [
+        { "symbol": "X", "name": "非负随机变量", "math_type": "scalar", "domain": "[0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
+        { "symbol": "a", "name": "正阈值", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["X ≥ 0 几乎必然成立，E(X) < ∞，且 a > 0"],
+      "intuition": "若全班平均身高 1.7m 且身高非负，那么身高超过 3.4m 的人比例绝不可能超过 50%，否则均值就会被顶穿。",
+      "worked_example": "已知非负指标均值 E(X) = 10，则无论其分布形状如何，P(X ≥ 50) ≤ 10/50 = 0.2。",
+      "applications": ["推导切比雪夫与 Chernoff 指数界", "随机算法运行时间尾概率上界分析"],
+      "review": { "status": "human_verified", "source": "Ross《概率论基础教程》8.2", "sympy_verified": true }
+    },
+    {
+      "id": "stat.ineq.jensen",
+      "node_kind": "inequality",
+      "name": "琴生不等式（Jensen 不等式）",
+      "aliases": ["凸函数期望不等式", "Jensen's Inequality"],
+      "latex": "\\varphi\\big(E(X)\\big) \\le E\\big[\\varphi(X)\\big] \\quad (\\varphi \\text{ 为凸函数})",
+      "statement": "对任意凸函数 φ（如 x²、e^x、-ln x），函数在期望处的值不超过函数值的期望；若 φ 为凹函数则不等号反向。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_inequalities_transforms"]
+      },
+      "variables": [
+        { "symbol": "\\varphi", "name": "凸函数（二阶可导时 φ''(x) ≥ 0）", "math_type": "function", "domain": "\\mathbb{R} \\to \\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["φ 在 X 取值区间上为凸函数，且 E(X) 与 E[φ(X)] 均存在；严格凸时取等当且仅当 X 几乎必然为常数"],
+      "intuition": "向上弯曲的碗（凸函数）上任意若干点的重心一定落在碗的上方，绝不会掉到碗底曲线下面。",
+      "worked_example": "取凸函数 φ(x) = x² 立即得 [E(X)]² ≤ E(X²)（方差非负）；取 φ(x) = -ln x 立即证明 KL 散度非负（吉布斯不等式）。",
+      "applications": ["变分推断 ELBO 下界推导", "信息论 KL 散度非负性与 EM 算法收敛性证明", "经济学风险厌恶凹效用分析"],
+      "review": { "status": "human_verified", "source": "Durrett《概率论》1.6", "sympy_verified": true }
+    },
+    {
+      "id": "stat.ineq.hoeffding",
+      "node_kind": "inequality",
+      "name": "霍夫丁不等式（Hoeffding 不等式）",
+      "aliases": ["有界独立和指数集中界", "Hoeffding's Inequality"],
+      "latex": "P\\big(|\\bar{X}_n - E(\\bar{X}_n)| \\ge t\\big) \\le 2\\exp\\!\\left(-\\frac{2 n^2 t^2}{\\sum_{i=1}^{n}(b_i - a_i)^2}\\right)",
+      "statement": "对相互独立且各自落入有界区间 [ai, bi] 的随机变量，样本均值偏离期望的概率随样本量 n 呈指数级衰减，远紧于切比雪夫多项式上界。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate", "graduate"],
+        "topics": ["prob_inequalities_transforms"]
+      },
+      "variables": [
+        { "symbol": "a_i, b_i", "name": "第 i 个变量的有界上下界", "math_type": "constant", "domain": "a_i \\le X_i \\le b_i", "quantity_kind": null, "dimension": null, "si_unit": null },
+        { "symbol": "t", "name": "允许偏差阈值", "math_type": "constant", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["X1,...,Xn 相互独立且几乎必然满足 ai ≤ Xi ≤ bi；当均在 [0, 1] 时化简为 2 exp(-2 n t²)"],
+      "intuition": "只要每个随机变量都被关在有限笼子 [a, b] 里，它们独立平均后的极端偏差会像高斯尾部一样指数级消失。",
+      "worked_example": "抛 n = 1000 次硬币（Xi ∈ [0, 1]），正面频率偏离均值超过 t = 0.05 的概率至多为 2e^(-2×1000×0.0025) = 2e^(-5) ≈ 0.0135。",
+      "applications": ["统计学习理论 PAC 泛化误差界", "多臂老虎机 UCB 置信上界算法", "非参数 A/B 测试样本量保守估计"],
+      "review": { "status": "human_verified", "source": "Hoeffding (1963) / Wainright《高维统计》2.1", "sympy_verified": true }
+    },
+    {
+      "id": "stat.transform.mgf",
+      "node_kind": "definition",
+      "name": "矩母函数（MGF）",
+      "aliases": ["Moment Generating Function", "M_X(t)"],
+      "latex": "M_X(t) = E\\big(e^{tX}\\big),\\quad E(X^k) = M_X^{(k)}(0)",
+      "statement": "若在 t = 0 的某个开邻域内 E(e^(tX)) 有限，则称 M_X(t) 为矩母函数：在原点求 k 阶导即提取 k 阶原点矩，且独立变量之和的 MGF 等于各自 MGF 之积。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["prob_inequalities_transforms"]
+      },
+      "variables": [
+        { "symbol": "M_X(t)", "name": "矩母函数", "math_type": "function", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": "1", "si_unit": "1" },
+        { "symbol": "t", "name": "实变换参数", "math_type": "scalar", "domain": "(-h, h)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["要求在 0 的某邻域 (-h, h) 内有限；重尾分布（如柯西分布、对数正态分布）在 t > 0 时 MGF 发散不存在"],
+      "intuition": "把所有阶矩打包进一个指数级数“胶囊”里，求导一次剥出一阶矩，独立相加只需直接相乘。",
+      "worked_example": "X ~ N(μ, σ²) 的 MGF 为 exp(μt + σ²t²/2)，由此一行证明两个独立正态变量之和仍服从正态分布。",
+      "applications": ["证明正态/泊松/伽马/卡方分布可加性", "Chernoff 与 Hoeffding 指数尾界推导", "快捷求高阶矩"],
+      "review": { "status": "human_verified", "source": "Casella & Berger《统计推断》2.3", "sympy_verified": true }
+    },
+    {
+      "id": "stat.transform.char_func",
+      "node_kind": "definition",
+      "name": "特征函数（Characteristic Function）",
+      "aliases": ["概率分布傅里叶变换", "φ_X(t)"],
+      "latex": "\\varphi_X(t) = E\\big(e^{itX}\\big) = \\int_{-\\infty}^{+\\infty} e^{itx}\\,dF_X(x),\\quad \\varphi_{X+Y}(t) = \\varphi_X(t)\\varphi_Y(t)",
+      "statement": "随机变量分布的傅里叶变换；由于 |e^(itX)| = 1 有界，它对一切随机变量（包括无期望的柯西分布）均处处存在，并与概率分布形成一一对应。",
+      "taxonomy": {
+        "disciplines": ["mathematics", "statistics"],
+        "education_stages": ["undergraduate", "graduate"],
+        "topics": ["prob_inequalities_transforms"]
+      },
+      "variables": [
+        { "symbol": "\\varphi_X(t)", "name": "复值特征函数", "math_type": "function", "domain": "\\mathbb{C},\\ |\\varphi_X(t)| \\le 1", "quantity_kind": null, "dimension": "1", "si_unit": "1" },
+        { "symbol": "i", "name": "虚数单位 (i² = -1)", "math_type": "constant", "domain": "\\mathbb{C}", "quantity_kind": null, "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["对任意实随机变量与任意 t ∈ ℝ 恒存在；满足 φ(0) = 1、|φ(t)| ≤ 1；乘积性质要求 X、Y 独立"],
+      "intuition": "把 MGF 里的实指数 e^(tX) 旋转 90° 到复单位圆上变成振荡波 e^(itX)，彻底杜绝发散，成为所有概率分布的唯一“频谱指纹”。",
+      "worked_example": "标准柯西分布无 MGF，但特征函数 φ(t) = e^(-|t|) 简洁存在，一行推出独立柯西均值仍服从同分布。",
+      "applications": ["严格证明中心极限定理（列维连续性定理）", "重尾稳定分布分析", "快速傅里叶变换期权定价"],
+      "review": { "status": "human_verified", "source": "Durrett《概率论》3.3", "sympy_verified": true }
+    }
+  ],
+  "derivations": [
+    {
+      "id": "deriv.statx.axioms_to_cdf",
+      "from_formula_ids": ["stat.prob.kolmogorov_axioms"],
+      "to_formula_id": "stat.rv.cdf",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["monotone_continuity_of_measure"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "由概率测度的非负性、规范性与可列可加性，令事件 A_x = {X ≤ x} 立即推得 CDF 的单调不减、右连续与极限 0/1 性质。",
+        "L2_standard": [
+          { "step": 1, "latex": "a < b \\implies \\{X \\le b\\} = \\{X \\le a\\} \\cup \\{a < X \\le b\\} \\implies F(b) - F(a) = P(a < X \\le b) \\ge 0", "note": "由互斥可加性与非负性证得区间概率式与单调不减", "cited_formula_ids": ["stat.prob.kolmogorov_axioms"] },
+          { "step": 2, "latex": "\\lim_{x \\to +\\infty} F(x) = P(\\Omega) = 1,\\quad \\lim_{x \\to -\\infty} F(x) = P(\\emptyset) = 0", "note": "由概率测度上下连续性与规范性得边界极限", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "F_X(x) = P(X \\le x) = P\\!\\left(\\bigcap_{n=1}^{\\infty} \\{X \\le x + 1/n\\}\\right) = \\lim_{n\\to\\infty} F_X(x + 1/n)", "note": "事件序列单调递减交集验证了右连续性", "cited_formula_ids": ["stat.prob.kolmogorov_axioms"], "pitfall": "CDF 在离散跳跃点处右连续但左不连续，左极限 F(x-) = P(X < x)，跳跃高度等于 P(X = x)。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.cdf_to_pdf",
+      "from_formula_ids": ["stat.rv.cdf"],
+      "to_formula_id": "stat.rv.pdf",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": ["fundamental_theorem_of_calculus"],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "当分布函数 F_X(x) 绝对连续时，其导数 f_X(x) = F_X'(x) 即为概率密度函数，反向积分 ∫_{-∞}^x f_X(t) dt 还原 F_X(x)。",
+        "L2_standard": [
+          { "step": 1, "latex": "P(x < X \\le x + \\Delta x) = F_X(x + \\Delta x) - F_X(x) \\approx f_X(x)\\,\\Delta x", "note": "密度 f(x) 是单位长度上的局部概率变化率", "cited_formula_ids": ["stat.rv.cdf"] },
+          { "step": 2, "latex": "F_X(x) = \\int_{-\\infty}^{x} f_X(t)\\,dt,\\quad \\int_{-\\infty}^{+\\infty} f_X(x)\\,dx = F_X(+\\infty) = 1", "note": "由 CDF 右端点极限 1 自动保证密度归一性", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "f_X(x) = \\frac{d}{dx} F_X(x) \\ge 0", "note": "因 CDF 单调不减，其导数（密度）必然非负", "cited_formula_ids": ["stat.rv.cdf"], "pitfall": "切勿把密度值 f(x) 误当概率：f(x) 允许大于 1，只有区间积分才是概率。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.pdf_to_exp_cont",
+      "from_formula_ids": ["stat.rv.pdf"],
+      "to_formula_id": "stat.rv.expectation_continuous",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": ["riemann_sum_limit"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将实轴分割为微元 [x_i, x_i + Δx]，用概率微元 f(x_i)Δx 替代离散概率 p_i 求和取极限，即得连续期望积分 ∫ x f(x) dx。",
+        "L2_standard": [
+          { "step": 1, "latex": "E(X) \\approx \\sum_i x_i P(x_i < X \\le x_i + \\Delta x) \\approx \\sum_i x_i f_X(x_i)\\,\\Delta x", "note": "以微元概率 f(x)Δx 离散近似", "cited_formula_ids": ["stat.rv.pdf"] },
+          { "step": 2, "latex": "\\xrightarrow{\\Delta x \\to 0} E(X) = \\int_{-\\infty}^{+\\infty} x f_X(x)\\,dx", "note": "黎曼和取极限过渡为广义积分", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\int_{-\\infty}^{+\\infty} |x| f_X(x)\\,dx < \\infty", "note": "要求绝对收敛以保证期望值与积分次序及截断对称方式无关", "cited_formula_ids": ["stat.rv.pdf"], "pitfall": "对称分布若只看正负抵消的柯西主值会误以为期望为 0（如柯西分布），必须先验绝对收敛。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.exp_to_total_exp",
+      "from_formula_ids": ["stat.rv.expectation_continuous"],
+      "to_formula_id": "stat.law.total_expectation",
+      "relation_type": "generalizes",
+      "dependency_site": "proof_level",
+      "inference_rules": ["fubini_iterated_integral"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将联合密度分解为 f_{X,Y}(x,y) = f_{X|Y}(x|y)f_Y(y)，利用富比尼定理先对 x 积分得 E(X|Y=y)，再对 y 积分即证 E(X) = E[E(X|Y)]。",
+        "L2_standard": [
+          { "step": 1, "latex": "E(X) = \\iint x f_{X,Y}(x,y)\\,dx\\,dy = \\int \\left[\\int x f_{X\\mid Y}(x\\mid y)\\,dx\\right] f_Y(y)\\,dy", "note": "按条件密度与边缘密度拆解二重积分", "cited_formula_ids": ["stat.rv.expectation_continuous"] },
+          { "step": 2, "latex": "= \\int E(X \\mid Y = y) f_Y(y)\\,dy = E\\big[E(X \\mid Y)\\big]", "note": "内层积分正是条件期望，外层即对 Y 取期望", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "E(X) = E[E(X \\mid Y)]", "note": "绝对可积条件 E(|X|) < ∞ 保证了富比尼定理交换积分次序的合法性", "cited_formula_ids": ["stat.rv.expectation_continuous"], "pitfall": "注意 E(X|Y) 本身是关于 Y 的随机变量，而不是一个常数；再取一次外层期望后才是常数。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.total_exp_to_total_var",
+      "from_formula_ids": ["stat.law.total_expectation"],
+      "to_formula_id": "stat.law.total_variance",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["variance_expansion", "iterated_expectation"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "对条件方差展开式 D(X|Y) = E(X²|Y) - [E(X|Y)]² 取外层期望，联立全期望公式与 D[E(X|Y)] 展开式合并即证。",
+        "L2_standard": [
+          { "step": 1, "latex": "E[D(X \\mid Y)] = E[E(X^2 \\mid Y)] - E\\big[(E(X \\mid Y))^2\\big] = E(X^2) - E\\big[(E(X \\mid Y))^2\\big]", "note": "对条件方差取期望并应用全期望公式化简首项", "cited_formula_ids": ["stat.law.total_expectation"] },
+          { "step": 2, "latex": "D[E(X \\mid Y)] = E\\big[(E(X \\mid Y))^2\\big] - \\big(E[E(X \\mid Y)]\\big)^2 = E\\big[(E(X \\mid Y))^2\\big] - [E(X)]^2", "note": "展开条件期望的方差，两式相加交叉项恰好抵消得 E(X²) - [E(X)]² = D(X)", "cited_formula_ids": ["stat.law.total_expectation"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "D(X) = E[D(X \\mid Y)] + D[E(X \\mid Y)]", "note": "此式立即推出 D(X) ≥ D[E(X|Y)]，即拉奥-布莱克韦尔定理（条件期望降方差）的核心依据", "cited_formula_ids": ["stat.law.total_expectation"], "pitfall": "切忌把全方差公式误记成只剩第一项 E[D(X|Y)]，漏掉组间方差会严重低估总方差。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.axioms_to_bernoulli",
+      "from_formula_ids": ["stat.prob.kolmogorov_axioms"],
+      "to_formula_id": "stat.dist.bernoulli",
+      "relation_type": "applies_in",
+      "dependency_site": "definition_level",
+      "inference_rules": ["two_point_probability_space"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在仅含 {0, 1} 两点的最简样本空间上赋权 P(1) = p、P(0) = 1-p，直接满足柯尔莫哥洛夫公理即得伯努利分布。",
+        "L2_standard": [
+          { "step": 1, "latex": "P(X=1) = p,\\quad P(X=0) = 1 - p,\\quad P(X=1) + P(X=0) = 1", "note": "满足非负性与总概率为 1 的规范性", "cited_formula_ids": ["stat.prob.kolmogorov_axioms"] },
+          { "step": 2, "latex": "E(X) = 1\\cdot p + 0\\cdot(1-p) = p,\\quad D(X) = E(X^2) - p^2 = p - p^2 = p(1 - p)", "note": "利用 0-1 变量性质 X² = X 一行算出方差", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "P(X = k) = p^k(1 - p)^{1 - k}\\quad (k \\in \\{0, 1\\})", "note": "指示随机变量 I_A ~ Bernoulli(P(A)) 将事件概率无缝转化为期望运算 E(I_A) = P(A)", "cited_formula_ids": ["stat.prob.kolmogorov_axioms"], "pitfall": "仅当取值严格为 0 和 1 时才有 X² = X 与方差 p(1-p)；若取值为 ±1 则方差为 4p(1-p)。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.bern_to_geom",
+      "from_formula_ids": ["stat.dist.bernoulli"],
+      "to_formula_id": "stat.dist.geometric",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["independent_trial_sequence", "geometric_series_diff"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "独立重复伯努利试验，前 k-1 次失败且第 k 次成功概率连乘得 (1-p)^(k-1)p；对幂级数 ∑ q^k 求导即得期望 1/p 与方差 (1-p)/p²。",
+        "L2_standard": [
+          { "step": 1, "latex": "P(X = k) = P(X_1=0, \\dots, X_{k-1}=0, X_k=1) = (1-p)^{k-1} p", "note": "由独立伯努利试验连乘得分布律", "cited_formula_ids": ["stat.dist.bernoulli"] },
+          { "step": 2, "latex": "E(X) = p\\sum_{k=1}^{\\infty} k q^{k-1} = p\\cdot\\frac{1}{(1-q)^2} = \\frac{1}{p}\\quad (q = 1 - p)", "note": "对等比级数 ∑ q^k = 1/(1-q) 逐项求导求期望", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "P(X > m + n \\mid X > m) = \\frac{q^{m+n}}{q^m} = q^n = P(X > n)", "note": "尾概率呈等比衰减直接保证了离散无记忆性", "cited_formula_ids": ["stat.dist.bernoulli"], "pitfall": "注意部分教材把几何分布定义为“首次成功前的失败次数”（从 k=0 开始），此时期望为 (1-p)/p 而非 1/p。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.geom_to_negbin",
+      "from_formula_ids": ["stat.dist.geometric"],
+      "to_formula_id": "stat.dist.negative_binomial",
+      "relation_type": "generalizes",
+      "dependency_site": "proof_level",
+      "inference_rules": ["iid_sum_decomposition"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "把等待第 r 次成功拆成 r 段独立的首次成功等待时间之和 X = Y1 + ... + Yr（Yi ~ Geom(p)），直接相加即得负二项分布及其期望 r/p 与方差 r(1-p)/p²。",
+        "L2_standard": [
+          { "step": 1, "latex": "P(X = k) = \\binom{k-1}{r-1} p^{r-1}(1-p)^{k-r} \\cdot p = \\binom{k-1}{r-1} p^r(1-p)^{k-r}", "note": "前 k-1 次恰有 r-1 次成功且第 k 次必须成功", "cited_formula_ids": ["stat.dist.geometric"] },
+          { "step": 2, "latex": "X = \\sum_{j=1}^{r} Y_j\\ (Y_j \\overset{\\text{i.i.d.}}{\\sim} \\text{Geom}(p)) \\implies E(X) = \\frac{r}{p},\\quad D(X) = \\frac{r(1-p)}{p^2}", "note": "拆成 r 个独立几何变量瞬间算出均值与方差", "cited_formula_ids": ["stat.dist.geometric"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "E(X) = \\frac{r}{p},\\quad D(X) = \\frac{r(1-p)}{p^2}", "note": "利用几何变量可加性避免了对复杂组合级数直接求导", "cited_formula_ids": ["stat.dist.geometric"], "pitfall": "组合数是 C(k-1, r-1) 而不是 C(k, r)，因为第 k 次试验必须是成功，不能自由排列。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.bern_to_hypergeom",
+      "from_formula_ids": ["stat.dist.bernoulli"],
+      "to_formula_id": "stat.dist.hypergeometric",
+      "relation_type": "generalizes",
+      "dependency_site": "proof_level",
+      "inference_rules": ["correlated_indicator_sum"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将不放回抽样记为 n 个边缘同服从 Bernoulli(M/N) 但两两负相关的指示变量之和，由组合计数得分布律并由协方差得有限总体方差修正。",
+        "L2_standard": [
+          { "step": 1, "latex": "X = \\sum_{i=1}^{n} I_i,\\quad E(I_i) = \\frac{M}{N} \\implies E(X) = n\\frac{M}{N}", "note": "每个指示变量边缘均为伯努利分布，期望线性不要求独立", "cited_formula_ids": ["stat.dist.bernoulli"] },
+          { "step": 2, "latex": "\\text{Cov}(I_i, I_j) = \\frac{M(M-1)}{N(N-1)} - \\left(\\frac{M}{N}\\right)^2 = -\\frac{M(N-M)}{N^2(N-1)} \\implies D(X) = n\\frac{M}{N}\\left(1-\\frac{M}{N}\\right)\\frac{N-n}{N-1}", "note": "加上 n(n-1) 对负协方差项即得有限总体修正因子 (N-n)/(N-1)", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\frac{N - n}{N - 1} \\xrightarrow{N \\to \\infty} 1", "note": "当总体远大于样本量（工程常取 N ≥ 10n）时，超几何分布可用二项分布高精度近似", "cited_formula_ids": ["stat.dist.bernoulli"], "pitfall": "不能把不放回抽样当作独立伯努利之和直接算方差，否则会漏掉负协方差导致高估方差。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.bern_to_poisson",
+      "from_formula_ids": ["stat.dist.bernoulli"],
+      "to_formula_id": "stat.dist.poisson",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["poisson_limit_theorem"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将单位区间切分为 n 份独立伯努利试验，令单次概率 p = λ/n 且 n → ∞，二项概率极限即收敛到泊松分布 λ^k e^(-λ) / k!。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\binom{n}{k}\\left(\\frac{\\lambda}{n}\\right)^k\\left(1 - \\frac{\\lambda}{n}\\right)^{n-k} = \\frac{\\lambda^k}{k!} \\cdot \\frac{n(n-1)\\cdots(n-k+1)}{n^k} \\left(1 - \\frac{\\lambda}{n}\\right)^n \\left(1 - \\frac{\\lambda}{n}\\right)^{-k}", "note": "代入 p = λ/n 并按 n 的幂次分组", "cited_formula_ids": ["stat.dist.bernoulli"] },
+          { "step": 2, "latex": "\\xrightarrow{n \\to \\infty} \\frac{\\lambda^k}{k!} \\cdot 1 \\cdot e^{-\\lambda} \\cdot 1 = \\frac{\\lambda^k e^{-\\lambda}}{k!}", "note": "利用重要极限 (1 - λ/n)^n → e^(-λ) 得泊松分布", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "E(X) = \\lim np = \\lambda,\\quad D(X) = \\lim np(1 - \\lambda/n) = \\lambda", "note": "在稀有极限下因子 (1 - p) → 1，解释了为何泊松分布均值与方差恰好相等", "cited_formula_ids": ["stat.dist.bernoulli"], "pitfall": "若实测计数数据方差远大于均值（过离散），则说明事件非独立或速率非恒定，应改用负二项分布。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.pdf_to_uniform",
+      "from_formula_ids": ["stat.rv.pdf"],
+      "to_formula_id": "stat.dist.uniform",
+      "relation_type": "special_case_of",
+      "dependency_site": "definition_level",
+      "inference_rules": ["constant_density_normalization"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "令区间 [a, b] 上密度 f(x) = c 为常数，由密度归一性 c(b-a) = 1 定出 f(x) = 1/(b-a)，积分即得均值 (a+b)/2 与方差 (b-a)²/12。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\int_a^b c\\,dx = 1 \\implies c = \\frac{1}{b - a}", "note": "由 PDF 归一性唯一确定常数密度", "cited_formula_ids": ["stat.rv.pdf"] },
+          { "step": 2, "latex": "E(X) = \\int_a^b \\frac{x}{b-a}\\,dx = \\frac{a+b}{2},\\quad D(X) = \\int_a^b \\frac{x^2}{b-a}\\,dx - \\left(\\frac{a+b}{2}\\right)^2 = \\frac{(b-a)^2}{12}", "note": "直接积分求出期望与方差", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "D(X) = \\frac{b^2 + ab + a^2}{3} - \\frac{a^2 + 2ab + b^2}{4} = \\frac{(b-a)^2}{12}", "note": "分母 12 来自 1/3 - 1/4 = 1/12，是均匀分布的标志性常数", "cited_formula_ids": ["stat.rv.pdf"], "pitfall": "计算均匀分布积分时上下限必须截断在 [a, b] 内，区间外密度为 0。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.pdf_to_exp",
+      "from_formula_ids": ["stat.rv.pdf"],
+      "to_formula_id": "stat.dist.exponential",
+      "relation_type": "special_case_of",
+      "dependency_site": "definition_level",
+      "inference_rules": ["constant_hazard_rate"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "设瞬时失效率 h(x) = f(x)/(1-F(x)) = λ 为常数，解一阶微分方程得存活函数 1-F(x) = e^(-λx)，求导即得指数密度 f(x) = λe^(-λx)。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\frac{F'(x)}{1 - F(x)} = \\lambda \\implies -\\ln(1 - F(x)) = \\lambda x \\implies F(x) = 1 - e^{-\\lambda x}", "note": "常失效率微分方程积分并代入 F(0) = 0", "cited_formula_ids": ["stat.rv.pdf"] },
+          { "step": 2, "latex": "f(x) = F'(x) = \\lambda e^{-\\lambda x}\\ (x \\ge 0)", "note": "求导得到指数分布概率密度函数", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "E(X) = \\frac{1}{\\lambda},\\quad D(X) = \\frac{1}{\\lambda^2}", "note": "分部积分二次即得一二阶矩，标准差与均值同为 1/λ", "cited_formula_ids": ["stat.rv.pdf"], "pitfall": "注意部分软件（如 scipy/统计学教材）用尺度参数 θ = 1/λ 参数化，使用前需确认 λ 是速率还是均值。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.pois_exp_dual",
+      "from_formula_ids": ["stat.dist.poisson"],
+      "to_formula_id": "stat.dist.exponential",
+      "relation_type": "dual_of",
+      "dependency_site": "proof_level",
+      "inference_rules": ["poisson_process_count_waiting_duality"],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "在泊松过程中，“首次事件等待时间 T > t”与“区间 [0, t] 内事件计数 N(t) = 0”完全等价，两分布构成计数与等待时间的精确对偶。",
+        "L2_standard": [
+          { "step": 1, "latex": "P(T > t) = P(N(t) = 0) = \\frac{(\\lambda t)^0 e^{-\\lambda t}}{0!} = e^{-\\lambda t}", "note": "将泊松分布 k=0 的概率直接转化为等待时间尾概率", "cited_formula_ids": ["stat.dist.poisson"] },
+          { "step": 2, "latex": "F_T(t) = 1 - e^{-\\lambda t} \\implies f_T(t) = \\lambda e^{-\\lambda t}", "note": "求导立得首次到达间隔服从 Exp(λ)", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\{T_1 > t\\} \\iff \\{N(t) = 0\\}", "note": "离散计数视角（固定时间数事件）与连续时间视角（固定事件数等时间）互为对偶", "cited_formula_ids": ["stat.dist.poisson"], "pitfall": "切勿混淆两者的期望：单位时间平均来 λ 次（泊松），则平均每次间隔 1/λ 时间（指数）。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.geom_exp_dual",
+      "from_formula_ids": ["stat.dist.geometric"],
+      "to_formula_id": "stat.dist.exponential",
+      "relation_type": "dual_of",
+      "dependency_site": "proof_level",
+      "inference_rules": ["discrete_continuous_memoryless_limit"],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "几何分布与指数分布分别是离散与连续世界中唯一具有无记忆性的分布；把时间步长 Δt → 0 且 p = λΔt，几何分布即收敛为指数分布。",
+        "L2_standard": [
+          { "step": 1, "latex": "P(X\\,\\Delta t > t) = (1 - \\lambda \\Delta t)^{\\lfloor t/\\Delta t \\rfloor} \\xrightarrow{\\Delta t \\to 0} e^{-\\lambda t}", "note": "离散时间步长趋于零时，几何尾概率极限精确变为指数尾概率", "cited_formula_ids": ["stat.dist.geometric"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "P(T > s + t \\mid T > s) = P(T > t)", "note": "二者在离散与连续域上承担完全对偶的无记忆等待时间角色", "cited_formula_ids": ["stat.dist.geometric"], "pitfall": "只要分布不是几何或指数（如威布尔分布），就不具备无记忆性，不能丢弃已等待时长。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.exp_to_gamma",
+      "from_formula_ids": ["stat.dist.exponential"],
+      "to_formula_id": "stat.dist.gamma",
+      "relation_type": "generalizes",
+      "dependency_site": "proof_level",
+      "inference_rules": ["convolution_sum_of_exponentials"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将 n 个独立同分布 Exp(β) 等待时间相加（卷积或 MGF 连乘），即得整数形状参数的伽马分布 Gamma(n, β)，再以 Γ(α) 延拓到任意 α > 0。",
+        "L2_standard": [
+          { "step": 1, "latex": "M_{T_1 + \\dots + T_n}(t) = \\prod_{i=1}^{n} \\frac{\\beta}{\\beta - t} = \\left(\\frac{\\beta}{\\beta - t}\\right)^n", "note": "独立指数变量之和的 MGF 唯一对应 Gamma(n, β)", "cited_formula_ids": ["stat.dist.exponential"] },
+          { "step": 2, "latex": "f(x) = \\frac{\\beta^{\\alpha}}{\\Gamma(\\alpha)} x^{\\alpha - 1} e^{-\\beta x},\\quad E(X) = \\frac{\\alpha}{\\beta},\\quad D(X) = \\frac{\\alpha}{\\beta^2}", "note": "将 (n-1)! 用伽马函数 Γ(α) 连续推广至任意 α > 0", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\Gamma(\\alpha) = \\int_0^{\\infty} t^{\\alpha-1} e^{-t}\\,dt,\\quad \\Gamma(n) = (n - 1)!", "note": "当 α = 1 时精确退化回 Exp(β)；当 α = k/2, β = 1/2 时精确化为卡方分布 χ²(k)", "cited_formula_ids": ["stat.dist.exponential"], "pitfall": "区分伽马分布的“速率参数 β”与“尺度参数 θ = 1/β”两种写法，均值分别是 α/β 与 αθ。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.gamma_to_beta",
+      "from_formula_ids": ["stat.dist.gamma"],
+      "to_formula_id": "stat.dist.beta",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["ratio_transformation_jacobian"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "设 X ~ Gamma(α, 1) 与 Y ~ Gamma(β, 1) 独立，令 U = X/(X+Y)、V = X+Y 做二维雅可比换元并积分消去 V，即得 U ~ Beta(α, β)。",
+        "L2_standard": [
+          { "step": 1, "latex": "X = UV,\\ Y = (1-U)V,\\quad \\left|\\frac{\\partial(X,Y)}{\\partial(U,V)}\\right| = V", "note": "构造占比变量 U 与总量变量 V 并计算雅可比行列式", "cited_formula_ids": ["stat.dist.gamma"] },
+          { "step": 2, "latex": "f_{U,V}(u,v) = \\frac{u^{\\alpha-1}(1-u)^{\\beta-1}}{\\Gamma(\\alpha)\\Gamma(\\beta)} v^{\\alpha+\\beta-1} e^{-v} \\implies f_U(u) = \\frac{\\Gamma(\\alpha+\\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)} u^{\\alpha-1}(1-u)^{\\beta-1}", "note": "U 与 V 恰好独立分解，积分掉 V 即得 Beta(α, β) 密度", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "B(\\alpha, \\beta) = \\int_0^1 u^{\\alpha-1}(1-u)^{\\beta-1}\\,du = \\frac{\\Gamma(\\alpha)\\Gamma(\\beta)}{\\Gamma(\\alpha+\\beta)}", "note": "此推导同时顺带证明了经典欧拉贝塔-伽马函数恒等式", "cited_formula_ids": ["stat.dist.gamma"], "pitfall": "两个独立伽马变量必须具有相同的速率参数 β，其比值 X/(X+Y) 才服从标准 Beta 分布。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.unif_to_beta",
+      "from_formula_ids": ["stat.dist.uniform"],
+      "to_formula_id": "stat.dist.beta",
+      "relation_type": "generalizes",
+      "dependency_site": "definition_level",
+      "inference_rules": ["shape_parameter_generalization"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "标准均匀分布 U(0, 1) 正是 Beta(1, 1) 的平直特例；放开形状参数 α, β > 0 后可塑造 U 形、J 形、单峰偏态等各类 (0, 1) 区间分布。",
+        "L2_standard": [
+          { "step": 1, "latex": "f_{\\text{Beta}(1,1)}(x) = \\frac{\\Gamma(2)}{\\Gamma(1)\\Gamma(1)} x^0(1-x)^0 = 1 = f_{U(0,1)}(x)", "note": "代入 α = 1, β = 1 精确还原 U(0, 1)", "cited_formula_ids": ["stat.dist.uniform"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "U_{(k)} \\sim \\text{Beta}(k, n - k + 1)", "note": "更一般地，n 个独立 U(0,1) 样本的第 k 阶次序统计量恰好服从 Beta(k, n-k+1)", "cited_formula_ids": ["stat.dist.uniform"], "pitfall": "当 α < 1 或 β < 1 时，Beta 密度在端点 0 或 1 处趋于无穷，但全区间积分仍严格收敛为 1。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.pdf_to_lognormal",
+      "from_formula_ids": ["stat.rv.pdf"],
+      "to_formula_id": "stat.dist.lognormal",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["monotone_transformation_jacobian"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "对正态变量 Y ~ N(μ, σ²) 作单调指数变换 X = e^Y，按密度换元公式乘以雅可比因子 |d(ln x)/dx| = 1/x 即得对数正态密度。",
+        "L2_standard": [
+          { "step": 1, "latex": "f_X(x) = f_Y(\\ln x)\\left|\\frac{d\\ln x}{dx}\\right| = \\frac{1}{x\\sigma\\sqrt{2\\pi}} \\exp\\!\\left(-\\frac{(\\ln x - \\mu)^2}{2\\sigma^2}\\right)", "note": "利用单调变换密度公式乘上 1/x", "cited_formula_ids": ["stat.rv.pdf"] },
+          { "step": 2, "latex": "E(X) = E(e^Y) = M_Y(1) = e^{\\mu + \\sigma^2/2},\\quad E(X^2) = M_Y(2) = e^{2\\mu + 2\\sigma^2}", "note": "借正态 MGF 一行算出期望与二阶矩", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "E(X) = e^{\\mu + \\sigma^2/2} > e^{\\mu} = \\text{Median}(X)", "note": "指数函数严格凸性导致均值系统性高于中位数 e^μ，呈现典型右偏", "cited_formula_ids": ["stat.rv.pdf"], "pitfall": "最易错处：误以为 LogNormal(μ, σ²) 的均值是 e^μ 或 μ，忘记凸性修正项 +σ²/2。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.pdf_cdf_to_cauchy",
+      "from_formula_ids": ["stat.rv.pdf", "stat.rv.cdf"],
+      "to_formula_id": "stat.dist.cauchy",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["arctan_antiderivative_normalization"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "由积分 ∫ 1/(1+u²) du = arctan u 在全实轴积分值为 π 确定归一常数 1/(πγ)，求原函数即得柯西分布闭式 CDF。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\int_{-\\infty}^{+\\infty} \\frac{dx}{\\gamma[1 + ((x-x_0)/\\gamma)^2]} = \\Big[\\arctan u\\Big]_{-\\infty}^{+\\infty} = \\frac{\\pi}{2} - \\left(-\\frac{\\pi}{2}\\right) = \\pi", "note": "令 u = (x - x0)/γ 算得全实轴总面积为 π", "cited_formula_ids": ["stat.rv.pdf"] },
+          { "step": 2, "latex": "F(x) = \\int_{-\\infty}^{x} f(t)\\,dt = \\frac{1}{\\pi}\\left[\\arctan\\!\\left(\\frac{x - x_0}{\\gamma}\\right) + \\frac{\\pi}{2}\\right] = \\frac{1}{2} + \\frac{1}{\\pi}\\arctan\\!\\left(\\frac{x - x_0}{\\gamma}\\right)", "note": "闭式积分直接给出柯西分布函数 CDF", "cited_formula_ids": ["stat.rv.cdf"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "F^{-1}(p) = x_0 + \\gamma \\tan\\!\\left(\\pi\\left(p - \\frac{1}{2}\\right)\\right)", "note": "柯西分布不仅有闭式 CDF，还有极简逆 CDF，可用单行 U(0,1) 变换生成柯西随机数", "cited_formula_ids": ["stat.rv.pdf", "stat.rv.cdf"], "pitfall": "位置参数 x0 是中位数和众数，绝不能称之为“均值”；尺度参数 γ 是四分位半距，绝不能称之为“标准差”。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.cauchy_to_no_moments",
+      "from_formula_ids": ["stat.dist.cauchy", "stat.rv.expectation_continuous"],
+      "to_formula_id": "stat.dist.cauchy_no_moments",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["improper_integral_divergence"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "把柯西密度代入连续期望绝对收敛条件，算得 ∫_0^∞ 2x/[π(1+x²)] dx = (1/π)ln(1+x²)|_0^∞ = +∞ 发散，故期望与方差均不存在。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\int_{-\\infty}^{+\\infty} |x|\\,\\frac{1}{\\pi(1+x^2)}\\,dx = \\frac{2}{\\pi}\\int_0^{+\\infty} \\frac{x}{1+x^2}\\,dx = \\frac{1}{\\pi}\\Big[\\ln(1+x^2)\\Big]_0^{+\\infty} = +\\infty", "note": "一阶绝对矩呈对数发散，违反期望绝对收敛定义", "cited_formula_ids": ["stat.dist.cauchy", "stat.rv.expectation_continuous"] },
+          { "step": 2, "latex": "\\int_{-\\infty}^{+\\infty} \\frac{x^2}{\\pi(1+x^2)}\\,dx = +\\infty \\implies E(X)\\text{ 与 }D(X)\\text{ 均不存在}", "note": "二阶矩更强烈地线性发散，一切高阶矩皆不存在", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\varphi_{\\bar{X}_n}(t) = \\prod_{k=1}^n \\varphi_{X_k}(t/n) = \\left(e^{-|t|/n}\\right)^n = e^{-|t|} = \\varphi_{X_1}(t)", "note": "特征函数一举证明任意样本量 n 的样本均值仍与单样本同分布，彻底击破大数定律", "cited_formula_ids": ["stat.dist.cauchy", "stat.rv.expectation_continuous"], "pitfall": "切忌因密度关于 0 对称就脱口而出 E(X) = 0；对称截断极限 lim_{A→∞} ∫_{-A}^A = 0 只是柯西主值，不是数学期望。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.cauchy_to_ratio",
+      "from_formula_ids": ["stat.dist.cauchy"],
+      "to_formula_id": "stat.dist.cauchy_normal_ratio",
+      "relation_type": "equivalent_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["ratio_distribution_polar_symmetry"],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "由二维标准正态 (Z1, Z2) 的旋转不变性知极角 θ 均匀分布在 (-π/2, π/2)，故比值 Z1/Z2 = tan θ 精确服从标准柯西分布，并与 t(1) 完全等价。",
+        "L2_standard": [
+          { "step": 1, "latex": "P\\!\\left(\\frac{Z_1}{Z_2} \\le x\\right) = P(\\tan\\theta \\le x) = P(\\theta \\le \\arctan x) = \\frac{\\arctan x - (-\\pi/2)}{\\pi} = \\frac{1}{2} + \\frac{1}{\\pi}\\arctan x", "note": "旋转不变性直接导出与柯西 CDF 完全一致的分布函数", "cited_formula_ids": ["stat.dist.cauchy"] },
+          { "step": 2, "latex": "T = \\frac{Z_1}{\\sqrt{Z_2^2/1}} = \\frac{Z_1}{|Z_2|} \\overset{d}{=} \\frac{Z_1}{Z_2} \\sim \\text{Cauchy}(0, 1) \\equiv t(1)", "note": "由 Z1 关于 0 对称且与 Z2 独立，立得 t(1) 与标准柯西完全等价", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "f_{t(1)}(x) = \\frac{\\Gamma(1)}{\\sqrt{\\pi}\\,\\Gamma(1/2)}(1 + x^2)^{-1} = \\frac{1}{\\pi(1 + x^2)}", "note": "直接往 t(ν) 密度通式中代入 ν = 1 与 Γ(1/2) = √π 亦完美吻合", "cited_formula_ids": ["stat.dist.cauchy"], "pitfall": "只有独立且均值为 0 的正态商才严格服从标准柯西分布；非零均值正态商的分布为更复杂的 Fieller-Hinkley 分布。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.exp_to_markov",
+      "from_formula_ids": ["stat.rv.expectation_continuous"],
+      "to_formula_id": "stat.ineq.markov",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["indicator_truncation_bound"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "对非负变量 X 利用逐点不等式 X ≥ a · I_{X ≥ a}，两边同时取期望即得 E(X) ≥ a P(X ≥ a)，移项证毕。",
+        "L2_standard": [
+          { "step": 1, "latex": "E(X) = \\int_0^{\\infty} x f(x)\\,dx \\ge \\int_a^{\\infty} x f(x)\\,dx \\ge \\int_a^{\\infty} a f(x)\\,dx = a P(X \\ge a)", "note": "舍去 [0, a) 非负段并将 [a, ∞) 上被积函数缩小为常数 a", "cited_formula_ids": ["stat.rv.expectation_continuous"] },
+          { "step": 2, "latex": "P(X \\ge a) \\le \\frac{E(X)}{a}", "note": "两边同除以正数 a 即得马尔可夫不等式", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "X \\ge a \\cdot \\mathbf{1}_{\\{X \\ge a\\}} \\implies E(X) \\ge a P(X \\ge a)", "note": "指示函数写法对离散、连续与任意一般概率空间无差别成立", "cited_formula_ids": ["stat.rv.expectation_continuous"], "pitfall": "X 必须非负（X ≥ 0）；若 X 可取负值，需先套绝对值或平方变换再使用马尔可夫不等式。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.exp_to_jensen",
+      "from_formula_ids": ["stat.rv.expectation_continuous"],
+      "to_formula_id": "stat.ineq.jensen",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["supporting_hyperplane_expectation"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在均值 μ = E(X) 处作凸函数 φ 的支撑切线 φ(x) ≥ φ(μ) + k(x - μ)，两边同时取期望，线性项抵消即得 φ(E(X)) ≤ E[φ(X)]。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\varphi(x) \\ge \\varphi(\\mu) + k(x - \\mu)\\quad (\\mu = E(X))", "note": "由凸函数几何性质，图像恒位于过 (μ, φ(μ)) 的支撑直线上方", "cited_formula_ids": ["stat.rv.expectation_continuous"] },
+          { "step": 2, "latex": "E[\\varphi(X)] \\ge \\varphi(\\mu) + k\\big(E(X) - \\mu\\big) = \\varphi\\big(E(X)\\big)", "note": "两边取期望，E(X) - μ = 0 消去斜率项", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\varphi(E(X)) \\le E[\\varphi(X)]", "note": "即使 φ 在 μ 处不可导（如 |x|），支撑直线仍存在（次梯度），证明完全通用", "cited_formula_ids": ["stat.rv.expectation_continuous"], "pitfall": "使用前务必先判别凹凸性：凹函数（如 ln x、√x）不等号方向相反，满足 E[ln X] ≤ ln E(X)。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.exp_to_mgf",
+      "from_formula_ids": ["stat.rv.expectation_continuous"],
+      "to_formula_id": "stat.transform.mgf",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": ["exponential_taylor_expectation"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将 e^(tX) 按幂级数 ∑ (t^k X^k)/k! 展开并逐项取期望，得 M_X(t) = ∑ E(X^k) t^k / k!，在 t = 0 求 k 阶导即提取 E(X^k)。",
+        "L2_standard": [
+          { "step": 1, "latex": "M_X(t) = E\\!\\left(\\sum_{k=0}^{\\infty} \\frac{t^k X^k}{k!}\\right) = \\sum_{k=0}^{\\infty} E(X^k)\\frac{t^k}{k!}", "note": "在收敛邻域内交换期望与级数求和", "cited_formula_ids": ["stat.rv.expectation_continuous"] },
+          { "step": 2, "latex": "M_X^{(k)}(0) = E(X^k)", "note": "在原点求 k 阶导提取第 k 阶原点矩", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "M_{X+Y}(t) = E(e^{tX} e^{tY}) = M_X(t) M_Y(t)", "note": "独立随机变量之和的卷积在 MGF 域化为简单代数乘法", "cited_formula_ids": ["stat.rv.expectation_continuous"], "pitfall": "若 MGF 仅在 t = 0 有限而不存在开邻域 (-h, h)，则不能用 MGF 唯一确定分布或求矩。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.mgf_char_dual",
+      "from_formula_ids": ["stat.transform.mgf"],
+      "to_formula_id": "stat.transform.char_func",
+      "relation_type": "dual_of",
+      "dependency_site": "definition_level",
+      "inference_rules": ["laplace_fourier_analytic_continuation"],
+      "bidirectional": true,
+      "levels": {
+        "L1_summary": "矩母函数 M_X(t) = E(e^(tX)) 是双边拉普拉斯变换（未必收敛），把实参数 t 替换为纯虚数 it 即得处处存在的傅里叶对偶——特征函数 φ_X(t) = E(e^(itX))。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\varphi_X(t) = E(e^{itX}) = M_X(it)\\quad (\\text{当 } M_X \\text{ 存在时})", "note": "在复平面上做 t ↦ it 的解析延拓", "cited_formula_ids": ["stat.transform.mgf"] },
+          { "step": 2, "latex": "|e^{itX}| = 1 \\implies |\\varphi_X(t)| \\le E(|e^{itX}|) = 1 < \\infty", "note": "模长恒为 1 保证了特征函数对一切分布恒存在", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "E(X^k) = \\frac{\\varphi_X^{(k)}(0)}{i^k}\\quad (\\text{若 } E(|X|^k) < \\infty)", "note": "特征函数不仅在有矩时提取各阶矩，而且在无矩时依然完整保留分布信息", "cited_formula_ids": ["stat.transform.mgf"], "pitfall": "从特征函数求导提取 k 阶矩时别忘除以因子 i^k（例如二阶矩要除以 i² = -1）。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.cauchy_counter_mgf",
+      "from_formula_ids": ["stat.dist.cauchy"],
+      "to_formula_id": "stat.transform.mgf",
+      "relation_type": "counterexample_to",
+      "dependency_site": "application_level",
+      "inference_rules": ["heavy_tail_mgf_divergence"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "标准柯西分布密度仅按 1/x² 衰减，对任意非零实数 t ≠ 0，指数增长 e^(tx) 压倒 1/x² 导致 M_X(t) = +∞，是 MGF 失效而必须改用特征函数的典型反例。",
+        "L2_standard": [
+          { "step": 1, "latex": "M_X(t) = \\int_{-\\infty}^{+\\infty} \\frac{e^{tx}}{\\pi(1 + x^2)}\\,dx = +\\infty\\quad (\\forall t \\neq 0)", "note": "无论 t > 0（右尾发散）还是 t < 0（左尾发散），积分均趋于无穷", "cited_formula_ids": ["stat.dist.cauchy"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "M_X(t) = +\\infty\\ (t \\neq 0),\\quad \\text{但 } \\varphi_X(t) = e^{-|t|} \\text{ 处处有限}", "note": "留数定理算出柯西特征函数为 e^(-|t|)，直观展示了从 MGF 升级到特征函数的必要性", "cited_formula_ids": ["stat.dist.cauchy"], "pitfall": "并非所有分布都有矩母函数；凡是尾部比指数衰减慢的重尾分布（如柯西、t 分布、对数正态），MGF 在 t > 0 均发散。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.statx.markov_mgf_to_hoeffding",
+      "from_formula_ids": ["stat.ineq.markov", "stat.transform.mgf"],
+      "to_formula_id": "stat.ineq.hoeffding",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["chernoff_method", "hoeffding_lemma", "quadratic_optimization"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "对 e^(s ∑(Xi - μi)) 应用马尔可夫不等式（Chernoff 技巧），利用独立 MGF 连乘与霍夫丁引理 E[e^(s(Xi-μi))] ≤ e^(s²(bi-ai)²/8)，对 s 优化即得指数集中界。",
+        "L2_standard": [
+          { "step": 1, "latex": "P(S_n - E(S_n) \\ge nt) \\le e^{-snt}\\prod_{i=1}^n E\\big[e^{s(X_i - \\mu_i)}\\big]", "note": "套用指数马尔可夫不等式与独立变量 MGF 乘积性质", "cited_formula_ids": ["stat.ineq.markov", "stat.transform.mgf"] },
+          { "step": 2, "latex": "\\le \\exp\\!\\left(-snt + \\frac{s^2}{8}\\sum_{i=1}^n (b_i - a_i)^2\\right) \\xrightarrow{s = \\frac{4nt}{\\sum (b_i-a_i)^2}} \\exp\\!\\left(-\\frac{2 n^2 t^2}{\\sum_{i=1}^n (b_i - a_i)^2}\\right)", "note": "代入霍夫丁引理并对二次指数关于 s > 0 配方取极小值，双侧乘 2 即证", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "E\\big[e^{s(X_i - \\mu_i)}\\big] \\le \\exp\\!\\left(\\frac{s^2(b_i - a_i)^2}{8}\\right)\\quad (a_i \\le X_i \\le b_i)", "note": "霍夫丁引理把任意有界随机变量统一界定为方差代理 (bi-ai)²/4 的次高斯变量", "cited_formula_ids": ["stat.ineq.markov", "stat.transform.mgf"], "pitfall": "霍夫丁不等式严格要求随机变量有界且相互独立；若变量无界（如重尾分布），则该界不适用。" }
+        ]
+      }
+    }
+  ]
+}

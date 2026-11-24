@@ -22,6 +22,7 @@ from typing import Any
 # 允许的枚举值（与 schema/formula-graph.v1.schema.json 保持一致）
 VALID_DISCIPLINES = {"mathematics", "physics", "chemistry", "statistics", "computer_science"}
 VALID_STAGES = {"junior_high", "senior_high", "undergraduate", "graduate"}
+VALID_NODE_KINDS = {"axiom", "definition", "distribution", "theorem", "law", "inequality", "formula"}
 VALID_MATH_TYPES = {"scalar", "angle", "vector", "matrix", "function", "set", "constant"}
 VALID_REVIEW_STATUS = {"draft", "ai_reviewed", "human_verified"}
 VALID_RELATION_TYPES = {
@@ -31,6 +32,8 @@ VALID_RELATION_TYPES = {
     "equivalent_to",
     "simplifies",
     "applies_in",
+    "counterexample_to",
+    "dual_of",
 }
 VALID_DEP_SITES = {"definition_level", "proof_level", "application_level"}
 
@@ -131,10 +134,10 @@ def validate_pack(
         errors.append("derivations 必须为数组")
         return errors, warnings, {}
 
-    # 3. 公式节点校验
+    # 3. 广义知识对象节点校验
     formula_ids: set[str] = set()
     req_f_keys = {"id", "name", "latex", "taxonomy", "variables", "conditions", "review"}
-    allowed_f_keys = req_f_keys | {"aliases", "statement"}
+    allowed_f_keys = req_f_keys | {"node_kind", "aliases", "statement", "intuition", "worked_example", "applications"}
 
     for idx, f in enumerate(formulas):
         if not isinstance(f, dict):
@@ -144,13 +147,15 @@ def validate_pack(
         missing_f = req_f_keys - set(f.keys())
         extra_f = set(f.keys()) - allowed_f_keys
         if missing_f:
-            errors.append(f"[{fid}] 缺少公式必填字段: {sorted(missing_f)}")
+            errors.append(f"[{fid}] 缺少节点必填字段: {sorted(missing_f)}")
         if extra_f:
-            errors.append(f"[{fid}] 存在未定义公式字段: {sorted(extra_f)}")
+            errors.append(f"[{fid}] 存在未定义节点字段: {sorted(extra_f)}")
+        if "node_kind" in f and f["node_kind"] not in VALID_NODE_KINDS:
+            errors.append(f"[{fid}] node_kind 非法: {f['node_kind']}")
         if not isinstance(fid, str) or not RE_FORMULA_ID.match(fid):
-            errors.append(f"[{fid}] 公式 ID 不符合 <discipline>.<subdomain>.<slug> 规范")
+            errors.append(f"[{fid}] 节点 ID 不符合 <discipline>.<subdomain>.<slug> 规范")
         elif fid in formula_ids:
-            errors.append(f"[{fid}] 公式 ID 重复")
+            errors.append(f"[{fid}] 节点 ID 重复")
         else:
             formula_ids.add(fid)
 

@@ -1,6 +1,6 @@
 {
-  "taxonomy_version": "1.1.0",
-  "description": "公式知识图谱多级分类体系（学段 Stage → 学科 Discipline → 分支领域 Branch → 规范专题 Topic）",
+  "taxonomy_version": "1.3.0",
+  "description": "公式知识图谱多级分类体系（广义知识对象：学段 Stage → 学科 Discipline → 分支领域 Branch → 规范专题 Topic）",
   "stages": [
     { "id": "junior_high", "label": "初中" },
     { "id": "senior_high", "label": "高中" },
@@ -17,7 +17,8 @@
           "topics": [
             { "id": "multiplication_formulas", "label": "乘法公式与分式", "raw_topics": ["multiplication_formulas", "rational_expressions"] },
             { "id": "factorization", "label": "因式分解与配方法", "raw_topics": ["factorization"] },
-            { "id": "quadratic_equations", "label": "一元二次方程与韦达定理", "raw_topics": ["quadratic_equations", "vieta_relations"] }
+            { "id": "quadratic_equations", "label": "一元二次方程与韦达定理", "raw_topics": ["quadratic_equations", "vieta_relations"] },
+            { "id": "sequences_binomial", "label": "数列与二项式定理", "raw_topics": ["sequences_binomial"] }
           ]
         },
         {
@@ -44,32 +45,47 @@
           "id": "math.calculus",
           "label": "微积分与导数",
           "topics": [
+            { "id": "limits_continuity", "label": "极限与等价无穷小", "raw_topics": ["limits_continuity"] },
             { "id": "derivative_basics", "label": "导数定义与基本公式", "raw_topics": ["derivative_basics"] },
             { "id": "derivative_rules", "label": "导数四则与链式法则", "raw_topics": ["derivative_rules"] },
-            { "id": "derivative_applications", "label": "切线、单调性与极值", "raw_topics": ["derivative_applications"] }
+            { "id": "derivative_applications", "label": "切线、单调性与极值", "raw_topics": ["derivative_applications"] },
+            { "id": "mean_value_taylor", "label": "微分、中值定理与泰勒展开", "raw_topics": ["mean_value_taylor"] },
+            { "id": "integral_calculus", "label": "不定积分、定积分与广义积分", "raw_topics": ["integral_calculus"] },
+            { "id": "multivariable_calculus", "label": "偏导数、全微分与梯度", "raw_topics": ["multivariable_calculus"] }
           ]
         },
         {
           "id": "math.geometry",
           "label": "几何与解析",
           "topics": [
-            { "id": "geometry", "label": "平面与立体几何基础", "raw_topics": ["geometry"] }
+            { "id": "geometry", "label": "平面与立体几何基础", "raw_topics": ["geometry"] },
+            { "id": "analytic_geometry", "label": "直线、圆、圆锥曲线与平面向量", "raw_topics": ["analytic_geometry"] }
           ]
         },
         {
           "id": "math.statistics",
           "label": "概率与统计学",
           "topics": [
+            { "id": "prob_axioms_rv", "label": "概率公理与随机变量分布函数", "raw_topics": ["prob_axioms_rv"] },
             { "id": "prob_basics", "label": "古典概型与条件概率", "raw_topics": ["prob_basics"] },
             { "id": "bayes_inference", "label": "独立性、全概率与贝叶斯", "raw_topics": ["bayes_inference"] },
             { "id": "expectation_variance", "label": "期望、方差与相关性", "raw_topics": ["expectation_variance"] },
-            { "id": "distributions_clt", "label": "二项/正态分布与中心极限定理", "raw_topics": ["distributions_clt"] }
+            { "id": "classic_distributions", "label": "经典离散与连续分布族（含柯西）", "raw_topics": ["classic_distributions"] },
+            { "id": "distributions_clt", "label": "二项/正态分布与中心极限定理", "raw_topics": ["distributions_clt"] },
+            { "id": "prob_inequalities_transforms", "label": "概率不等式与母函数/特征函数", "raw_topics": ["prob_inequalities_transforms"] },
+            { "id": "statistical_inference", "label": "大数定律、抽样分布与假设检验", "raw_topics": ["statistical_inference"] },
+            { "id": "estimation_regression", "label": "参数估计、线性回归与贝叶斯推断", "raw_topics": ["estimation_regression"] }
           ]
         },
         {
           "id": "math.linear_algebra",
-          "label": "线性代数（预留扩展）",
-          "topics": []
+          "label": "线性代数",
+          "topics": [
+            { "id": "vectors_inner_product", "label": "向量、内积与正交化", "raw_topics": ["vectors_inner_product"] },
+            { "id": "matrices_systems", "label": "矩阵运算、秩与最小二乘", "raw_topics": ["matrices_systems"] },
+            { "id": "determinants_cramer", "label": "行列式与克莱姆法则", "raw_topics": ["determinants_cramer"] },
+            { "id": "eigen_svd", "label": "特征值、谱定理与奇异值分解", "raw_topics": ["eigen_svd"] }
+          ]
         }
       ]
     },
@@ -84,7 +100,9 @@
             { "id": "mechanics_basics", "label": "运动、密度与重力", "raw_topics": ["mechanics_basics"] },
             { "id": "pressure_buoyancy", "label": "压强与浮力", "raw_topics": ["pressure_buoyancy"] },
             { "id": "simple_machines", "label": "杠杆与滑轮组", "raw_topics": ["simple_machines"] },
-            { "id": "work_power_efficiency", "label": "功、功率与机械效率", "raw_topics": ["work_power_efficiency"] }
+            { "id": "work_power_efficiency", "label": "功、功率与机械效率", "raw_topics": ["work_power_efficiency"] },
+            { "id": "kinematics_newton", "label": "匀变速运动、牛顿定律与万有引力", "raw_topics": ["kinematics_newton"] },
+            { "id": "momentum_energy", "label": "动量守恒与机械能守恒", "raw_topics": ["momentum_energy"] }
           ]
         },
         {
@@ -93,7 +111,8 @@
           "topics": [
             { "id": "ohms_law", "label": "电流基础与欧姆定律", "raw_topics": ["electric_basics", "ohms_law"] },
             { "id": "circuits", "label": "串联与并联电路", "raw_topics": ["series_circuit", "parallel_circuit"] },
-            { "id": "electric_power", "label": "电功、电功率与焦耳定律", "raw_topics": ["electric_power"] }
+            { "id": "electric_power", "label": "电功、电功率与焦耳定律", "raw_topics": ["electric_power"] },
+            { "id": "electromagnetism", "label": "静电场、磁场与电磁感应", "raw_topics": ["electromagnetism"] }
           ]
         },
         {

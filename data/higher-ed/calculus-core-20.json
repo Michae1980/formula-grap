@@ -1,0 +1,658 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "pack_id": "higher-ed-calculus-core-20",
+    "title": "高等微积分核心公式包（20 公式）",
+    "curriculum_ref": "本科《高等数学 / 微积分》核心主线（极限、中值定理、泰勒展开、积分学与多元微分）",
+    "updated_at": "2026-11-23"
+  },
+  "formulas": [
+    {
+      "id": "calc.lim.important_sin",
+      "name": "第一重要极限",
+      "aliases": ["正弦比值极限"],
+      "latex": "\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1",
+      "statement": "当自变量 x（弧度制）趋近于 0 时，sin x 与 x 之比的极限为 1，是三角函数求导与等价无穷小替换的根基。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["limits_continuity"]
+      },
+      "variables": [
+        { "symbol": "x", "name": "弧度角自变量", "math_type": "angle", "domain": "\\mathbb{R} \\setminus \\{0\\}", "quantity_kind": "plane_angle", "dimension": "1", "si_unit": "rad" }
+      ],
+      "conditions": ["x 必须采用弧度制；推广形式 lim_{u→0} (sin u)/u = 1"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 1.6", "sympy_verified": true }
+    },
+    {
+      "id": "calc.lim.important_e",
+      "name": "第二重要极限（自然常数 e）",
+      "aliases": ["连续复利极限"],
+      "latex": "\\lim_{x \\to \\infty} \\left(1 + \\frac{1}{x}\\right)^x = e",
+      "statement": "1^∞ 型未定式的核心基准极限，直接定义了自然对数底数 e ≈ 2.71828，并在连续复利与指数增长模型中广泛使用。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["limits_continuity"]
+      },
+      "variables": [
+        { "symbol": "e", "name": "自然常数（欧拉数）", "math_type": "constant", "domain": "(2.718, 2.719)", "quantity_kind": null, "dimension": "1", "si_unit": "1" }
+      ],
+      "conditions": ["等价形式 lim_{t→0} (1 + t)^(1/t) = e"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 1.6", "sympy_verified": true }
+    },
+    {
+      "id": "calc.lim.equiv_infinitesimal",
+      "name": "等价无穷小替换",
+      "aliases": ["无穷小阶替换公式"],
+      "latex": "\\sin x \\sim x,\\quad \\ln(1+x) \\sim x,\\quad e^x - 1 \\sim x\\quad (x \\to 0)",
+      "statement": "当 x → 0 时，若干超越函数与一次项 x 之比极限为 1，在乘除因子中可直接替换以大幅简化极限计算。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["limits_continuity"]
+      },
+      "variables": [
+        { "symbol": "x", "name": "无穷小量", "math_type": "scalar", "domain": "x \\to 0", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["仅保证在乘除因子中直接替换安全；加减项中替换需检查抵消后的高阶项"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 1.7", "sympy_verified": true }
+    },
+    {
+      "id": "calc.lim.lhopital",
+      "name": "洛必达法则（L'Hôpital）",
+      "aliases": ["未定式求导极限法则"],
+      "latex": "\\lim_{x \\to a} \\frac{f(x)}{g(x)} = \\lim_{x \\to a} \\frac{f'(x)}{g'(x)}",
+      "statement": "处理 0/0 或 ∞/∞ 型未定式时，若分子分母导数之比的极限存在（或为无穷大），则原极限与之相等。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["limits_continuity"]
+      },
+      "variables": [
+        { "symbol": "f, g", "name": "去心邻域可导函数", "math_type": "function", "domain": "U^\\circ(a)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["必须是 0/0 或 ∞/∞ 型；去心邻域内 g'(x) ≠ 0；右端极限存在（或为 ∞）"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 3.2", "sympy_verified": true }
+    },
+    {
+      "id": "calc.diff.differential",
+      "name": "微分定义与线性主部",
+      "aliases": ["一阶微分公式"],
+      "latex": "dy = f'(x)\\,dx,\\quad \\Delta y = f'(x)\\Delta x + o(\\Delta x)",
+      "statement": "可微函数增量 Δy 的线性主部称为微分 dy，用切线增量局部逼近曲线增量，并满足一阶微分形式不变性。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["mean_value_taylor"]
+      },
+      "variables": [
+        { "symbol": "dy, dx", "name": "因变量与自变量微分", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["一元函数中可微与可导完全等价"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 2.5", "sympy_verified": true }
+    },
+    {
+      "id": "calc.diff.rolle",
+      "name": "罗尔中值定理",
+      "aliases": ["Rolle 定理"],
+      "latex": "f(a) = f(b) \\implies \\exists\\ \\xi \\in (a, b),\\ f'(\\xi) = 0",
+      "statement": "闭区间连续、开区间可导且两端点函数值相等的曲线，区间内部至少存在一点的切线水平。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["mean_value_taylor"]
+      },
+      "variables": [
+        { "symbol": "\\xi", "name": "区间内驻点", "math_type": "scalar", "domain": "(a, b)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["f 在 [a, b] 连续、在 (a, b) 可导，且 f(a) = f(b)"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 3.1", "sympy_verified": true }
+    },
+    {
+      "id": "calc.diff.lagrange",
+      "name": "拉格朗日中值定理",
+      "aliases": ["微分中值定理（MVT）"],
+      "latex": "f(b) - f(a) = f'(\\xi)(b - a),\\quad \\xi \\in (a, b)",
+      "statement": "光滑曲线上连接端点的割线斜率，必然等于区间内部至少某一点处的切线斜率，是连接局部导数与整体增量的核心桥梁。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["mean_value_taylor"]
+      },
+      "variables": [
+        { "symbol": "\\xi", "name": "中值点", "math_type": "scalar", "domain": "(a, b)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["f 在 [a, b] 连续、在 (a, b) 可导"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 3.1", "sympy_verified": true }
+    },
+    {
+      "id": "calc.diff.cauchy",
+      "name": "柯西中值定理",
+      "aliases": ["参数方程中值定理"],
+      "latex": "\\frac{f(b) - f(a)}{g(b) - g(a)} = \\frac{f'(\\xi)}{g'(\\xi)},\\quad \\xi \\in (a, b)",
+      "statement": "将拉格朗日中值定理推广到两个函数之比，几何上对应参数曲线的切线与弦平行，是洛必达法则的直接理论依据。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["mean_value_taylor"]
+      },
+      "variables": [
+        { "symbol": "f, g", "name": "闭区间连续、开区间可导函数", "math_type": "function", "domain": "[a, b]", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["f, g 在 [a, b] 连续、(a, b) 可导，且对任意 x ∈ (a, b) 有 g'(x) ≠ 0"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 3.1", "sympy_verified": true }
+    },
+    {
+      "id": "calc.series.taylor",
+      "name": "泰勒公式（带拉格朗日余项）",
+      "aliases": ["泰勒展开式"],
+      "latex": "f(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(x_0)}{k!}(x - x_0)^k + \\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x - x_0)^{n+1}",
+      "statement": "用 n 次多项式在 x0 邻域内高精度逼近任意 n+1 阶可导函数，并给出精确的截断误差余项表达。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["mean_value_taylor"]
+      },
+      "variables": [
+        { "symbol": "x_0", "name": "展开中心点", "math_type": "constant", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null },
+        { "symbol": "\\xi", "name": "介于 x0 与 x 之间的中值点", "math_type": "scalar", "domain": "(x_0, x)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["f 在包含 x0 的区间内具有 n+1 阶导数"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 3.3", "sympy_verified": true }
+    },
+    {
+      "id": "calc.series.maclaurin_exp",
+      "name": "常用麦克劳林级数展开",
+      "aliases": ["零点泰勒展开（e^x, sin x, cos x）"],
+      "latex": "e^x = \\sum_{k=0}^{\\infty} \\frac{x^k}{k!},\\quad \\sin x = x - \\frac{x^3}{3!} + \\cdots",
+      "statement": "在 x0 = 0 处展开基本初等函数为幂级数，是数值计算、高阶极限求值及欧拉公式推导的利器。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["mean_value_taylor"]
+      },
+      "variables": [
+        { "symbol": "x", "name": "自变量", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["e^x、sin x、cos x 的麦克劳林级数在整个实数轴 R 上均收敛"],
+      "review": { "status": "human_verified", "source": "同济高等数学下册 12.4", "sympy_verified": true }
+    },
+    {
+      "id": "calc.int.antiderivative",
+      "name": "不定积分与原函数定义",
+      "aliases": ["反导数定义式"],
+      "latex": "\\int f(x)\\,dx = F(x) + C \\iff F'(x) = f(x)",
+      "statement": "若 F'(x) = f(x)，则 F(x) + C 表示 f(x) 的全体原函数族，构成微分运算的逆运算。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["integral_calculus"]
+      },
+      "variables": [
+        { "symbol": "F(x)", "name": "被积函数的一个原函数", "math_type": "function", "domain": "I", "quantity_kind": null, "dimension": null, "si_unit": null },
+        { "symbol": "C", "name": "任意积分常数", "math_type": "constant", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["f(x) 在区间 I 上连续时必存在原函数"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 4.1", "sympy_verified": true }
+    },
+    {
+      "id": "calc.int.riemann",
+      "name": "定积分的黎曼和定义",
+      "aliases": ["曲边梯形面积极限"],
+      "latex": "\\int_a^b f(x)\\,dx = \\lim_{\\lambda \\to 0} \\sum_{i=1}^{n} f(\\xi_i)\\Delta x_i",
+      "statement": "将区间 [a, b] 无限细分并对每个小区间上的矩形面积求和取极限，刻画连续变化量的累积总和。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["integral_calculus"]
+      },
+      "variables": [
+        { "symbol": "\\lambda", "name": "最大小区间长度（网细度）", "math_type": "scalar", "domain": "(0, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null },
+        { "symbol": "\\Delta x_i", "name": "第 i 个小区间宽度", "math_type": "scalar", "domain": "(0, b-a]", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["极限值与分法及取点 ξi 无关；闭区间连续函数必黎曼可积"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 5.1", "sympy_verified": true }
+    },
+    {
+      "id": "calc.int.var_upper_limit",
+      "name": "变上限积分求导公式",
+      "aliases": ["微积分基本定理第一部分"],
+      "latex": "\\frac{d}{dx} \\int_a^x f(t)\\,dt = f(x)",
+      "statement": "连续函数的变上限积分本身就是被积函数的一个原函数，首次在理论上证明了积分与求导互为逆运算。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["integral_calculus"]
+      },
+      "variables": [
+        { "symbol": "x", "name": "积分上限变量", "math_type": "scalar", "domain": "[a, b]", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["f(t) 在 [a, b] 上连续"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 5.2", "sympy_verified": true }
+    },
+    {
+      "id": "calc.int.newton_leibniz",
+      "name": "牛顿-莱布尼茨公式",
+      "aliases": ["微积分基本定理（FTC）"],
+      "latex": "\\int_a^b f(x)\\,dx = F(b) - F(a)",
+      "statement": "连续函数在 [a, b] 上的定积分等于其任意一个原函数在上下限处的差值，把复杂的无限求和化为简单的端点相减。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["integral_calculus"]
+      },
+      "variables": [
+        { "symbol": "a, b", "name": "积分下限与上限", "math_type": "constant", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["f(x) 在 [a, b] 连续且 F'(x) = f(x)"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 5.2", "sympy_verified": true }
+    },
+    {
+      "id": "calc.int.substitution",
+      "name": "换元积分法",
+      "aliases": ["凑微分法 / 变量代换积分"],
+      "latex": "\\int f(\\varphi(t))\\varphi'(t)\\,dt = \\int f(u)\\,du\\quad (u = \\varphi(t))",
+      "statement": "作为复合函数链式求导法则的逆运算，通过引入中间变量 u = φ(t) 将复杂被积式化归为基本积分表形式。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["integral_calculus"]
+      },
+      "variables": [
+        { "symbol": "u = \\varphi(t)", "name": "可微替换函数", "math_type": "function", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["定积分换元时必须同步变换积分上下限（换元必换限）"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 4.2", "sympy_verified": true }
+    },
+    {
+      "id": "calc.int.by_parts",
+      "name": "分部积分法",
+      "aliases": ["乘积求导逆法则"],
+      "latex": "\\int u\\,dv = u v - \\int v\\,du",
+      "statement": "作为乘积求导法则的逆运算，通过交换微分对象把难求的积分转移为更易求的积分，常遵循“反对幂指三”选 u 原则。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["integral_calculus"]
+      },
+      "variables": [
+        { "symbol": "u, v", "name": "具有连续导数的函数", "math_type": "function", "domain": "I", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["u(x)、v(x) 在区间内具有连续导数"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 4.3", "sympy_verified": true }
+    },
+    {
+      "id": "calc.int.improper",
+      "name": "无穷区间广义积分（反常积分）",
+      "aliases": ["无穷限反常积分"],
+      "latex": "\\int_a^{+\\infty} f(x)\\,dx = \\lim_{t \\to +\\infty} \\int_a^t f(x)\\,dx",
+      "statement": "把定积分的有限区间通过取上限极限推广到无穷区间，是连续型概率密度归一性与拉普拉斯变换的计算基础。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["integral_calculus"]
+      },
+      "variables": [
+        { "symbol": "t", "name": "趋于无穷的截断上限", "math_type": "scalar", "domain": "[a, +\\infty)", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["当且仅当右端极限有限存在时称该广义积分收敛"],
+      "review": { "status": "human_verified", "source": "同济高等数学上册 5.4", "sympy_verified": true }
+    },
+    {
+      "id": "calc.multi.partial_deriv",
+      "name": "偏导数定义式",
+      "aliases": ["多元函数偏导数"],
+      "latex": "\\frac{\\partial f}{\\partial x}(x_0, y_0) = \\lim_{\\Delta x \\to 0} \\frac{f(x_0 + \\Delta x, y_0) - f(x_0, y_0)}{\\Delta x}",
+      "statement": "固定其他自变量不变，仅让某一自变量变化所求得的变化率，几何上表示曲面沿坐标轴方向截线的切线斜率。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["multivariable_calculus"]
+      },
+      "variables": [
+        { "symbol": "x_0, y_0", "name": "二维平面定点", "math_type": "scalar", "domain": "\\mathbb{R}^2", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["偏导数存在不保证多元函数在该点连续或可微"],
+      "review": { "status": "human_verified", "source": "同济高等数学下册 9.2", "sympy_verified": true }
+    },
+    {
+      "id": "calc.multi.total_diff",
+      "name": "多元函数全微分公式",
+      "aliases": ["切平面线性近似"],
+      "latex": "dz = \\frac{\\partial z}{\\partial x}\\,dx + \\frac{\\partial z}{\\partial y}\\,dy",
+      "statement": "可微二元函数的总增量线性主部等于各偏导数与对应自变量微分乘积之和，几何上对应曲面在该点的切平面。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["multivariable_calculus"]
+      },
+      "variables": [
+        { "symbol": "dz", "name": "全微分", "math_type": "scalar", "domain": "\\mathbb{R}", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["各偏导数在该点连续是函数可微的充分条件"],
+      "review": { "status": "human_verified", "source": "同济高等数学下册 9.3", "sympy_verified": true }
+    },
+    {
+      "id": "calc.multi.gradient",
+      "name": "梯度向量与最速上升方向",
+      "aliases": ["梯度算子 ∇f"],
+      "latex": "\\nabla f(x, y) = \\left(\\frac{\\partial f}{\\partial x},\\ \\frac{\\partial f}{\\partial y}\\right)",
+      "statement": "由各偏导数组成的向量指向函数值增长最快的方向，其模长为最大方向导数，是优化算法梯度下降的核心。",
+      "taxonomy": {
+        "disciplines": ["mathematics"],
+        "education_stages": ["undergraduate"],
+        "topics": ["multivariable_calculus"]
+      },
+      "variables": [
+        { "symbol": "\\nabla f", "name": "梯度向量", "math_type": "vector", "domain": "\\mathbb{R}^n", "quantity_kind": null, "dimension": null, "si_unit": null }
+      ],
+      "conditions": ["函数 f 在该点可微；沿 -∇f 方向函数值下降最快"],
+      "review": { "status": "human_verified", "source": "同济高等数学下册 9.7", "sympy_verified": true }
+    }
+  ],
+  "derivations": [
+    {
+      "id": "deriv.calc.sin_e_to_equiv",
+      "from_formula_ids": ["calc.lim.important_sin", "calc.lim.important_e"],
+      "to_formula_id": "calc.lim.equiv_infinitesimal",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["limit_ratio_equivalence"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "由第一重要极限直接得 sin x ~ x；对第二重要极限取自然对数得 ln(1+x)/x → 1，再令 t = e^x - 1 即得 e^x - 1 ~ x。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1 \\implies \\sin x \\sim x", "note": "直接由第一重要极限得到正弦等价无穷小", "cited_formula_ids": ["calc.lim.important_sin"] },
+          { "step": 2, "latex": "\\lim_{x \\to 0} \\frac{\\ln(1+x)}{x} = \\ln\\left(\\lim_{x \\to 0}(1+x)^{1/x}\\right) = \\ln e = 1", "note": "利用第二重要极限得 ln(1+x) ~ x，令 t = e^x - 1 即得 e^x - 1 ~ x", "cited_formula_ids": ["calc.lim.important_e"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\sin x \\sim x,\\quad \\ln(1+x) \\sim x,\\quad e^x - 1 \\sim x\\ (x \\to 0)", "note": "等价无穷小的本质是一阶泰勒展开的线性主部", "cited_formula_ids": ["calc.lim.important_sin", "calc.lim.important_e"], "pitfall": "在加减式如 (tan x - sin x)/x³ 中，若直接替换为 (x - x)/x³ 会误得 0，需先因式分解或展开到三阶。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.diff_to_rolle",
+      "from_formula_ids": ["calc.diff.differential"],
+      "to_formula_id": "calc.diff.rolle",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["extreme_value_theorem", "fermat_stationary"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "由闭区间连续函数必取最值及两端点等值条件，必在开区间内部取到极值点 ξ，由费马引理可微极值点导数必为 0。",
+        "L2_standard": [
+          { "step": 1, "latex": "m = \\min_{[a,b]} f(x),\\quad M = \\max_{[a,b]} f(x)", "note": "若 M = m 则函数为常数，任一点导数为 0", "cited_formula_ids": [] },
+          { "step": 2, "latex": "f(a) = f(b) \\implies \\exists\\ \\xi \\in (a, b) \\text{ 为极值点} \\implies f'(\\xi) = 0", "note": "内部可微极值点的线性主部必为零", "cited_formula_ids": ["calc.diff.differential"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\exists\\ \\xi \\in (a, b),\\quad f'(\\xi) = 0", "note": "罗尔定理是三大微分中值定理的源头基石", "cited_formula_ids": ["calc.diff.differential"], "pitfall": "若区间内存在不可导尖点（如 f(x) = |x| 在 [-1, 1]），则罗尔定理失效。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.rolle_to_lagrange",
+      "from_formula_ids": ["calc.diff.rolle"],
+      "to_formula_id": "calc.diff.lagrange",
+      "relation_type": "generalizes",
+      "dependency_site": "proof_level",
+      "inference_rules": ["auxiliary_function_construction"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "构造辅助函数 φ(x) = f(x) - f(a) - [(f(b)-f(a))/(b-a)](x-a)，验证 φ(a)=φ(b)=0 后套用罗尔定理即证。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\varphi(x) = f(x) - f(a) - \\frac{f(b) - f(a)}{b - a}(x - a)", "note": "构造曲线纵坐标与弦纵坐标之差，满足 φ(a) = φ(b) = 0", "cited_formula_ids": [] },
+          { "step": 2, "latex": "\\varphi'(\\xi) = f'(\\xi) - \\frac{f(b) - f(a)}{b - a} = 0 \\implies f(b) - f(a) = f'(\\xi)(b - a)", "note": "对 φ(x) 应用罗尔定理立即得证", "cited_formula_ids": ["calc.diff.rolle"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "f(b) - f(a) = f'(\\xi)(b - a)", "note": "几何直观就是把倾斜的弦旋转放平，直接归约到罗尔定理", "cited_formula_ids": ["calc.diff.rolle"], "pitfall": "中值点 ξ 只保证存在且严格位于开区间 (a, b) 内，公式不给出 ξ 的显式位置。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.rolle_lagrange_to_cauchy",
+      "from_formula_ids": ["calc.diff.rolle", "calc.diff.lagrange"],
+      "to_formula_id": "calc.diff.cauchy",
+      "relation_type": "generalizes",
+      "dependency_site": "proof_level",
+      "inference_rules": ["auxiliary_function_construction"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "先由 g'(x) ≠ 0 与罗尔定理确保 g(b) ≠ g(a)，再构造辅助函数 φ(x) = [f(b)-f(a)]g(x) - [g(b)-g(a)]f(x) 套用罗尔定理。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\varphi(x) = f(x) - f(a) - \\frac{f(b) - f(a)}{g(b) - g(a)}[g(x) - g(a)]", "note": "验证 φ(a) = φ(b) = 0", "cited_formula_ids": ["calc.diff.lagrange"] },
+          { "step": 2, "latex": "\\varphi'(\\xi) = 0 \\implies \\frac{f(b) - f(a)}{g(b) - g(a)} = \\frac{f'(\\xi)}{g'(\\xi)}", "note": "应用罗尔定理并除以非零项 g'(ξ)", "cited_formula_ids": ["calc.diff.rolle"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\frac{f(b) - f(a)}{g(b) - g(a)} = \\frac{f'(\\xi)}{g'(\\xi)}", "note": "令 g(x) = x 即退化为拉格朗日中值定理；切勿分别对分子分母用拉格朗日定理（那样得到的 ξ1、ξ2 不一定相同）", "cited_formula_ids": ["calc.diff.rolle", "calc.diff.lagrange"], "pitfall": "核心陷阱：不能对 f 和 g 分别用拉格朗日定理再相除，因为两个中值点未必重合。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.cauchy_to_lhopital",
+      "from_formula_ids": ["calc.diff.cauchy"],
+      "to_formula_id": "calc.lim.lhopital",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["limit_passage"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "对 0/0 型未定式补充定义 f(a)=g(a)=0，在 [a, x] 上套用柯西中值定理得 f(x)/g(x) = f'(ξ)/g'(ξ)，令 x → a 即证。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\frac{f(x)}{g(x)} = \\frac{f(x) - f(a)}{g(x) - g(a)} = \\frac{f'(\\xi)}{g'(\\xi)},\\quad \\xi \\in (a, x)", "note": "在区间 [a, x] 上应用柯西中值定理", "cited_formula_ids": ["calc.diff.cauchy"] },
+          { "step": 2, "latex": "\\lim_{x \\to a} \\frac{f(x)}{g(x)} = \\lim_{\\xi \\to a} \\frac{f'(\\xi)}{g'(\\xi)}", "note": "当 x → a 时挟逼 ξ → a，两端取极限", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\lim_{x \\to a} \\frac{f(x)}{g(x)} = \\lim_{x \\to a} \\frac{f'(x)}{g'(x)}", "note": "若右端极限不存在（如振荡），并不意味着原极限不存在，此时只能改用其他方法", "cited_formula_ids": ["calc.diff.cauchy"], "pitfall": "使用前务必先核验是否为 0/0 或 ∞/∞ 型，非未定式盲目求导必错。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.cauchy_to_taylor",
+      "from_formula_ids": ["calc.diff.cauchy", "calc.diff.lagrange"],
+      "to_formula_id": "calc.series.taylor",
+      "relation_type": "generalizes",
+      "dependency_site": "proof_level",
+      "inference_rules": ["iterated_cauchy_mvt"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "记余项 R_n(x) = f(x) - P_n(x) 与辅助幂函数 g(x) = (x - x0)^(n+1)，连续应用 n+1 次柯西中值定理即得拉格朗日余项。",
+        "L2_standard": [
+          { "step": 1, "latex": "R_n(x_0) = R_n'(x_0) = \\cdots = R_n^{(n)}(x_0) = 0", "note": "泰勒多项式在 x0 处与 f(x) 的 0 至 n 阶导数完全一致", "cited_formula_ids": ["calc.diff.lagrange"] },
+          { "step": 2, "latex": "\\frac{R_n(x)}{(x - x_0)^{n+1}} = \\frac{R_n'(\\xi_1)}{(n+1)(\\xi_1 - x_0)^n} = \\cdots = \\frac{f^{(n+1)}(\\xi)}{(n+1)!}", "note": "反复应用 n+1 次柯西中值定理", "cited_formula_ids": ["calc.diff.cauchy"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "f(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(x_0)}{k!}(x - x_0)^k + \\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x - x_0)^{n+1}", "note": "当 n = 0 时正是拉格朗日中值定理，故泰勒公式是中值定理的高阶终极推广", "cited_formula_ids": ["calc.diff.cauchy", "calc.diff.lagrange"], "pitfall": "若仅用于求极限，常将余项写作佩亚诺余项 o((x-x0)^n) 更简洁。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.taylor_to_maclaurin",
+      "from_formula_ids": ["calc.series.taylor", "calc.lim.equiv_infinitesimal"],
+      "to_formula_id": "calc.series.maclaurin_exp",
+      "relation_type": "special_case_of",
+      "dependency_site": "proof_level",
+      "inference_rules": ["specialization", "remainder_to_zero"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "在泰勒公式中取展开点 x0 = 0，计算 e^x、sin x 在 0 处的各阶导数并验证余项趋于 0 即得麦克劳林级数。",
+        "L2_standard": [
+          { "step": 1, "latex": "(e^x)^{(k)}\\big|_{x=0} = 1 \\implies e^x = \\sum_{k=0}^{n} \\frac{x^k}{k!} + \\frac{e^{\\xi}}{(n+1)!}x^{n+1}", "note": "取 x0 = 0 代入泰勒公式", "cited_formula_ids": ["calc.series.taylor"] },
+          { "step": 2, "latex": "\\lim_{n \\to \\infty} \\frac{e^{\\xi}}{(n+1)!}x^{n+1} = 0 \\implies e^x = \\sum_{k=0}^{\\infty} \\frac{x^k}{k!}", "note": "阶乘增速远超幂函数，余项收敛于 0", "cited_formula_ids": ["calc.lim.equiv_infinitesimal"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "e^x = 1 + x + \\frac{x^2}{2!} + \\cdots,\\quad \\sin x = x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\cdots", "note": "取一阶近似即回到等价无穷小 e^x - 1 ~ x 与 sin x ~ x", "cited_formula_ids": ["calc.series.taylor", "calc.lim.equiv_infinitesimal"], "pitfall": "并非所有无穷次可导函数的泰勒级数都收敛到自身，必须确认余项 lim R_n(x) = 0。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.diff_to_antideriv",
+      "from_formula_ids": ["calc.diff.differential", "calc.diff.lagrange"],
+      "to_formula_id": "calc.int.antiderivative",
+      "relation_type": "derives_to",
+      "dependency_site": "definition_level",
+      "inference_rules": ["zero_derivative_implies_constant"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "若 F1 与 F2 均为 f 的原函数，则 (F1 - F2)' = 0，由拉格朗日中值定理立得两原函数必只相差一个常数 C。",
+        "L2_standard": [
+          { "step": 1, "latex": "(F_1(x) - F_2(x))' = f(x) - f(x) = 0", "note": "两个原函数之差导数恒为零", "cited_formula_ids": ["calc.diff.differential"] },
+          { "step": 2, "latex": "F_1(x) - F_2(x) \\equiv C \\implies \\int f(x)\\,dx = F(x) + C", "note": "由拉格朗日中值定理保证区间上导数为零必为常数", "cited_formula_ids": ["calc.diff.lagrange"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\int f(x)\\,dx = F(x) + C", "note": "这正是为什么不定积分结果必须加任意常数 C 的严格原因", "cited_formula_ids": ["calc.diff.differential", "calc.diff.lagrange"], "pitfall": "若定义域是不连通的多个区间（如 1/x 在 (-∞,0)∪(0,+∞)），各区间上的常数 C 可以不同。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.riemann_to_var_upper",
+      "from_formula_ids": ["calc.int.riemann"],
+      "to_formula_id": "calc.int.var_upper_limit",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["integral_mean_value", "continuity_limit"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "把变上限积分增量 Φ(x+Δx)-Φ(x) 写为 [x, x+Δx] 上的定积分，套用积分中值定理除以 Δx 后令 Δx → 0 即得 f(x)。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\Phi(x + \\Delta x) - \\Phi(x) = \\int_x^{x + \\Delta x} f(t)\\,dt = f(\\xi)\\Delta x", "note": "利用定积分区间可加性与积分中值定理，ξ 介于 x 与 x+Δx 之间", "cited_formula_ids": ["calc.int.riemann"] },
+          { "step": 2, "latex": "\\Phi'(x) = \\lim_{\\Delta x \\to 0} \\frac{f(\\xi)\\Delta x}{\\Delta x} = f(x)", "note": "由 f 的连续性在 Δx → 0 时得 f(ξ) → f(x)", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\frac{d}{dx} \\int_a^x f(t)\\,dt = f(x)", "note": "如果上限为复合函数 φ(x)，需结合链式法则乘以外层导数 φ'(x)", "cited_formula_ids": ["calc.int.riemann"], "pitfall": "若积分上下限均为变量，先拆为 ∫_a^v - ∫_a^u 再分别求导。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.var_antideriv_to_nl",
+      "from_formula_ids": ["calc.int.var_upper_limit", "calc.int.antiderivative"],
+      "to_formula_id": "calc.int.newton_leibniz",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["constant_determination"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "变上限积分 Φ(x) 与任意原函数 F(x) 只差常数 C；代入 x=a 得 C = -F(a)，再代入 x=b 即得 F(b) - F(a)。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\Phi(x) = \\int_a^x f(t)\\,dt = F(x) + C", "note": "变上限积分是原函数之一，与 F(x) 仅差常数 C", "cited_formula_ids": ["calc.int.var_upper_limit", "calc.int.antiderivative"] },
+          { "step": 2, "latex": "x = a \\implies 0 = F(a) + C \\implies C = -F(a) \\implies \\int_a^b f(t)\\,dt = F(b) - F(a)", "note": "先定常数 C 再令 x = b 即证牛顿-莱布尼茨公式", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\int_a^b f(x)\\,dx = F(b) - F(a)", "note": "微积分史上最具里程碑意义的公式：把微分学与积分学彻底统一起来", "cited_formula_ids": ["calc.int.var_upper_limit", "calc.int.antiderivative"], "pitfall": "使用前务必确认被积函数在 [a, b] 上无瑕点（如 ∫_{-1}^{1} 1/x² dx 不能直接套用，否则会算出负面积的荒谬结果）。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.diff_antideriv_to_sub",
+      "from_formula_ids": ["calc.diff.differential", "calc.int.antiderivative"],
+      "to_formula_id": "calc.int.substitution",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["differential_invariance", "chain_rule_inverse"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "利用一阶微分形式不变性 du = φ'(t)dt，直接把 φ'(t)dt 凑成 du 即可转化为对 u 的基本积分。",
+        "L2_standard": [
+          { "step": 1, "latex": "u = \\varphi(t) \\implies du = \\varphi'(t)\\,dt", "note": "套用一阶微分公式凑出微分项 du", "cited_formula_ids": ["calc.diff.differential"] },
+          { "step": 2, "latex": "\\int f(\\varphi(t))\\varphi'(t)\\,dt = \\int f(u)\\,du = F(u) + C = F(\\varphi(t)) + C", "note": "求原函数后再回代 u = φ(t)", "cited_formula_ids": ["calc.int.antiderivative"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\int_a^b f(\\varphi(t))\\varphi'(t)\\,dt = \\int_{\\varphi(a)}^{\\varphi(b)} f(u)\\,du", "note": "定积分换元直接替换上下限后无需回代原变量", "cited_formula_ids": ["calc.diff.differential", "calc.int.antiderivative"], "pitfall": "不定积分换元后别忘把中间变量 u 还原为原变量 t；定积分换元则务必同步换限。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.diff_antideriv_to_parts",
+      "from_formula_ids": ["calc.diff.differential", "calc.int.antiderivative"],
+      "to_formula_id": "calc.int.by_parts",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["product_rule_inverse", "rearrangement"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "对乘积微分 d(uv) = u dv + v du 两边取不定积分并移项，即得分部积分公式 ∫u dv = uv - ∫v du。",
+        "L2_standard": [
+          { "step": 1, "latex": "d(uv) = u\\,dv + v\\,du \\implies u\\,dv = d(uv) - v\\,du", "note": "由乘积微分公式移项", "cited_formula_ids": ["calc.diff.differential"] },
+          { "step": 2, "latex": "\\int u\\,dv = u v - \\int v\\,du", "note": "两边同时积分得证", "cited_formula_ids": ["calc.int.antiderivative"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\int_a^b u\\,dv = [uv]_a^b - \\int_a^b v\\,du", "note": "选 u 优先级口诀“反对幂指三”（反三角 > 对数 > 幂函数 > 指数 > 三角），尽量让求导后函数变简单", "cited_formula_ids": ["calc.diff.differential", "calc.int.antiderivative"], "pitfall": "连续使用多次分部积分时，每次选 u 的类型方向应保持一致，否则会绕回原式 0 = 0。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.nl_to_improper",
+      "from_formula_ids": ["calc.int.newton_leibniz"],
+      "to_formula_id": "calc.int.improper",
+      "relation_type": "generalizes",
+      "dependency_site": "definition_level",
+      "inference_rules": ["limit_generalization"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "先在有限区间 [a, t] 上用牛顿-莱布尼茨公式算出 F(t) - F(a)，再取 t → +∞ 的极限即得无穷区间广义积分。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\int_a^{+\\infty} f(x)\\,dx = \\lim_{t \\to +\\infty} \\int_a^t f(x)\\,dx = \\lim_{t \\to +\\infty} [F(t) - F(a)]", "note": "将有限定积分通过极限推广到无穷区间", "cited_formula_ids": ["calc.int.newton_leibniz"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\int_1^{+\\infty} \\frac{1}{x^p}\\,dx \\text{ 收敛} \\iff p > 1", "note": "p-积分是判断各类无穷区间广义积分敛散性的最常用基准", "cited_formula_ids": ["calc.int.newton_leibniz"], "pitfall": "双边无穷积分 ∫_{-∞}^{+∞} 必须拆成两段各自独立收敛，不能只取对称极限 lim_{R→∞} ∫_{-R}^{R}。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.diff_to_partial",
+      "from_formula_ids": ["calc.diff.differential"],
+      "to_formula_id": "calc.multi.partial_deriv",
+      "relation_type": "generalizes",
+      "dependency_site": "definition_level",
+      "inference_rules": ["fix_other_variables"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将多元函数其余变量固定为常数后退化为一元函数，沿单轴套用一元导数定义即得偏导数。",
+        "L2_standard": [
+          { "step": 1, "latex": "g(x) = f(x, y_0) \\implies f_x(x_0, y_0) = g'(x_0) = \\lim_{\\Delta x \\to 0} \\frac{f(x_0 + \\Delta x, y_0) - f(x_0, y_0)}{\\Delta x}", "note": "固定 y = y0，把多元变化率降维为一元导数", "cited_formula_ids": ["calc.diff.differential"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\frac{\\partial f}{\\partial x},\\quad \\frac{\\partial f}{\\partial y}", "note": "求对 x 的偏导时把 y 视作常数，直接沿用全部一元求导法则", "cited_formula_ids": ["calc.diff.differential"], "pitfall": "一元可导必连续，但多元函数在某点偏导数存在并不意味着它在该点连续。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.partial_diff_to_total",
+      "from_formula_ids": ["calc.multi.partial_deriv", "calc.diff.differential"],
+      "to_formula_id": "calc.multi.total_diff",
+      "relation_type": "generalizes",
+      "dependency_site": "proof_level",
+      "inference_rules": ["linear_approximation_superposition"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "分别令 Δy=0 与 Δx=0 代入全增量线性逼近 Δz = AΔx + BΔy + o(ρ)，立得系数 A = ∂z/∂x、B = ∂z/∂y。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\Delta z = A\\Delta x + B\\Delta y + o(\\sqrt{\\Delta x^2 + \\Delta y^2})", "note": "多元函数可微定义：存在切平面线性主部", "cited_formula_ids": ["calc.diff.differential"] },
+          { "step": 2, "latex": "A = \\frac{\\partial z}{\\partial x},\\ B = \\frac{\\partial z}{\\partial y} \\implies dz = \\frac{\\partial z}{\\partial x}dx + \\frac{\\partial z}{\\partial y}dy", "note": "沿坐标轴取极限确定线性系数为两个偏导数", "cited_formula_ids": ["calc.multi.partial_deriv"] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "dz = f_x\\,dx + f_y\\,dy", "note": "全微分把各方向微小扰动的线性影响叠加，是误差传播公式与多元链式法则的基础", "cited_formula_ids": ["calc.multi.partial_deriv", "calc.diff.differential"], "pitfall": "不要误以为只要偏导数存在就一定可微，需要验证偏导连续或直接检验高阶无穷小余项。" }
+        ]
+      }
+    },
+    {
+      "id": "deriv.calc.total_to_gradient",
+      "from_formula_ids": ["calc.multi.total_diff", "calc.multi.partial_deriv"],
+      "to_formula_id": "calc.multi.gradient",
+      "relation_type": "derives_to",
+      "dependency_site": "proof_level",
+      "inference_rules": ["inner_product_representation"],
+      "bidirectional": false,
+      "levels": {
+        "L1_summary": "将全微分写成向量点积 dz = (∂f/∂x, ∂f/∂y) · (dx, dy)，沿单位方向向量 e 的变化率即为 ∇f · e = |∇f|cos θ。",
+        "L2_standard": [
+          { "step": 1, "latex": "\\frac{\\partial f}{\\partial \\mathbf{e}} = \\frac{\\partial f}{\\partial x}\\cos\\alpha + \\frac{\\partial f}{\\partial y}\\cos\\beta = \\nabla f \\cdot \\mathbf{e}", "note": "将全微分沿单位方向 e = (cos α, cos β) 投影为内积", "cited_formula_ids": ["calc.multi.total_diff", "calc.multi.partial_deriv"] },
+          { "step": 2, "latex": "\\nabla f \\cdot \\mathbf{e} = |\\nabla f|\\cos\\theta \\le |\\nabla f|", "note": "当方向 e 与梯度 ∇f 同向（θ = 0）时方向导数取最大值 |∇f|", "cited_formula_ids": [] }
+        ],
+        "L3_detailed": [
+          { "step": 1, "latex": "\\nabla f = \\left(\\frac{\\partial f}{\\partial x}, \\frac{\\partial f}{\\partial y}\\right)", "note": "同理沿负梯度 -∇f 方向下降最快，这正是深度学习梯度下降法（Gradient Descent）的数学依据", "cited_formula_ids": ["calc.multi.total_diff", "calc.multi.partial_deriv"], "pitfall": "梯度向量永远与当前点的等高线（等值面）正交，并指向函数值增大的那一侧。" }
+        ]
+      }
+    }
+  ]
+}

@@ -34,6 +34,9 @@
       --equiv: #7c3aed;
       --equiv-soft: #f5f3ff;
       --equiv-border: #c4b5fd;
+      --counter: #e11d48;
+      --counter-soft: #fff1f2;
+      --counter-border: #fda4af;
       --pitfall-bg: #fff7ed;
       --pitfall-border: #fdba74;
       --pitfall-ink: #9a3412;
@@ -190,7 +193,7 @@
     .graph-zoom-wrap { transform-origin: top left; transition: transform 0.12s ease; }
     .graph-stage { position: relative; flex-shrink: 0; }
     .lane-header {
-      position: absolute; top: 4px; width: 224px; text-align: center;
+      position: absolute; top: 4px; width: 258px; text-align: center;
       font-size: 11.5px; font-weight: 600; color: var(--ink-muted);
       background: rgba(255, 255, 255, 0.94); border: 1px solid var(--border);
       border-radius: var(--radius-pill); padding: 3px 10px;
@@ -208,10 +211,11 @@
     .edge-path.highlight-upstream { stroke: var(--upstream); stroke-width: 2.6; opacity: 1; }
     .edge-path.highlight-downstream { stroke: var(--downstream); stroke-width: 2.6; opacity: 1; }
     .edge-path.highlight-equiv { stroke: var(--equiv); stroke-width: 2.6; opacity: 1; }
+    .edge-path.highlight-counter { stroke: var(--counter); stroke-width: 2.6; opacity: 1; stroke-dasharray: 6 3; }
     .edge-path.highlight-path { stroke: #e11d48; stroke-width: 3.1; opacity: 1; stroke-dasharray: 7 4; }
 
     .formula-node {
-      position: absolute; width: 224px; background: var(--surface);
+      position: absolute; width: 258px; background: var(--surface);
       border: 1.5px solid var(--border-strong); border-radius: var(--radius-lg);
       padding: 9px 12px; box-shadow: var(--shadow-sm); cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, opacity 0.18s ease;
@@ -232,12 +236,22 @@
     .node-title { font-size: 12.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .node-badge { font-size: 10px; padding: 1px 5px; border-radius: var(--radius-pill); background: var(--surface-subtle); color: var(--ink-muted); border: 1px solid var(--border); flex-shrink: 0; }
     .node-badge.bridge-tag { background: #e2e8f0; color: #334155; }
-    .node-math { min-height: 32px; display: flex; align-items: center; justify-content: center; padding: 3px 2px; font-size: 13.5px; color: var(--ink); overflow-x: auto; }
+    .node-math { min-height: 40px; display: flex; align-items: center; justify-content: center; padding: 3px 2px; font-size: 13px; color: var(--ink); overflow-x: auto; scrollbar-width: none; }
+    .node-math::-webkit-scrollbar { display: none; }
+    .node-math.long-math { font-size: 11.4px; }
+    .node-math.xlong-math { font-size: 10.2px; }
     .node-foot { margin-top: 4px; display: flex; align-items: center; justify-content: space-between; font-size: 10.5px; color: var(--ink-muted); }
     .node-tag { background: rgba(15, 23, 42, 0.05); padding: 1px 6px; border-radius: 5px; }
     .disc-math { background: #e0e7ff; color: #3730a3; }
     .disc-phys { background: #dcfce7; color: #166534; }
     .disc-chem { background: #fef3c7; color: #92400e; }
+    .kind-pill { font-size: 10px; padding: 1px 5px; border-radius: 5px; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; margin-right: 4px; }
+    .kind-axiom { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+    .kind-distribution { background: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
+    .kind-theorem { background: #ede9fe; color: #5b21b6; border-color: #c4b5fd; }
+    .kind-inequality { background: #ffe4e6; color: #be123c; border-color: #fda4af; }
+    .kind-law { background: #dcfce7; color: #166534; border-color: #86efac; }
+    .kind-definition { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
 
     .edge-pill {
       position: absolute; transform: translate(-50%, -50%);
@@ -306,23 +320,147 @@
     .math-frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 4px 1px; }
     .math-frac > span:last-child { padding: 1px 4px 0; }
 
-    @media (max-width: 1080px) {
-      .workspace { grid-template-columns: 1fr; grid-template-rows: 52vh 1fr; }
-      .drawer { border-left: none; border-top: 1px solid var(--border); }
+    /* 桌面 / 平板 / 手机三端界面适配与预览框架 */
+    body.preview-framed {
+      background: #e2e8f0;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 10px 0;
     }
+    .app { width: 100%; height: 100dvh; }
+    body.preview-framed .app.mode-mobile {
+      max-width: 430px;
+      height: calc(100dvh - 20px);
+      border-radius: 22px;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+      background: var(--bg);
+    }
+    body.preview-framed .app.mode-tablet {
+      max-width: 920px;
+      height: calc(100dvh - 20px);
+      border-radius: 18px;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.16);
+      background: var(--bg);
+    }
+
+    .topbar-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; flex: 0 1 auto;
+    }
+    .device-controls { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .mobile-or-tablet-only { display: none; }
+    .tablet-only { display: none; }
+    .mobile-nav { display: none; }
+    .mobile-selected-pill { display: none; }
+
+    /* 平板端（iPad 触控优化，支持一键收起/展开侧边详情抽屉与筛选栏） */
+    .app.mode-tablet .topbar { padding: 8px 12px; gap: 8px; }
+    .app.mode-tablet .topbar-head { width: 100%; }
+    .app.mode-tablet .mobile-or-tablet-only,
+    .app.mode-tablet .tablet-only { display: inline-flex; }
+    .app.mode-tablet .toolbar { display: none; width: 100%; padding-top: 6px; border-top: 1px solid var(--border); }
+    .app.mode-tablet.filters-open .toolbar { display: flex; }
+    .app.mode-tablet .step-arrow { display: none; }
+    .app.mode-tablet .select-field,
+    .app.mode-tablet .toggle-btn,
+    .app.mode-tablet .zoom-btn { min-height: 34px; }
+    .app.mode-tablet .workspace { grid-template-columns: 1fr 356px; }
+    .app.mode-tablet.tablet-drawer-closed .workspace { grid-template-columns: 1fr; }
+    .app.mode-tablet.tablet-drawer-closed .drawer { display: none; }
+    .app.mode-tablet .path-finder { display: none; }
+    .app.mode-tablet .graph-scroll { -webkit-overflow-scrolling: touch; padding: 12px; }
+
+    /* 手机端（折叠筛选抽屉 + 底部三栏原生切换：画布 / 公式详情 / 分级推导） */
+    .app.mode-mobile .topbar { padding: 8px 12px; gap: 6px; }
+    .app.mode-mobile .topbar-head { width: 100%; }
+    .app.mode-mobile .brand-title { font-size: 14px; }
+    .app.mode-mobile .brand-sub { font-size: 11px; max-width: 210px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .app.mode-mobile .mobile-or-tablet-only { display: inline-flex; }
+    .app.mode-mobile .toolbar {
+      display: none; width: 100%; padding-top: 8px; border-top: 1px solid var(--border);
+      grid-template-columns: 1fr 1fr; gap: 7px;
+    }
+    .app.mode-mobile.filters-open .toolbar { display: grid; }
+    .app.mode-mobile .toolbar .step-arrow { display: none; }
+    .app.mode-mobile .toolbar .select-field { width: 100%; justify-content: space-between; min-height: 36px; }
+    .app.mode-mobile .toolbar .select-field select { flex: 1; max-width: none; }
+    .app.mode-mobile .toolbar .search-box { grid-column: 1 / -1; width: 100%; min-height: 36px; }
+    .app.mode-mobile .canvas-subbar { padding: 6px 10px; gap: 6px; }
+    .app.mode-mobile .view-badge,
+    .app.mode-mobile .path-finder,
+    .app.mode-mobile .legend-bar,
+    .app.mode-mobile #densitySelect,
+    .app.mode-mobile label[for="densitySelect"] { display: none; }
+    .app.mode-mobile .view-controls { gap: 5px; }
+    .app.mode-mobile .select-field,
+    .app.mode-mobile .toggle-btn,
+    .app.mode-mobile .zoom-btn { min-height: 34px; font-size: 12px; }
+    .app.mode-mobile .workspace { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+    .app.mode-mobile .canvas-pane { flex: 1; min-height: 0; }
+    .app.mode-mobile .drawer { flex: 1; min-height: 0; border-left: none; border-top: none; }
+    .app.mode-mobile .drawer-tabs { display: none; }
+    .app.mode-mobile .drawer-body { padding: 12px; }
+    .app.mode-mobile .graph-scroll { -webkit-overflow-scrolling: touch; padding: 10px; }
+    .app.mode-mobile[data-mobile-pane="canvas"] .drawer { display: none; }
+    .app.mode-mobile[data-mobile-pane="formula"] .canvas-pane,
+    .app.mode-mobile[data-mobile-pane="derivation"] .canvas-pane { display: none; }
+
+    .app.mode-mobile .mobile-selected-pill {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 15;
+      background: rgba(15, 23, 42, 0.92); color: #fff;
+      padding: 8px 12px; border-radius: 12px; box-shadow: var(--shadow-md);
+      font-size: 12.5px;
+    }
+    .mobile-pill-btn {
+      border: none; background: var(--primary); color: #fff;
+      padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex-shrink: 0;
+    }
+
+    .app.mode-mobile .mobile-nav {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px));
+      gap: 4px; z-index: 25;
+    }
+    .mobile-nav-btn {
+      border: none; background: transparent; color: var(--ink-muted);
+      padding: 8px 4px; border-radius: 9px; font-size: 12px; font-weight: 500;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
+    }
+    .mobile-nav-btn.active { background: var(--primary-soft); color: var(--primary); font-weight: 600; }
   </style>
 </head>
 <body>
-  <div class="app">
-    <!-- 1. 严格按 学段 → 学科 → 分支 → 专题 逐级筛选，彻底消除静态视图下拉框 -->
+  <div class="app mode-desktop" id="appRoot" data-mobile-pane="canvas">
+    <!-- 1. 严格按 学段 → 学科 → 分支 → 专题 逐级筛选，并支持桌面/平板/手机三端界面切换 -->
     <header class="topbar">
-      <div class="brand">
-        <div class="brand-badge">∑</div>
-        <div>
-          <div class="brand-title">公式知识图谱 · 动态视图引擎</div>
-          <div class="brand-sub" id="statsSubtitle">加载中...</div>
+      <div class="topbar-head">
+        <div class="brand">
+          <div class="brand-badge">∑</div>
+          <div>
+            <div class="brand-title">公式知识图谱 · 动态视图引擎</div>
+            <div class="brand-sub" id="statsSubtitle">加载中...</div>
+          </div>
+        </div>
+        <div class="device-controls">
+          <button class="toggle-btn mobile-or-tablet-only" id="filterToggleBtn">🔍 筛选</button>
+          <button class="toggle-btn tablet-only active" id="tabletDrawerBtn">◧ 收起详情</button>
+          <div class="select-field" title="切换桌面端、平板端或手机端适配界面">
+            <label for="deviceModeSelect">界面</label>
+            <select id="deviceModeSelect">
+              <option value="auto">自动适配</option>
+              <option value="desktop">🖥 桌面端</option>
+              <option value="tablet">📱 平板端</option>
+              <option value="mobile">📲 手机端</option>
+            </select>
+          </div>
         </div>
       </div>
+
       <div class="toolbar">
         <div class="select-field" id="stageField">
           <label for="stageSelect">1.学段</label>
@@ -400,8 +538,9 @@
             <span class="legend-item"><span class="dot" style="background:var(--primary)"></span>当前选中</span>
             <span class="legend-item"><span class="dot" style="background:var(--upstream)"></span>前置依赖</span>
             <span class="legend-item"><span class="dot" style="background:var(--downstream)"></span>直接衍生</span>
-            <span class="legend-item"><span class="dot" style="background:var(--equiv)"></span>双向等价</span>
-            <span class="legend-item" style="color:var(--ink-muted)">虚线边 = 跨学科/跨段应用 · 虚框卡 = 跨界桥梁节点</span>
+            <span class="legend-item"><span class="dot" style="background:var(--equiv)"></span>等价 / 对偶</span>
+            <span class="legend-item"><span class="dot" style="background:var(--counter)"></span>反例 / 失效边界</span>
+            <span class="legend-item" style="color:var(--ink-muted)">虚线边 = 跨界应用或反例 · 虚框卡 = 跨界桥梁节点</span>
           </div>
           <span id="layoutHint" style="color:var(--ink-muted)"></span>
         </div>
@@ -437,6 +576,11 @@
             </div>
           </div>
         </div>
+
+        <div class="mobile-selected-pill" id="mobileSelectedPill">
+          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">已选：<strong id="mobilePillTitle"></strong></span>
+          <button class="mobile-pill-btn" id="mobilePillAction">查看详情 ›</button>
+        </div>
       </section>
 
       <aside class="drawer">
@@ -447,18 +591,24 @@
         <div class="drawer-body" id="drawerBody"></div>
       </aside>
     </main>
+
+    <nav class="mobile-nav" aria-label="移动端视图切换">
+      <button class="mobile-nav-btn active" data-pane="canvas">🗺 图谱画布</button>
+      <button class="mobile-nav-btn" data-pane="formula">📐 公式详情</button>
+      <button class="mobile-nav-btn" data-pane="derivation">🔀 分级推导</button>
+    </nav>
   </div>
 
   <script>
     const TAXONOMY = /*__TAXONOMY_PAYLOAD__*/;
     const MASTER_GRAPH = /*__MASTER_GRAPH_PAYLOAD__*/;
-    const NODE_W = 224;
-    const NODE_H = 104;
+    const NODE_W = 258;
+    const NODE_H = 112;
 
     const DENSITY_CFG = {
-      compact:  { colGap: 252, rowGap: 116 },
-      standard: { colGap: 274, rowGap: 128 },
-      spacious: { colGap: 304, rowGap: 144 }
+      compact:  { colGap: 286, rowGap: 124 },
+      standard: { colGap: 310, rowGap: 138 },
+      spacious: { colGap: 342, rowGap: 154 }
     };
 
     const STAGE_LIST = TAXONOMY.stages || [
@@ -493,7 +643,12 @@
 
     const REL_LABELS = {
       derives_to: "直接推导", special_case_of: "特例化", generalizes: "推广",
-      equivalent_to: "等价变形", simplifies: "化简工具", applies_in: "跨学科/跨段应用"
+      equivalent_to: "等价变形", simplifies: "化简工具", applies_in: "跨学科/跨段应用",
+      counterexample_to: "反例/失效边界", dual_of: "对偶关系"
+    };
+    const NODE_KIND_LABELS = {
+      axiom: "公理", definition: "定义", distribution: "分布",
+      theorem: "定理", law: "定律", inequality: "不等式", formula: "公式"
     };
     const SITE_LABELS = {
       definition_level: "定义级 (definition_level)",
@@ -546,7 +701,11 @@
       activeTab: "formula",
       level: "L2",
       zoom: 0.72,
-      activePath: null
+      activePath: null,
+      deviceMode: "auto",
+      filtersOpen: false,
+      tabletDrawerOpen: true,
+      mobilePane: "canvas"
     };
 
     // 当前动态生成的视图快照
@@ -599,7 +758,7 @@
         const isFrom = d.from_formula_ids.includes(formulaId);
         const isTo = d.to_formula_id === formulaId;
         if (!isFrom && !isTo) return;
-        if (d.relation_type === "equivalent_to") {
+        if (d.relation_type === "equivalent_to" || d.relation_type === "dual_of") {
           (isTo ? d.from_formula_ids : [d.to_formula_id]).forEach(oid => equiv.push({ formula: formulaById[oid], deriv: d }));
         } else if (isTo) {
           d.from_formula_ids.forEach(oid => upstream.push({ formula: formulaById[oid], deriv: d }));
@@ -1035,7 +1194,8 @@
         } else if (selId) {
           if (directDerivIds.has(d.id)) {
             showPill = true;
-            if (d.relation_type === "equivalent_to") { edgeClass += " highlight-equiv"; marker = "url(#arrow-equiv)"; }
+            if (d.relation_type === "counterexample_to") { edgeClass += " highlight-counter"; marker = "url(#arrow-path)"; }
+            else if (d.relation_type === "equivalent_to" || d.relation_type === "dual_of") { edgeClass += " highlight-equiv"; marker = "url(#arrow-equiv)"; }
             else if (d.to_formula_id === selId) { edgeClass += " highlight-upstream"; marker = "url(#arrow-upstream)"; }
             else { edgeClass += " highlight-downstream"; marker = "url(#arrow-downstream)"; }
           } else edgeClass += " dimmed";
@@ -1092,15 +1252,19 @@
         else if (hasChem) { discLabel = "化学"; discCls = "disc-chem"; }
         else if (hasPhys) { discLabel = "物理"; discCls = "disc-phys"; }
 
+        const mathLen = f.latex.replace(/\\[a-zA-Z]+/g, "x").length;
+        const mathCls = mathLen > 46 ? "node-math xlong-math" : (mathLen > 28 ? "node-math long-math" : "node-math");
         card.className = cls;
         card.style.left = `${pos.x}px`;
         card.style.top = `${pos.y}px`;
+        const nKind = f.node_kind || "formula";
+        const kindTag = nKind !== "formula" ? `<span class="kind-pill kind-${nKind}">${NODE_KIND_LABELS[nKind] || nKind}</span>` : "";
         card.innerHTML = `
           <div class="node-head">
-            <span class="node-title" title="${f.name}">${f.name}</span>
+            <span class="node-title" title="${f.name}">${kindTag}${f.name}</span>
             <span class="node-badge ${isBridge ? "bridge-tag" : ""}">${isBridge ? "跨界桥梁" : `↑${rel.upstream.length} ↓${rel.downstream.length + rel.equiv.length}`}</span>
           </div>
-          <div class="node-math">${renderMathHTML(f.latex)}</div>
+          <div class="${mathCls}">${renderMathHTML(f.latex)}</div>
           <div class="node-foot">
             <span class="node-tag ${discCls}">${discLabel}</span>
             <span>${stageText}</span>
@@ -1162,6 +1326,7 @@
             <div class="hero-math">${renderMathHTML(f.latex)}</div>
             <div style="font-size:12.5px; color:var(--ink-secondary);">${f.statement}</div>
             <div class="meta-row">
+              <span class="chip">类型：${NODE_KIND_LABELS[f.node_kind || "formula"] || "公式"}</span>
               ${f.taxonomy.education_stages.map(s => `<span class="chip">学段：${STAGE_LABELS[s] || s}</span>`).join("")}
               ${branchTags.map(b => `<span class="chip">分支：${b}</span>`).join("")}
               ${topicTags.map(t => `<span class="chip">专题：${t}</span>`).join("")}
@@ -1180,6 +1345,10 @@
 
           <div class="section-label">适用条件</div>
           <div style="font-size:12.5px; color:var(--ink-secondary);">${f.conditions.join("；")}</div>
+
+          ${f.intuition ? `<div class="section-label">直觉理解</div><div class="summary-box" style="font-size:12.5px; padding:10px 12px;">${f.intuition}</div>` : ""}
+          ${f.worked_example ? `<div class="section-label">极简数值算例</div><div class="step-card" style="font-size:12.5px; color:var(--ink-secondary); margin-bottom:0;">${f.worked_example}</div>` : ""}
+          ${f.applications && f.applications.length ? `<div class="section-label">典型应用场景</div><div class="meta-row">${f.applications.map(a => `<span class="chip">${a}</span>`).join("")}</div>` : ""}
 
           <div class="section-label">全库直接关联公式（共 ${rel.upstream.length + rel.downstream.length + rel.equiv.length} 条）</div>
           ${renderRelGroup(rel.upstream, "upstream", "前置依赖")}
@@ -1399,6 +1568,7 @@
         params.set("deriv", state.selectedDerivId);
       }
       if (state.level !== "L2") params.set("level", state.level);
+      if (state.deviceMode !== "auto") params.set("ui", state.deviceMode);
       const qs = params.toString();
       const base = window.location.origin === "null"
         ? window.location.href.split("?")[0]
@@ -1448,6 +1618,9 @@
       if (["L1", "L2", "L3"].includes(params.get("level"))) {
         state.level = params.get("level");
       }
+      if (["auto", "desktop", "tablet", "mobile"].includes(params.get("ui"))) {
+        state.deviceMode = params.get("ui");
+      }
     }
 
     // 分享当前动态视图按钮
@@ -1485,14 +1658,118 @@
       });
     }
 
+    // 设备界面模式管理：auto（按视口自动识别）/ desktop / tablet / mobile
+    function getEffectiveDevice() {
+      if (state.deviceMode !== "auto") return state.deviceMode;
+      const w = window.innerWidth;
+      if (w <= 680) return "mobile";
+      if (w <= 1080) return "tablet";
+      return "desktop";
+    }
+
+    function applyDeviceMode(reFit = true) {
+      const eff = getEffectiveDevice();
+      const appEl = document.getElementById("appRoot");
+      document.body.classList.toggle("preview-framed", state.deviceMode !== "auto" && (
+        (state.deviceMode === "mobile" && window.innerWidth > 560) ||
+        (state.deviceMode === "tablet" && window.innerWidth > 1020)
+      ));
+      appEl.classList.remove("mode-desktop", "mode-tablet", "mode-mobile");
+      appEl.classList.add(`mode-${eff}`);
+
+      if (eff === "mobile") {
+        appEl.classList.toggle("filters-open", state.filtersOpen);
+        appEl.dataset.mobilePane = state.mobilePane;
+      } else if (eff === "tablet") {
+        appEl.classList.toggle("filters-open", state.filtersOpen);
+        appEl.classList.toggle("tablet-drawer-closed", !state.tabletDrawerOpen);
+      } else {
+        appEl.classList.remove("filters-open", "tablet-drawer-closed");
+      }
+
+      document.querySelectorAll(".mobile-nav-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.pane === state.mobilePane);
+      });
+      const drawerBtn = document.getElementById("tabletDrawerBtn");
+      if (drawerBtn) {
+        drawerBtn.classList.toggle("active", state.tabletDrawerOpen);
+        drawerBtn.textContent = state.tabletDrawerOpen ? "◧ 收起详情" : "◧ 展开详情";
+      }
+      const filterBtn = document.getElementById("filterToggleBtn");
+      if (filterBtn) filterBtn.classList.toggle("active", state.filtersOpen);
+
+      updateMobileSelectedPill();
+      if (reFit) setTimeout(() => fitViewToCanvas(), 40);
+    }
+
+    function updateMobileSelectedPill() {
+      const pill = document.getElementById("mobileSelectedPill");
+      if (!pill) return;
+      const f = formulaById[state.selectedFormulaId];
+      if (!f) { pill.style.display = "none"; return; }
+      pill.style.display = "";
+      document.getElementById("mobilePillTitle").textContent = f.name;
+    }
+
+    function setMobilePane(pane) {
+      state.mobilePane = pane;
+      if (pane === "formula") { state.activeTab = "formula"; renderDrawer(); }
+      else if (pane === "derivation") { state.activeTab = "derivation"; renderDrawer(); }
+      applyDeviceMode(pane === "canvas");
+    }
+
+    document.getElementById("deviceModeSelect").onchange = (e) => {
+      state.deviceMode = e.target.value;
+      try { localStorage.setItem("fg_device_mode", state.deviceMode); } catch (err) {}
+      if (state.deviceMode === "mobile") { state.filtersOpen = false; state.mobilePane = "canvas"; }
+      else if (state.deviceMode === "tablet") { state.filtersOpen = false; state.tabletDrawerOpen = true; }
+      applyDeviceMode(true);
+      syncStateToURL();
+    };
+    document.getElementById("filterToggleBtn").onclick = () => {
+      state.filtersOpen = !state.filtersOpen;
+      applyDeviceMode(false);
+    };
+    document.getElementById("tabletDrawerBtn").onclick = () => {
+      state.tabletDrawerOpen = !state.tabletDrawerOpen;
+      applyDeviceMode(true);
+    };
+    document.querySelectorAll(".mobile-nav-btn").forEach(btn => {
+      btn.onclick = () => setMobilePane(btn.dataset.pane);
+    });
+    document.getElementById("mobilePillAction").onclick = () => setMobilePane("formula");
+    window.addEventListener("resize", () => {
+      if (state.deviceMode === "auto") applyDeviceMode(false);
+    });
+
+    const _origSelectFormula = selectFormula;
+    selectFormula = (id) => {
+      _origSelectFormula(id);
+      updateMobileSelectedPill();
+    };
+    const _origSelectDerivation = selectDerivation;
+    selectDerivation = (id) => {
+      _origSelectDerivation(id);
+      if (getEffectiveDevice() === "mobile") setMobilePane("derivation");
+    };
+
     const _baseRenderDrawer = renderDrawer;
-    renderDrawer = () => { _baseRenderDrawer(); syncStateToURL(); };
+    renderDrawer = () => { _baseRenderDrawer(); updateMobileSelectedPill(); syncStateToURL(); };
 
     window.__katexReady = () => { renderGraph(); renderDrawer(); };
     initControls();
+    try {
+      const savedMode = localStorage.getItem("fg_device_mode");
+      if (["auto", "desktop", "tablet", "mobile"].includes(savedMode)) {
+        state.deviceMode = savedMode;
+        document.getElementById("deviceModeSelect").value = savedMode;
+      }
+    } catch (err) {}
     restoreStateFromURL();
+    document.getElementById("deviceModeSelect").value = state.deviceMode;
     syncCascadingDropdowns();
-    generateDynamicView(true);
+    generateDynamicView(false);
+    applyDeviceMode(true);
   </script>
 </body>
 </html>
