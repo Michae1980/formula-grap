@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-title" content="数理图谱" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" type="image/svg+xml" href="./icon.svg" />
-  <title>数理知识图谱 · 动态视图生成系统</title>
+  <title>数理知识图谱 · 动态视图引擎</title>
   <!-- 在线时自动加载 KaTeX 渲染出版级数学公式；离线时无缝回退到内置原生公式渲染器 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="window.__katexReady && window.__katexReady()"></script>
@@ -56,81 +56,114 @@
       background: var(--bg); color: var(--ink);
       font-family: var(--font-sans); font-size: 14px; line-height: 1.5;
     }
-    .app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    .app { display: flex; flex-direction: column; width: 100%; height: 100dvh; overflow: hidden; }
 
-    /* 顶部栏：严格按 学段 → 学科 → 分支 → 专题 自顶向下联动筛选 */
+    /* 1. 两层结构化顶栏（参考 finlex-site 层次）：主栏（品牌 + 全局检索 + 工具）+ 次级筛选栏（阶段分段标签 + 级联下拉） */
     .topbar {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 20;
+    }
+    .topbar-main {
       padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .brand-badge {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: linear-gradient(135deg, #1d4ed8, #2563eb); color: #fff;
+      display: grid; place-items: center;
+      font-weight: 700; font-family: var(--font-math); font-size: 17px;
+      flex-shrink: 0;
+    }
+    .brand-title { font-size: 15.5px; font-weight: 700; color: var(--ink); line-height: 1.25; }
+    .brand-sub { font-size: 11.5px; color: var(--ink-muted); line-height: 1.3; }
+
+    /* 全局检索框 */
+    .hero-search {
+      flex: 1; max-width: 540px; min-width: 220px; height: 38px;
+      display: flex; align-items: center; gap: 7px;
+      padding: 0 8px 0 13px;
+      background: #f8fafc; border: 1.5px solid var(--border-strong); border-radius: 10px;
+      transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .hero-search:hover { border-color: #94a3b8; }
+    .hero-search:focus-within {
+      background: var(--surface); border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+    }
+    .hero-search-icon { font-size: 14px; color: var(--ink-muted); user-select: none; flex-shrink: 0; }
+    .hero-search-input {
+      flex: 1; min-width: 0; border: none; background: transparent;
+      font-size: 13.5px; color: var(--ink); outline: none; padding: 0;
+    }
+    .hero-search-input::placeholder { color: #94a3b8; }
+    .search-clear-btn {
+      border: none; background: #e2e8f0; color: var(--ink-secondary);
+      width: 20px; height: 20px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 13px; line-height: 1; cursor: pointer; flex-shrink: 0;
+    }
+    .search-clear-btn:hover { background: #cbd5e1; color: var(--ink); }
+    .search-count-badge {
+      font-size: 10.5px; color: var(--ink-muted); padding: 2px 8px;
+      border-radius: var(--radius-pill); background: var(--surface); border: 1px solid var(--border);
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .search-count-badge.filtered { color: #1d4ed8; background: var(--primary-soft); border-color: var(--primary-border); font-weight: 600; }
+
+    .device-controls { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
+    /* 第二行：阶段分段标签 + 学科/分支/专题级联筛选 */
+    .filterbar {
+      padding: 7px 18px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      z-index: 20;
     }
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .brand-badge {
-      width: 30px; height: 30px; border-radius: 8px;
-      background: var(--primary); color: #fff;
-      display: grid; place-items: center;
-      font-weight: 700; font-family: var(--font-math); font-size: 16px;
+    .stage-pills { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+    .stage-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      border: 1px solid var(--border); background: var(--surface); color: var(--ink-secondary);
+      padding: 4px 11px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 500;
+      cursor: pointer; white-space: nowrap; transition: all 0.14s ease;
     }
-    .brand-title { font-size: 15px; font-weight: 600; color: var(--ink); }
-    .brand-sub { font-size: 11.5px; color: var(--ink-muted); }
+    .stage-pill:hover { border-color: var(--primary-border); color: var(--primary); }
+    .stage-pill.active {
+      background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 600;
+      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.25);
+    }
+    .stage-pill-cnt {
+      font-size: 11px; opacity: 0.78;
+      background: rgba(15, 23, 42, 0.06); padding: 0 5px; border-radius: 99px;
+    }
+    .stage-pill.active .stage-pill-cnt { background: rgba(255, 255, 255, 0.22); opacity: 1; }
 
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 6px;
-    }
-    .step-arrow { color: var(--border-strong); font-size: 12px; user-select: none; }
+    .filter-selects { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+
     .select-field {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border-strong);
-      border-radius: 8px;
-      padding: 3px 8px;
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--surface); border: 1px solid var(--border-strong);
+      border-radius: 8px; padding: 3px 8px;
     }
-    .select-field.active-filter {
-      background: var(--primary-soft);
-      border-color: var(--primary-border);
-    }
-    .select-field label {
-      font-size: 11px;
-      color: var(--ink-muted);
-      user-select: none;
-      white-space: nowrap;
-    }
+    .select-field.active-filter { background: var(--primary-soft); border-color: var(--primary-border); }
+    .select-field label { font-size: 11px; color: var(--ink-muted); user-select: none; white-space: nowrap; }
     .select-field.active-filter label { color: #1d4ed8; font-weight: 600; }
     .select-field select {
-      border: none;
-      background: transparent;
-      color: var(--ink);
-      font-size: 12px;
-      font-weight: 500;
-      outline: none;
-      cursor: pointer;
-      padding: 2px 1px;
-      max-width: 175px;
+      border: none; background: transparent; color: var(--ink);
+      font-size: 12px; font-weight: 500; outline: none; cursor: pointer;
+      padding: 2px 1px; max-width: 170px;
     }
     .select-field.active-filter select { color: #1e40af; font-weight: 600; }
-
-    .search-box {
-      border: 1px solid var(--border-strong);
-      border-radius: 8px;
-      padding: 5px 10px;
-      font-size: 12px;
-      width: 148px;
-      outline: none;
-      background: var(--surface);
-      color: var(--ink);
-    }
-    .search-box:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.14); }
 
     .toggle-btn {
       display: inline-flex; align-items: center; gap: 4px;
@@ -140,36 +173,79 @@
     .toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
     .toggle-btn.active { background: var(--primary-soft); border-color: var(--primary); color: var(--primary); font-weight: 600; }
 
-    .workspace { display: grid; grid-template-columns: 1fr 410px; flex: 1; min-height: 0; }
-    .app.drawer-collapsed .workspace { grid-template-columns: 1fr; }
-    .app.drawer-collapsed .drawer { display: none; }
-
+    /* 2. 主工作区：左侧公式推导图谱占主导（flex: 1）+ 可拖拽分隔条 + 右侧详情推导抽屉（默认 410px，支持拖拽调宽） */
+    .workspace { display: flex; flex: 1; min-height: 0; position: relative; }
     .canvas-pane {
-      position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 0;
+      position: relative; display: flex; flex-direction: column;
+      flex: 1; min-width: 420px; min-height: 0;
       background: radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0) 0 0 / 24px 24px, var(--bg);
     }
-    /* 动态视图调节栏 */
+    .pane-resizer {
+      width: 6px; flex-shrink: 0; cursor: col-resize;
+      background: var(--border); position: relative; z-index: 15;
+      transition: background 0.15s ease;
+    }
+    .pane-resizer:hover, .pane-resizer.dragging { background: var(--primary); }
+    .pane-resizer::after {
+      content: ""; position: absolute; top: 50%; left: 2px; transform: translateY(-50%);
+      width: 2px; height: 34px; border-radius: 2px; background: rgba(100, 116, 139, 0.45);
+    }
+    .pane-resizer:hover::after, .pane-resizer.dragging::after { background: #fff; }
+
+    .drawer {
+      width: var(--drawer-w, 410px); min-width: 320px; flex-shrink: 0;
+      background: var(--surface); display: flex; flex-direction: column;
+      min-height: 0; overflow: hidden;
+    }
+    .app.drawer-collapsed .pane-resizer,
+    .app.drawer-collapsed .drawer { display: none; }
+
+    /* 精简上下文视图控制条 */
     .canvas-subbar {
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 8px; padding: 7px 14px;
-      background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border); z-index: 10;
     }
-    .view-controls {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
+    .view-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+    .right-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+
+    .mode-switch {
+      display: inline-flex; padding: 3px; border-radius: 9px;
+      background: var(--surface-subtle); border: 1px solid var(--border); gap: 3px;
     }
+    .mode-switch-btn {
+      border: none; background: transparent; color: var(--ink-secondary);
+      padding: 4px 10px; border-radius: 7px; font-size: 12px; font-weight: 500;
+      cursor: pointer; white-space: nowrap;
+    }
+    .mode-switch-btn:hover { color: var(--ink); }
+    .mode-switch-btn.active {
+      background: var(--surface); color: var(--primary); font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
     .view-badge {
       font-size: 11px; font-weight: 600; color: #1d4ed8;
       background: var(--primary-soft); border: 1px solid var(--primary-border);
-      padding: 2px 8px; border-radius: var(--radius-pill);
+      padding: 2px 9px; border-radius: var(--radius-pill);
+      max-width: 240px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
-    .right-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-    .path-finder { display: flex; align-items: center; gap: 4px; font-size: 12px; }
-    .path-finder select {
-      border: 1px solid var(--border-strong); border-radius: 7px; padding: 4px 6px;
-      font-size: 12px; background: var(--surface); color: var(--ink); max-width: 140px;
+    /* 按需展开的最短路径查询条（避免常驻挤占主工具栏） */
+    .path-bar {
+      display: none; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 8px; padding: 6px 14px;
+      background: #fffbeb; border-bottom: 1px solid var(--upstream-border);
+      font-size: 12px; color: var(--ink-secondary);
     }
+    .path-bar.open { display: flex; }
+    .path-finder { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; }
+    .path-finder select {
+      border: 1px solid var(--border-strong); border-radius: 7px; padding: 4px 8px;
+      font-size: 12px; background: var(--surface); color: var(--ink); max-width: 210px;
+    }
+
     .zoom-controls {
       display: inline-flex; align-items: center;
       border: 1px solid var(--border-strong); border-radius: 7px; background: var(--surface); overflow: hidden;
@@ -177,13 +253,13 @@
     .zoom-btn { border: none; background: transparent; padding: 4px 8px; font-size: 12px; cursor: pointer; color: var(--ink-secondary); }
     .zoom-btn:hover { background: var(--surface-subtle); color: var(--ink); }
     .zoom-val { font-size: 11px; color: var(--ink-muted); padding: 0 5px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); min-width: 42px; text-align: center; }
-    .action-btn { border: 1px solid var(--primary); background: var(--primary); color: #fff; padding: 4px 9px; border-radius: 7px; font-size: 12px; cursor: pointer; }
+    .action-btn { border: 1px solid var(--primary); background: var(--primary); color: #fff; padding: 4px 10px; border-radius: 7px; font-size: 12px; cursor: pointer; }
     .action-btn.ghost { background: var(--surface); color: var(--ink-secondary); border-color: var(--border-strong); }
 
     .legend-bar {
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 8px; padding: 5px 14px;
-      background: rgba(248, 250, 252, 0.9);
+      background: rgba(248, 250, 252, 0.92);
       border-bottom: 1px solid var(--border);
       font-size: 11.5px; color: var(--ink-secondary);
     }
@@ -272,7 +348,7 @@
       color: var(--ink-muted); font-size: 14px; text-align: center; padding: 24px;
     }
 
-    .drawer { background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+    /* 3. 右侧详情与分级推导抽屉（保持紧凑 410px，支持拖拽调宽） */
     .drawer-tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); background: var(--surface-subtle); padding: 6px 12px 0; gap: 6px; }
     .drawer-tab { border: none; background: transparent; padding: 9px 12px; font-size: 13px; font-weight: 500; color: var(--ink-muted); cursor: pointer; border-bottom: 2px solid transparent; }
     .drawer-tab.active { color: var(--primary); font-weight: 600; border-bottom-color: var(--primary); background: var(--surface); border-radius: 8px 8px 0 0; }
@@ -329,85 +405,69 @@
     /* 桌面 / 平板 / 手机三端界面适配与预览框架 */
     body.preview-framed {
       background: #e2e8f0;
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
+      display: flex; justify-content: center; align-items: stretch;
       padding: 10px 0;
     }
-    .app { width: 100%; height: 100dvh; }
     body.preview-framed .app.mode-mobile {
-      max-width: 430px;
-      height: calc(100dvh - 20px);
-      border-radius: 22px;
-      border: 1px solid var(--border-strong);
+      max-width: 430px; height: calc(100dvh - 20px);
+      border-radius: 22px; border: 1px solid var(--border-strong);
       box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
       background: var(--bg);
     }
     body.preview-framed .app.mode-tablet {
-      max-width: 920px;
-      height: calc(100dvh - 20px);
-      border-radius: 18px;
-      border: 1px solid var(--border-strong);
+      max-width: 920px; height: calc(100dvh - 20px);
+      border-radius: 18px; border: 1px solid var(--border-strong);
       box-shadow: 0 18px 46px rgba(15, 23, 42, 0.16);
       background: var(--bg);
     }
 
-    .topbar-head {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 10px; flex: 0 1 auto;
-    }
-    .device-controls { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
     .mobile-or-tablet-only { display: none; }
     .desktop-or-tablet-only { display: inline-flex; }
     .app.mode-mobile .desktop-or-tablet-only { display: none; }
     .mobile-nav { display: none; }
     .mobile-selected-pill { display: none; }
 
-    /* 平板端（iPad 触控优化，支持一键收起/展开侧边详情抽屉与筛选栏） */
-    .app.mode-tablet .topbar { padding: 8px 12px; gap: 8px; }
-    .app.mode-tablet .topbar-head { width: 100%; }
-    .app.mode-tablet .mobile-or-tablet-only,
-    .app.mode-tablet .tablet-only { display: inline-flex; }
-    .app.mode-tablet .toolbar { display: none; width: 100%; padding-top: 6px; border-top: 1px solid var(--border); }
-    .app.mode-tablet.filters-open .toolbar { display: flex; }
-    .app.mode-tablet .step-arrow { display: none; }
+    /* 平板端 */
+    .app.mode-tablet .topbar-main { padding: 8px 12px; gap: 10px; flex-wrap: wrap; }
+    .app.mode-tablet .hero-search { order: 3; flex: 1 1 100%; max-width: none; height: 36px; }
+    .app.mode-tablet .mobile-or-tablet-only { display: inline-flex; }
+    .app.mode-tablet .filterbar { display: none; padding: 8px 12px; }
+    .app.mode-tablet.filters-open .filterbar { display: flex; }
     .app.mode-tablet .select-field,
     .app.mode-tablet .toggle-btn,
     .app.mode-tablet .zoom-btn { min-height: 34px; }
-    .app.mode-tablet .workspace { grid-template-columns: 1fr 356px; }
-    .app.mode-tablet.tablet-drawer-closed .workspace { grid-template-columns: 1fr; }
+    .app.mode-tablet .canvas-pane { min-width: 320px; }
+    .app.mode-tablet .drawer { width: var(--drawer-w, 356px); min-width: 280px; }
+    .app.mode-tablet.tablet-drawer-closed .pane-resizer,
     .app.mode-tablet.tablet-drawer-closed .drawer { display: none; }
-    .app.mode-tablet .path-finder { display: none; }
     .app.mode-tablet .graph-scroll { -webkit-overflow-scrolling: touch; padding: 12px; }
 
-    /* 手机端（折叠筛选抽屉 + 底部三栏原生切换：画布 / 公式详情 / 分级推导） */
-    .app.mode-mobile .topbar { padding: 8px 12px; gap: 6px; }
-    .app.mode-mobile .topbar-head { width: 100%; }
+    /* 手机端 */
+    .app.mode-mobile .topbar-main { padding: 8px 12px; gap: 8px; flex-wrap: wrap; }
+    .app.mode-mobile .hero-search { order: 3; flex: 1 1 100%; max-width: none; height: 36px; }
+    .app.mode-mobile .hero-search .search-count-badge { display: none; }
     .app.mode-mobile .brand-title { font-size: 14px; }
-    .app.mode-mobile .brand-sub { font-size: 11px; max-width: 210px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .app.mode-mobile .brand-sub { font-size: 11px; max-width: 190px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .app.mode-mobile .mobile-or-tablet-only { display: inline-flex; }
-    .app.mode-mobile .toolbar {
-      display: none; width: 100%; padding-top: 8px; border-top: 1px solid var(--border);
-      grid-template-columns: 1fr 1fr; gap: 7px;
-    }
-    .app.mode-mobile.filters-open .toolbar { display: grid; }
-    .app.mode-mobile .toolbar .step-arrow { display: none; }
-    .app.mode-mobile .toolbar .select-field { width: 100%; justify-content: space-between; min-height: 36px; }
-    .app.mode-mobile .toolbar .select-field select { flex: 1; max-width: none; }
-    .app.mode-mobile .toolbar .search-box { grid-column: 1 / -1; width: 100%; min-height: 36px; }
+    .app.mode-mobile .filterbar { display: none; padding: 8px 12px; gap: 8px; }
+    .app.mode-mobile.filters-open .filterbar { display: flex; flex-direction: column; align-items: stretch; }
+    .app.mode-mobile .filter-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .app.mode-mobile .filter-selects .select-field { width: 100%; justify-content: space-between; min-height: 36px; }
+    .app.mode-mobile .filter-selects .select-field select { flex: 1; max-width: none; }
     .app.mode-mobile .canvas-subbar { padding: 6px 10px; gap: 6px; }
     .app.mode-mobile .view-badge,
-    .app.mode-mobile .path-finder,
     .app.mode-mobile .legend-bar,
-    .app.mode-mobile #densitySelect,
-    .app.mode-mobile label[for="densitySelect"] { display: none; }
+    .app.mode-mobile #pathToggleBtn,
+    .app.mode-mobile .path-bar,
+    .app.mode-mobile #densityField { display: none !important; }
     .app.mode-mobile .view-controls { gap: 5px; }
     .app.mode-mobile .select-field,
     .app.mode-mobile .toggle-btn,
     .app.mode-mobile .zoom-btn { min-height: 34px; font-size: 12px; }
     .app.mode-mobile .workspace { display: flex; flex-direction: column; flex: 1; min-height: 0; }
-    .app.mode-mobile .canvas-pane { flex: 1; min-height: 0; }
-    .app.mode-mobile .drawer { flex: 1; min-height: 0; border-left: none; border-top: none; }
+    .app.mode-mobile .pane-resizer { display: none; }
+    .app.mode-mobile .canvas-pane { flex: 1; min-width: 0; min-height: 0; }
+    .app.mode-mobile .drawer { width: 100% !important; min-width: 0; flex: 1; min-height: 0; border-left: none; }
     .app.mode-mobile .drawer-tabs { display: none; }
     .app.mode-mobile .drawer-body { padding: 12px; }
     .app.mode-mobile .graph-scroll { -webkit-overflow-scrolling: touch; padding: 10px; }
@@ -443,9 +503,9 @@
 </head>
 <body>
   <div class="app mode-desktop" id="appRoot" data-mobile-pane="canvas">
-    <!-- 1. 严格按 学段 → 学科 → 分支 → 专题 逐级筛选，并支持桌面/平板/手机三端界面切换 -->
+    <!-- 1. 结构化两层顶栏：第一行 品牌 + 核心搜索 + 视图控制；第二行 阶段分段标签 + 学科/分支/专题筛选 -->
     <header class="topbar">
-      <div class="topbar-head">
+      <div class="topbar-main">
         <div class="brand">
           <div class="brand-badge">∑</div>
           <div>
@@ -453,65 +513,73 @@
             <div class="brand-sub" id="statsSubtitle">加载中...</div>
           </div>
         </div>
+
+        <div class="hero-search" role="search">
+          <span class="hero-search-icon" aria-hidden="true">🔍</span>
+          <input class="hero-search-input" id="searchInput" type="search" placeholder="搜索公式、公理、定理、分布、不等式或别名..." />
+          <button class="search-clear-btn" id="searchClearBtn" type="button" title="清空搜索" style="display:none">×</button>
+          <span class="search-count-badge" id="searchCountBadge">237 项</span>
+        </div>
+
         <div class="device-controls">
-          <button class="toggle-btn mobile-or-tablet-only" id="filterToggleBtn">🔍 筛选</button>
-          <button class="toggle-btn desktop-or-tablet-only active" id="tabletDrawerBtn" title="收起右侧详情栏以横向全屏浏览画布">◧ 收起详情</button>
+          <button class="toggle-btn mobile-or-tablet-only" id="filterToggleBtn">筛选</button>
+          <button class="toggle-btn desktop-or-tablet-only active" id="tabletDrawerBtn" title="收起右侧详情推导栏，横向全屏浏览图谱">◧ 收起详情</button>
           <div class="select-field" title="切换桌面端、平板端或手机端适配界面">
             <label for="deviceModeSelect">界面</label>
             <select id="deviceModeSelect">
               <option value="auto">自动适配</option>
-              <option value="desktop">🖥 桌面端</option>
-              <option value="tablet">📱 平板端</option>
-              <option value="mobile">📲 手机端</option>
+              <option value="desktop">桌面端</option>
+              <option value="tablet">平板端</option>
+              <option value="mobile">手机端</option>
             </select>
           </div>
+          <button class="toggle-btn active" id="installPwaBtn" style="display:none" title="安装到桌面作为独立应用离线使用">⬇ 安装</button>
         </div>
       </div>
 
-      <div class="toolbar">
-        <div class="select-field" id="stageField">
-          <label for="stageSelect">1.阶段</label>
-          <select id="stageSelect"></select>
+      <div class="filterbar">
+        <div class="stage-pills" id="stagePills" role="group" aria-label="按学习阶段筛选"></div>
+        <div class="filter-selects">
+          <div class="select-field" id="discField">
+            <label for="discSelect">学科</label>
+            <select id="discSelect"></select>
+          </div>
+          <div class="select-field" id="branchField">
+            <label for="branchSelect">分支</label>
+            <select id="branchSelect"></select>
+          </div>
+          <div class="select-field" id="topicField">
+            <label for="topicSelect">专题</label>
+            <select id="topicSelect"></select>
+          </div>
+          <button class="toggle-btn" id="resetBtn">重置</button>
         </div>
-        <span class="step-arrow">›</span>
-        <div class="select-field" id="discField">
-          <label for="discSelect">2.学科</label>
-          <select id="discSelect"></select>
-        </div>
-        <span class="step-arrow">›</span>
-        <div class="select-field" id="branchField">
-          <label for="branchSelect">3.分支</label>
-          <select id="branchSelect"></select>
-        </div>
-        <span class="step-arrow">›</span>
-        <div class="select-field" id="topicField">
-          <label for="topicSelect">4.专题</label>
-          <select id="topicSelect"></select>
-        </div>
-        <input class="search-box" id="searchInput" type="search" placeholder="搜索公式/公理/定理/分布..." />
-        <button class="toggle-btn" id="resetBtn">重置筛选</button>
-        <button class="toggle-btn active" id="installPwaBtn" style="display:none" title="安装到桌面作为独立应用离线使用">⬇ 安装桌面版</button>
       </div>
     </header>
 
     <main class="workspace">
+      <!-- 2. 主工作区左侧：公式推导画布占主要地位 -->
       <section class="canvas-pane">
-        <!-- 2. 动态视图调节系统：默认聚焦关联视图，可一键回到全局视角 -->
         <div class="canvas-subbar">
           <div class="view-controls">
+            <div class="mode-switch" role="tablist" aria-label="视角切换">
+              <button class="mode-switch-btn active" id="focusModeBtn" type="button">◎ 聚焦关联</button>
+              <button class="mode-switch-btn" id="globalModeBtn" type="button">🌐 全局总览</button>
+            </div>
             <span class="view-badge" id="viewBadge">聚焦关联视图</span>
-            <button class="toggle-btn active" id="focusOnlyBtn" title="在「聚焦当前对象关联」与「全局总览视角」之间一键切换">🌐 回到全局视角</button>
-            <div class="select-field">
-              <label for="layoutModeSelect">全局布局</label>
+
+            <!-- 以下三项仅在全局总览模式下显示，聚焦模式下自动隐去以保持清爽 -->
+            <div class="select-field" id="layoutField" style="display:none">
+              <label for="layoutModeSelect">布局</label>
               <select id="layoutModeSelect">
                 <option value="auto">自动推荐</option>
-                <option value="topo">按拓扑推导层</option>
-                <option value="topic">按专题泳道</option>
-                <option value="branch">按分支泳道</option>
-                <option value="stage">按阶段泳道</option>
+                <option value="topo">拓扑推导层</option>
+                <option value="topic">专题泳道</option>
+                <option value="branch">分支泳道</option>
+                <option value="stage">阶段泳道</option>
               </select>
             </div>
-            <div class="select-field">
+            <div class="select-field" id="densityField" style="display:none">
               <label for="densitySelect">密度</label>
               <select id="densitySelect">
                 <option value="compact">紧凑</option>
@@ -519,18 +587,12 @@
                 <option value="spacious">宽松</option>
               </select>
             </div>
-            <button class="toggle-btn" id="bridgeBtn" title="全局视角筛选局部时，虚框带出 1 跳跨阶段/跨学科直接前置与衍生对象">⇄ 带出跨界桥梁</button>
-            <button class="toggle-btn" id="shareViewBtn" title="复制当前动态视图的直达分享链接">🔗 分享视图</button>
+            <button class="toggle-btn" id="bridgeBtn" style="display:none" title="全局视角筛选局部时，虚框带出 1 跳跨阶段/跨学科直接前置与衍生对象">⇄ 跨界桥梁</button>
           </div>
 
           <div class="right-controls">
-            <div class="path-finder">
-              <select id="pathStart" aria-label="起点公式"></select>
-              <span>→</span>
-              <select id="pathEnd" aria-label="终点公式"></select>
-              <button class="action-btn" id="findPathBtn">查路径</button>
-              <button class="action-btn ghost" id="clearPathBtn" style="display:none">清除</button>
-            </div>
+            <button class="toggle-btn" id="pathToggleBtn" title="展开/收起任意两对象之间的最短推导路径查询">🧭 查路径</button>
+            <button class="toggle-btn" id="shareViewBtn" title="复制当前动态视图的直达分享链接">🔗 分享视图</button>
             <div class="zoom-controls">
               <button class="zoom-btn" id="zoomOutBtn" title="缩小">−</button>
               <span class="zoom-val" id="zoomVal">100%</span>
@@ -540,6 +602,19 @@
           </div>
         </div>
 
+        <!-- 按需展开的最短路径查询栏 -->
+        <div class="path-bar" id="pathBar">
+          <div class="path-finder">
+            <strong style="color:var(--ink);">推导路径查询：</strong>
+            <select id="pathStart" aria-label="起点对象"></select>
+            <span>→</span>
+            <select id="pathEnd" aria-label="终点对象"></select>
+            <button class="action-btn" id="findPathBtn">查找最短路径</button>
+            <button class="action-btn ghost" id="clearPathBtn" style="display:none">清除路径</button>
+          </div>
+          <button class="mini-btn" id="closePathBarBtn" type="button">收起</button>
+        </div>
+
         <div class="legend-bar">
           <div class="legend">
             <span class="legend-item"><span class="dot" style="background:var(--primary)"></span>当前选中</span>
@@ -547,7 +622,7 @@
             <span class="legend-item"><span class="dot" style="background:var(--downstream)"></span>直接衍生</span>
             <span class="legend-item"><span class="dot" style="background:var(--equiv)"></span>等价 / 对偶</span>
             <span class="legend-item"><span class="dot" style="background:var(--counter)"></span>反例 / 失效边界</span>
-            <span class="legend-item" style="color:var(--ink-muted)">虚线边 = 跨界应用或反例 · 虚框卡 = 跨界桥梁节点</span>
+            <span class="legend-item" style="color:var(--ink-muted)">虚线边 = 跨界应用或反例 · 虚框卡 = 跨界桥梁</span>
           </div>
           <span id="layoutHint" style="color:var(--ink-muted)"></span>
         </div>
@@ -590,6 +665,10 @@
         </div>
       </section>
 
+      <!-- 可拖拽分隔条：保持右侧详情框默认 410px，支持按需拖拽调宽（双击还原默认） -->
+      <div class="pane-resizer" id="paneResizer" title="左右拖动调整右侧详情与推导栏宽度（双击还原默认 410px）"></div>
+
+      <!-- 3. 右侧详情与分级推导框 -->
       <aside class="drawer">
         <div class="drawer-tabs">
           <button class="drawer-tab active" data-tab="formula">对象详情与量纲</button>
@@ -23176,6 +23255,7 @@
 };
     const NODE_W = 286;
     const NODE_H = 122;
+    const DEFAULT_DRAWER_W = 410;
 
     const DENSITY_CFG = {
       compact:  { colGap: 318, rowGap: 136 },
@@ -23269,6 +23349,7 @@
       density: "standard",
       includeBridges: false,
       focusOnly: true,
+      pathBarOpen: false,
       selectedFormulaId: "math.calc.derivative_def",
       selectedDerivId: null,
       activeTab: "formula",
@@ -23278,6 +23359,7 @@
       deviceMode: "auto",
       filtersOpen: false,
       tabletDrawerOpen: true,
+      customDrawerW: null,
       mobilePane: "canvas"
     };
 
@@ -23365,7 +23447,7 @@
       return null;
     }
 
-    // 级联过滤函数：1.学段 -> 2.学科 -> 3.分支 -> 4.专题
+    // 级联过滤函数：阶段 -> 学科 -> 分支 -> 专题
     function filterByStage(list) {
       return state.stageFilter === "all" ? list : list.filter(f => f.taxonomy.education_stages.includes(state.stageFilter));
     }
@@ -23379,24 +23461,34 @@
       return state.topicFilter === "all" ? list : list.filter(f => f._canonicalTopics.has(state.topicFilter));
     }
 
+    function setStageFilter(val) {
+      state.stageFilter = val;
+      syncCascadingDropdowns();
+      generateDynamicView(true);
+    }
+
     function syncCascadingDropdowns() {
       const all = MASTER_GRAPH.formulas;
 
-      // 1. 阶段（初中 / 高中 / 大学）
-      const stageSel = document.getElementById("stageSelect");
-      stageSel.innerHTML = `<option value="all">全部阶段（${all.length}）</option>`;
+      // 1. 阶段分段标签（全部 / 初中 / 高中 / 大学）
+      const pillsEl = document.getElementById("stagePills");
+      const stageItems = [{ id: "all", label: "全部阶段", cnt: all.length }];
       STAGE_LIST.forEach(st => {
         const cnt = all.filter(f => f.taxonomy.education_stages.includes(st.id)).length;
-        if (cnt > 0) stageSel.add(new Option(`${st.label}（${cnt}）`, st.id));
+        if (cnt > 0) stageItems.push({ id: st.id, label: st.label, cnt });
       });
-      if (![...stageSel.options].some(o => o.value === state.stageFilter)) state.stageFilter = "all";
-      stageSel.value = state.stageFilter;
-      document.getElementById("stageField").classList.toggle("active-filter", state.stageFilter !== "all");
+      if (!stageItems.some(x => x.id === state.stageFilter)) state.stageFilter = "all";
+      pillsEl.innerHTML = stageItems.map(item => `
+        <button type="button" class="stage-pill ${state.stageFilter === item.id ? "active" : ""}" onclick="setStageFilter('${item.id}')">
+          <span>${item.label}</span>
+          <span class="stage-pill-cnt">${item.cnt}</span>
+        </button>
+      `).join("");
 
-      // 2. 学科（受学段约束）
+      // 2. 学科（受阶段约束）
       const afterStage = filterByStage(all);
       const discSel = document.getElementById("discSelect");
-      discSel.innerHTML = `<option value="all">全部学科（${afterStage.length}）</option>`;
+      discSel.innerHTML = `<option value="all">全部（${afterStage.length}）</option>`;
       TAXONOMY.disciplines.forEach(d => {
         const cnt = afterStage.filter(f => f.taxonomy.disciplines.includes(d.id)).length;
         if (cnt > 0) discSel.add(new Option(`${d.label}（${cnt}）`, d.id));
@@ -23405,10 +23497,10 @@
       discSel.value = state.discFilter;
       document.getElementById("discField").classList.toggle("active-filter", state.discFilter !== "all");
 
-      // 3. 分支（受学段 + 学科严格约束）
+      // 3. 分支（受阶段 + 学科严格约束）
       const afterDisc = filterByDisc(afterStage);
       const branchSel = document.getElementById("branchSelect");
-      branchSel.innerHTML = `<option value="all">全部分支（${afterDisc.length}）</option>`;
+      branchSel.innerHTML = `<option value="all">全部（${afterDisc.length}）</option>`;
       const activeDiscs = state.discFilter === "all"
         ? TAXONOMY.disciplines
         : TAXONOMY.disciplines.filter(d => d.id === state.discFilter);
@@ -23431,10 +23523,10 @@
       branchSel.value = state.branchFilter;
       document.getElementById("branchField").classList.toggle("active-filter", state.branchFilter !== "all");
 
-      // 4. 专题（受学段 + 学科 + 分支严格约束）
+      // 4. 专题（受阶段 + 学科 + 分支严格约束）
       const afterBranch = filterByBranch(afterDisc);
       const topicSel = document.getElementById("topicSelect");
-      topicSel.innerHTML = `<option value="all">全部专题（${afterBranch.length}）</option>`;
+      topicSel.innerHTML = `<option value="all">全部（${afterBranch.length}）</option>`;
       const candidateBranches = [];
       activeDiscs.forEach(d => {
         d.branches.forEach(br => {
@@ -23489,12 +23581,11 @@
           if (indeg[v] === 0) q.push(v);
         });
       }
-      // 环路或等价双向边兜底
       nodeIds.forEach(id => { if (depth[id] === undefined) depth[id] = 1; });
       return depth;
     }
 
-    // 核心：动态视图生成引擎（支持「聚焦关联视图」与「全局总览视角」无缝切换，横向全屏铺满）
+    // 核心：动态视图生成引擎（支持「聚焦关联」与「全局总览」无缝切换，横向全屏铺满、顶部对齐）
     function generateDynamicView(autoFit = false) {
       let matched = filterByTopic(filterByBranch(filterByDisc(filterByStage(MASTER_GRAPH.formulas))));
       const q = state.searchQuery.trim().toLowerCase();
@@ -23524,12 +23615,27 @@
         document.getElementById("clearPathBtn").style.display = "none";
       }
 
-      const focusBtn = document.getElementById("focusOnlyBtn");
-      if (focusBtn) {
-        focusBtn.classList.toggle("active", state.focusOnly);
-        focusBtn.textContent = state.focusOnly
-          ? `🌐 回到全局视角（${coreIds.size}）`
-          : "◎ 聚焦当前对象";
+      // 同步分段模式开关与渐进披露控件（聚焦模式下隐藏全局专属控件）
+      const focusModeBtn = document.getElementById("focusModeBtn");
+      const globalModeBtn = document.getElementById("globalModeBtn");
+      if (focusModeBtn && globalModeBtn) {
+        focusModeBtn.classList.toggle("active", state.focusOnly);
+        globalModeBtn.classList.toggle("active", !state.focusOnly);
+        globalModeBtn.textContent = `🌐 全局总览（${coreIds.size}）`;
+      }
+      const isGlobal = !state.focusOnly;
+      document.getElementById("layoutField").style.display = isGlobal ? "inline-flex" : "none";
+      document.getElementById("densityField").style.display = isGlobal ? "inline-flex" : "none";
+      document.getElementById("bridgeBtn").style.display = isGlobal ? "inline-flex" : "none";
+
+      // 同步筛选激活态与搜索计数
+      const hasFilter = state.stageFilter !== "all" || state.discFilter !== "all" ||
+        state.branchFilter !== "all" || state.topicFilter !== "all" || Boolean(q);
+      document.getElementById("resetBtn").classList.toggle("active", hasFilter);
+      const countBadge = document.getElementById("searchCountBadge");
+      if (countBadge) {
+        countBadge.textContent = hasFilter ? `匹配 ${coreIds.size}/${MASTER_GRAPH.formulas.length}` : `${MASTER_GRAPH.formulas.length} 项`;
+        countBadge.classList.toggle("filtered", hasFilter);
       }
 
       const { colGap, rowGap } = DENSITY_CFG[state.density] || DENSITY_CFG.standard;
@@ -23543,7 +23649,7 @@
       let effectiveMode = state.focusOnly ? "focus" : state.layoutMode;
 
       if (state.focusOnly && state.selectedFormulaId && formulaById[state.selectedFormulaId] && coreIds.size > 0) {
-        // 聚焦关联视图：仅显示当前对象及其直接前置依赖、直接衍生/等价对偶/反例，隐去无关对象
+        // 聚焦关联视图：仅显示当前对象及其直接前置依赖、直接衍生/等价对偶/反例，顶部对齐依次向下排列
         const selId = state.selectedFormulaId;
         const rel = getDirectRelations(selId, MASTER_GRAPH.derivations);
         const upIds = [];
@@ -23572,7 +23678,6 @@
           return touchesSel && activeIds.has(d.to_formula_id) && d.from_formula_ids.some(fid => activeIds.has(fid));
         });
 
-        // 横向全屏三栏聚焦布局：左（前置依赖）— 中（当前聚焦对象）— 右（直接衍生/等价对偶/反例）
         const cols = [];
         if (upIds.length) cols.push({ label: `前置依赖 · ${upIds.length}`, ids: upIds, isCenter: false });
         cols.push({ label: "当前聚焦对象", ids: [selId], isCenter: true });
@@ -23686,20 +23791,20 @@
       if (state.discFilter !== "all") crumbs.push(DISC_BY_ID[state.discFilter]?.label || state.discFilter);
       if (state.branchFilter !== "all") crumbs.push(BRANCH_BY_ID[state.branchFilter]?.label || state.branchFilter);
       if (state.topicFilter !== "all") crumbs.push(TOPIC_BY_ID[state.topicFilter]?.label || state.topicFilter);
-      const scopeText = crumbs.length ? crumbs.join(" › ") : "全阶段全学科总图";
+      const scopeText = crumbs.length ? crumbs.join(" · ") : "全阶段全学科总图";
       const bridgeNote = bridgeIds.size > 0 ? ` + ${bridgeIds.size} 跨界桥梁` : "";
 
       document.getElementById("statsSubtitle").textContent = state.focusOnly
-        ? `${scopeText} · 聚焦显示 ${visibleFormulas.length}/${coreIds.size} 个对象 · ${visibleDerivations.length} 条直接关联`
-        : `${scopeText} · ${coreIds.size} 核心对象${bridgeNote} · ${visibleDerivations.length} 条推导`;
+        ? `${scopeText} · 聚焦 ${visibleFormulas.length}/${coreIds.size} 对象 · ${visibleDerivations.length} 关联`
+        : `${scopeText} · ${coreIds.size} 核心对象${bridgeNote} · ${visibleDerivations.length} 推导`;
       document.getElementById("viewBadge").textContent = state.focusOnly
         ? `聚焦：${formulaById[state.selectedFormulaId]?.name || "当前对象"}`
         : `全局：${crumbs.length ? crumbs[crumbs.length - 1] : "全量"}视角`;
       document.getElementById("layoutHint").textContent = state.focusOnly
-        ? `聚焦关联模式（点击邻近卡片可连续追踪，点击「回到全局视角」查看全部 ${coreIds.size} 项）`
-        : `当前布局：${LAYOUT_LABELS[effectiveMode]}（${lanes.length} 列 · 点击任意卡片聚焦其关联）`;
+        ? `点击任意邻近卡片连续追踪 · 拖拽中间分隔线可调右侧宽度`
+        : `布局：${LAYOUT_LABELS[effectiveMode]}（${lanes.length} 列 · 点击卡片聚焦关联）`;
 
-      // 同步最短路径下拉框（包含当前筛选范围的全部对象）
+      // 同步最短路径下拉框
       const startSel = document.getElementById("pathStart");
       const endSel = document.getElementById("pathEnd");
       const prevStart = startSel.value;
@@ -23713,7 +23818,7 @@
       });
       if (pathPool.length > 0) {
         const poolIds = new Set(pathPool.map(f => f.id));
-        startSel.value = poolIds.has(prevStart) ? prevStart : pathPool[0].id;
+        startSel.value = poolIds.has(prevStart) ? prevStart : (poolIds.has(state.selectedFormulaId) ? state.selectedFormulaId : pathPool[0].id);
         endSel.value = poolIds.has(prevEnd) ? prevEnd : pathPool[pathPool.length - 1].id;
       }
 
@@ -23730,7 +23835,6 @@
       if (state.focusOnly) {
         state.zoom = +Math.max(0.86, Math.min(1.06, ratioW)).toFixed(2);
       } else {
-        // 全局视角优先横向铺满并保持默认字号适中可读，纵向自然滚动
         state.zoom = +Math.max(0.76, Math.min(1.04, ratioW)).toFixed(2);
       }
       applyZoom();
@@ -24046,7 +24150,6 @@
       generateDynamicView(true);
     }
 
-    // 点击抽屉内关联对象或引用芯片时，立即聚焦到该对象及其关联网络
     function jumpToFormula(id) {
       state.selectedFormulaId = id;
       state.focusOnly = true;
@@ -24060,6 +24163,7 @@
         state.topicFilter = "all";
         state.searchQuery = "";
         document.getElementById("searchInput").value = "";
+        document.getElementById("searchClearBtn").style.display = "none";
         syncCascadingDropdowns();
       }
       generateDynamicView(true);
@@ -24077,12 +24181,63 @@
       renderDrawer();
     }
 
+    function applyDrawerWidth() {
+      const ws = document.querySelector(".workspace");
+      if (!ws) return;
+      if (state.customDrawerW != null) {
+        ws.style.setProperty("--drawer-w", `${state.customDrawerW}px`);
+      } else {
+        ws.style.removeProperty("--drawer-w");
+      }
+    }
+
+    function initPaneResizer() {
+      const resizer = document.getElementById("paneResizer");
+      const ws = document.querySelector(".workspace");
+      if (!resizer || !ws) return;
+      let dragging = false;
+      resizer.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        dragging = true;
+        resizer.classList.add("dragging");
+        document.body.style.cursor = "col-resize";
+        document.body.style.userSelect = "none";
+      });
+      window.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
+        const rect = ws.getBoundingClientRect();
+        const rawW = rect.right - e.clientX;
+        const maxW = Math.min(Math.floor(rect.width * 0.56), rect.width - 420);
+        state.customDrawerW = Math.round(Math.max(320, Math.min(maxW, rawW)));
+        applyDrawerWidth();
+      });
+      window.addEventListener("mouseup", () => {
+        if (!dragging) return;
+        dragging = false;
+        resizer.classList.remove("dragging");
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
+        try { localStorage.setItem("fg_drawer_w", String(state.customDrawerW)); } catch (err) {}
+        if (state.focusOnly) generateDynamicView(true);
+        else fitViewToCanvas();
+      });
+      resizer.addEventListener("dblclick", () => {
+        state.customDrawerW = null;
+        try { localStorage.removeItem("fg_drawer_w"); } catch (err) {}
+        applyDrawerWidth();
+        if (state.focusOnly) generateDynamicView(true);
+        else fitViewToCanvas();
+      });
+    }
+
+    function syncPathBarUI() {
+      const bar = document.getElementById("pathBar");
+      const btn = document.getElementById("pathToggleBtn");
+      if (bar) bar.classList.toggle("open", state.pathBarOpen);
+      if (btn) btn.classList.toggle("active", state.pathBarOpen || Boolean(state.activePath));
+    }
+
     function initControls() {
-      document.getElementById("stageSelect").onchange = (e) => {
-        state.stageFilter = e.target.value;
-        syncCascadingDropdowns();
-        generateDynamicView(true);
-      };
       document.getElementById("discSelect").onchange = (e) => {
         state.discFilter = e.target.value;
         syncCascadingDropdowns();
@@ -24097,9 +24252,31 @@
         state.topicFilter = e.target.value;
         generateDynamicView(true);
       };
-      document.getElementById("searchInput").oninput = (e) => {
+
+      const searchInputEl = document.getElementById("searchInput");
+      const searchClearBtn = document.getElementById("searchClearBtn");
+      searchInputEl.oninput = (e) => {
         state.searchQuery = e.target.value;
+        searchClearBtn.style.display = state.searchQuery ? "inline-flex" : "none";
         if (state.searchQuery.trim()) state.focusOnly = false;
+        generateDynamicView(true);
+      };
+      searchClearBtn.onclick = () => {
+        state.searchQuery = "";
+        searchInputEl.value = "";
+        searchClearBtn.style.display = "none";
+        searchInputEl.focus();
+        generateDynamicView(true);
+      };
+
+      document.getElementById("focusModeBtn").onclick = () => {
+        if (state.focusOnly) return;
+        state.focusOnly = true;
+        generateDynamicView(true);
+      };
+      document.getElementById("globalModeBtn").onclick = () => {
+        if (!state.focusOnly) return;
+        state.focusOnly = false;
         generateDynamicView(true);
       };
 
@@ -24120,10 +24297,13 @@
         generateDynamicView(true);
       };
 
-      const focusBtn = document.getElementById("focusOnlyBtn");
-      focusBtn.onclick = () => {
-        state.focusOnly = !state.focusOnly;
-        generateDynamicView(true);
+      document.getElementById("pathToggleBtn").onclick = () => {
+        state.pathBarOpen = !state.pathBarOpen;
+        syncPathBarUI();
+      };
+      document.getElementById("closePathBarBtn").onclick = () => {
+        state.pathBarOpen = false;
+        syncPathBarUI();
       };
 
       document.getElementById("resetBtn").onclick = () => {
@@ -24136,10 +24316,12 @@
         state.includeBridges = false;
         state.focusOnly = true;
         state.activePath = null;
-        document.getElementById("searchInput").value = "";
+        searchInputEl.value = "";
+        searchClearBtn.style.display = "none";
         document.getElementById("layoutModeSelect").value = "auto";
         bridgeBtn.classList.remove("active");
         document.getElementById("clearPathBtn").style.display = "none";
+        syncPathBarUI();
         syncCascadingDropdowns();
         generateDynamicView(true);
       };
@@ -24158,11 +24340,13 @@
         state.focusOnly = false;
         state.activePath = res;
         document.getElementById("clearPathBtn").style.display = "inline-block";
+        syncPathBarUI();
         generateDynamicView(true);
       };
       document.getElementById("clearPathBtn").onclick = () => {
         state.activePath = null;
         document.getElementById("clearPathBtn").style.display = "none";
+        syncPathBarUI();
         renderGraph();
         renderDrawer();
       };
@@ -24172,7 +24356,7 @@
       document.getElementById("zoomFitBtn").onclick = () => fitViewToCanvas();
     }
 
-    // URL 状态双向同步（支持将任意动态视图以链接形式分享）
+    // URL 状态双向同步
     function buildShareURL() {
       const params = new URLSearchParams();
       if (state.stageFilter !== "all") params.set("stage", state.stageFilter);
@@ -24213,6 +24397,7 @@
       if (params.get("q")) {
         state.searchQuery = params.get("q");
         document.getElementById("searchInput").value = state.searchQuery;
+        document.getElementById("searchClearBtn").style.display = "inline-flex";
       }
       if (["auto", "topo", "topic", "branch", "stage"].includes(params.get("layout"))) {
         state.layoutMode = params.get("layout");
@@ -24260,7 +24445,7 @@
       }
     };
 
-    // PWA 安装提示与 Service Worker 注册（仅在 http/https 环境下启用）
+    // PWA 安装提示与 Service Worker 注册
     let deferredInstallPrompt = null;
     const installBtn = document.getElementById("installPwaBtn");
     window.addEventListener("beforeinstallprompt", (e) => {
@@ -24281,7 +24466,7 @@
       });
     }
 
-    // 设备界面模式管理：auto（按视口自动识别）/ desktop / tablet / mobile
+    // 设备界面模式管理
     function getEffectiveDevice() {
       if (state.deviceMode !== "auto") return state.deviceMode;
       const w = window.innerWidth;
@@ -24302,7 +24487,7 @@
 
       if (eff === "mobile") {
         appEl.classList.toggle("filters-open", state.filtersOpen);
-        appEl.classList.remove("drawer-collapsed");
+        appEl.classList.remove("drawer-collapsed", "tablet-drawer-closed");
         appEl.dataset.mobilePane = state.mobilePane;
       } else if (eff === "tablet") {
         appEl.classList.toggle("filters-open", state.filtersOpen);
@@ -24384,11 +24569,17 @@
 
     window.__katexReady = () => { renderGraph(); renderDrawer(); };
     initControls();
+    initPaneResizer();
     try {
       const savedMode = localStorage.getItem("fg_device_mode");
       if (["auto", "desktop", "tablet", "mobile"].includes(savedMode)) {
         state.deviceMode = savedMode;
         document.getElementById("deviceModeSelect").value = savedMode;
+      }
+      const savedW = parseInt(localStorage.getItem("fg_drawer_w"), 10);
+      if (!Number.isNaN(savedW) && savedW >= 320 && savedW <= 760) {
+        state.customDrawerW = savedW;
+        applyDrawerWidth();
       }
     } catch (err) {}
     restoreStateFromURL();
