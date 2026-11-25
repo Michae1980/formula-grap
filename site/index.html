@@ -23589,12 +23589,10 @@
         stageH = Math.max(380, 56 + totalContentH + 40);
 
         cols.forEach((col, cIdx) => {
-          const x = cols.length === 1 ? Math.max(padX, Math.floor((stageW - NODE_W) / 2)) : padX + cIdx * (NODE_W + gapX);
+          const x = cols.length === 1 ? padX : padX + cIdx * (NODE_W + gapX);
           lanes.push({ x, label: col.label, isBridgeLane: false, isFocusCenter: col.isCenter });
-          const colH = col.ids.length * rowGap;
-          const startY = 54 + Math.max(0, Math.floor((totalContentH - colH) / 2));
           col.ids.forEach((fid, rIdx) => {
-            positions[fid] = { x, y: startY + rIdx * rowGap };
+            positions[fid] = { x, y: 50 + rIdx * rowGap };
           });
         });
       } else {
