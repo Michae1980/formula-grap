@@ -1,7 +1,8 @@
-const CACHE_NAME = "formula-graph-pwa-v1";
+const CACHE_NAME = "formula-graph-pwa-v2";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
+  "./data/graph-data.js",
   "./manifest.webmanifest",
   "./icon.svg"
 ];
