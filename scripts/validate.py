@@ -357,6 +357,57 @@ def main() -> int:
             print(f"  [ERROR] 推导 ID 跨包冲突: {did} -> {owners}")
             total_errors += 1
 
+    # 构建产物（site/ PWA 与隐私路径泄漏）校验
+    site_dir = repo_root / "site"
+    if site_dir.exists():
+        local_path_re = re.compile(r"(/Users/[^\s\"'<>]+|[A-Za-z]:\\Users\\[^\s\"'<>]+)")
+        req_site_files = [
+            "index.html",
+            ".nojekyll",
+            "manifest.webmanifest",
+            "sw.js",
+            "icon.svg",
+            "icon-192.png",
+            "icon-512.png",
+            "data/graph-data.js",
+        ]
+        site_errors: list[str] = []
+        for rel_f in req_site_files:
+            if not (site_dir / rel_f).exists():
+                site_errors.append(f"缺少构建产物文件: site/{rel_f}")
+
+        manifest_path = site_dir / "manifest.webmanifest"
+        if manifest_path.exists():
+            try:
+                mf = json.loads(manifest_path.read_text(encoding="utf-8"))
+                for mk in ("name", "short_name", "start_url", "display", "icons"):
+                    if mk not in mf:
+                        site_errors.append(f"site/manifest.webmanifest 缺少字段: {mk}")
+            except Exception as exc:
+                site_errors.append(f"site/manifest.webmanifest 解析失败: {exc}")
+
+        privacy_leaks = 0
+        for rel_f in ("index.html", "manifest.webmanifest", "sw.js", "data/graph-data.js"):
+            p = site_dir / rel_f
+            if p.exists():
+                hits = local_path_re.findall(p.read_text(encoding="utf-8"))
+                if hits:
+                    privacy_leaks += len(hits)
+                    site_errors.append(f"隐私红线违规: site/{rel_f} 含本机路径 {hits[:2]}")
+
+        graph_js = site_dir / "data" / "graph-data.js"
+        graph_js_kb = round(graph_js.stat().st_size / 1024, 1) if graph_js.exists() else 0.0
+        index_html_kb = round((site_dir / "index.html").stat().st_size / 1024, 1) if (site_dir / "index.html").exists() else 0.0
+        site_status = "PASS" if not site_errors else "FAIL"
+        print(
+            f"\n[{site_status}] site/ 产物与隐私校验 | "
+            f"index.html {index_html_kb} KB · graph-data.js {graph_js_kb} KB · "
+            f"隐私泄漏 {privacy_leaks}"
+        )
+        for se in site_errors:
+            print(f"  [ERROR] {se}")
+        total_errors += len(site_errors)
+
     print(
         f"\n=== 校验汇总：{len(pack_files)} 个数据包 | "
         f"累计 {total_formulas} 公式 / {total_derivations} 推导 | "
