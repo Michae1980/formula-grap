@@ -362,6 +362,9 @@
     .lane-header.focus-center-lane {
       background: var(--primary-soft); border-color: var(--primary-border); color: #1d4ed8;
     }
+    .lane-header.parallel-lane {
+      background: var(--equiv-soft); border-color: var(--equiv-border); color: var(--equiv);
+    }
 
     .graph-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
     .edge-path { fill: none; stroke: #94a3b8; stroke-width: 1.7; opacity: 0.34; transition: stroke 0.18s ease, opacity 0.18s ease, stroke-width 0.18s ease; }
@@ -371,6 +374,7 @@
     .edge-path.highlight-upstream { stroke: var(--upstream); stroke-width: 2.6; opacity: 1; }
     .edge-path.highlight-downstream { stroke: var(--downstream); stroke-width: 2.6; opacity: 1; }
     .edge-path.highlight-equiv { stroke: var(--equiv); stroke-width: 2.6; opacity: 1; }
+    .edge-path.highlight-equiv-parallel { stroke: var(--equiv); stroke-width: 2.4; stroke-dasharray: 6 4; opacity: 1; }
     .edge-path.highlight-counter { stroke: var(--counter); stroke-width: 2.6; opacity: 1; stroke-dasharray: 6 3; }
     .edge-path.highlight-path { stroke: #e11d48; stroke-width: 3.1; opacity: 1; stroke-dasharray: 7 4; }
 
@@ -768,6 +772,9 @@
                   </marker>
                   <marker id="arrow-equiv" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                     <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#7c3aed" />
+                  </marker>
+                  <marker id="dot-equiv" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+                    <circle cx="5" cy="5" r="3.4" fill="#7c3aed" />
                   </marker>
                   <marker id="arrow-path" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                     <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#e11d48" />
@@ -1669,6 +1676,7 @@
 
         const upIds = [];
         const rightIds = [];
+        const parallelIds = [];
         const seenNeighbors = new Set([selId]);
         const allowedDerivIds = new Set();
 
@@ -1689,7 +1697,6 @@
         }
         const rightItems = [
           ...(includeDown ? rel.downstream : []),
-          ...(includeEquiv ? rel.equiv : []),
           ...(includeCounter ? rel.counter : [])
         ];
         rightItems.forEach(r => {
@@ -1700,34 +1707,87 @@
             if (!coreIds.has(r.formula.id)) bridgeIds.add(r.formula.id);
           }
         });
+        if (includeEquiv) {
+          rel.equiv.forEach(r => {
+            allowedDerivIds.add(r.deriv.id);
+            if (!seenNeighbors.has(r.formula.id)) {
+              seenNeighbors.add(r.formula.id);
+              parallelIds.push(r.formula.id);
+              if (!coreIds.has(r.formula.id)) bridgeIds.add(r.formula.id);
+            }
+          });
+        }
 
-        activeIds = new Set([selId, ...upIds, ...rightIds]);
+        activeIds = new Set([selId, ...upIds, ...rightIds, ...parallelIds]);
         visibleFormulas = MASTER_GRAPH.formulas.filter(f => activeIds.has(f.id));
         visibleDerivations = MASTER_GRAPH.derivations.filter(d =>
           allowedDerivIds.has(d.id) && activeIds.has(d.to_formula_id) && d.from_formula_ids.some(fid => activeIds.has(fid))
         );
 
+        const hasDownInRight = includeDown && rel.downstream.length > 0;
+        const hasCounterInRight = includeCounter && rel.counter.length > 0;
+        const rightColLabel = hasDownInRight && hasCounterInRight
+          ? `直接衍生 / 反例 · ${rightIds.length}`
+          : (hasCounterInRight ? `反例 / 失效边界 · ${rightIds.length}` : `直接衍生 · ${rightIds.length}`);
+
         const cols = [];
         if (upIds.length) cols.push({ label: `前置依赖 · ${upIds.length}`, ids: upIds, isCenter: false });
         cols.push({ label: "当前聚焦对象", ids: [selId], isCenter: true });
-        if (rightIds.length) cols.push({ label: `直接衍生 / 等价对偶 / 反例 · ${rightIds.length}`, ids: rightIds, isCenter: false });
+        if (rightIds.length) cols.push({ label: rightColLabel, ids: rightIds, isCenter: false });
 
         const scroller = document.getElementById("graphScroll");
         const availW = Math.max(720, (scroller ? scroller.clientWidth : 1080) - 44);
         const padX = 28;
+        const parallelColsPerRow = Math.min(3, Math.max(1, parallelIds.length));
+        const parallelGapX = 24;
+        const parallelRowW = parallelIds.length
+          ? parallelColsPerRow * NODE_W + (parallelColsPerRow - 1) * parallelGapX
+          : 0;
         const minSpan = cols.length * NODE_W + Math.max(0, cols.length - 1) * 96 + padX * 2;
-        stageW = Math.max(availW, minSpan);
+        stageW = Math.max(availW, minSpan, parallelRowW + padX * 2);
         const gapX = cols.length > 1 ? Math.floor((stageW - padX * 2 - cols.length * NODE_W) / (cols.length - 1)) : 0;
         const maxRows = Math.max(1, ...cols.map(c => c.ids.length));
-        stageH = Math.max(380, 56 + maxRows * rowGap + 40);
+        const topSectionBottom = 50 + maxRows * rowGap;
+        stageH = Math.max(380, topSectionBottom + 40);
 
+        let centerX = padX;
         cols.forEach((col, cIdx) => {
-          const x = cols.length === 1 ? padX : padX + cIdx * (NODE_W + gapX);
-          lanes.push({ x, label: col.label, isBridgeLane: false, isFocusCenter: col.isCenter });
+          const x = cols.length === 1 ? Math.max(padX, Math.floor((stageW - NODE_W) / 2)) : padX + cIdx * (NODE_W + gapX);
+          if (col.isCenter) centerX = x;
+          lanes.push({ x, y: 4, label: col.label, isBridgeLane: false, isFocusCenter: col.isCenter });
           col.ids.forEach((fid, rIdx) => {
             positions[fid] = { x, y: 50 + rIdx * rowGap };
           });
         });
+
+        // 平行置底区：equivalent_to / dual_of 对称关系置于当前聚焦对象下方
+        if (parallelIds.length) {
+          const parallelHeaderY = parallelIds.length === 1
+            ? (50 + NODE_H + 54)
+            : Math.max(50 + NODE_H + 54, topSectionBottom + 14);
+          const parallelStartY = parallelHeaderY + 40;
+          const pRows = Math.ceil(parallelIds.length / parallelColsPerRow);
+          const headerW = Math.min(stageW - padX * 2, Math.max(NODE_W, parallelRowW));
+          const headerX = Math.max(padX, Math.min(stageW - padX - headerW, Math.floor(centerX + NODE_W / 2 - headerW / 2)));
+          lanes.push({
+            x: headerX,
+            y: parallelHeaderY,
+            w: headerW,
+            label: `⇄ 等价 / 对偶 · ${parallelIds.length}`,
+            isBridgeLane: false,
+            isFocusCenter: false,
+            isParallelLane: true
+          });
+          parallelIds.forEach((fid, idx) => {
+            const r = Math.floor(idx / parallelColsPerRow);
+            const c = idx % parallelColsPerRow;
+            const rowCount = Math.min(parallelColsPerRow, parallelIds.length - r * parallelColsPerRow);
+            const thisRowW = rowCount * NODE_W + (rowCount - 1) * parallelGapX;
+            const rowStartX = Math.max(padX, Math.min(stageW - padX - thisRowW, Math.floor(centerX + NODE_W / 2 - thisRowW / 2)));
+            positions[fid] = { x: rowStartX + c * (NODE_W + parallelGapX), y: parallelStartY + r * rowGap };
+          });
+          stageH = Math.max(stageH, parallelStartY + pRows * rowGap + 24);
+        }
       } else if (isGlobal) {
         renderGraphLegendBar(false, null);
         if (state.includeBridges && isSubset) {
@@ -1981,7 +2041,7 @@
       document.getElementById("graphSvg").setAttribute("viewBox", `0 0 ${currentView.stageW} ${currentView.stageH}`);
 
       laneLayer.innerHTML = currentView.lanes.map(l =>
-        `<div class="lane-header ${l.isBridgeLane ? "bridge-lane" : ""} ${l.isFocusCenter ? "focus-center-lane" : ""}" style="left:${l.x}px" title="${l.label}">${l.label}</div>`
+        `<div class="lane-header ${l.isBridgeLane ? "bridge-lane" : ""} ${l.isFocusCenter ? "focus-center-lane" : ""} ${l.isParallelLane ? "parallel-lane" : ""}" style="left:${l.x}px;${l.y !== undefined ? `top:${l.y}px;` : ""}${l.w ? `width:${l.w}px;` : ""}" title="${l.label}">${l.label}</div>`
       ).join("");
       edgeLayer.innerHTML = "";
       nodeLayer.innerHTML = "";
@@ -2007,6 +2067,10 @@
       currentView.visibleDerivations.forEach(d => {
         const toPos = currentView.positions[d.to_formula_id];
         if (!toPos) return;
+        const isFocusParallel = state.viewMode === "focus" && selId && !state.activePath &&
+          (d.relation_type === "equivalent_to" || d.relation_type === "dual_of") &&
+          (d.to_formula_id === selId || d.from_formula_ids.includes(selId));
+
         let edgeClass = d.dependency_site === "application_level" ? "edge-path cross-app" : "edge-path";
         let marker = "url(#arrow-default)";
         let showPill = false;
@@ -2015,11 +2079,14 @@
           if (state.activePath.derivIds.has(d.id)) { edgeClass += " highlight-path"; marker = "url(#arrow-path)"; showPill = true; }
           else edgeClass += " dimmed";
         } else if (state.activeTab === "derivation" && state.selectedDerivId === d.id) {
-          edgeClass += " highlight-primary"; marker = "url(#arrow-primary)"; showPill = true;
+          edgeClass += isFocusParallel ? " highlight-primary" : " highlight-primary";
+          marker = isFocusParallel ? "url(#dot-equiv)" : "url(#arrow-primary)";
+          showPill = true;
         } else if (selId) {
           if (directDerivIds.has(d.id)) {
             showPill = true;
             if (d.relation_type === "counterexample_to") { edgeClass += " highlight-counter"; marker = "url(#arrow-path)"; }
+            else if (isFocusParallel) { edgeClass += " highlight-equiv-parallel"; marker = "url(#dot-equiv)"; }
             else if (d.relation_type === "equivalent_to" || d.relation_type === "dual_of") { edgeClass += " highlight-equiv"; marker = "url(#arrow-equiv)"; }
             else if (d.to_formula_id === selId) { edgeClass += " highlight-upstream"; marker = "url(#arrow-upstream)"; }
             else { edgeClass += " highlight-downstream"; marker = "url(#arrow-downstream)"; }
@@ -2027,18 +2094,40 @@
         }
 
         let pillAnchor = null;
-        d.from_formula_ids.forEach(fid => {
-          const fromPos = currentView.positions[fid];
-          if (!fromPos) return;
-          const curve = computeCurve(fromPos, toPos);
-          const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-          path.setAttribute("d", curve.d);
-          path.setAttribute("class", edgeClass);
-          path.setAttribute("marker-end", marker);
-          if (d.bidirectional && d.from_formula_ids.length === 1) path.setAttribute("marker-start", marker);
-          edgeLayer.appendChild(path);
-          if (!pillAnchor) pillAnchor = { x: curve.mx, y: curve.my };
-        });
+        if (isFocusParallel) {
+          const selPos = currentView.positions[selId];
+          const peerIds = d.to_formula_id === selId ? d.from_formula_ids : [d.to_formula_id];
+          peerIds.forEach(pid => {
+            const peerPos = currentView.positions[pid];
+            if (!selPos || !peerPos) return;
+            const x1 = selPos.x + NODE_W / 2;
+            const y1 = selPos.y + NODE_H;
+            const x2 = peerPos.x + NODE_W / 2;
+            const y2 = peerPos.y;
+            const midY = Math.round((y1 + y2) / 2);
+            const pathD = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", pathD);
+            path.setAttribute("class", edgeClass);
+            path.setAttribute("marker-start", marker);
+            path.setAttribute("marker-end", marker);
+            edgeLayer.appendChild(path);
+            if (!pillAnchor) pillAnchor = { x: Math.round((x1 + x2) / 2), y: midY };
+          });
+        } else {
+          d.from_formula_ids.forEach(fid => {
+            const fromPos = currentView.positions[fid];
+            if (!fromPos) return;
+            const curve = computeCurve(fromPos, toPos);
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", curve.d);
+            path.setAttribute("class", edgeClass);
+            path.setAttribute("marker-end", marker);
+            if (d.bidirectional && d.from_formula_ids.length === 1) path.setAttribute("marker-start", marker);
+            edgeLayer.appendChild(path);
+            if (!pillAnchor) pillAnchor = { x: curve.mx, y: curve.my };
+          });
+        }
 
         if (showPill && pillAnchor) {
           const pill = document.createElement("button");
