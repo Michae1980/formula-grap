@@ -615,6 +615,40 @@
       cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
     }
     .mobile-nav-btn.active { background: var(--primary-soft); color: var(--primary); font-weight: 600; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.45); display: none; place-items: center; z-index: 100; padding: 16px; }
+    .modal-backdrop.open { display: grid; }
+    .modal-card { background: var(--surface); border-radius: 14px; max-width: 560px; width: 100%; padding: 18px 20px; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25); max-height: 85vh; overflow-y: auto; }
+    .modal-card.wide { max-width: 860px; width: min(860px, 95vw); max-height: 90vh; }
+    .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 10px; }
+    .modal-head h3 { margin: 0; font-size: 16px; }
+    .pill.local-mod { display: inline-flex; align-items: center; padding: 1px 6px; border-radius: 999px; font-size: 11px; background: #fef3c7; color: #92400e; border: 1px solid #f59e0b; font-weight: 600; }
+    .pill.local-new { display: inline-flex; align-items: center; padding: 1px 6px; border-radius: 999px; font-size: 11px; background: #d1fae5; color: #065f46; border: 1px solid #10b981; font-weight: 600; }
+    .local-badge-cnt { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: var(--primary); color: #fff; font-size: 11px; font-weight: 700; margin-left: 4px; }
+    .mini-btn.danger { color: #b91c1c; border-color: #fca5a5; background: #fef2f2; }
+    .mini-btn.danger:hover { background: #fee2e2; border-color: #f87171; }
+    .local-summary-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; border-radius: 10px; background: var(--surface-subtle); border: 1px solid var(--border); margin-bottom: 12px; font-size: 12.5px; color: var(--ink-secondary); }
+    .local-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .local-item-list { display: flex; flex-direction: column; gap: 8px; max-height: 52vh; overflow: auto; }
+    .local-item-card { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+    .local-item-main { min-width: 0; flex: 1; }
+    .local-item-title { font-weight: 600; font-size: 13.5px; color: var(--ink); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .local-item-meta { font-size: 11.5px; color: var(--ink-muted); margin-top: 3px; }
+    .local-item-actions { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
+    .local-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .local-field { display: flex; flex-direction: column; gap: 4px; }
+    .local-field.full { grid-column: 1 / -1; }
+    .local-field label { font-size: 12px; font-weight: 600; color: var(--ink-secondary); }
+    .local-field input, .local-field select, .local-field textarea { width: 100%; box-sizing: border-box; padding: 7px 9px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 13px; font-family: inherit; }
+    .local-field textarea { min-height: 58px; resize: vertical; line-height: 1.5; }
+    .local-section { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+    .local-section-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+    .local-section-head h4 { margin: 0; font-size: 13.5px; color: var(--ink); }
+    .local-link-row { display: grid; grid-template-columns: 120px 1.4fr 120px 1fr auto; gap: 6px; align-items: center; margin-bottom: 6px; }
+    .local-link-row input, .local-link-row select { width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--ink); font-size: 12.5px; }
+    .local-editor-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .local-toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(14px); background: rgba(15, 23, 42, 0.92); color: #fff; padding: 8px 16px; border-radius: 999px; font-size: 12.5px; z-index: 220; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.22); }
+    .local-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    @media (max-width: 720px) { .local-form-grid, .local-link-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -641,6 +675,8 @@
         <div class="device-controls">
           <button class="toggle-btn mobile-or-tablet-only" id="filterToggleBtn">筛选</button>
           <button class="toggle-btn desktop-or-tablet-only active" id="tabletDrawerBtn" title="收起右侧详情推导栏，横向全屏浏览图谱">◧ 收起详情</button>
+          <button class="toggle-btn" id="localAddBtn" onclick="openLocalEditorModal(null)" title="新增仅保存在本机的自定义公式或定理">＋ 新增</button>
+          <button class="toggle-btn" id="localWsBtn" onclick="openLocalWorkspaceModal()" title="管理本地修订、新增公式与 JSON 补丁包">📦 工作区<span class="local-badge-cnt" id="localWsCnt" style="display:none">0</span></button>
           <div class="select-field" title="切换桌面端、平板端或手机端适配界面">
             <label for="deviceModeSelect">界面</label>
             <select id="deviceModeSelect">
@@ -825,6 +861,112 @@
   </div>
 
   <!-- 静态分离数据文件（零 CORS，支持 file:// 双击离线打开与 PWA 独立缓存） -->
+  <div class="modal-backdrop" id="localWorkspaceModal" role="dialog" aria-modal="true" aria-labelledby="localWsModalTitle">
+    <div class="modal-card wide">
+      <div class="modal-head">
+        <h3 id="localWsModalTitle">📦 离线个人工作区（本地修订与自定义公式）</h3>
+        <button class="mini-btn" type="button" onclick="closeLocalWorkspaceModal()">关闭</button>
+      </div>
+      <div class="local-summary-bar" id="localWsSummary"></div>
+      <div class="local-toolbar">
+        <button class="mini-btn primary" type="button" onclick="openLocalEditorModal(null)">＋ 新增本地公式</button>
+        <button class="mini-btn" type="button" onclick="exportLocalPatch()">⬇ 导出 JSON 补丁包</button>
+        <button class="mini-btn" type="button" onclick="triggerImportLocalPatch('merge')">⬆ 导入补丁包（合并）</button>
+        <button class="mini-btn" type="button" onclick="triggerImportLocalPatch('replace')">⬆ 导入并覆盖</button>
+        <button class="mini-btn danger" type="button" onclick="clearAllLocalChanges()">🗑 清空本地改动</button>
+      </div>
+      <div class="local-item-list" id="localWsList"></div>
+      <p style="font-size:11.5px; color:var(--ink-muted); margin:10px 0 0;">
+        所有修订与新增对象仅保存在当前浏览器本地存储（优先 IndexedDB），不覆盖官方基线；升级新版离线包后，可导入 JSON 补丁包自动还原个人改动。
+      </p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="localEditorModal" role="dialog" aria-modal="true" aria-labelledby="localEditorTitle">
+    <div class="modal-card wide">
+      <div class="modal-head">
+        <h3 id="localEditorTitle">✎ 编辑本地公式</h3>
+        <button class="mini-btn" type="button" onclick="closeLocalEditorModal()">关闭</button>
+      </div>
+      <div id="localEditorBanner" style="display:none; margin-bottom:10px; padding:8px 10px; border-radius:8px; background:var(--surface-subtle); border:1px solid var(--border); font-size:12px; color:var(--ink-secondary);"></div>
+      <form id="localEditorForm" onsubmit="saveLocalEditorForm(event)">
+        <div class="local-form-grid">
+          <div class="local-field">
+            <label for="fgLeName">公式 / 定理名称 *</label>
+            <input id="fgLeName" type="text" required placeholder="例如：伊藤引理 / 自定义估值恒等式" />
+          </div>
+          <div class="local-field">
+            <label for="fgLeAliases">别名（用 / 分隔）</label>
+            <input id="fgLeAliases" type="text" placeholder="例如：Ito's Lemma / 随机链式法则" />
+          </div>
+          <div class="local-field full">
+            <label for="fgLeLatex">LaTeX 表达式 *</label>
+            <input id="fgLeLatex" type="text" required placeholder="例如：df(t,X_t) = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial x}dX_t + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(dX_t)^2" />
+          </div>
+          <div class="local-field">
+            <label for="fgLeKind">对象类型</label>
+            <select id="fgLeKind"></select>
+          </div>
+          <div class="local-field">
+            <label for="fgLeStage">学习阶段</label>
+            <select id="fgLeStage"></select>
+          </div>
+          <div class="local-field">
+            <label for="fgLeDisc">所属学科</label>
+            <select id="fgLeDisc"></select>
+          </div>
+          <div class="local-field">
+            <label for="fgLeTopic">所属专题</label>
+            <select id="fgLeTopic"></select>
+          </div>
+          <div class="local-field full">
+            <label for="fgLeStatement">核心表述</label>
+            <textarea id="fgLeStatement" placeholder="用一句严谨清晰的话概括该公式或定理的核心含义..."></textarea>
+          </div>
+          <div class="local-field">
+            <label for="fgLeConditions">适用条件（用 ； 分隔）</label>
+            <input id="fgLeConditions" type="text" placeholder="例如：函数二阶连续可微；过程为伊藤过程" />
+          </div>
+          <div class="local-field">
+            <label for="fgLeSource">出处 / 备注</label>
+            <input id="fgLeSource" type="text" placeholder="例如：本地个人工作区 / 自学笔记" />
+          </div>
+          <div class="local-field full">
+            <label for="fgLeIntuition">直觉理解（可选）</label>
+            <textarea id="fgLeIntuition" placeholder="几何、物理或金融直觉解读..."></textarea>
+          </div>
+          <div class="local-field full">
+            <label for="fgLeExample">极简数值算例（可选）</label>
+            <textarea id="fgLeExample" placeholder="给出 1 个直观代入算例..."></textarea>
+          </div>
+        </div>
+
+        <div class="local-section">
+          <div class="local-section-head">
+            <h4>🕸 自定义推导关联（挂接到现有或本地对象）</h4>
+            <button type="button" class="mini-btn primary" onclick="addEditorLinkRow()">＋ 添加推导边</button>
+          </div>
+          <div id="leLinksList"></div>
+        </div>
+
+        <div class="local-editor-foot">
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" class="mini-btn danger" id="leRestoreBtn" style="display:none;" onclick="restoreCurrentEditorFormula()">↺ 还原官方版</button>
+            <button type="button" class="mini-btn danger" id="leDeleteBtn" style="display:none;" onclick="deleteCurrentEditorFormula()">🗑 删除本地对象</button>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button type="button" class="mini-btn" onclick="closeLocalEditorModal()">取消</button>
+            <button type="submit" class="mini-btn primary">💾 保存到本地工作区</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <input type="file" id="localPatchFileInput" accept=".json,application/json" style="display:none" />
+  <datalist id="localFormulaDatalist"></datalist>
+  <div class="local-toast" id="localToast" aria-live="polite"></div>
+
   <script src="./data/graph-data.js"></script>
   <script>
     const PAYLOAD = window.FORMULA_GRAPH_DATA || { taxonomy: { stages: [], disciplines: [] }, graph: { formulas: [], derivations: [] } };
@@ -1968,6 +2110,7 @@
               <span style="display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap;">
                 <span class="node-tag ${dm.cls}">${dm.label}</span>
                 <span class="kind-pill kind-${f._kind}">${kindLabel}</span>
+                ${renderLocalBadge(f)}
                 <span>${stageText}${brLabel ? ` · ${brLabel}` : ""}</span>
               </span>
               <button type="button" class="mini-btn primary" onclick="event.stopPropagation(); selectFormula('${f.id}')">◎ 聚焦推导</button>
@@ -2174,9 +2317,10 @@
           </div>
           <div class="${mathCls}">${renderMathHTML(f.latex)}</div>
           <div class="node-foot">
-            <span style="display:inline-flex;align-items:center;gap:5px;">
+            <span style="display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap;">
               <span class="node-tag ${dm.cls}">${dm.label}</span>
               <span class="kind-pill kind-${f._kind}">${kindLabel}</span>
+              ${renderLocalBadge(f)}
             </span>
             <span>${stageText}</span>
           </div>
@@ -2257,12 +2401,18 @@
             <div class="hero-math">${renderMathHTML(f.latex)}</div>
             <div style="font-size:12.5px; color:var(--ink-secondary);">${escapeHTML(f.statement)}</div>
             <div class="meta-row">
+              ${renderLocalBadge(f)}
               <span class="chip">类型：${NODE_KIND_LABELS[f._kind] || "公式"}</span>
               ${f.taxonomy.education_stages.map(s => `<span class="chip">阶段：${STAGE_LABELS[s] || s}</span>`).join("")}
               ${branchTags.map(b => `<span class="chip">分支：${b}</span>`).join("")}
               ${topicTags.map(t => `<span class="chip">专题：${t}</span>`).join("")}
               <span class="chip verified">✓ 已核验</span>
-              <span class="chip">出处：${escapeHTML(f.review.source)}</span>
+              <span class="chip">出处：${escapeHTML((f.review && f.review.source) || "本地工作区")}</span>
+            </div>
+            <div class="meta-row" style="margin-top:8px;">
+              <button class="mini-btn" onclick="openLocalEditorModal('${f.id}')">✎ 本地编辑</button>
+              ${f._local_status === "modified" ? `<button class="mini-btn danger" onclick="restoreOfficialFormula('${f.id}')">↺ 还原官方版</button>` : ""}
+              ${f._local_status === "custom" ? `<button class="mini-btn danger" onclick="deleteCustomLocalFormula('${f.id}')">🗑 删除本地对象</button>` : ""}
             </div>
           </div>
 
@@ -2983,8 +3133,673 @@
     restoreStateFromURL();
     document.getElementById("deviceModeSelect").value = state.deviceMode;
     syncCascadingDropdowns();
+    // =========================================================================
+    // V1 离线个人工作台（Overlay 补丁层 + IndexedDB 持久化 + JSON 导入导出）
+    // =========================================================================
+    const FG_DB_NAME = "formula_graph_local_workspace_v1";
+    const FG_DB_STORE = "kv";
+    const FG_DB_KEY = "patch_v1";
+    const FG_LS_KEY = "formula_graph_local_patch_v1";
+
+    const OFFICIAL_FORMULAS_BASE = MASTER_GRAPH.formulas.map(f => {
+      const c = JSON.parse(JSON.stringify(f));
+      delete c._branches; delete c._canonicalTopics; delete c._primaryBranch;
+      delete c._primaryTopic; delete c._primaryStage; delete c._kind; delete c._degree;
+      delete c._titleSearch; delete c._bodySearch; delete c._fullSearch; delete c._local_status;
+      return c;
+    });
+    const OFFICIAL_DERIVS_BASE = MASTER_GRAPH.derivations.map(d => JSON.parse(JSON.stringify(d)));
+
+    let localStorageBackend = "IndexedDB";
+    let localPatch = createEmptyLocalPatch();
+    let localEditorState = { mode: "create", formulaId: null };
+    let localImportMode = "merge";
+    let localToastTimer = null;
+
+    function createEmptyLocalPatch() {
+      return {
+        schema_version: "1.0",
+        app: "formula-graph",
+        updated_at: null,
+        next_custom_seq: 1,
+        overrides: {},
+        custom_formulas: []
+      };
+    }
+
+    function showLocalToast(msg) {
+      const el = document.getElementById("localToast");
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(localToastTimer);
+      localToastTimer = setTimeout(() => el.classList.remove("show"), 2600);
+    }
+
+    function renderLocalBadge(f) {
+      if (!f || !f._local_status) return "";
+      if (f._local_status === "modified") return `<span class="pill local-mod" title="该对象包含本机离线修订，可随时还原官方版">🏷 本地修订</span>`;
+      if (f._local_status === "custom") return `<span class="pill local-new" title="仅保存在本机工作区的自定义对象">🏷 本地新增</span>`;
+      return "";
+    }
+
+    function openLocalIDB() {
+      return new Promise((resolve, reject) => {
+        if (typeof indexedDB === "undefined") { reject(new Error("no_idb")); return; }
+        try {
+          const req = indexedDB.open(FG_DB_NAME, 1);
+          req.onupgradeneeded = () => {
+            const db = req.result;
+            if (!db.objectStoreNames.contains(FG_DB_STORE)) db.createObjectStore(FG_DB_STORE);
+          };
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error || new Error("idb_open_err"));
+        } catch (err) { reject(err); }
+      });
+    }
+
+    function normalizeLocalPatch(raw) {
+      const p = createEmptyLocalPatch();
+      if (!raw || typeof raw !== "object") return p;
+      p.updated_at = raw.updated_at || null;
+      p.next_custom_seq = Number.isInteger(raw.next_custom_seq) && raw.next_custom_seq >= 1 ? raw.next_custom_seq : 1;
+      if (raw.overrides && typeof raw.overrides === "object") p.overrides = raw.overrides;
+      if (Array.isArray(raw.custom_formulas)) p.custom_formulas = raw.custom_formulas;
+      p.custom_formulas.forEach(cf => {
+        const m = cf && typeof cf.id === "string" && cf.id.match(/^local_formula_(\d+)$/);
+        if (m) {
+          const n = Number(m[1]);
+          if (n >= p.next_custom_seq) p.next_custom_seq = n + 1;
+        }
+      });
+      return p;
+    }
+
+    async function loadLocalPatchFromStore() {
+      try {
+        const db = await openLocalIDB();
+        const val = await new Promise((resolve, reject) => {
+          const tx = db.transaction(FG_DB_STORE, "readonly");
+          const req = tx.objectStore(FG_DB_STORE).get(FG_DB_KEY);
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error);
+        });
+        db.close();
+        localStorageBackend = "IndexedDB";
+        if (val && typeof val === "object") return normalizeLocalPatch(val);
+      } catch (_) {
+        localStorageBackend = "localStorage";
+      }
+      try {
+        const raw = localStorage.getItem(FG_LS_KEY);
+        if (raw) return normalizeLocalPatch(JSON.parse(raw));
+      } catch (_) {}
+      return createEmptyLocalPatch();
+    }
+
+    async function saveLocalPatchToStore(patch) {
+      patch.updated_at = new Date().toISOString();
+      let savedIdb = false;
+      try {
+        const db = await openLocalIDB();
+        await new Promise((resolve, reject) => {
+          const tx = db.transaction(FG_DB_STORE, "readwrite");
+          tx.objectStore(FG_DB_STORE).put(patch, FG_DB_KEY);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+        db.close();
+        savedIdb = true;
+        localStorageBackend = "IndexedDB";
+      } catch (_) {
+        localStorageBackend = "localStorage";
+      }
+      try {
+        localStorage.setItem(FG_LS_KEY, JSON.stringify(patch));
+      } catch (_) {
+        if (!savedIdb) showLocalToast("本地存储空间不足，请导出 JSON 补丁包备份");
+      }
+    }
+
+    function resolveOverrideFormulaId(ovKey, ov, officialMap) {
+      const fid = ov.formula_id || ovKey;
+      if (officialMap.has(fid)) return fid;
+      if (ov.anchor_name) {
+        for (const f of OFFICIAL_FORMULAS_BASE) {
+          if (f.name === ov.anchor_name) return f.id;
+        }
+      }
+      return null;
+    }
+
+    function recomputeFormulaGraphIndexes() {
+      Object.keys(formulaById).forEach(k => delete formulaById[k]);
+      Object.keys(derivById).forEach(k => delete derivById[k]);
+      Object.keys(globalDegree).forEach(k => delete globalDegree[k]);
+
+      MASTER_GRAPH.formulas.forEach(f => {
+        formulaById[f.id] = f;
+        globalDegree[f.id] = 0;
+      });
+      MASTER_GRAPH.derivations = MASTER_GRAPH.derivations.filter(d =>
+        formulaById[d.to_formula_id] && Array.isArray(d.from_formula_ids) && d.from_formula_ids.every(fid => Boolean(formulaById[fid]))
+      );
+      MASTER_GRAPH.derivations.forEach(d => {
+        derivById[d.id] = d;
+        if (globalDegree[d.to_formula_id] !== undefined) globalDegree[d.to_formula_id] += 1;
+        d.from_formula_ids.forEach(fid => { if (globalDegree[fid] !== undefined) globalDegree[fid] += 1; });
+      });
+
+      MASTER_GRAPH.formulas.forEach(f => {
+        const branches = new Set();
+        const canonicalTopics = new Set();
+        let primaryBranch = null;
+        let primaryTopic = null;
+        ((f.taxonomy && f.taxonomy.topics) || []).forEach(rt => {
+          (RAW_TO_CANONICAL[rt] || []).forEach(m => {
+            branches.add(m.branchId);
+            canonicalTopics.add(m.topicId);
+            if (!primaryBranch) primaryBranch = m.branchId;
+            if (!primaryTopic) primaryTopic = m.topicId;
+          });
+        });
+        f._branches = branches;
+        f._canonicalTopics = canonicalTopics;
+        f._primaryBranch = primaryBranch || "other";
+        f._primaryTopic = primaryTopic || "other";
+        f._primaryStage = (f.taxonomy && f.taxonomy.education_stages && f.taxonomy.education_stages[0]) || "junior_high";
+        f._kind = f.node_kind || "formula";
+        f._degree = globalDegree[f.id] || 0;
+
+        const stageLbls = ((f.taxonomy && f.taxonomy.education_stages) || []).map(s => STAGE_LABELS[s] || s).join(" ");
+        const brLbls = [...branches].map(bid => BRANCH_BY_ID[bid]?.label || "").join(" ");
+        const tpLbls = [...canonicalTopics].map(tid => TOPIC_BY_ID[tid]?.label || "").join(" ");
+        const varTxt = (f.variables || []).map(v => `${v.symbol} ${v.name} ${v.si_unit || ""}`).join(" ");
+        f._titleSearch = `${f.name} ${(f.aliases || []).join(" ")} ${NODE_KIND_LABELS[f._kind] || ""}`.toLowerCase();
+        f._bodySearch = `${f.latex} ${f.statement || ""} ${f.intuition || ""} ${f.worked_example || ""} ${(f.applications || []).join(" ")} ${(f.conditions || []).join(" ")} ${varTxt} ${stageLbls} ${brLbls} ${tpLbls}`.toLowerCase();
+        f._fullSearch = `${f._titleSearch} ${f._bodySearch}`;
+      });
+    }
+
+    function applyLocalPatchToRuntime() {
+      const formulas = OFFICIAL_FORMULAS_BASE.map(f => JSON.parse(JSON.stringify(f)));
+      const derivs = OFFICIAL_DERIVS_BASE.map(d => JSON.parse(JSON.stringify(d)));
+      const officialMap = new Map(formulas.map(f => [f.id, f]));
+      let localDerivSeq = 1;
+
+      const appendCustomLinks = (selfId, customLinks) => {
+        (customLinks || []).forEach(lk => {
+          if (!lk || !lk.target_formula_id || lk.target_formula_id === selfId) return;
+          const isOut = lk.dir !== "in";
+          const relType = lk.relation_type || "derives_to";
+          derivs.push({
+            id: `local_deriv_${localDerivSeq++}`,
+            from_formula_ids: [isOut ? selfId : lk.target_formula_id],
+            to_formula_id: isOut ? lk.target_formula_id : selfId,
+            relation_type: relType,
+            bidirectional: relType === "equivalent_to" || relType === "dual_of",
+            summary: lk.note || "本地自定义推导关系",
+            steps: [{ level: "L1", title: "本地补充说明", detail: lk.note || "由用户在离线个人工作台添加。" }],
+            _local: true
+          });
+        });
+      };
+
+      Object.entries(localPatch.overrides || {}).forEach(([ovKey, ov]) => {
+        if (!ov || typeof ov !== "object") return;
+        const tid = resolveOverrideFormulaId(ovKey, ov, officialMap);
+        if (!tid) return;
+        const f = officialMap.get(tid);
+        const fld = ov.fields || {};
+        if (fld.name) f.name = fld.name;
+        if (Array.isArray(fld.aliases)) f.aliases = fld.aliases;
+        if (fld.node_kind) f.node_kind = fld.node_kind;
+        if (fld.latex) f.latex = fld.latex;
+        if (fld.statement !== undefined) f.statement = fld.statement;
+        if (fld.intuition !== undefined) f.intuition = fld.intuition;
+        if (fld.worked_example !== undefined) f.worked_example = fld.worked_example;
+        if (Array.isArray(fld.conditions)) f.conditions = fld.conditions;
+        if (Array.isArray(fld.applications)) f.applications = fld.applications;
+        if (fld.stage) f.taxonomy.education_stages = [fld.stage];
+        if (fld.discipline) f.taxonomy.disciplines = [fld.discipline];
+        if (fld.topic) f.taxonomy.topics = [fld.topic];
+        if (fld.source) {
+          if (!f.review) f.review = {};
+          f.review.source = fld.source;
+        }
+        f._local_status = "modified";
+        appendCustomLinks(tid, ov.custom_links);
+      });
+
+      (localPatch.custom_formulas || []).forEach(cf => {
+        if (!cf || !cf.id) return;
+        const topicId = cf.topic || Object.keys(TOPIC_BY_ID)[0] || "calculus";
+        const discId = cf.discipline || (TOPIC_BY_ID[topicId] ? TOPIC_BY_ID[topicId].disciplineId : "mathematics");
+        const rawTopic = (TOPIC_BY_ID[topicId] && TOPIC_BY_ID[topicId].raw_topics && TOPIC_BY_ID[topicId].raw_topics[0]) || topicId;
+        formulas.push({
+          id: cf.id,
+          name: cf.name || "未命名本地公式",
+          aliases: Array.isArray(cf.aliases) ? cf.aliases : [],
+          node_kind: cf.node_kind || "formula",
+          latex: cf.latex || "y = f(x)",
+          statement: cf.statement || "",
+          intuition: cf.intuition || "",
+          worked_example: cf.worked_example || "",
+          conditions: Array.isArray(cf.conditions) && cf.conditions.length ? cf.conditions : ["常规实数域或题设条件"],
+          applications: Array.isArray(cf.applications) ? cf.applications : [],
+          variables: Array.isArray(cf.variables) ? cf.variables : [],
+          taxonomy: {
+            education_stages: [cf.stage || "undergraduate"],
+            disciplines: [discId],
+            topics: [rawTopic]
+          },
+          review: {
+            status: "verified",
+            source: cf.source || "本地个人工作区"
+          },
+          _local_status: "custom"
+        });
+        appendCustomLinks(cf.id, cf.custom_links);
+      });
+
+      MASTER_GRAPH.formulas = formulas;
+      MASTER_GRAPH.derivations = derivs;
+      recomputeFormulaGraphIndexes();
+      updateLocalWorkspaceBadges();
+    }
+
+    function updateLocalWorkspaceBadges() {
+      const total = Object.keys(localPatch.overrides || {}).length + (localPatch.custom_formulas || []).length;
+      const el = document.getElementById("localWsCnt");
+      if (el) {
+        el.textContent = String(total);
+        el.style.display = total > 0 ? "inline-flex" : "none";
+      }
+    }
+
+    function populateLocalEditorSelects() {
+      const kindSel = document.getElementById("fgLeKind");
+      const stageSel = document.getElementById("fgLeStage");
+      const discSel = document.getElementById("fgLeDisc");
+      const topicSel = document.getElementById("fgLeTopic");
+      if (kindSel && !kindSel.options.length) {
+        kindSel.innerHTML = NODE_KIND_LIST.map(x => `<option value="${escapeHTML(x.id)}">${escapeHTML(x.label)}</option>`).join("");
+      }
+      if (stageSel && !stageSel.options.length) {
+        stageSel.innerHTML = STAGE_LIST.map(x => `<option value="${escapeHTML(x.id)}">${escapeHTML(x.label)}</option>`).join("");
+      }
+      if (discSel && !discSel.options.length) {
+        discSel.innerHTML = TAXONOMY.disciplines.map(x => `<option value="${escapeHTML(x.id)}">${escapeHTML(x.label)}</option>`).join("");
+      }
+      if (topicSel && !topicSel.options.length) {
+        topicSel.innerHTML = Object.values(TOPIC_BY_ID).map(tp =>
+          `<option value="${escapeHTML(tp.id)}">${escapeHTML(tp.branchLabel)} · ${escapeHTML(tp.label)}</option>`
+        ).join("");
+      }
+      const dl = document.getElementById("localFormulaDatalist");
+      if (dl) {
+        dl.innerHTML = MASTER_GRAPH.formulas.map(f => `<option value="${escapeHTML(f.id)} | ${escapeHTML(f.name)}"></option>`).join("");
+      }
+    }
+
+    function openLocalWorkspaceModal() {
+      renderLocalWorkspaceModal();
+      document.getElementById("localWorkspaceModal").classList.add("open");
+    }
+    function closeLocalWorkspaceModal() {
+      document.getElementById("localWorkspaceModal").classList.remove("open");
+    }
+
+    function renderLocalWorkspaceModal() {
+      const ovEntries = Object.entries(localPatch.overrides || {});
+      const customs = localPatch.custom_formulas || [];
+      const customLinkCount = ovEntries.reduce((s, [, ov]) => s + ((ov.custom_links || []).length), 0)
+        + customs.reduce((s, c) => s + ((c.custom_links || []).length), 0);
+      document.getElementById("localWsSummary").innerHTML = `
+        <span>本地修订：<strong>${ovEntries.length}</strong> 项 · 本地新增：<strong>${customs.length}</strong> 项 · 自定义推导：<strong>${customLinkCount}</strong> 条</span>
+        <span>存储引擎：<strong>${localStorageBackend}</strong>${localPatch.updated_at ? ` · 最近保存 ${localPatch.updated_at.slice(0, 16).replace("T", " ")}` : ""}</span>
+      `;
+      const listEl = document.getElementById("localWsList");
+      if (!ovEntries.length && !customs.length) {
+        listEl.innerHTML = `<div style="text-align:center; padding:28px 12px; color:var(--ink-muted); font-size:13px;">当前尚未创建本地修订或自定义公式。<br>可在任意公式详情点击「✎ 本地编辑」，或点击上方「＋ 新增本地公式」扩展个人知识图谱。</div>`;
+        return;
+      }
+      const items = [];
+      customs.forEach(cf => {
+        items.push(`
+          <div class="local-item-card">
+            <div class="local-item-main">
+              <div class="local-item-title"><span class="pill local-new">🏷 本地新增</span><span>${escapeHTML(cf.name)}</span></div>
+              <div class="local-item-meta">${escapeHTML(cf.id)} · ${escapeHTML(NODE_KIND_LABELS[cf.node_kind] || "公式")} · ${(cf.custom_links || []).length} 条自定义推导</div>
+            </div>
+            <div class="local-item-actions">
+              <button type="button" class="mini-btn" onclick="jumpToLocalFormula('${escapeHTML(cf.id)}')">定位</button>
+              <button type="button" class="mini-btn primary" onclick="openLocalEditorModal('${escapeHTML(cf.id)}')">编辑</button>
+              <button type="button" class="mini-btn danger" onclick="deleteCustomLocalFormula('${escapeHTML(cf.id)}')">删除</button>
+            </div>
+          </div>
+        `);
+      });
+      ovEntries.forEach(([k, ov]) => {
+        const fid = ov.formula_id || k;
+        const f = formulaById[fid];
+        const name = (ov.fields && ov.fields.name) || (f ? f.name : ov.anchor_name) || fid;
+        items.push(`
+          <div class="local-item-card">
+            <div class="local-item-main">
+              <div class="local-item-title"><span class="pill local-mod">🏷 本地修订</span><span>${escapeHTML(name)}</span></div>
+              <div class="local-item-meta">官方 ID: ${escapeHTML(fid)} · ${(ov.custom_links || []).length} 条自定义推导</div>
+            </div>
+            <div class="local-item-actions">
+              ${f ? `<button type="button" class="mini-btn" onclick="jumpToLocalFormula('${escapeHTML(fid)}')">定位</button>` : ""}
+              <button type="button" class="mini-btn primary" onclick="openLocalEditorModal('${escapeHTML(fid)}')">编辑</button>
+              <button type="button" class="mini-btn danger" onclick="restoreOfficialFormula('${escapeHTML(fid)}')">还原官方版</button>
+            </div>
+          </div>
+        `);
+      });
+      listEl.innerHTML = items.join("");
+    }
+
+    function jumpToLocalFormula(fid) {
+      closeLocalWorkspaceModal();
+      if (!formulaById[fid]) return;
+      state.stageFilter = "all";
+      state.disciplineFilter = "all";
+      state.branchFilter = "all";
+      state.topicFilter = "all";
+      state.kindFilter = "all";
+      state.searchQuery = "";
+      const sInp = document.getElementById("searchInput");
+      if (sInp) sInp.value = "";
+      syncCascadingDropdowns();
+      state.selectedFormulaId = fid;
+      generateDynamicView(false);
+    }
+
+    function openLocalEditorModal(fid) {
+      closeLocalWorkspaceModal();
+      populateLocalEditorSelects();
+      const isNew = !fid;
+      const isCustom = !isNew && fid.startsWith("local_formula_");
+      const f = isNew ? null : formulaById[fid];
+      localEditorState = { mode: isNew ? "create" : (isCustom ? "edit_custom" : "edit_official"), formulaId: isNew ? null : fid };
+
+      document.getElementById("localEditorTitle").textContent = isNew
+        ? "＋ 新增本地公式 / 定理（挂接推导图谱）"
+        : (isCustom ? `✎ 编辑本地新增对象（${fid}）` : `✎ 本地修订官方对象（${fid}）`);
+      const banner = document.getElementById("localEditorBanner");
+      if (localEditorState.mode === "edit_official") {
+        banner.style.display = "block";
+        banner.textContent = "提示：所有修订仅保存在本机工作区，不覆盖官方原件；可随时点击左下角「↺ 还原官方版」恢复。";
+      } else {
+        banner.style.display = "none";
+      }
+
+      document.getElementById("fgLeName").value = f ? (f.name || "") : "";
+      document.getElementById("fgLeAliases").value = f ? ((f.aliases || []).join(" / ")) : "";
+      document.getElementById("fgLeKind").value = f ? (f.node_kind || "formula") : "formula";
+      document.getElementById("fgLeLatex").value = f ? (f.latex || "") : "";
+      document.getElementById("fgLeStatement").value = f ? (f.statement || "") : "";
+      document.getElementById("fgLeStage").value = f ? (f._primaryStage || "undergraduate") : (state.stageFilter === "all" ? "undergraduate" : state.stageFilter);
+      document.getElementById("fgLeDisc").value = f ? ((f.taxonomy && f.taxonomy.disciplines && f.taxonomy.disciplines[0]) || "mathematics") : (state.disciplineFilter === "all" ? "mathematics" : state.disciplineFilter);
+      const topicVal = f && f._primaryTopic && TOPIC_BY_ID[f._primaryTopic] ? f._primaryTopic : (Object.keys(TOPIC_BY_ID)[0] || "");
+      if (topicVal) document.getElementById("fgLeTopic").value = topicVal;
+      document.getElementById("fgLeConditions").value = f ? ((f.conditions || []).join("；")) : "";
+      document.getElementById("fgLeIntuition").value = f ? (f.intuition || "") : "";
+      document.getElementById("fgLeExample").value = f ? (f.worked_example || "") : "";
+      document.getElementById("fgLeSource").value = f ? ((f.review && f.review.source) || "") : "本地个人工作区";
+
+      document.getElementById("leRestoreBtn").style.display = (localEditorState.mode === "edit_official" && localPatch.overrides[fid]) ? "inline-flex" : "none";
+      document.getElementById("leDeleteBtn").style.display = isCustom ? "inline-flex" : "none";
+
+      const linksEl = document.getElementById("leLinksList");
+      linksEl.innerHTML = "";
+      let existingLinks = [];
+      if (isCustom) {
+        const cf = (localPatch.custom_formulas || []).find(x => x.id === fid);
+        existingLinks = (cf && cf.custom_links) ? cf.custom_links : [];
+      } else if (!isNew) {
+        const ov = localPatch.overrides[fid];
+        existingLinks = (ov && ov.custom_links) ? ov.custom_links : [];
+      }
+      existingLinks.forEach(lk => addEditorLinkRow(lk));
+
+      document.getElementById("localEditorModal").classList.add("open");
+    }
+
+    function closeLocalEditorModal() {
+      document.getElementById("localEditorModal").classList.remove("open");
+    }
+
+    function addEditorLinkRow(lk = null) {
+      const listEl = document.getElementById("leLinksList");
+      const row = document.createElement("div");
+      row.className = "local-link-row";
+      const tf = lk && lk.target_formula_id && formulaById[lk.target_formula_id] ? formulaById[lk.target_formula_id] : null;
+      const targetVal = tf ? `${tf.id} | ${tf.name}` : (lk && lk.target_formula_id ? lk.target_formula_id : "");
+      const relOpts = Object.keys(REL_LABELS).map(k => `<option value="${k}" ${(lk && lk.relation_type === k) ? "selected" : ""}>${REL_LABELS[k]}</option>`).join("");
+      row.innerHTML = `
+        <select class="le-link-dir">
+          <option value="out" ${(!lk || lk.dir !== "in") ? "selected" : ""}>本对象 → 目标</option>
+          <option value="in" ${(lk && lk.dir === "in") ? "selected" : ""}>目标 → 本对象</option>
+        </select>
+        <input type="text" class="le-link-target" list="localFormulaDatalist" placeholder="搜索并选择目标公式..." value="${escapeHTML(targetVal)}" />
+        <select class="le-link-kind">${relOpts}</select>
+        <input type="text" class="le-link-note" placeholder="推导/关系说明（可选）" value="${escapeHTML((lk && lk.note) || "")}" />
+        <button type="button" class="mini-btn danger" onclick="this.closest('.local-link-row').remove()">移除</button>
+      `;
+      listEl.appendChild(row);
+    }
+
+    function collectEditorLinks() {
+      const out = [];
+      document.querySelectorAll("#leLinksList .local-link-row").forEach(row => {
+        const raw = (row.querySelector(".le-link-target").value || "").trim();
+        if (!raw) return;
+        let tid = null;
+        const sepIdx = raw.indexOf("|");
+        if (sepIdx > 0) tid = raw.slice(0, sepIdx).trim();
+        else if (formulaById[raw]) tid = raw;
+        else {
+          const hit = MASTER_GRAPH.formulas.find(x => x.name === raw);
+          if (hit) tid = hit.id;
+        }
+        if (!tid || !formulaById[tid]) return;
+        out.push({
+          dir: row.querySelector(".le-link-dir").value || "out",
+          target_formula_id: tid,
+          relation_type: row.querySelector(".le-link-kind").value || "derives_to",
+          note: (row.querySelector(".le-link-note").value || "").trim()
+        });
+      });
+      return out;
+    }
+
+    async function saveLocalEditorForm(ev) {
+      ev.preventDefault();
+      const name = (document.getElementById("fgLeName").value || "").trim();
+      const latex = (document.getElementById("fgLeLatex").value || "").trim();
+      if (!name || !latex) { showLocalToast("请填写名称与 LaTeX 公式表达式"); return; }
+      const topicId = document.getElementById("fgLeTopic").value;
+      const rawTopic = (TOPIC_BY_ID[topicId] && TOPIC_BY_ID[topicId].raw_topics && TOPIC_BY_ID[topicId].raw_topics[0]) || topicId;
+      const fields = {
+        name,
+        aliases: (document.getElementById("fgLeAliases").value || "").split(/[/／,，]/).map(s => s.trim()).filter(Boolean),
+        node_kind: document.getElementById("fgLeKind").value || "formula",
+        latex,
+        statement: (document.getElementById("fgLeStatement").value || "").trim(),
+        stage: document.getElementById("fgLeStage").value || "undergraduate",
+        discipline: document.getElementById("fgLeDisc").value || "mathematics",
+        topic: rawTopic,
+        conditions: (document.getElementById("fgLeConditions").value || "").split(/[;；\n]/).map(s => s.trim()).filter(Boolean),
+        intuition: (document.getElementById("fgLeIntuition").value || "").trim(),
+        worked_example: (document.getElementById("fgLeExample").value || "").trim(),
+        source: (document.getElementById("fgLeSource").value || "").trim() || "本地个人工作区"
+      };
+      const customLinks = collectEditorLinks();
+      let targetId = localEditorState.formulaId;
+
+      if (localEditorState.mode === "create") {
+        targetId = `local_formula_${localPatch.next_custom_seq++}`;
+        localPatch.custom_formulas.push({
+          id: targetId,
+          ...fields,
+          topic: topicId,
+          custom_links: customLinks,
+          updated_at: new Date().toISOString()
+        });
+      } else if (localEditorState.mode === "edit_custom") {
+        const idx = localPatch.custom_formulas.findIndex(x => x.id === targetId);
+        if (idx >= 0) {
+          localPatch.custom_formulas[idx] = {
+            ...localPatch.custom_formulas[idx],
+            ...fields,
+            topic: topicId,
+            custom_links: customLinks,
+            updated_at: new Date().toISOString()
+          };
+        }
+      } else {
+        const orig = OFFICIAL_FORMULAS_BASE.find(x => x.id === targetId);
+        localPatch.overrides[targetId] = {
+          formula_id: targetId,
+          anchor_name: orig ? orig.name : name,
+          fields,
+          custom_links: customLinks,
+          updated_at: new Date().toISOString()
+        };
+      }
+
+      applyLocalPatchToRuntime();
+      await saveLocalPatchToStore(localPatch);
+      closeLocalEditorModal();
+      state.selectedFormulaId = targetId;
+      syncCascadingDropdowns();
+      generateDynamicView(false);
+      showLocalToast(localEditorState.mode === "create" ? "已新增本地对象并挂接至图谱" : "已保存本地修订");
+    }
+
+    async function restoreOfficialFormula(fid) {
+      if (!localPatch.overrides[fid]) return;
+      if (!confirm("确定丢弃该对象的所有本地修订并还原为官方原版？")) return;
+      delete localPatch.overrides[fid];
+      applyLocalPatchToRuntime();
+      await saveLocalPatchToStore(localPatch);
+      closeLocalEditorModal();
+      renderLocalWorkspaceModal();
+      syncCascadingDropdowns();
+      generateDynamicView(false);
+      showLocalToast("已还原为官方原版");
+    }
+
+    function restoreCurrentEditorFormula() {
+      if (localEditorState.formulaId) restoreOfficialFormula(localEditorState.formulaId);
+    }
+
+    async function deleteCustomLocalFormula(fid) {
+      if (!confirm("确定从本地工作区删除该自定义公式？")) return;
+      localPatch.custom_formulas = (localPatch.custom_formulas || []).filter(x => x.id !== fid);
+      applyLocalPatchToRuntime();
+      await saveLocalPatchToStore(localPatch);
+      closeLocalEditorModal();
+      if (state.selectedFormulaId === fid) state.selectedFormulaId = MASTER_GRAPH.formulas[0]?.id || null;
+      renderLocalWorkspaceModal();
+      syncCascadingDropdowns();
+      generateDynamicView(false);
+      showLocalToast("已删除本地自定义对象");
+    }
+
+    function deleteCurrentEditorFormula() {
+      if (localEditorState.formulaId) deleteCustomLocalFormula(localEditorState.formulaId);
+    }
+
+    function exportLocalPatch() {
+      const payload = { ...localPatch, exported_at: new Date().toISOString() };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const stamp = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+      a.href = url;
+      a.download = `formula-graph-workspace-patch-${stamp}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showLocalToast("已导出个人工作区 JSON 补丁包");
+    }
+
+    function triggerImportLocalPatch(mode) {
+      localImportMode = mode || "merge";
+      const inp = document.getElementById("localPatchFileInput");
+      inp.value = "";
+      inp.click();
+    }
+
+    async function handleImportLocalPatchFile(ev) {
+      const file = ev.target.files && ev.target.files[0];
+      if (!file) return;
+      try {
+        const parsed = JSON.parse(await file.text());
+        if (!parsed || typeof parsed !== "object" || (!parsed.overrides && !parsed.custom_formulas)) {
+          showLocalToast("补丁文件格式无效：缺少 overrides 或 custom_formulas");
+          return;
+        }
+        const incoming = normalizeLocalPatch(parsed);
+        if (localImportMode === "replace") {
+          localPatch = incoming;
+        } else {
+          Object.assign(localPatch.overrides, incoming.overrides);
+          const m = new Map(localPatch.custom_formulas.map(x => [x.id, x]));
+          incoming.custom_formulas.forEach(cf => m.set(cf.id, cf));
+          localPatch.custom_formulas = Array.from(m.values());
+          localPatch.next_custom_seq = Math.max(localPatch.next_custom_seq, incoming.next_custom_seq);
+        }
+        applyLocalPatchToRuntime();
+        await saveLocalPatchToStore(localPatch);
+        renderLocalWorkspaceModal();
+        syncCascadingDropdowns();
+        generateDynamicView(false);
+        showLocalToast(localImportMode === "replace" ? "已覆盖导入补丁包" : "已合并导入补丁包");
+      } catch (_) {
+        showLocalToast("导入失败：JSON 解析异常");
+      }
+    }
+
+    async function clearAllLocalChanges() {
+      const ovC = Object.keys(localPatch.overrides || {}).length;
+      const cfC = (localPatch.custom_formulas || []).length;
+      if (!ovC && !cfC) { showLocalToast("当前没有本地改动"); return; }
+      if (!confirm(`确定清空全部 ${ovC} 项本地修订与 ${cfC} 项本地新增对象？建议先导出 JSON 补丁包备份。`)) return;
+      localPatch = createEmptyLocalPatch();
+      applyLocalPatchToRuntime();
+      await saveLocalPatchToStore(localPatch);
+      renderLocalWorkspaceModal();
+      syncCascadingDropdowns();
+      generateDynamicView(false);
+      showLocalToast("已清空全部本地改动并还原官方基线");
+    }
+
+    async function initLocalWorkspace() {
+      const fileInp = document.getElementById("localPatchFileInput");
+      if (fileInp) fileInp.addEventListener("change", handleImportLocalPatchFile);
+      ["localWorkspaceModal", "localEditorModal"].forEach(mid => {
+        const m = document.getElementById(mid);
+        if (m) m.addEventListener("click", (e) => { if (e.target === m) m.classList.remove("open"); });
+      });
+      localPatch = await loadLocalPatchFromStore();
+      const hasLocal = Object.keys(localPatch.overrides || {}).length > 0 || (localPatch.custom_formulas || []).length > 0;
+      updateLocalWorkspaceBadges();
+      if (hasLocal) {
+        applyLocalPatchToRuntime();
+        syncCascadingDropdowns();
+        generateDynamicView(false);
+      }
+    }
+
     generateDynamicView(false);
     applyDeviceMode(true);
+    initLocalWorkspace();
   </script>
 </body>
 </html>
